@@ -1,0 +1,224 @@
+<form class="contact-us-form custom_form appointment-form" id="appointmentInPersonForm">
+  <div class="col-grid">
+    <div class="form-grid">
+      <div class="left_col"> 
+        <div class="form-field">
+          <label class="form-label" for="inPersonFirstName">First Name <span>*</span></label>
+          <input type="text" placeholder="FIRST NAME" name="firstName" id="inPersonFirstName">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="inPersonLastName">Last Name <span>*</span></label>
+          <input type="text" placeholder="LAST NAME" name="lastName" id="inPersonLastName">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="inPersonEmail">Email <span>*</span></label>
+          <input type="email" placeholder="EMAIL" name="email" id="inPersonEmail">
+        </div>
+
+        <div class="form-field ph_no">
+          <label class="form-label" for="inPersonPhone">Phone Number <span>*</span></label>
+          <input type="tel" placeholder="PHONE NUMBER" name="phone" id="inPersonPhone">
+        </div>
+
+        <div class="form-field location">
+          <label class="form-label" for="inPersonLocation">Choose a Location <span>*</span></label>
+          <select name="location" id="inPersonLocation">
+            <option value="">Choose Location</option>
+            <option value="Burnsville">Burnsville</option>
+            <option value="Richfield">Richfield</option>
+            <option value="Minnetonka">Minnetonka</option>
+            <option value="Eden Prairie">Eden Prairie</option>
+            <option value="Maple Grove">Maple Grove</option>
+            <option value="St. Cloud">St. Cloud</option>
+            <option value="Woodbury">Woodbury</option>
+            <option value="Roseville">Roseville</option>
+            <option value="Rochester">Rochester</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="right_col">
+        <div class="form-field date">
+          <label class="form-label" for="datePicker">Choose a Date <span>*</span></label>
+           <input type="text" id="datePicker" name="date" placeholder="Choose date">
+        </div>
+
+        <div class="form-field time">
+          <label class="form-label" for="inPersonTime">Choose a Time <span>*</span></label>
+          <select name="time" id="inPersonTime">
+            <option value="">Choose a Time</option>
+            {% if template contains 'fall-band-event' %}
+            <option value="11:00 am - 12:00 pm">11:00 am - 12:00 pm</option>
+            <option value="12:00 pm - 1:00 pm">12:00 pm - 1:00 pm</option>
+            <option value="1:00 pm - 2:00 pm">1:00 pm - 2:00 pm</option>
+            <option value="2:00 pm - 3:00 pm">2:00 pm - 3:00 pm</option>
+            <option value="3:00 pm - 4:00 pm">3:00 pm - 4:00 pm</option>
+            <option value="4:00 pm - 5:00 pm">4:00 pm - 5:00 pm</option>
+            <option value="5:00 pm - 6:00 pm">5:00 pm - 6:00 pm</option>
+            <option value="6:00 pm - 7:00 pm">6:00 pm - 7:00 pm</option>
+            {% else %}
+              <option value="11:00 am - 12:00 pm">11:00 am - 12:00 pm</option>
+              <option value="12:00 pm - 1:00 pm">12:00 pm - 1:00 pm</option>
+              <option value="1:00 pm - 2:00 pm">1:00 pm - 2:00 pm</option>
+              <option value="2:00 pm - 3:00 pm">2:00 pm - 3:00 pm</option>
+              <option value="3:00 pm - 4:00 pm">3:00 pm - 4:00 pm</option>
+              <option value="4:00 pm - 5:00 pm">4:00 pm - 5:00 pm</option>
+              <option value="5:00 pm - 6:00 pm">5:00 pm - 6:00 pm</option>
+              <option value="6:00 pm - 7:00 pm">6:00 pm - 7:00 pm</option>
+            {% endif %}
+          </select>
+        </div>
+
+        <textarea placeholder="ADDITIONAL NOTES" name="additionalDetails"></textarea>
+
+        <div class="form-message" id="appointmentInPersonFormMessage" style="display:none;"></div>
+
+        <button type="submit" class="submit-btn cutom_btn" id="appointmentInPersonSubmitBtn">
+          Book An Appointment 
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+  flatpickr("#datePicker", {
+    dateFormat: "d-m-Y",   // 👈 add it here
+    disable: [
+        function(date) {
+            // Disable Sunday
+            if (date.getDay() === 0) {
+                return true;
+            }
+
+            // Disable 7 September
+            if (date.getDate() === 7 && date.getMonth() === 8) {
+                return true;
+            }
+
+            return false;
+        }
+    ]
+});
+
+(function () {
+
+  // Helper function to format DD-MM-YYYY to MM/DD/YYYY
+  function formatToMMDDYYYY(dateStr) {
+    if (!dateStr) return "";
+    const parts = dateStr.split("-");
+    if (parts.length === 3) {
+      const day = parts[0];
+      const month = parts[1];
+      const year = parts[2];
+      return `${month}/${day}/${year}`;
+    }
+    return dateStr;
+  }
+
+  function initNewForm(scope) {
+    const form = (scope || document).querySelector("#appointmentInPersonForm");
+    if (!form || form.dataset.bound === "true") return;
+
+    form.dataset.bound = "true";
+
+    const submitBtn = form.querySelector("#appointmentInPersonSubmitBtn");
+    const messageBox = form.querySelector("#appointmentInPersonFormMessage");
+
+    function showMessage(text, type) {
+      if (!messageBox) return;
+      messageBox.style.display = "block";
+      messageBox.textContent = text;
+      messageBox.className = "form-message " + type;
+    }
+
+    function clearMessage() {
+      if (!messageBox) return;
+      messageBox.style.display = "none";
+      messageBox.textContent = "";
+      messageBox.className = "form-message";
+    }
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      clearMessage();
+
+      if (submitBtn && submitBtn.disabled) return false;
+
+      const fd = new FormData(form);
+
+      const payload = {
+        formType: "new_form",
+        firstName: fd.get("firstName"),
+        lastName: fd.get("lastName"),
+        email: fd.get("email"),
+        phone: fd.get("phone"),
+        location: fd.get("location"),
+        date: formatToMMDDYYYY(fd.get("date")),
+        time: fd.get("time"),
+        additionalDetails: fd.get("additionalDetails") || ""
+      };
+
+      if (
+        !payload.firstName ||
+        !payload.lastName ||
+        !payload.email ||
+        !payload.phone ||
+        !payload.location ||
+        !payload.date ||
+        !payload.time
+      ) {
+        showMessage("Please fill all required fields.", "error");
+        return false;
+      }
+
+      try {
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting...";
+        }
+
+        const response = await fetch("/apps/custom-forms/new-form", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showMessage("Your request has been submitted successfully.", "success");
+          form.reset();
+        } else {
+          showMessage(result.message || "Something went wrong. Please try again.", "error");
+        }
+      } catch (error) {
+        console.error("New form submit error:", error);
+        showMessage("Unable to submit the form right now. Please try again later.", "error");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Book An Appointment";
+        }
+      }
+
+      return false;
+    }
+
+    form.addEventListener("submit", handleSubmit, true);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initNewForm(document);
+  });
+
+  document.addEventListener("shopify:section:load", function (event) {
+    initNewForm(event.target);
+  });
+})();
+</script>

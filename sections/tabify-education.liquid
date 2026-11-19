@@ -1,0 +1,167 @@
+{% comment %}
+  Education Tabs Section - Grouping Logic
+{% endcomment %}
+
+<section class="education-tabs-section">
+
+  <div class="education-tabs-wrapper">
+    <div class="education-tabs-left">
+      {% if  section.settings.main_heading != blank %}<h3>{{ section.settings.main_heading }}</h3>{% endif %}
+      <div class="education-nav-group">
+        {% for block in section.blocks %}
+          {% if block.type == 'section_heading' %}            
+            {% if block.settings.target_id != blank %}
+            <div class="nav-heading-block nav-link-block" {{ block.shopify_attributes }}>
+              <button class="edu-tab-btn" data-tab="tab-{{ block.settings.target_id | handle }}">
+                {{ block.settings.heading_text }}
+              </button>
+            </div>
+          {% else %}
+            <div class="nav-heading-block" {{ block.shopify_attributes }}>
+              <h4>{{ block.settings.heading_text }}</h4>
+            </div>
+          {% endif %}
+          {% endif %}
+           {% if block.type == 'nav_link' %}
+            <div class="nav-link-block services-sidebar" {{ block.shopify_attributes }}>
+              <button class="edu-tab-btn" data-tab="tab-{{ block.settings.target_id | handle }}">
+                {{ block.settings.link_text }}
+              </button>
+            </div>
+          {% endif %}
+            {% endfor %}
+      </div>
+    </div>
+
+    <div class="education-tabs-right">
+      {% comment %} 
+        Logic: Loop through nav links to create content wrappers, 
+        then loop again inside to find matching content blocks 
+      {% endcomment %}
+       <div class="tab-content ">
+      {% for nav_block in section.blocks %}
+        {% if nav_block.type == 'nav_link' or nav_block.type == 'section_heading'%}
+          <div id="tab-{{ nav_block.settings.target_id | handle }}" class="edu-tab-content {% if nav_block.settings.target_id == blank %}target_tab{% endif %}">
+
+           {% if nav_block.settings.link_text != blank %} 
+            <h2>{{ nav_block.settings.link_text }}</h2>
+            {% elsif nav_block.settings.heading_text != blank %}
+              <h2>{{ nav_block.settings.heading_text }}</h2>
+          {% endif %}
+            
+            {% for content_block in section.blocks %}
+              {% if content_block.settings.parent_id == nav_block.settings.target_id %}
+                {% if content_block.type == 'content_richtext' %}
+                  {% if  content_block.settings.content != blank %}<div class="content-item-richtext content_desc">{{ content_block.settings.content }}</div>{% endif %}
+                  {% if content_block.settings.content_html != blank %}<div class="content-item-richtext content_desc">{{ content_block.settings.content_html }}</div>{% endif %}
+                  {% if content_block.settings.image != blank %}
+                    <div class="content-item-image content_desc">
+                      <img src="{{ content_block.settings.image | img_url: 'master' }}" alt="education image">
+                    </div>
+                  {% endif %}
+                {% elsif content_block.type == 'content_image' %}
+                  <div class="content-item-image content_desc">
+                    <img src="{{ content_block.settings.image | img_url: 'master' }}" alt="education image">
+                  </div>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabBtns = document.querySelectorAll('.edu-tab-btn');
+      const contents = document.querySelectorAll('.edu-tab-content');
+
+      function switchTab(tabId) {
+       const rightTab = document.querySelector('.education-tabs-right');
+
+        if (tabId === 'tab-custom-design-faq') {
+          rightTab.classList.add('tab-custom-design-faq');
+        } else {
+          rightTab.classList.remove('tab-custom-design-faq');
+        }
+        tabBtns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId));
+        contents.forEach(content => content.classList.toggle('active', content.id === tabId));
+      }
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+      });
+
+      if (tabBtns.length > 0) switchTab(tabBtns[0].getAttribute('data-tab'));
+
+      document.querySelectorAll('.accordion-button').forEach(btn => {
+
+        btn.addEventListener('click', function () {
+
+          const item = this.closest('.accordion-item');
+          const collapse = item.querySelector('.accordion-collapse');
+
+          document.querySelectorAll('.accordion-collapse').forEach(c => {
+            if (c !== collapse) c.classList.remove('show');
+          });
+
+          collapse.classList.toggle('show');
+
+        });
+
+      });  
+    });
+  </script>
+</section>
+ 
+{% schema %}
+{
+  "name": "Corrected Flexible Tabs",
+  "settings": [
+    { "type": "color", "id": "nav_bg_color", "label": "Nav BG", "default": "#f2f2f2" },
+    { "type": "color", "id": "nav_heading_color", "label": "Main Heading Color", "default": "#005580" },
+    { "type": "color", "id": "link_color", "label": "Link Color", "default": "#333" },
+    { "type": "color", "id": "active_link_color", "label": "Active Color", "default": "#005580" },
+    { "type": "text", "id": "main_heading", "label": "Main Title", "default": "ECO4 DIAMONDS" }
+  ],
+  "blocks": [
+    {
+      "type": "section_heading",
+      "name": "Navigation Heading",
+      "settings": [
+        { "type": "text", "id": "heading_text", "label": "Text", "default": "DIAMOND EDUCATION" },
+        { "type": "text", "id": "target_id", "label": "Unique Target ID", "info": "e.g., c4" }
+      ]
+    },
+    {
+      "type": "nav_link",
+      "name": "Navigation Link",
+      "settings": [
+        { "type": "text", "id": "link_text", "label": "Link Label", "default": "THE 4 C'S" },
+        { "type": "text", "id": "target_id", "label": "Unique Target ID", "info": "e.g., c4" }
+      ]
+    },
+    {
+      "type": "content_richtext",
+      "name": "→ Text Content Item",
+      "settings": [
+        { "type": "text", "id": "parent_id", "label": "Parent Link ID", "info": "Must match Unique Target ID of a link" },
+        { "type": "richtext", "id": "content", "label": "Text Content" },
+        { "type": "html", "id": "content_html", "label": "HTML" },
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    },
+    {
+      "type": "content_image",
+      "name": "→ Image Content Item",
+      "settings": [
+        { "type": "text", "id": "parent_id", "label": "Parent Link ID" },
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Corrected Flexible Tabs" }]
+}
+{% endschema %}

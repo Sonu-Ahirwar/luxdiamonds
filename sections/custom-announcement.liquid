@@ -1,0 +1,196 @@
+{% style %}
+.custom-announcement {
+  background: {{ section.settings.bg_color }};
+  color: {{ section.settings.text_color }};
+  font-size: 14px;
+  overflow: hidden;
+}
+.custom-announcement__inner {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.custom-announcement__marquee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.custom-announcement__item {
+    width: 50%;
+}
+.custom-announcement__item:last-child{
+    background-color: {{ section.settings.bg_color_last }};
+}
+.custom-announcement a {
+    font-size: 12px;
+    display: flex;
+    font-weight: 500;
+    height: 35px;
+    justify-content: center;
+    letter-spacing: 1.5px;
+    margin: 0;
+    text-decoration: none;
+    color:#fff;
+    align-items:center;
+    text-align: center;
+}
+.custom-announcement__item:last-child a {
+    text-transform:uppercase;
+}
+
+@media screen and (max-width: 991px) {
+    .custom-announcement__item {
+        width: auto;
+    }
+    .custom-announcement__item:last-child{
+        background-color:transparent;
+        position:relative;
+    }
+    .custom-announcement__item:last-child::after{
+        content:"";
+        position:absolute;
+        width:1.5px;
+        height:10px;
+        background-color:#fff;
+        left:-12px;
+        top:5px;
+    }
+    .custom-announcement a {
+        font-size: 10px;
+        height: 20px;
+    }
+    .custom-announcement__inner {
+        justify-content: flex-start;
+        overflow: hidden;
+    }
+    .custom-announcement__marquee {
+        display: flex;
+        gap: 24px;
+        white-space: nowrap;
+        animation: announcement-scroll 5s linear infinite;
+    }
+    .custom-announcement__item {
+        flex: none;
+    }
+}
+
+/* @media screen and (max-width: 991px) {
+    #shopify-section-sections--21802839703773__custom_announcement_eEL87t .custom-announcement__item:last-child {
+    background-color: #a05562 !important;
+}
+} */
+@keyframes announcement-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+{% endstyle %}
+
+<div class="custom-announcement">
+  <div class="custom-announcement__inner">
+
+    <div class="custom-announcement__marquee">
+
+      <!-- LEFT -->
+      <div class="custom-announcement__item">
+        {% if section.settings.left_link != blank %}
+          <a href="{{ section.settings.left_link }}" {% if section.settings.new_tab %}target="_blank" rel="noopener"{% endif %}>
+            {{ section.settings.left_text }}
+          </a>
+        {% else %}
+          {{ section.settings.left_text }}
+        {% endif %}
+      </div>
+
+      <!-- RIGHT -->
+      <div class="custom-announcement__item">
+        {% if section.settings.right_link != blank %}
+          <a href="{{ section.settings.right_link }}" {% if section.settings.new_tab %}target="_blank" rel="noopener"{% endif %}>
+            {{ section.settings.right_text }}
+          </a>
+        {% else %}
+          {{ section.settings.right_text }}
+        {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Announcement",
+  "settings": [
+    {
+      "type": "text",
+      "id": "left_text",
+      "label": "Left text",
+      "default": "Free Shipping on All Orders"
+    },
+    {
+      "type": "url",
+      "id": "left_link",
+      "label": "Left link"
+    },
+    {
+      "type": "text",
+      "id": "right_text",
+      "label": "Right text",
+      "default": "We Buy Gold & Silver at All Locations"
+    },
+    {
+      "type": "url",
+      "id": "right_link",
+      "label": "Right link"
+    },
+    {
+      "type": "checkbox",
+      "id": "new_tab",
+      "label": "Open links in new tab",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color first",
+      "default": "#2f4f46"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_last",
+      "label": "Background color last",
+      "default": "#728785"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Vertical padding",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Announcement"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,245 @@
+{% style %}
+    .custom-design-banner {
+        position: relative;
+    }
+    .custom-design-banner__content {
+        width:100%;
+        max-width: 1320px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        justify-content: flex-end;
+    }
+    .custom-design-banner__hero {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    .custom-design-banner__content__inner {
+        width: auto;
+        max-width: max-content;
+        text-align: center;
+    }
+    .custom-design-banner__hero__media .Cd_mobile_banner{
+        display:none;
+    }
+    .custom-design-banner__eyebrow,
+    .custom-design-banner__subtitle{
+        font-size: 22px;
+        line-height: 20px;
+        letter-spacing: 2px;
+        color: #fff;
+        font-family: 'Avenir-med';
+        font-weight: 200;
+        margin:0px;
+    }
+    .custom-design-banner__title{
+        font-size: 55px;
+        line-height: 1.2;
+        letter-spacing: 6px;
+        color: #fff;
+        font-family: "Lora", serif;
+        font-weight: 300;
+        margin:0px;
+    }
+    .custom-design-banner__buttons {
+        margin: 48px 0px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .custom-design-banner__buttons a{
+        font-size: 12px;
+        line-height: 1.5;
+        padding: 12px 0px;
+        background: #e5dad6;
+        color: #0a0a0a;
+        letter-spacing: 3px;
+        font-family: 'AvenirLTStd';
+        font-weight: 200;
+        text-transform: uppercase;
+        width: 100%;
+        max-width: 300px;
+        margin:0 auto;
+        display:block;
+        border-radius: 0.375rem;
+        transition: all .3s ease 0s;
+    }
+    .custom-design-banner__buttons a:hover{
+        background: #f5dbc6;
+    }
+    @media screen and (max-width:1400px){
+        .custom-design-banner__content {
+            max-width: 1140px;
+        }
+    }
+    @media screen and (max-width:1200px){
+        .custom-design-banner__content {
+            max-width: 960px;
+        }
+        .custom-design-banner__title{
+            font-size: 44px;
+        }
+        .custom-design-banner__hero__media img {
+            height: auto;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    @media screen and (max-width:991px){
+        .custom-design-banner__content {
+            max-width: 720px;
+        }
+        .custom-design-banner__title{
+            font-size: 40px;
+        }
+    }
+    @media screen and (max-width: 767px) {
+        .custom-design-banner__hero__media .Cd_desktop_banner{
+            display:none;
+        }
+        .custom-design-banner__hero__media .Cd_mobile_banner{
+            display:block;
+        }
+        .custom-design-banner__content {
+            max-width: 540px;
+            justify-content: center;
+        }
+        .custom-design-banner__buttons a{
+            background: #fff;
+        }
+        .custom-design-banner__hero__media img {
+            height: auto;
+        }
+        .custom-design-banner__content__inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            padding: 30px 0px 10px;
+        }
+    }
+{% endstyle %}
+
+<div class="custom-design-banner {{ section.settings.custom_class }}">
+    <div class="custom-design-banner__hero__media">
+        {% if section.settings.desktop_image != blank %}
+        <img
+            src="{{ section.settings.desktop_image | image_url: width: 2400 }}"
+            alt="{{ section.settings.image.alt | escape }}"
+            loading="lazy" width="" height="" class="Cd_desktop_banner"
+        >
+        {% endif %}
+        {% if section.settings.mobile_image != blank %}
+            <img
+                src="{{ section.settings.mobile_image | image_url: width: 1200 }}"
+                alt="{{ section.settings.image.alt | escape }}"
+                loading="lazy" width="" height="" class="Cd_mobile_banner"
+            >
+        {% endif %}
+    </div>
+    <div class="custom-design-banner__hero">
+        <div class="custom-design-banner__content">
+            <div class="custom-design-banner__content__inner">
+                <div class="banner_content_headings">
+                    {% if section.settings.eyebrow != blank %}
+                    <div class="custom-design-banner__eyebrow">
+                        {{ section.settings.eyebrow }}
+                    </div>
+                    {% endif %}
+
+                    {% if section.settings.title != blank %}
+                    <h1 class="custom-design-banner__title">
+                        {{ section.settings.title }}
+                    </h1>
+                    {% endif %}
+
+                    {% if section.settings.subtitle != blank %}
+                    <div class="custom-design-banner__subtitle">
+                        {{ section.settings.subtitle }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="custom-design-banner__buttons">
+                    {% if section.settings.btn1_label != blank %}
+                        <a href="{{ section.settings.btn1_link }}">
+                        {{ section.settings.btn1_label }}
+                        </a>
+                    {% endif %}
+
+                    {% if section.settings.btn2_label != blank %}
+                        <a href="{{ section.settings.btn2_link }}">
+                        {{ section.settings.btn2_label }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Design Banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    { 
+        "type": "text", 
+        "id": "custom_class", 
+        "label": "Custom CSS Class" 
+    },
+    { 
+        "type": "image_picker", 
+        "id": "desktop_image", 
+        "label": "Desktop Background Image" 
+    },
+    { 
+        "type": "image_picker", 
+        "id": "mobile_image", 
+        "label": "Mobile Background Image" 
+    },
+    { 
+        "type": "text", 
+        "id": "eyebrow", 
+        "label": "Top Small Text"
+    },
+    { 
+        "type": "text", 
+        "id": "title", 
+        "label": "Main Heading"
+    },
+    { 
+        "type": "text", 
+        "id": "subtitle", 
+        "label": "Subheading"
+    },
+    { 
+        "type": "text", 
+        "id": "btn1_label", 
+        "label": "Button 1 Label"
+    },
+    { 
+        "type": "url", 
+        "id": "btn1_link", 
+        "label": "Button 1 Link" 
+    },
+    { 
+        "type": "text", 
+        "id": "btn2_label", 
+        "label": "Button 2 Label" 
+    },
+    { 
+        "type": "url", 
+        "id": "btn2_link", 
+        "label": "Button 2 Link" 
+    }
+  ],
+
+  "presets": [{ "name": "Custom Design Banner" }]
+}
+{% endschema %}

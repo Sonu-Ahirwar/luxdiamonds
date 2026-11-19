@@ -1,0 +1,556 @@
+
+{%- doc -%}
+  This snippet is used to render a product card.
+  It is used in the product block,featured product block, and the product card block.
+
+  @param {product} product_resource - The product to render
+  @param {boolean} [show_unit_price] - Whether to show the unit price
+  @param {boolean} [show_sale_price_first] - Whether to show the sale price first
+{%- enddoc -%}
+
+{%- liquid
+  assign show_unit_price = show_unit_price | default: false
+  assign show_sale_price_first = show_sale_price_first | default: false
+  assign selected_variant = product_resource.selected_or_first_available_variant
+  assign price = selected_variant.price
+  assign compare_at_price = selected_variant.compare_at_price
+
+  assign show_compare_price = false
+  if compare_at_price > price
+    assign show_compare_price = true
+  endif
+
+  if product_resource == blank
+    assign price = 1999
+  endif
+
+  if product.handle == closest.product.handle and settings.currency_code_enabled_product_pages
+    assign price = price | money_without_currency
+    assign compare_at_price = compare_at_price | money_without_currency
+  elsif product.handle != closest.product.handle and settings.currency_code_enabled_product_cards
+    assign price = price | money_without_currency
+    assign compare_at_price = compare_at_price | money_without_currency
+  else
+    assign price = price | money
+    assign compare_at_price = compare_at_price | money_without_currency
+  endif
+-%}
+
+
+
+{% liquid
+  assign has_quick_add = false
+  if settings.quick_add and product.available
+    assign has_quick_add = true
+  endif
+
+  assign has_mobile_quick_add = false
+  if has_quick_add and settings.mobile_quick_add
+    assign has_mobile_quick_add = true
+  endif
+
+  assign product_card_id = 'product-card-link-' | append: block.id | append: '-' | append: product.id
+  assign product_card_gap_value = product_card_gap | default: block_settings.product_card_gap
+
+  # Logic to determine which variant URL to use (matching swatch selection logic)
+  assign variant_to_link = product.selected_or_first_available_variant
+  assign combined_listing_count = product.options_with_values | map: 'values' | map: 'product_url' | compact | size
+  assign no_swatch_selected = null
+
+  unless combined_listing_count > 0
+    # Simple direct check: which variant owns the featured image?
+    if product.featured_media
+      assign found_variant = false
+
+      for variant in product.variants
+        if variant.featured_media.id == product.featured_media.id
+          assign variant_to_link = variant
+          assign found_variant = true
+          break
+        endif
+      endfor
+
+      # Check if we need to set no_swatch_selected
+      unless found_variant
+        # Featured image is not a variant image
+        # Check if product has swatches
+        for option in product.options_with_values
+          assign swatch_count = option.values | map: 'swatch' | compact | size
+          if swatch_count > 1
+            # Multiple swatches exist but featured image doesn't match any
+            assign no_swatch_selected = true
+            break
+          endif
+        endfor
+      endunless
+    endif
+  endunless
+
+  if settings.transition_to_main_product
+    assign featured_image = variant_to_link.featured_image
+    if featured_image == blank
+      assign featured_image = product.featured_media.preview_image
+    endif
+
+    if featured_image != blank
+      assign featured_media_url = featured_image | image_url: width: 500
+    endif
+  endif
+
+  assign onboarding = false
+  if product.id == empty or product == blank
+    assign onboarding = true
+  endif
+
+  # Assign product variable
+  assign prod = product
+
+  # === Metafield read (6 fields, parent-aware) ===
+  assign fields = 'all_sku_plp,all_sku_plp_1,all_sku_plp_2' | split: ','
+  assign mf_items = '' | split: ','
+
+  for f in fields
+    assign m = prod.metafields.custom[f]
+    if m != blank and m.value != blank
+      assign mf_items = mf_items | concat: m.value
+    endif
+  endfor
+
+  assign mf = mf_items
+
+  # agar current product PLP clone hai (parent_handle set hai) to parent se JSON lo
+  assign parent_handle_mf = prod.metafields.custom.parent_handle.value | default: ''
+  if mf == blank and parent_handle_mf != ''
+    assign parent_prod = all_products[parent_handle_mf]
+    if parent_prod != blank
+      assign parent_items = '' | split: ','
+      for f in fields
+        assign pm = parent_prod.metafields.custom[f]
+        if pm != blank and pm.value != blank
+          assign parent_items = parent_items | concat: pm.value
+        endif
+      endfor
+      assign mf = parent_items
+    endif
+  endif
+
+
+  # === Image (fallback) ===
+  assign img_src = ""
+  if prod.featured_media
+    assign img_src = prod.featured_media | image_url: width: 900
+  endif
+
+  # === From price fallback ===
+  assign min_cents = blank
+  if prod.price and prod.price > 0
+    assign min_cents = prod.price
+  endif
+  
+%}
+{%- liquid
+  assign sku_list = mf
+  if mf.value != blank
+    assign sku_list = mf.value
+  endif
+
+  assign linkParameter = ''
+-%}
+
+
+
+{%- liquid
+  assign sku_list = mf
+  if mf.value != blank
+    assign sku_list = mf.value
+  endif
+
+  assign picked = blank
+
+  # 1) by card sku (product-card dataset)
+  assign card_sku = prod.selected_or_first_available_variant.sku | default: ''
+  # Agar tumhare product-card me already data-card-sku set hai from metafield, then use that variable instead.
+  # (best: pass picked.sku itself as data-card-sku)
+
+  # 2) product_rank_category lowest number
+  assign best_rank = 999999
+  if sku_list != blank
+    for s in sku_list
+      assign r = s.product_rank_category | default: '' | plus: 0
+      if r > 0 and r < best_rank
+        assign best_rank = r
+        assign picked = s
+      endif
+    endfor
+  endif
+
+  # 3) show_on_plp YES
+  if picked == blank and sku_list != blank
+    for s in sku_list
+      if s.show_on_plp == 'YES'
+        assign picked = s
+        break
+      endif
+    endfor
+  endif
+
+  # 4) fallback first
+  if picked == blank and sku_list != blank
+    assign picked = sku_list[0]
+  endif
+-%}
+
+{% assign selected_color = blank %}
+
+{% for filter in collection.filters %}
+  {% if filter.param_name contains 'metal' %}
+    {% for value in filter.active_values %}
+      {% assign selected_color = value.label %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{%- liquid
+  assign prod_obj = product_resource
+
+  # ---- combine chunks ----
+  assign fields = 'all_sku_plp,all_sku_plp_1,all_sku_plp_2' | split: ','
+  assign mf_items = '' | split: ','
+
+  for f in fields
+    assign m = prod_obj.metafields.custom[f]
+    if m != blank and m.value != blank
+      assign mf_items = mf_items | concat: m.value
+    endif
+  endfor
+
+  # ---- defaults from metafields ----
+  assign default_sku = prod_obj.metafields.custom.default_sku.value | default: '' | strip
+  assign default_metal = prod_obj.metafields.custom.active_metal_on_plp.value | default: '' | strip
+  assign default_shape = prod_obj.metafields.custom.active_shape_on_plp.value | default: '' | strip
+
+  # ---- read URL filter (Search & Discovery) ----
+  assign url_metal = ''
+  assign url_shape = ''
+
+  assign qs = request.query_string | default: ''
+  if qs != ''
+    assign parts = qs | split: '&'
+    for p in parts
+      if p contains 'filter.p.m.custom.metal='
+        assign url_metal = p | split: '=' | last | url_decode | strip
+        assign url_metal_sel = p | split: '=' | last | url_decode | strip
+      endif
+      if p contains 'filter.p.m.custom.shape='
+        assign url_shape = p | split: '=' | last | url_decode | strip
+        assign url_shape_sel = p | split: '=' | last | url_decode | strip
+      endif
+    endfor
+  endif
+
+  # ---- FINAL desired selections (URL > metafield defaults) ----
+  assign want_metal = url_metal
+  if want_metal == ''
+    assign want_metal = default_metal
+  endif
+
+  assign want_shape = url_shape
+  if want_shape == ''
+    assign want_shape = default_shape
+  endif
+
+  # ---- pick row (speed-safe: 1-row JSON only) ----
+  assign picked_row = blank
+
+  # (A) Strict match by URL/default metal+shape
+  if picked_row == blank and want_metal != '' and want_shape != '' and mf_items != blank
+    for s in mf_items
+      if s.metal_color == want_metal and s.center_stone_shape == want_shape and prod_obj.selected_or_first_available_variant.sku == s.sku
+        assign picked_row = s
+        break
+      endif
+    endfor
+  endif
+
+  # (B) Metal only
+  if picked_row == blank and want_metal != '' and mf_items != blank
+    for s in mf_items
+      if s.metal_color == want_metal and prod_obj.selected_or_first_available_variant.sku == s.sku
+        assign picked_row = s
+        break
+      endif
+    endfor
+  endif
+
+  # (C) Shape only
+  if picked_row == blank and want_shape != '' and mf_items != blank
+    for s in mf_items
+      if s.center_stone_shape == want_shape and prod_obj.selected_or_first_available_variant.sku == s.sku
+        assign picked_row = s
+        break
+      endif
+    endfor
+  endif
+
+  # (D) default_sku
+  if picked_row == blank and default_sku != '' and mf_items != blank 
+    assign picked_row = mf_items | where: 'sku', default_sku | first
+  endif
+
+  # (E) show_on_plp YES
+  if picked_row == blank and mf_items != blank
+    assign picked_row = mf_items | where: 'show_on_plp', 'YES' | first
+  endif
+
+  # (F) fallback first
+  if picked_row == blank and mf_items != blank
+    assign picked_row = mf_items | first
+  endif
+-%}
+
+{%- liquid
+  assign linkParameter = ''
+  if picked_row != blank and picked_row.url_key != blank
+    assign linkParameter = '?new_url=' | append: picked_row.url_key
+  endif
+-%}
+
+
+
+{%- liquid
+  assign prod = product_resource
+
+  # =========================================
+  # ✅ MERGE 6 metafields + parent fallback
+  # =========================================
+  assign use_prod = prod
+  assign parent_handle_val = prod.metafields.custom.parent_handle.value | default: ''
+  if parent_handle_val != ''
+    assign parent_prod = all_products[parent_handle_val]
+    if parent_prod != blank
+      assign use_prod = parent_prod
+    endif
+  endif
+
+  assign fields = 'all_sku_plp,all_sku_plp_1,all_sku_plp_2' | split: ','
+  assign mf_items = '' | split: ','
+
+  for f in fields
+    assign m = use_prod.metafields.custom[f]
+    if m != blank and m.value != blank
+      assign mf_items = mf_items | concat: m.value
+    endif
+  endfor
+
+  # fallback: all_skus on use_prod
+  if mf_items == blank
+    assign all_s = use_prod.metafields.custom.all_skus
+    if all_s != blank and all_s.value != blank
+      assign mf_items = all_s.value
+    endif
+  endif
+
+  assign mfvalue = mf_items
+
+  assign selectedSku = blank
+
+  # 1) Tag ke base pe match (agar tags use ho rahe ho)
+  if current_tags != blank and mfvalue != blank
+    for s in mfvalue
+      if current_tags contains s.center_stone_shape or current_tags contains s.metal_color
+        assign selectedSku = s
+        break
+      endif
+    endfor
+  endif
+
+  # 2) Agar tag se kuch na mile → show_on_plp = YES
+  if selectedSku == blank and mfvalue != blank
+    for s in mfvalue
+      if s.show_on_plp == 'YES'
+        assign selectedSku = s
+        break
+      endif
+    endfor
+  endif
+
+  # 3) Final fallback → first item
+  if selectedSku == blank and mfvalue != blank
+    assign selectedSku = mfvalue[0]
+  endif
+
+
+  assign metalvalue = blank
+  assign shapevalue = blank
+
+  for metals in mfvalue
+    if metals.metal_color != blank
+      if metalvalue != blank
+        assign metalvalue = metalvalue | append: ', '
+      endif
+      assign metalvalue = metalvalue | append: metals.metal_color
+    endif
+
+    if metals.center_stone_shape != blank
+      if shapevalue != blank
+        assign shapevalue = shapevalue | append: ', '
+      endif
+      assign shapevalue = shapevalue | append: metals.center_stone_shape
+    endif
+  endfor
+
+  assign metalvalue = metalvalue | split: ', ' | uniq | join: ', ' | split: ', '
+  assign shapevalue = shapevalue | split: ', ' | uniq | join: ', ' | split: ', '
+-%}
+
+{% assign Collectionfiltershow = false %}
+{% if template == 'collection'
+  or template == 'collection.engagement-rings'
+  or template == 'collection.womens-wedding-bands'
+  or template == 'collection.special'
+  or template == 'collection.fine-jewelry'
+  or template == 'search'
+%}
+  {% assign Collectionfiltershow = true %}
+{% endif %}
+
+{% if shapevalue.size > 1 and Collectionfiltershow %}
+  <div class="wdd-shapes-wrap" data-shapes-wrap>
+    {% if shapevalue.size > 4 %}
+      <button class="shape-nav prev" type="button" aria-label="Previous" data-productId="{{ prod.id }}"><svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1L1 6.5L7 12" stroke="#395754" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+    {% endif %}
+
+    <div class="wdd-shapes" role="group" aria-label="Select shape" data-shapes>
+    
+       {% assign shape_images = 'oval.svg, round.svg, marquise.svg, Elongated_Cushion.svg, emerald.svg, pear.svg, radiant.svg, princess.svg, asscher.svg, cushion.svg'
+                    | split: ', '
+                  %}
+{% comment %} 
+   {% assign shape_images = 
+  'round.svg, oval.svg, emerald.svg, marquise.svg, pear.svg, princess.svg, cushion.svg, asscher.svg, elongated_cushion.svg, radiant.svg'
+  | split: ', '
+%} {% endcomment %}
+{% liquid
+  for filter in collection.filters    
+  assign count_s = 0
+   if filter.param_name contains 'shape' 
+     for value in filter.active_values 
+     assign count_s = count_s | plus: 1
+      if count_s <= 1
+       assign selected_shape = value.label 
+       endif
+     endfor 
+   endif 
+   endfor
+%}{% for shape_file in shape_images %}
+
+  {% assign shape_name = shape_file 
+    | remove: '.svg'
+    | replace: '_', ' '
+    | capitalize
+  %}
+
+  {% for shape in shapevalue %}
+    {% assign shape_d =  shape | downcase %}
+    {% assign shape_n =  shape_name | downcase %}
+    {% if shape_d == shape_n %}
+       {% assign active_val = false %}
+      {% if selectedSku != blank %}
+        {% if selected_shape != blank %}
+            {%  if shape == selected_shape %}
+              {% assign active_val = true %}
+            {% endif %} 
+          {% else %}
+            {% assign filter_shape_meta = prod.metafields.custom.active_shape_on_plp.value | escape  %}
+            {%  if shape == filter_shape_meta %}
+              {% assign active_val = true %}
+            {% endif %} 
+        {% endif %} 
+      {% endif %}
+      <button
+        class="shape-chip test page_{{ page_current }} {% if active_val %} active {% endif %}"
+        data-shape="{{ shape | capitalize }}"
+        title="{{ shape | capitalize }}"
+        data-productId="{{ prod.id }}"
+      >
+        <img
+          src="{{ shape_file | replace: 'elongated_cushion.svg','elongated_cushion_e7eed056-1cd9-4d0c-a299-a2e60556607c.svg' | file_url }}"
+          alt="{{ shape }}"
+          loading="lazy"
+        />
+      </button>
+
+    {% endif %}
+  {% endfor %}
+
+{% endfor %}
+
+
+    </div>
+
+    {% if shapevalue.size > 4 %}
+      <button class="shape-nav next" type="button" aria-label="Next" data-productId="{{ prod.id }}">
+        <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L7 6.5L1 12" stroke="#395754" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+    {% endif %}
+  </div>
+{% endif %}
+
+<div ref="priceContainer" data-price-wrap data-productid="{{ prod.id }}">
+  {% if show_sale_price_first == false and show_compare_price %}
+    <span role="group">
+      <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+      <span class="compare-at-price">{{- compare_at_price -}}</span>
+    </span>
+    
+  {% endif %}
+
+  {% if show_compare_price %}
+    <span role="group">
+      <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
+      <span class="from"> From </span>
+      <span class="price">
+        <strong class="js-card-price bbb">{% unless show_dollar == false %}${% endunless %}{{ price | replace: '.00', '' }}</strong>
+      </span>
+    </span>
+  {% else %}
+    <span class="from"> From </span>
+    {% assign special_price = picked_row.special_price %}
+    {% assign s_price = picked_row.price %}
+    {% assign price_float = s_price | times: 1.0 %}
+    {% assign special_price_float = special_price | times: 1.0 %}
+
+    {% assign discount_percentage = price_float | times: special_price_float | divided_by: 100 %}
+    {% assign final_price = price_float | minus: discount_percentage | round: 2 %}
+    {% if special_price != blank %}
+
+    <span class="price">
+      <del>{{ price | replace: '.00', '' }}</del>
+      <strong class="js-card-price aaaa">{% unless show_dollar == false %}${% endunless %}{{ final_price | replace: '.00', '' }}</strong>
+    </span>
+  {% else %}
+<span class="price">
+      <strong class="js-card-price aaaa">{% unless show_dollar == false %}${% endunless %}{{ price | replace: '.00', '' }}</strong>
+    </span>
+  {%  endif %}
+  {% endif %}
+  {% if show_sale_price_first == true and show_compare_price %}
+    <span role="group">
+      <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+      <span class="compare-at-price">{{- compare_at_price -}}</span>
+    </span>
+  {% endif %}
+
+  {%- if selected_variant.unit_price and show_unit_price -%}
+    {%- liquid
+      if product.handle == closest.product.handle and settings.currency_code_enabled_product_pages
+        assign unit_price = selected_variant.unit_price | money_with_currency
+      elsif product.handle != closest.product.handle and settings.currency_code_enabled_product_cards
+        assign unit_price = selected_variant.unit_price | money_with_currency
+      else
+        assign unit_price = selected_variant.unit_price | money
+      endif
+    -%}
+    {% render 'unit-price', price: unit_price, measurement: selected_variant.unit_price_measurement %}
+  {%- endif -%}
+</div>

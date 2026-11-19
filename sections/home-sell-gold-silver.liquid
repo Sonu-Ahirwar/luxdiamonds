@@ -1,0 +1,298 @@
+
+{% liquid
+  assign section_id = 'sell-gold-silver-' | append: section.id
+%}
+
+<section
+  id="{{ section_id }}"
+  class="sell-gold-silver"
+>
+  <div class="sell-gold-silver__container">
+
+    <!-- Left Title -->
+    <div class="sell-gold-silver__title">
+      {{ section.settings.left_title }}
+    </div>
+
+    <!-- Center Content -->
+    <div class="sell-gold-silver__content">
+      {{ section.settings.center_content }}
+    </div>
+
+    <!-- Location Button -->
+    <div class="sell-gold-silver__button-wrapper">
+
+      {% if section.settings.button_url != blank %}
+
+        <a
+          href="{{ section.settings.button_url }}"
+          class="sell-gold-silver__button"
+        >
+          {{ section.settings.button_text | escape }}
+        </a>
+
+      {% else %}
+
+        <span class="sell-gold-silver__button">
+          {{ section.settings.button_text | escape }}
+        </span>
+
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+  /* =====================================
+     MAIN SECTION
+  ===================================== */
+  #{{ section_id }} {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    background: #345a56;
+    margin-top:60px;
+  }
+  #{{ section_id }} * {
+    box-sizing: border-box;
+  }
+  #{{ section_id }} .sell-gold-silver__container {
+    width: 100%;
+    padding: 20px 9.5%;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(91.9deg, #395754 28.41%, #728785 97.78%);
+  }
+
+  /* =====================================
+     LEFT TITLE
+  ===================================== */
+  #{{ section_id }} .sell-gold-silver__title {
+    color: #ffffff;
+    text-align: left;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.5px;
+    text-transform: none;
+    white-space: nowrap;
+  }
+  #{{ section_id }} .sell-gold-silver__title p {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  /* Highlight GOLD */
+  #{{ section_id }} .sell-gold-silver__title strong {
+    color: #d5b45f;
+    font-weight: 700;
+  }
+  /* =====================================
+     CENTER CONTENT
+  ===================================== */
+  #{{ section_id }} .sell-gold-silver__content {
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 1.5px;
+  }
+  #{{ section_id }} .sell-gold-silver__content p {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  #{{ section_id }} .sell-gold-silver__content em {
+    font-style: italic;
+  }
+  /* =====================================
+     BUTTON
+  ===================================== */
+  #{{ section_id }} .sell-gold-silver__button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  #{{ section_id }} .sell-gold-silver__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    max-width: 240px;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 6px;
+    background: #395754;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .3s ease, color .3s ease;
+  }
+  #{{ section_id }} .sell-gold-silver__button:hover {
+    background: #254943;
+    color: #ffffff;
+  }
+  @media screen and (max-width:1199px){
+    #{{ section_id }} .sell-gold-silver__title {
+        font-size: 20px;
+    }
+    #{{ section_id }} .sell-gold-silver__content {
+        font-size: 14px;
+    }
+    #{{ section_id }} .sell-gold-silver__button {
+        max-width: 200px;
+        font-size: 12px;
+    }
+    #{{ section_id }} .sell-gold-silver__container {
+        padding: 20px;
+    }
+    
+  }
+
+  /* =====================================
+     TABLET
+  ===================================== */
+
+  @media screen and (max-width: 1024px) and (min-width: 750px) {
+
+    #{{ section_id }} .sell-gold-silver__container {
+      padding: 12px 15px;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 12px;
+    }
+    #{{ section_id }} .sell-gold-silver__title {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+    #{{ section_id }} .sell-gold-silver__content {
+      font-size: 12px;
+    }
+
+  }
+
+  /* =====================================
+     MOBILE
+  ===================================== */
+
+  @media screen and (max-width: 749px) {
+
+    #{{ section_id }} .sell-gold-silver__container {
+      min-height: 0;
+      padding: 40px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      background: linear-gradient(148.44deg, #395754 20.98%, #728785 83.37%);
+    }
+    /* Mobile heading */
+
+    #{{ section_id }} .sell-gold-silver__title {
+        width: 100%;
+        margin-bottom: 20px;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 3.4px;
+        text-align: center;
+        white-space: normal;
+    }
+    #{{ section_id }} .sell-gold-silver__title strong {
+      color: #d5b45f;
+    }
+    /* Mobile center content */
+    #{{ section_id }} .sell-gold-silver__content {
+      width: 100%;
+      margin-bottom: 30px;
+      color: rgba(255,255,255,.88);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+    /* Mobile button */
+    #{{ section_id }} .sell-gold-silver__button-wrapper {
+      width: 100%;
+      justify-content: center;
+    }
+    #{{ section_id }} .sell-gold-silver__button {
+      width: 100%;
+      max-width: 299px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      background: #395754;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+    #{{ section_id }} .sell-gold-silver__button:hover {
+      background: #294c47;
+    }
+
+  }
+
+  /* Reduced motion */
+
+  @media (prefers-reduced-motion: reduce) {
+    #{{ section_id }} .sell-gold-silver__button {
+      transition: none;
+    }
+  }
+
+</style>
+
+{% schema %}
+{
+  "name": "Sell Gold & Silver",
+  "tag": "section",
+  "class": "sell-gold-silver-section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "left_title",
+      "label": "Left Title",
+      "default": "<p>Sell your <strong>GOLD</strong> & SILVER</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "center_content",
+      "label": "Center Content",
+      "default": "<p><em>All 9 Locations | No appointments Necessary</em></p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "FIND A LOCATION"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sell Gold & Silver"
+    }
+  ]
+}
+{% endschema %}

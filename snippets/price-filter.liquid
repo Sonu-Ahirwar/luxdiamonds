@@ -1,0 +1,705 @@
+{%- doc -%}
+  Renders a price filter.
+
+  @param {object} filter - The filter object to render.
+  @param {string} filter_style - The filter style, can be 'horizontal' or 'vertical'.
+  @param {boolean} [autofocus] - Whether to autofocus the filter.
+  @param {boolean} [should_render_clear] - Whether to render the clear button.
+
+  @example
+  {% render 'price-filter', filter: filter, filter_style: 'vertical' %}
+{%- enddoc -%}
+
+<accordion-custom
+  class="facets__item"
+  {% if filter_style == 'horizontal' %}
+    data-disable-animation-on-desktop="true"
+    data-close-with-escape="true"
+  {% endif %}
+>
+  <details
+    class="facets__panel"
+  >
+    <summary class="facets__summary price_filter">
+      <span class="facets__label">{{ filter.label }}</span>
+      <facet-status-component class="facets__status">
+        <template ref="moneyFormat">{{ shop.money_format }}</template>
+
+        <span
+          class="hide-when-empty"
+          ref="facetStatus"
+          data-currency="{{ localization.country.currency.iso_code }}"
+          data-range-max="{{ filter.range_max }}"
+        >
+          {%- if filter.min_value.value != null or filter.max_value.value != null %}
+            {%- if filter.min_value.value != null and filter.max_value.value != null %}
+              {{- filter.min_value.value | money | strip_html -}}
+              –
+              {{- filter.max_value.value | money | strip_html -}}
+            {%- elsif filter.min_value.value != null -%}
+              {{ filter.min_value.value | money | strip_html }}–{{ filter.range_max | money | strip_html }}
+
+            {%- elsif filter.max_value.value != null -%}
+              {{- 0 | money | strip_html -}}
+              –
+              {{- filter.max_value.value | money | strip_html -}}
+            {%- endif -%}
+          {%- endif -%}
+        </span>
+      </facet-status-component>
+   <span class="svg-wrapper icon-plus">
+                {{- 'icon-plus.svg' | inline_asset_content -}}
+              </span>
+    </summary>
+    <floating-panel-component
+      {% unless filter_style == 'vertical' %}
+        data-close-on-resize
+      {% endunless %}
+      class="facets__inputs facets__panel-content details-content{% if filter_style == 'horizontal' %} color-{{ settings.popover_color_scheme }}{% endif %}"
+    >
+      {% assign min_input_max_value = filter.max_value.value | default: filter.range_max %}
+      {% assign max_input_min_value = filter.min_value.value | default: 0 %}
+
+      <price-facet-component
+        class="price-facet"
+        id="facet-inputs-{{ filter.param_name | escape | replace: '.', '-' }}"
+        on:change="/updatePriceFilterAndResults"
+      >
+        <div class="price-facet__inputs-wrapper facets__inputs-wrapper facets__inputs-wrapper--row">
+          <div class="field price-facet__field">
+            <input
+              class="field__input price-facet__input {{ filter.label | escape }}-GTE"
+              name="{{ filter.min_value.param_name }}"
+              id="{{ filter.label | escape }}-GTE"
+              {%- if filter.min_value.value -%}
+                value="{{ filter.min_value.value | money_without_currency }}"
+              {%- endif -%}
+              type="text"
+              inputmode="decimal"
+              placeholder="0"
+              data-min="0"
+              data-max="{{ min_input_max_value | money_without_currency }}"
+              ref="minInput"
+              autocomplete="off"
+              {% if autofocus %}
+                autofocus
+              {% endif %}
+            >
+            <label
+              class="field__label price-facet__label"
+              for="{{ filter.label | escape }}-GTE"
+            >
+              {{ cart.currency.symbol }}
+            </label>
+          </div>
+
+          <div class="price-facet__separator">{{ 'fields.separator' | t }}</div>
+
+          <div class="field price-facet__field">
+            <input
+              class="field__input price-facet__input {{ filter.label | escape }}-LTE"
+              name="{{ filter.max_value.param_name }}"
+              id="{{ filter.label | escape }}-LTE"
+              {%- if filter.max_value.value -%}
+                value="{{ filter.max_value.value | money_without_currency }}"
+              {%- endif -%}
+              type="text"
+              inputmode="decimal"
+              placeholder="{{ filter.range_max | money_without_currency }}"
+              data-min="{{ max_input_min_value | money_without_currency }}"
+              data-max="{{ filter.range_max | money_without_currency }}"
+              ref="maxInput"
+              autocomplete="off"
+              {% if autofocus %}
+                autofocus
+              {% endif %}
+            >
+            <label
+              class="field__label price-facet__label"
+              for="{{ filter.label | escape }}-LTE"
+            >
+              {{ cart.currency.symbol }}
+            </label>
+          </div>
+        </div>
+     
+        <div class="price-facet__highest-price">
+          {%- assign formatted_highest_price = filter.range_max | money -%}
+          {{ 'content.price_filter_html' | t: price: formatted_highest_price }}
+        </div>
+
+        {% if filter.min_value.value != null or filter.max_value.value != null %}
+          {% assign has_active_values = true %}
+        {% endif %}
+        
+        {% if should_render_clear %}
+          <facet-clear-component
+            class="clear-filter"
+            tabindex="{% if has_active_values %}0{% else %}-1{% endif %}"
+            on:click="/clearFilter"
+            on:keydown="/clearFilter"
+          >
+            <div
+              class="facets__clear {% if has_active_values %}facets__clear--active{% endif %}"
+              ref="clearButton"
+            >
+              {{- 'actions.clear' | t -}}
+            </div>
+          </facet-clear-component>
+        {% endif %}
+      </price-facet-component>
+           {% comment %} price range custom start {% endcomment %}
+        <div class="wrapper">
+          <fieldset class="filter-price">
+
+            <div class="price-field js-price-range">
+              <div class="price_range left">
+              <input type="range" min="0" max="{{ filter.range_max | minus: 100 | money_without_currency | remove: ','}}"   {%- if filter.min_value.value -%}
+                value="{{ filter.min_value.value | money_without_currency  | remove: ','}}"
+                  {% else %}
+                     value="0"
+                {%- endif -%} class="lower">
+                {% comment %} <span class="range-tooltip tooltip-lower"></span> {{ max_input_min_value | money_without_currency | remove: ','}} {% endcomment %}
+              </div>
+              <div class="price_range right">
+              <input type="range" min="0" max="{{ filter.range_max | money_without_currency | remove: ','}}"
+                  {%- if filter.max_value.value -%}
+                value="{{ filter.max_value.value | money_without_currency | remove: ','}}"
+                  {% else %}
+                  value="{{ filter.range_max | money_without_currency | remove: ','}}"
+                {%- endif -%} class="upper">
+               {% comment %} <span class="range-tooltip tooltip-upper"></span> {% endcomment %}
+              </div>
+            </div>
+
+
+            <div class="price-wrap">
+              {% comment %} <span class="price-title">FILTER</span> {% endcomment %}
+              <div class="price-container">
+                <div class="price-wrap-1">
+
+                  <label for="one">$</label>
+                  <input class="one" {%- if filter.min_value.value -%}
+                value="{{ filter.min_value.value | money  | replace: '.00', '' }}"
+                  {% else %}
+                     value="$0"
+              {%- endif -%}>
+                </div>
+                <div class="price-wrap_line">-</div>
+                <div class="price-wrap-2">
+                  <label for="two">$</label>
+                  <input  class="two" {%- if filter.max_value.value -%}
+                value="{{ filter.max_value.value | money_without_currency | remove: ','}}"
+                  {% else %}
+                  value="{{ filter.range_max | money_without_currency | remove: ','}}"
+                {%- endif -%} >
+
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>        
+       {% comment %} price range custom end {% endcomment %}
+    </floating-panel-component>
+
+  </details>
+</accordion-custom>
+
+{% stylesheet %}
+.price-field {
+  position: relative;
+  margin-top: 50px;
+}
+
+/* tooltip */
+.range-tooltip {
+  position: absolute;
+  top: -30px;
+  transform: translateX(-50%);
+  background: #6f7f7b;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* center track */
+.price_range {
+  position: absolute;
+  width: 100%;
+}
+
+/* thumbs */
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
+
+.price-wrap-1,
+.price-wrap-2 {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.price-wrap-1::before,
+.price-wrap-2::before {
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 8px;
+    transform: translate(-50%, 50%) rotate(45deg);
+    background-color: inherit;
+    bottom: 0px;
+    left: 50%;
+}
+/* ===== RANGE WRAPPER ===== */
+.price-field {
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+
+/* ===== RANGE INPUT RESET ===== */
+.price-field input[type="range"] {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  pointer-events: none;
+  -webkit-appearance: none;
+}
+
+/* ===== TRACK ===== */
+.price-field input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #cfd6d3;
+  border-radius: 4px;
+}
+
+.price-field input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: #cfd6d3;
+  border-radius: 4px;
+}
+
+/* ===== ACTIVE RANGE ===== */
+/* .price-field::before {
+  content: "";
+  position: absolute;
+  height: 4px;
+  background: #6f7f7b;
+  top: 50%;
+  transform: translateY(-50%);
+  left: var(--left, 0%);
+  right: calc(100% - var(--right, 100%));
+  border-radius: 4px;
+  z-index: 1;
+} */
+
+/* ===== THUMB ===== */
+.price-field input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 2px solid #6f7f7b;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  margin-top: -7px;
+  z-index: 3;
+  position: relative;
+}
+
+.price-field input[type="range"]::-moz-range-thumb {
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 2px solid #6f7f7b;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+/* ===== TOOLTIP ===== */
+.price-wrap {
+  position: relative;
+  margin-top: -50px;
+}
+
+.price-wrap input {
+  background: #6f7f7b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  /* padding: 4px 8px; */
+  font-size: 12px;
+  width: auto;
+  text-align: center;
+  pointer-events: none;
+  width: 100%;
+}
+
+/* Hide labels ($) visually if not needed */
+.price-wrap label {
+  display: none;
+}
+
+/* Tooltip containers */
+.price-wrap-1, .price-wrap-2 {
+    position: absolute;
+    top: -35px;
+    transform: translate(-50%);
+    white-space: nowrap;
+    background-color: rgb(114, 128, 128);
+    color: rgb(255, 255, 255);
+    font-size: 0.75rem;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px;
+    width: 50px;
+}
+
+
+/* Base reset */
+.price-field input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+/* Chrome, Edge, Safari */
+.price-field input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background-color: #6f7f7b; /* <-- LINE COLOR */
+  border-radius: 4px;
+}
+
+/* Firefox */
+.price-field input[type="range"]::-moz-range-track {
+  height: 4px;
+  background-color: #6f7f7b; /* <-- LINE COLOR */
+  border-radius: 4px;
+}
+/* ===== ACTIVE RANGE ===== */
+.price-field::before {
+  content: "";
+  position: absolute;
+  height: 4px;
+  background: #728080; /* 👈 ACTIVE COLOR */
+  top: 6%;
+  transform: translateY(0%);
+  left: var(--left, 0%);
+  right: calc(100% - var(--right, 100%));
+  border-radius: 4px;
+  z-index: 2;
+}
+.price-field input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #cfd6d3; /* inactive */
+  border-radius: 4px;
+}
+
+.price-field input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: #cfd6d3;
+  border-radius: 4px;
+}
+  /* Price filter
+  .price-facet {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .facets__inputs-wrapper.price-facet__inputs-wrapper {
+    flex-wrap: nowrap;
+  }
+
+  .price-facet__field {
+    width: 50%;
+    flex-grow: 0;
+  }
+
+  @container (max-width: 199px) {
+    .facets__inputs-wrapper.price-facet__inputs-wrapper {
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .price-facet__inputs-wrapper .price-facet__field {
+      width: 100%;
+    }
+  }
+
+  .facets .facets__inputs-wrapper.price-facet__inputs-wrapper {
+    padding: var(--style-border-width-inputs);
+    gap: calc(var(--gap-sm) + (var(--style-border-width-inputs) * 2));
+  }
+
+  .facets--horizontal .facets__panel-content:has(.price-facet) {
+    min-width: 360px;
+  }
+
+  .facets--horizontal .facets__inputs-wrapper.price-facet__inputs-wrapper {
+    @media screen and (min-width: 750px) {
+      padding: calc(var(--padding-md) + var(--style-border-width-inputs));
+    }
+  }
+
+  .price-facet__input {
+    width: 100%;
+    text-align: right;
+    padding-left: calc(2.5 * var(--input-padding-x));
+  }
+
+  .price-facet__input::placeholder {
+    color: var(--facets-input-label-color);
+  }
+
+  .price-facet__separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-paragraph--size);
+  }
+
+  .price-facet__highest-price {
+    padding: var(--padding-xs) 0 var(--padding-sm);
+  }
+
+  .facets--horizontal .price-facet__highest-price {
+    padding: 0 var(--padding-md) var(--padding-xs);
+  }
+
+  .field__label.price-facet__label {
+    top: 0;
+    left: 0;
+    color: var(--facets-input-label-color);
+    padding: var(--input-padding-y) var(--input-padding-x);
+    transform: none;
+  } */
+{% endstylesheet %}
+
+{% comment %} arun js start {% endcomment %}
+{% comment %} <script>
+(function () {
+  function initPriceRange() {
+    const range = document.querySelector(".js-price-range");
+    if (!range) return;
+
+    const lower = range.querySelector(".lower");
+    const upper = range.querySelector(".upper");
+    const minInput = document.querySelector(".price-wrap-1");
+    const maxInput = document.querySelector(".price-wrap-2");
+
+    if (!lower || !upper || !minInput || !maxInput) return;
+
+    function update() {
+      const min = Number(lower.min);
+      const max = Number(lower.max);
+
+      const lowerPercent = ((lower.value - min) / (max - min)) * 100;
+      const upperPercent = ((upper.value - min) / (max - min)) * 100;
+
+      range.style.setProperty("--left", lowerPercent + "%");
+      range.style.setProperty("--right", upperPercent + "%");
+
+      minInput.style.left = lowerPercent + "%";
+      maxInput.style.left = upperPercent + "%";
+    }
+
+    // ALWAYS RUN IMMEDIATELY
+    requestAnimationFrame(update);
+
+    lower.addEventListener("input", update);
+    upper.addEventListener("input", update);
+  }
+
+  // Run on initial load
+  document.addEventListener("DOMContentLoaded", initPriceRange);
+
+  // 🔥 OBSERVE FILTER DOM CHANGES (THIS IS THE REAL FIX)
+  const observer = new MutationObserver(() => {
+    initPriceRange();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script> {% endcomment %}
+{% comment %} arun js end 
+
+<script>
+(function () {
+
+  function initPriceRange() {
+    const range = document.querySelector(".js-price-range");
+    if (!range) return;
+
+    const lower = range.querySelector(".lower");
+    const upper = range.querySelector(".upper");
+
+    const minTooltip = document.querySelector(".price-wrap-1");
+    const maxTooltip = document.querySelector(".price-wrap-2");
+
+    if (!lower || !upper || !minTooltip || !maxTooltip) return;
+
+    const min = Number(lower.min);
+    const max = Number(lower.max);
+    const gap = 0; // 0 = touch allowed, 1 = thoda gap
+
+    function updateFromLower() {
+      let lowerVal = Number(lower.value);
+      let upperVal = Number(upper.value);
+      // ❗ ONLY lower ko clamp karo
+      if (lowerVal > upperVal - gap) {
+        lowerVal = upperVal - gap;
+        lower.value = lowerVal;
+      }
+
+      updateUI();
+    }
+
+    function updateFromUpper() {
+      let lowerVal = Number(lower.value);
+      let upperVal = Number(upper.value);
+
+      // ❗ ONLY upper ko clamp karo
+      if (upperVal < lowerVal + gap) {
+        upperVal = lowerVal + gap;
+        upper.value = upperVal;
+      }
+
+      updateUI();
+    }
+
+function updateUI() {
+  let lowerVal = Number(lower.value);
+  let upperVal = Number(upper.value);
+
+  const lowerPercent = ((lowerVal - min) / (max - min)) * 100;
+  const upperPercent = ((upperVal - min) / (max - min)) * 100;
+
+  // ✅ Ensure upper dot never goes left of lower dot
+  const safeUpperPercent = Math.max(upperPercent, lowerPercent);
+
+  range.style.setProperty("--left", lowerPercent + "%");
+  range.style.setProperty("--right", safeUpperPercent + "%");
+
+  minTooltip.style.left = lowerPercent + "%";
+  maxTooltip.style.left = safeUpperPercent + "%";
+
+  minTooltip.querySelector("input").value = `$${lowerVal.toLocaleString()}`;
+  maxTooltip.querySelector("input").value = `$${upperVal.toLocaleString()}`;
+    }
+
+    // Initial sync
+    requestAnimationFrame(updateUI);
+
+    lower.addEventListener("input", updateFromLower);
+    upper.addEventListener("input", updateFromUpper);
+  }
+
+  document.addEventListener("DOMContentLoaded", initPriceRange);
+
+  // Shopify DOM re-render safe
+  const observer = new MutationObserver(initPriceRange);
+  observer.observe(document.body, { childList: true, subtree: true });
+
+})();
+</script>
+{% endcomment %}
+<script>
+(function () {
+
+  function initAllPriceRanges() {
+    document.querySelectorAll(".js-price-range").forEach(range => {
+
+      if (range.dataset.init === "true") return;
+      range.dataset.init = "true";
+
+      const lower = range.querySelector(".lower");
+      const upper = range.querySelector(".upper");
+
+      const panel = range.closest("floating-panel-component");
+      if (!panel) return;
+
+      const minTooltip = panel.querySelector(".price-wrap-1");
+      const maxTooltip = panel.querySelector(".price-wrap-2");
+
+      const minInput = panel.querySelector("#Price-GTE");
+      const maxInput = panel.querySelector("#Price-LTE");
+
+      if (!lower || !upper || !minTooltip || !maxTooltip) return;
+
+      const min = Number(lower.min);
+      const max = Number(upper.max);
+      const gap = 0;
+
+      function updateUI(triggerFilter = false) {
+        let lowerVal = Number(lower.value);
+        let upperVal = Number(upper.value);
+
+        if (lowerVal > upperVal - gap) lowerVal = upperVal - gap;
+        if (upperVal < lowerVal + gap) upperVal = lowerVal + gap;
+
+        lower.value = lowerVal;
+        upper.value = upperVal;
+
+        const lowerPercent = ((lowerVal - min) / (max - min)) * 100;
+        const upperPercent = ((upperVal - min) / (max - min)) * 100;
+
+        range.style.setProperty("--left", lowerPercent + "%");
+        range.style.setProperty("--right", upperPercent + "%");
+
+        minTooltip.style.left = lowerPercent + "%";
+        maxTooltip.style.left = upperPercent + "%";
+        // ✅ ALWAYS SHOW $
+        minTooltip.querySelector("input").value = `$${lowerVal.toLocaleString()}`;
+        maxTooltip.querySelector("input").value = `$${upperVal.toLocaleString()}`;
+
+        // ✅ Sync Shopify inputs
+        if (minInput) minInput.value = lowerVal;
+        if (maxInput) maxInput.value = upperVal;
+
+        // ✅ TRIGGER FILTER UPDATE
+        if (triggerFilter) {
+          minInput?.dispatchEvent(new Event("change", { bubbles: true }));
+          maxInput?.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+      }
+
+      // Slider events
+      lower.addEventListener("input", () => updateUI());
+      upper.addEventListener("input", () => updateUI());
+
+      // 🔥 APPLY FILTER ON SLIDER RELEASE
+      lower.addEventListener("change", () => updateUI(true));
+      upper.addEventListener("change", () => updateUI(true));
+
+      // ✅ INITIAL FIX (dialog open / first load)
+      requestAnimationFrame(() => updateUI());
+
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initAllPriceRanges);
+
+  // Shopify dialog / facet re-render safe
+  const observer = new MutationObserver(initAllPriceRanges);
+  observer.observe(document.body, { childList: true, subtree: true });
+
+})();
+</script>
+
+
+

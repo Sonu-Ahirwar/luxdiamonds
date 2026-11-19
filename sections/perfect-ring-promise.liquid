@@ -1,0 +1,171 @@
+<section class="perfect-ring-section" style="background-color: {{ section.settings.bg_color }};">
+  <div class="banner-section">
+    {% if section.settings.banner_image != blank %}
+      <img src="{{ section.settings.banner_image | img_url: '2000x' }}" class="w-100" alt="{{ section.settings.title }}">
+    {% endif %}
+
+    <div class="content text-center">
+      <div class="container">
+        {% if section.settings.title != blank %}
+          {% if section.settings.title_h1 == true %}
+          <h1 style="color: {{ section.settings.title_color }};">{{ section.settings.title }}</h1>
+          {% else %}
+            <h2 style="color: {{ section.settings.title_color }};" class="h1">{{ section.settings.title }}</h2>
+            {% endif %}
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <p style="color: {{ section.settings.text_color }};">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+ 
+  <style>
+    .perfect-ring-section .banner-section {
+      position: relative;
+    }
+
+    .perfect-ring-section .banner-section img.w-100 {
+      width: 100%;
+      display: block;
+    }
+
+    .perfect-ring-section .content {
+      {% comment %} position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%; {% endcomment %}
+      padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px;
+    }
+
+    .perfect-ring-section h1,.perfect-ring-section .h1 {
+      font-size: {{ section.settings.title_size }}px;
+      letter-spacing: 4px;
+      margin: 0 0 25px;
+    }
+
+    .perfect-ring-section p {
+      font-size: {{ section.settings.text_size }}px;  
+      margin: 0 auto;
+      font-family: "AvenirLTStd";
+      font-weight: 600;
+      letter-spacing: .5px;
+    }
+ @media only screen and (max-width: 991px) {
+    .perfect-ring-section h1, .perfect-ring-section .h1{
+        font-size: 20px;
+        margin: 0 ;
+    }
+    .perfect-ring-section .content {
+       letter-spacing: 4px;
+        margin-top: 50px !important;
+        padding: 25px 10px;
+    }
+ }
+    @media only screen and (max-width: 767px) {
+    .perfect-ring-section .content{
+      padding: 25px 10px;
+      letter-spacing: 4px;
+    }
+  }
+    @media only screen and (max-width: 600px) {
+    .page_temp--page .perfect-ring-section .banner-section img {
+        height: 200px;
+        object-fit: cover;
+    }
+  }
+  </style>
+
+</section>
+
+{% schema %}
+{
+  "name": "Perfect Ring Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Background Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "THE PERFECT RING PROMISE"
+    },
+    {
+      "type": "checkbox",
+      "id": "title_h1",
+      "label": "Default Title H1 tag",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Sub Text",
+      "default": "If at any time during the first year of ownership, you decide that your engagement ring isn't perfect, we will do whatever it takes to make it perfect, up to and including a total remake."
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Heading Font Size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text Font Size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#204A4A"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Perfect Ring Banner"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,467 @@
+{%- doc -%}
+  Renders a product media component.
+
+  @param {object} media - The product media object.
+  @param {boolean} [preview_image_only] - Renders only the preview image without controls.
+  @param {string} [widths] - Image widths for responsive images.
+  @param {string} [sizes] - Image sizes for responsive images.
+  @param {string} [loading] - The loading attribute for the image.
+  @param {object} [block] - The block object.
+  @param {object} [section] - The section object.
+  @param {object} [selected_product] - The currently selected product.
+  @param {boolean} [first_3d_model] - Indicates if this is the first 3D model.
+  @param {boolean} [is_main_product_media] - Indicates if this is the main product image.
+
+  @example
+  {% render 'product-media', media: media, preview_image_only: false, loading: 'lazy', product: product %}
+{%- enddoc -%}
+
+{% liquid
+  assign widths = widths | default: '240, 352, 832, 1200, 1600, 1920, 2560, 3840'
+%}
+
+<div
+  class="product-media"
+  style="--ratio: {{ media.aspect_ratio }}"
+  data-media-id="{{ media.id }}"
+>
+
+    {% comment %} Start Badges {% endcomment %}
+
+{% if product.tags contains 'exclusive' %}
+<span class="custom-badge exclusive">Exclusive Pricing</span>
+{% endif %}
+
+{% if product.tags contains 'special' %}
+<span class="custom-badge special">Special Pricing</span>
+{% endif %}
+
+{% comment %} End Badges {% endcomment %}
+  {% liquid
+    assign high_res_url = media.preview_image | image_url: width: 3840
+    assign fetch_priority = 'auto'
+    if is_main_product_media
+      assign fetch_priority = 'high'
+    endif
+    assign focal_point_style = '--focal-point: ' | append: media.presentation.focal_point | append: ';'
+
+    assign filter_true = false
+    assign shape_value = ''
+    assign metal_value = ''
+    assign gem_value = ''
+
+    assign render_custom_image = false
+    assign resolved_image = ''
+    assign resolved_srcset = ''
+    assign resolved_max_resolution = ''
+    assign resolved_class = 'product-media__image'
+  %}
+
+  {%- comment -%} ---------------- FILTER VALUES ---------------- {%- endcomment -%}
+  {% for filter in collection.filters %}
+    {% if filter.param_name contains 'filter.p.m.custom.' and filter.active_values.size > 0 %}
+      {% case filter.label %}
+        {% when 'Shape' %}
+          {% assign filter_true = true %}
+          {% assign shape_value = filter.active_values[0].label | escape %}
+        {% when 'Metal' %}
+          {% assign filter_true = true %}
+          {% assign metal_value = filter.active_values[0].label | escape %}
+        {% when 'Gemstone' %}
+          {% assign filter_true = true %}
+          {% assign gem_value = filter.active_values[0].label | escape %}
+      {% endcase %}
+    {% endif %}
+  {% endfor %}
+
+  {% if metal_value == blank %}
+    {% assign metal_value = product.metafields.custom.active_metal_on_plp.value | escape %}
+  {% endif %}
+
+  {% if shape_value == blank %}
+    {% assign shape_value = product.metafields.custom.active_shape_on_plp.value | escape %}
+  {% endif %}
+
+  {%- comment -%} ---------------- IMAGE RESOLVE LOGIC ---------------- {%- endcomment -%}
+  {% assign default_name = product.metafields.custom.pdp_title.value | handleize %}
+
+  {% if current_tags != blank %}
+    {% for skuData in product.metafields.custom.custom_all_skus.value %}
+      
+      {% assign image1 = 'https://im.lgdus.co/Jwl/' | append: skuData.media1 %}
+      
+      {%  if  skuData.hover_image1 != blank  %}
+        {% assign image2 = 'https://im.lgdus.co/Jwl/' | append: skuData.hover_image1 %}
+      {% else %}
+        {% assign image2 = 'https://im.lgdus.co/Jwl/' | append: skuData.media1 %}
+      {% endif %}
+
+      {% assign mod = indeximage | modulo: 2 %}
+      {% assign final_image = image1 %}
+      {% assign skudefault = skuData.name | handleize %}
+
+      {% if image2 != blank and mod == 1 %}
+        {% assign final_image = image2 %}
+      {% endif %}
+
+      {% assign is_match = false %}
+      {% assign current_tags_e = current_tags.first | escape %}
+      {% assign skuData_metal_color = skuData.metal_color | escape %}
+      {% if collection.handle == 'fine-jewelry' %}
+        {% assign skuData_shape = skuData.gemstone_shape | escape %}
+      {% else %}
+        {% assign skuData_shape = skuData.center_stone_shape | escape %}
+      {% endif %}
+      {% assign gemstone_type = skuData.gemstone_type | escape %}
+
+      {% if current_tags_e contains skuData_shape %}
+          {% assign shape_value = current_tags_e %}
+      {% endif %}
+        
+        {% if metal_value != blank and skuData_metal_color != blank and shape_value != blank and skuData_shape != blank and gem_value != blank %}   
+          {% comment %} ***1***÷ {% endcomment %}
+          {% if metal_value contains skuData_metal_color and gemstone_type contains gem_value and skuData_shape contains shape_value  and skudefault == default_name %}
+            {% comment %} ====1==== {% endcomment %}
+            {% assign is_match = true %}
+            {% break %}
+          {% endif %}
+        {% elsif metal_value != blank and skuData_metal_color != blank  and gem_value != blank %}   
+          {% comment %} ***2*** {% endcomment %}
+          {% if metal_value contains skuData_metal_color and gemstone_type contains gem_value and skudefault == default_name  %}
+            {% comment %} ====2==== {% endcomment %}
+            {% assign is_match = true %}
+          {% endif %}
+          {% comment %} new 07/04 {% endcomment %}
+        {% elsif metal_value != blank and skuData_metal_color != blank and shape_value != blank and skuData_shape != blank %}
+
+          {% if metal_value contains skuData_metal_color and  skuData_shape contains shape_value  and skudefault == default_name %}
+             
+            {% assign is_match = true %}
+          {% endif %}
+        {% elsif metal_value != blank and skuData_metal_color != blank %}
+          {% if metal_value contains skuData_metal_color and skudefault == default_name %}
+            {% assign is_match = true %}
+          {% endif %}
+        {% elsif shape_value != blank and skuData_shape != blank %}
+          {% if shape_value contains skuData_shape and skudefault == default_name %}
+            {% assign is_match = true %}
+          {% endif %}
+        {% endif %}
+      
+      {% if is_match == true %}
+        {% assign resolved_image = final_image %}
+        {% assign resolved_srcset = skuData.media[indeximage] %}
+        {% assign resolved_max_resolution = skuData.media[indeximage] %}
+        {% assign render_custom_image = true %}
+        {% if shape_value != blank and metal_value == blank %}
+          {% assign resolved_class = 'product-media__image test_image' %}
+        {% endif %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+ {% if render_custom_image == false and product.metafields.custom.custom_all_skus.value[0].media[indeximage] != blank %}
+      {% assign resolved_image = product.metafields.custom.custom_all_skus.value[0].media[indeximage] %}
+      {% assign resolved_srcset = product.metafields.custom.custom_all_skus.value[0].media[indeximage] %}
+      {% assign resolved_max_resolution = product.metafields.custom.custom_all_skus.value[0].media[indeximage] %}
+      {% assign render_custom_image = true %}
+    {% endif %} 
+
+  {% elsif product.metafields.custom.all_sku_plp.value != blank %}
+    {% for skuData in product.metafields.custom.all_sku_plp.value %}
+      {% assign image1 = 'https://im.lgdus.co/Jwl/' | append: skuData.media1 %}
+       {%  if  skuData.hover_image1 != blank  %}
+        {% assign image2 = 'https://im.lgdus.co/Jwl/' | append: skuData.hover_image1 %}
+      {% else %}
+        {% assign image2 = 'https://im.lgdus.co/Jwl/' | append: skuData.media1 %}
+      {% endif %}
+      {% comment %} {% assign image2 = 'https://im.lgdus.co/Jwl/' | append: skuData.hover_image1 %} {% endcomment %}
+      {% assign mod = indeximage | modulo: 2 %}
+      {% assign final_image = image1 %}
+      {% assign skudefault = skuData.name | handleize %}
+
+      {% if image2 != blank and mod == 1 %}
+        {% assign final_image = image2 %}
+      {% endif %}
+
+      {% assign is_match = false %}
+      {% assign skuData_metal_color = skuData.metal_color | escape %}
+      {% if collection.handle == 'fine-jewelry' %}
+        {% assign skuData_shape = skuData.gemstone_shape | escape %}
+      {% else %}
+        {% assign skuData_shape = skuData.center_stone_shape | escape %}
+      {% endif %}
+      {% assign gemstone_type = skuData.gemstone_type | escape %}
+      {% if filter_true %}
+        {% comment %} new 07/04 {% endcomment %}
+        
+        {% if metal_value != blank and skuData_metal_color != blank and shape_value != blank and skuData_shape != blank and gem_value != blank %}   
+          {% comment %} ***1***÷ {% endcomment %}
+          {% if metal_value contains skuData_metal_color and gemstone_type contains gem_value and skuData_shape contains shape_value  and skudefault == default_name %}
+            {% comment %} ====1==== {% endcomment %}
+            {% assign is_match = true %}
+            {% break %}
+          {% endif %}
+        {% elsif metal_value != blank and skuData_metal_color != blank  and gem_value != blank %}   
+          {% comment %} ***2*** {% endcomment %}
+          {% if metal_value contains skuData_metal_color and gemstone_type contains gem_value and skudefault == default_name  %}
+            {% comment %} ====2==== {% endcomment %}
+            {% assign is_match = true %}
+          {% endif %}
+          {% comment %} new 07/04 {% endcomment %}
+        {% elsif metal_value != blank and skuData_metal_color != blank and shape_value != blank and skuData_shape != blank %}
+          {% comment %} ***3***
+          metal: {{metal_value }}==={{ skuData_metal_color }}<br>
+        shape_value: {{  shape_value }}==={{skuData_shape }}<br>
+        skudefault: {{default_name }}==={{ skudefault }}<br>
+        =================================<br> {% endcomment %}
+          {% if metal_value contains skuData_metal_color and  skuData_shape contains shape_value  and skudefault == default_name %}
+            {% comment %} ====3==== {% endcomment %}
+            {% assign is_match = true %}
+          {% endif %}
+        {% elsif metal_value != blank and skuData_metal_color != blank %}
+          {% if metal_value contains skuData_metal_color and skudefault == default_name %}
+            {% assign is_match = true %}
+          {% endif %}
+        {% elsif shape_value != blank and skuData_shape != blank %}
+          {% if shape_value contains skuData_shape and skudefault == default_name %}
+            {% assign is_match = true %}
+          {% endif %}
+        {% endif %}
+      {% else %}
+        {% if metal_value != blank and shape_value != blank %}
+          {% if metal_value contains skuData_metal_color and shape_value == skuData_shape and skudefault == default_name %}
+            {% assign is_match = true %}
+          {% endif %}
+        {% else %}
+          {% if metal_value == skuData_metal_color and skudefault == default_name %}
+            {% assign is_match = true %}
+            {% endif %}
+        {% endif %}
+      {% endif %}
+      {% if is_match == true %}
+        {% assign resolved_image = final_image %}
+        {% assign resolved_srcset = skuData.media[indeximage] %}
+        {% assign resolved_max_resolution = skuData.media[indeximage] %}
+        
+        {% assign render_custom_image = true %}
+        {% if shape_value != blank and metal_value == blank %}
+          {% assign resolved_class = 'product-media__image test_image' %}
+        {% endif %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    
+ {% if render_custom_image == false and product.metafields.custom.custom_all_skus.value[0].media[indeximage] != blank %}
+      {% assign resolved_image = product.metafields.custom.custom_all_skus.value[0].media[indeximage] %}
+      {% assign resolved_srcset = product.metafields.custom.custom_all_skus.value[0].media[indeximage] %}
+      {% assign resolved_max_resolution = product.metafields.custom.custom_all_skus.value[0].media[indeximage] %}
+      {% assign render_custom_image = true %}
+    {% endif %} 
+  {% endif %}
+  {%- comment -%} ---------------- IMAGE RENDER ---------------- {%- endcomment -%}
+  {% if render_custom_image and resolved_image != blank %}
+    <img
+      src="{{ resolved_image }}"
+      alt="{{ media.alt }}"
+      srcset="{{ resolved_srcset }}"
+      width="{{ widths }}"
+      height="{{ widths }}"
+      loading="eager"
+      sizes="{{ sizes }}"
+      class="{{ resolved_class }}"
+      transitiontoproduct="{{ settings.transition_to_main_product }}"
+      data_max_resolution="{{ resolved_max_resolution }}"
+      fetchpriority="{{ fetch_priority }}"
+      style="{{ focal_point_style }}"
+    >
+    
+  {% else %}
+    {% if media.preview_image %}
+    {{
+      media.preview_image
+      | image_url: width: 3840
+      | image_tag:
+        widths: widths,
+        alt: media.alt,
+        sizes: sizes,
+        loading: loading,
+        class: 'product-media__image',
+        transitionToProduct: settings.transition_to_main_product,
+        data_max_resolution: high_res_url,
+        fetchpriority: fetch_priority,
+        style: focal_point_style
+    }}
+  {%  else %}
+    <img
+      src="{{ image1 }}"
+      alt="{{ media.alt }}"
+      srcset="{{ resolved_srcset }}"
+      width="{{ widths }}"
+      height="{{ widths }}"
+      loading="{{ loading }}"
+      sizes="{{ sizes }}"
+      class="{{ resolved_class }}"
+      transitiontoproduct="{{ settings.transition_to_main_product }}"
+      data_max_resolution="{{ resolved_max_resolution }}"
+      fetchpriority="{{ fetch_priority }}"
+      style="{{ focal_point_style }}"
+    >
+    
+  {% endif %}
+  {% endif %}
+
+  {% unless preview_image_only %}
+    {%- case media.media_type -%}
+      {% when 'model' %}
+        <product-model
+          class="product-model-wrapper"
+          data-media-id="{{ media.id }}"
+        >
+          <button
+            class="button deferred-media__poster-button button-unstyled"
+            ref="deferredMediaPlayButton"
+            on:click="/showDeferredMedia"
+          >
+            {{
+              media.preview_image
+              | image_url: width: 3840
+              | image_tag:
+                widths: widths,
+                alt: media.alt,
+                sizes: sizes,
+                loading: loading,
+                class: 'deferred-media__poster-image'
+            }}
+            <span class="deferred-media__poster-icon">
+              <span class="visually-hidden">{{ 'accessibility.play_model' | t }}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+                class="icon icon-3d-model"
+                fill="none"
+                viewBox="0 0 18 21"
+              >
+                {% render 'icon', icon: '3d-model' %}
+              </svg>
+            </span>
+          </button>
+
+          <template>
+            {{ media | model_viewer_tag }}
+          </template>
+        </product-model>
+
+        <button
+          class="button button-secondary button-shopify-xr"
+          type="button"
+          data-shopify-xr
+          data-shopify-model3d-id="{{ media.id }}"
+          data-shopify-title="{{ selected_product.title | escape }}"
+          data-shopify-xr-hidden
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+            class="icon icon-3d-model"
+            fill="none"
+            viewBox="0 0 18 21"
+          >
+            {% render 'icon', icon: '3d-model' %}
+          </svg>
+          {{ 'actions.view_in_your_space' | t }}
+        </button>
+
+        {%- if first_3d_model -%}
+          <script
+            type="application/json"
+            id="ProductModelJSON-{{ selected_product.id }}"
+          >
+            {{ selected_product.media | where: 'media_type', 'model' | json }}
+          </script>
+        {%- endif -%}
+
+      {% when 'video', 'external_video' %}
+        {%- render 'video',
+          video: media,
+          video_loop: block.settings.video_loop,
+          widths: widths,
+          sizes: sizes,
+          loading: loading,
+          disable_controls: true,
+          section_id: section.id
+        -%}
+    {% endcase %}
+  {% endunless %}
+</div>
+
+{% stylesheet %}
+  .product-media {
+    aspect-ratio: var(--gallery-aspect-ratio, var(--ratio));
+    min-height: 0;
+    min-width: 0;
+  }
+
+  .product-media__image {
+    object-position: var(--focal-point, center center);
+  }
+
+  /*** Media border-radius feature ****/
+  @media screen and (min-width: 750px) {
+    .media-gallery--carousel slideshow-container,
+    .media-gallery--grid .product-media > * {
+      border-radius: var(--media-radius, 0);
+      overflow: hidden;
+    }
+
+    .product-information:not(.product-information--media-right)
+      .media-gallery--carousel.media-gallery--extend
+      slideshow-container {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .product-information.product-information--media-right
+      .media-gallery--carousel.media-gallery--extend
+      slideshow-container {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .product-information:not(.product-information--media-right) {
+      .media-gallery--grid.media-gallery--extend:not(.media-gallery--two-column) .product-media > *,
+      .media-gallery--grid.media-gallery--extend.media-gallery--two-column:not(.media-gallery--large-first-image)
+        .product-media-container:nth-of-type(odd)
+        .product-media
+        > *,
+      .media-gallery--grid.media-gallery--extend.media-gallery--two-column.media-gallery--large-first-image
+        .product-media-container:is(:first-of-type, :nth-of-type(even))
+        .product-media
+        > * {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    .product-information.product-information--media-right {
+      .media-gallery--grid.media-gallery--extend:not(.media-gallery--two-column) .product-media > *,
+      .media-gallery--grid.media-gallery--extend.media-gallery--two-column:not(.media-gallery--large-first-image)
+        .product-media-container:nth-of-type(even)
+        .product-media
+        > *,
+      .media-gallery--grid.media-gallery--extend.media-gallery--two-column.media-gallery--large-first-image
+        .product-media-container:is(:first-of-type, :nth-of-type(odd))
+        .product-media
+        > * {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+
+  ::view-transition-old(gallery-item),
+  ::view-transition-new(gallery-item) {
+    animation-duration: 0ms;
+  }
+{% endstylesheet %}

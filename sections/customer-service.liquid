@@ -1,0 +1,247 @@
+{% style %}
+    .customer-service {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .customer-service__inner {
+        max-width: {{ section.settings.page_width }}px;
+        margin: 0 auto;
+    }
+    .customer-service__grid {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+    .customer-service__left {
+        width:calc(100% * 7 / 12 - 12px);
+        text-align: center;
+    }
+    .customer-service__title {
+        color: #395754;
+        font-size: 20px;
+        line-height:1.2;
+        letter-spacing: 5px;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+    }
+    .customer-service__desc {
+        font-size: 18px;
+        font-family: 'Avenir-med';
+        font-weight: 500;
+        line-height: 1.2;
+        color: #212529;
+        max-width: 70%;
+        margin: 0 auto;
+    }
+    .customer-service__right{
+        width:calc(100% * 5 / 12 - 12px);
+        display: flex;
+        flex-direction: column;
+        gap: 45px;
+    }
+    .customer-service__item {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+    .customer-service__icon{
+        width: 65px;
+    }
+    .customer-service__item-title{
+        width:calc(100% - 105px);
+    }
+    .customer-service__icon img {
+        width: 65px;
+        height: 65px;
+        object-fit: contain;
+    }
+    .customer-service__item-title {
+        font-size: 18px;
+        line-height:1.1;
+        font-family: 'Avenir-med';
+        color: #212529;
+        font-weight: 600;
+        letter-spacing: 3px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+    @media screen and (max-width:1199px){
+        .customer-service__title {
+            font-size: 26px;
+        }
+        .customer-service__desc {
+            font-size: 21px;
+            max-width: 100%;
+        }
+        .customer-service__item {
+            gap: 25px;
+        }
+        .customer-service__icon{
+            width: 85px;
+        }
+        .customer-service__item-title{
+            width:calc(100% - 110px);
+        }
+        .customer-service__icon img {
+            width: 85px;
+            height: 85px;
+        }
+        .customer-service__item-title {
+            font-size: 14px;
+        }
+        .customer-service__inner {
+            padding-inline: 44px;
+        }
+        .customer-service__right {
+            gap: 70px;
+        }
+    }
+    @media screen and (max-width: 991px) {
+        .customer-service__grid {
+            flex-direction: column;
+            text-align: center;
+            gap: 50px;
+        }
+        .customer-service__item {
+            justify-content: center;
+        }
+        .customer-service__left {
+            width: 70%;
+        }
+        .customer-service__right {
+            width: 50%;
+        }
+    }
+    @media screen and (max-width:749px){
+        .customer-service__left, 
+        .customer-service__right {
+            width: 100%;
+        }
+        .customer-service__inner {
+            padding-inline: 20px;
+        }
+    }
+{% endstyle %}
+
+<div class="customer-service {{ section.settings.custom_class }}">
+  <div class="customer-service__inner">
+    <div class="customer-service__grid">
+      <!-- LEFT SIDE -->
+      <div class="customer-service__left">
+        {% if section.settings.title != blank %}
+          <h2 class="customer-service__title">
+            {{ section.settings.title }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="customer-service__desc">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="customer-service__right">
+        {% for block in section.blocks %}
+          <div class="customer-service__item" {{ block.shopify_attributes }}>
+            {% if block.settings.icon != blank %}
+              <div class="customer-service__icon">
+                <img
+                  src="{{ block.settings.icon | image_url: width: 120 }}"
+                  alt="{{ block.settings.icon.alt | escape }}"
+                  loading="lazy" width="" height=""
+                >
+              </div>
+            {% endif %}
+
+            {% if block.settings.title != blank %}
+              <div class="customer-service__item-title">
+                {{ block.settings.title }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Customer Service",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Left Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Left Description"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 900,
+      "max": 1800,
+      "step": 20,
+      "default": 1400
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Service Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Item Title",
+          "default": "Service Feature"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Customer Service"
+    }
+  ]
+}
+{% endschema %}

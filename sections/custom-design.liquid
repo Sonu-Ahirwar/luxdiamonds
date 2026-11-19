@@ -1,0 +1,278 @@
+<form class="appointment-form custom_form" id="appointmentCustomDesignForm">
+  <div class="col-grid">
+    <div class="form-grid">
+      <div class="form-field">
+        <label class="form-label" for="customDesignFirstName">First Name <span>*</span></label>
+        <input type="text" placeholder="FIRST NAME" name="firstName" id="customDesignFirstName">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="customDesignLastName">LAST Name <span>*</span></label>
+        <input type="text" placeholder="LAST NAME" name="lastName" id="customDesignLastName">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="customDesignEmail">EMAIL <span>*</span></label>
+        <input type="email" placeholder="EMAIL" name="email" id="customDesignEmail">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="customDesignPhone">PHONE NUMBER <span>*</span></label>
+        <input type="tel" placeholder="PHONE NUMBER" name="phone" id="customDesignPhone">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="customDesignLocation">LOCATION <span>*</span></label>
+        <select class="location" name="location" id="customDesignLocation">
+          <option value="">Choose Location</option>
+          <option value="Burnsville">Burnsville</option>
+          <option value="Richfield">Richfield</option>
+          <option value="Minnetonka">Minnetonka</option>
+          <option value="Eden Prairie">Eden Prairie</option>
+          <option value="Maple Grove">Maple Grove</option>
+          <option value="St. Cloud">St. Cloud</option>
+          <option value="Woodbury">Woodbury</option>
+          <option value="Roseville">Roseville</option>
+          <option value="Rochester">Rochester</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-grid">
+    <h6 class="form-title">WHAT ARE YOU INTERESTED IN?*</h6>
+    <div class="reason-grid radio-wrapper">
+      <div class="radio-item">
+        <label class="form-label">
+          <input type="radio" name="reasonForVisit" value="Engagement Ring">
+          <span><img src="{{ 'engagement-ring.png' | file_url }}" alt="Engagement ring"></span><h6>Engagement Ring</h6>
+        </label>
+      </div>
+
+      <div class="radio-item">
+        <label class="form-label">
+          <input type="radio" name="reasonForVisit" value="Wedding Band">
+          <span><img src="{{ 'wedding-band.png' | file_url }}" alt="wedding band"></span><h6>Wedding Band</h6>
+        </label>
+      </div>
+
+      <div class="radio-item">
+        <label class="form-label">
+          <input type="radio" name="reasonForVisit" value="Earrings">
+          <span><img src="{{ 'earrings_icon_9519096a-16b3-41d2-8834-777a66dbbab4.png' | file_url }}" alt="Earrings"></span><h6>Earrings</h6>
+        </label>
+      </div>
+
+      <div class="radio-item">
+        <label class="form-label">
+          <input type="radio" name="reasonForVisit" value="Fashion Jewelry">
+          <span><img src="{{ 'fashion-jewelry.png' | file_url }}" alt="Fashion Jewelry"></span><h6>Fashion Jewelry</h6>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-grid">
+    <h6 class="form-title">WHAT SHAPE DIAMOND ARE YOU INTERESTED IN?</h6>
+    <div class="shape-grid radio-wrapper">
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="Round"><span><img src="{{'round.svg' | file_url }}" alt="round"></span><h6>Round</h6></label></div>
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="Oval"><span><img src="{{'oval.svg' | file_url }}" alt="oval"></span><h6>Oval</h6></label></div>
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="Pear"><span><img src="{{'pear.svg' | file_url }}" alt="pear"></span><h6>Pear</h6></label></div>
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="CUSHION"><span><img src="{{'cushion.svg' | file_url }}" alt="cushion"></span><h6>CUSHION</h6></label></div>
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="Emerald"><span><img src="{{'emerald.svg' | file_url}}" alt="emerald"></span><h6>Emerald</h6></label></div>
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="Radiant"><span><img src="{{'radiant.svg' | file_url }}" alt="radiant"></span><h6>Radiant</h6></label></div>
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="Marquise"><span><img src="{{ 'marquise.svg' | file_url }}" alt="marquise"></span><h6>Marquise</h6></label></div>
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="Princess"><span><img src="{{'princess.svg' | file_url }}" alt="princess"></span><h6>Princess</h6></label></div>
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="Elongated Cushion"><span><img src="{{'Elongated_Cushion.svg' | file_url }}" alt="Elongated Cushion"></span><h6>Elongated Cushion</h6></label></div>
+      <div class="radio-item"><label class="form-label"><input type="radio" name="shape" value="Asscher"><span><img src="{{'asscher.svg' | file_url }}" alt="Asscher"></span><h6>Asscher</h6></label></div>
+    </div>
+  </div>
+
+  <div class="col-grid">
+    <h6 class="form-title">WHAT SIZE DIAMOND ARE YOU INTERESTED IN?</h6>
+    <div class="size-grid radio-wrapper custom_design">
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="½"><span>½</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="¾"><span>¾</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="1"><span>1</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="1¼"><span>1¼</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="1¾"><span>1¾</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="2"><span>2</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="2½"><span>2½</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="2¾"><span>2¾</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="3"><span>3</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="3½"><span>3½</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="4"><span>4</span></label></div>
+      <div class="radio-item"><label class="form-label"><input type="checkbox" name="carat" value="5"><span>5</span></label></div>
+    </div>
+  </div>
+
+  <div class="col-grid">
+    <h6 class="form-title">WHAT IS THE BUDGET YOU WOULD LIKE TO STAY WITHIN?</h6>
+    <div class="budget-grid form_category">
+      <label><input type="radio" name="budget" value="2500"> <span>UNDER $2,500</span></label>
+      <label><input type="radio" name="budget" value="5000"> <span>$2,500-$5,000</span></label>
+      <label><input type="radio" name="budget" value="7500"> <span>$5,000-$7,500</span></label>
+      <label><input type="radio" name="budget" value="10000"> <span>$7,500-$10,000</span></label>
+      <label><input type="radio" name="budget" value="15000"> <span>$10,000-$15,000</span></label>
+      <label><input type="radio" name="budget" value="20000"> <span>$15,000-$20,000</span></label>
+      <label><input type="radio" name="budget" value="20000+"> <span>$20,000+</span></label>
+    </div>
+  </div>
+
+  <div class="col-grid">
+    <h6 class="form-title">PLEASE PROVIDE ANY ADDITIONAL NOTES THAT MAY HELP CREATE YOUR PERFECT RING.</h6>
+    <textarea placeholder="ADDITIONAL DETAILS" rows="5" name="comment"></textarea>
+  </div>
+
+  <div class="col-grid">
+    <div class="custom-file-input">
+      <label class="form-label" for="customDesignFileUpload">Upload any images or inspiration</label><span>Max size 2MB each</span>
+      <input class="d-none" id="customDesignFileUpload" type="file" name="file" multiple accept="image/*">
+      <label for="customDesignFileUpload" class="cutom_btn">Add File</label>
+      <div id="customDesignSelectedFiles" style="margin-top:8px;font-size:13px;"></div>
+    </div>
+  </div>
+
+  <div class="col-grid">
+    <div class="form-message" id="appointmentCustomDesignFormMessage" style="display:none;"></div>
+    <button type="submit" class="submit-btn cutom_btn" id="appointmentCustomDesignSubmitBtn">
+      SUBMIT
+    </button>
+  </div>
+</form>
+
+<style>
+  .form-message {
+    margin: 12px 0;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .form-message.success {
+    background: #e8f7ee;
+    color: #1f7a3d;
+    border: 1px solid #b7e4c7;
+  }
+
+  .form-message.error {
+    background: #fdecec;
+    color: #b42318;
+    border: 1px solid #f5c2c0;
+  }
+
+  .submit-btn[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+</style>
+
+<script>
+(function () {
+  function initAppointmentCustomDesignForm(scope) {
+    const form = (scope || document).querySelector("#appointmentCustomDesignForm");
+    if (!form || form.dataset.bound === "true") return;
+    form.dataset.bound = "true";
+
+    const submitBtn = form.querySelector("#appointmentCustomDesignSubmitBtn");
+    const messageBox = form.querySelector("#appointmentCustomDesignFormMessage");
+    const fileInput = form.querySelector("#customDesignFileUpload");
+    const selectedFilesBox = form.querySelector("#customDesignSelectedFiles");
+
+    function showMessage(text, type) {
+      if (!messageBox) return;
+      messageBox.style.display = "block";
+      messageBox.textContent = text;
+      messageBox.className = "form-message " + type;
+    }
+
+    function clearMessage() {
+      if (!messageBox) return;
+      messageBox.style.display = "none";
+      messageBox.textContent = "";
+      messageBox.className = "form-message";
+    }
+
+    function renderSelectedFiles() {
+      if (!selectedFilesBox || !fileInput) return;
+      const files = Array.from(fileInput.files || []);
+      if (!files.length) {
+        selectedFilesBox.innerHTML = "";
+        return;
+      }
+      selectedFilesBox.innerHTML = files.map(file => {
+        const sizeMb = (file.size / (1024 * 1024)).toFixed(2);
+        return `<div>${file.name} (${sizeMb} MB)</div>`;
+      }).join("");
+    }
+
+    if (fileInput) {
+      fileInput.addEventListener("change", renderSelectedFiles);
+    }
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      clearMessage();
+
+      if (submitBtn && submitBtn.disabled) return;
+
+      const files = Array.from(fileInput?.files || []);
+
+      for (const file of files) {
+        if (!file.type.startsWith("image/")) {
+          showMessage("Only image files are allowed.", "error");
+          return;
+        }
+        if (file.size > 2 * 1024 * 1024) {
+          showMessage(`File ${file.name} is larger than 2MB.`, "error");
+          return;
+        }
+      }
+
+      const fd = new FormData(form);
+      fd.append("appointmentType", "custom_design");
+
+      try {
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting...";
+        }
+
+        const response = await fetch("/apps/custom-forms/appointment-custom-design", {
+          method: "POST",
+          body: fd
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showMessage("Your request has been submitted successfully.", "success");
+          form.reset();
+          renderSelectedFiles();
+        } else {
+          showMessage(result.message || "Something went wrong. Please try again.", "error");
+        }
+      } catch (error) {
+        console.error("Custom design form submit error:", error);
+        showMessage("Unable to submit the form right now. Please try again later.", "error");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "SUBMIT";
+        }
+      }
+
+      return false;
+    }, true);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initAppointmentCustomDesignForm(document);
+  });
+
+  document.addEventListener("shopify:section:load", function (event) {
+    initAppointmentCustomDesignForm(event.target);
+  });
+})();
+</script>

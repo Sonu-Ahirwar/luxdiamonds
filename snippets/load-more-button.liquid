@@ -1,0 +1,597 @@
+{%- if paginate.next -%}
+  <div class="load-more-wrapper">
+    <button
+      type="button"
+      class="button button-primary load-more-button"
+      data-next-page-url="{{ request.path }}?page={{ paginate.current_page | plus: 1 }}"
+      aria-label="Load more"
+    >
+      <span class="load-more-button__text">Load more</span>
+
+      <span class="load-more-button__loading" hidden>
+        <span class="load-more-button__spinner"></span>
+        Loading
+      </span>
+    </button>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: var(--padding-xl) var(--padding-sm);
+    padding-bottom: 0;
+    margin-top: var(--padding-xl);
+  }
+
+  .load-more-button {
+    min-width: 200px;
+    position: relative;
+  }
+span.load-more-button__loading[hidden] {
+    display: none;
+}
+  .load-more-button__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-xs);
+  }
+
+  .load-more-button__spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+button.button.button-primary.load-more-button {
+    background: #395754;
+    border: 1px solid #b3b3b3;
+    border-radius: 5px;
+    color: #fff;
+    transition: all .3s ease 0s;
+    letter-spacing: 2px;
+    min-width: 240px;
+    padding-bottom: 9px;
+    padding-top: 9px;
+    text-transform: uppercase;
+}
+
+button.button.button-primary.load-more-button:hover {
+    background: #9cadab !important;
+    border-color: #9cadab !important;
+}
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .load-more-button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+{% endstylesheet %}
+
+<!-- <script>
+(function() {
+
+  const loadMoreButton = document.querySelector('.load-more-button');
+  if (!loadMoreButton) return;
+
+  const currentGrid = document.querySelector('.product-grid');
+  if (!currentGrid) return;
+
+  let isLoading = false;
+  let prefetchedHTML = null;
+  let prefetchedURL = null;
+  let isPrefetching = false;
+
+  const textElement = loadMoreButton.querySelector('.load-more-button__text');
+  const loadingElement = loadMoreButton.querySelector('.load-more-button__loading');
+
+  /* ---------------- HELPERS ---------------- */
+
+  function setLoading(state) {
+    isLoading = state;
+    loadMoreButton.disabled = state;
+
+    if (textElement) textElement.hidden = state;
+    if (loadingElement) loadingElement.hidden = !state;
+  }
+
+  // ✅ preserve active filters
+  function buildFilteredURL(url) {
+
+    const currentUrl = new URL(window.location.href);
+    const nextUrl = new URL(url, window.location.origin);
+
+    currentUrl.searchParams.forEach((value, key) => {
+
+      // page param overwrite allowed
+      if (key === "page") return;
+
+      if (!nextUrl.searchParams.has(key)) {
+        nextUrl.searchParams.set(key, value);
+      }
+
+    });
+
+    return nextUrl.toString();
+  }
+
+  /* ---------------- FETCH PAGE ---------------- */
+
+  async function fetchPage(url, usePrefetch = false) {
+
+    try {
+
+      let html;
+      const finalURL = buildFilteredURL(url);
+
+      // ✅ use prefetched HTML only if same URL
+      if (
+        usePrefetch &&
+        prefetchedHTML &&
+        prefetchedURL === finalURL
+      ) {
+
+        html = prefetchedHTML;
+
+        prefetchedHTML = null;
+        prefetchedURL = null;
+
+      } else {
+
+        const response = await fetch(finalURL, {
+          method: "GET",
+          credentials: "same-origin",
+          cache: "force-cache"
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to load products: ${response.status}`);
+        }
+
+        html = await response.text();
+      }
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      const newGrid = doc.querySelector('.product-grid');
+
+      if (!newGrid) {
+        return false;
+      }
+
+      const newItems = newGrid.querySelectorAll('.product-grid__item');
+
+      if (!newItems.length) {
+
+        const wrapper = loadMoreButton.closest('.load-more-wrapper');
+
+        if (wrapper) {
+          wrapper.style.display = 'none';
+        }
+
+        return false;
+      }
+
+      /* ---------------- APPEND FAST ---------------- */
+
+      const fragment = document.createDocumentFragment();
+
+      newItems.forEach(item => {
+
+        // duplicate safety
+        const pid = item.dataset.productId;
+
+        if (
+          pid &&
+          currentGrid.querySelector(`.product-grid__item[data-product-id="${pid}"]`)
+        ) {
+          return;
+        }
+
+        fragment.appendChild(item);
+
+      });
+
+      currentGrid.appendChild(fragment);
+
+      /* ---------------- NEXT PAGE ---------------- */
+
+      const newBtn = doc.querySelector('.load-more-button');
+
+      if (
+        newBtn &&
+        newBtn.dataset.nextPageUrl
+      ) {
+
+        const nextURL = buildFilteredURL(
+          newBtn.dataset.nextPageUrl
+        );
+
+        loadMoreButton.dataset.nextPageUrl = nextURL;
+
+        // ⚡ background prefetch
+        prefetchNext(nextURL);
+
+      } else {
+
+        const wrapper = loadMoreButton.closest('.load-more-wrapper');
+
+        if (wrapper) {
+          wrapper.style.display = 'none';
+        }
+      }
+
+      /* ---------------- URL UPDATE ---------------- */
+
+      if (window.history && window.history.pushState) {
+
+        const historyURL = new URL(finalURL);
+
+        // keep current page visible in URL
+        window.history.pushState(
+          {},
+          '',
+          historyURL.pathname + historyURL.search
+        );
+      }
+
+      return true;
+
+    } catch (err) {
+
+      console.error("[LOAD MORE ERROR]", err);
+
+      return false;
+    }
+  }
+
+  /* ---------------- PREFETCH ---------------- */
+async function prefetchNext(url) {
+
+  try {
+
+    if (isPrefetching) return;
+
+    isPrefetching = true;
+
+    const finalURL = buildFilteredURL(url);
+
+    // already prefetched
+    if (prefetchedURL === finalURL) {
+      isPrefetching = false;
+      return;
+    }
+
+    const res = await fetch(finalURL, {
+      method: "GET",
+      credentials: "same-origin",
+      cache: "force-cache"
+    });
+
+    if (!res.ok) {
+      isPrefetching = false;
+      return;
+    }
+
+    prefetchedHTML = await res.text();
+    prefetchedURL = finalURL;
+
+    isPrefetching = false;
+
+  } catch (e) {
+
+    isPrefetching = false;
+
+    prefetchedHTML = null;
+    prefetchedURL = null;
+  }
+}
+
+  /* ---------------- CLICK ---------------- */
+
+  loadMoreButton.addEventListener('click', async function() {
+
+    if (isLoading) return;
+
+    const nextPageUrl = this.dataset.nextPageUrl;
+
+    if (!nextPageUrl) return;
+
+    setLoading(true);
+
+    const success = await fetchPage(nextPageUrl, true);
+
+    setLoading(false);
+
+    if (!success) {
+      loadMoreButton.disabled = false;
+    }
+  });
+
+  /* ---------------- INITIAL PREFETCH ---------------- */
+
+  if (loadMoreButton.dataset.nextPageUrl) {
+
+    const firstURL = buildFilteredURL(
+      loadMoreButton.dataset.nextPageUrl
+    );
+
+    loadMoreButton.dataset.nextPageUrl = firstURL;
+
+    prefetchNext(firstURL);
+  }
+
+})();
+</script> -->
+
+<script>
+(function() {
+
+  const loadMoreButton = document.querySelector('.load-more-button');
+  if (!loadMoreButton) return;
+
+  const currentGrid = document.querySelector('.product-grid');
+  if (!currentGrid) return;
+
+  let isLoading = false;
+
+  let prefetchedHTML = null;
+  let prefetchedURL = null;
+
+  let activePrefetchController = null;
+
+  const textElement = loadMoreButton.querySelector('.load-more-button__text');
+  const loadingElement = loadMoreButton.querySelector('.load-more-button__loading');
+
+  /* ---------------- HELPERS ---------------- */
+
+  function setLoading(state) {
+
+    isLoading = state;
+
+    loadMoreButton.disabled = state;
+
+    if (textElement) {
+      textElement.hidden = state;
+    }
+
+    if (loadingElement) {
+      loadingElement.hidden = !state;
+    }
+  }
+
+  // preserve active filters
+  function buildFilteredURL(url) {
+
+    const currentUrl = new URL(window.location.href);
+    const nextUrl = new URL(url, window.location.origin);
+
+    currentUrl.searchParams.forEach((value, key) => {
+
+      // allow page overwrite
+      if (key === 'page') return;
+
+      if (!nextUrl.searchParams.has(key)) {
+        nextUrl.searchParams.set(key, value);
+      }
+
+    });
+
+    return nextUrl.toString();
+  }
+
+  /* ---------------- FETCH PAGE ---------------- */
+
+  async function fetchPage(url, usePrefetch = false) {
+
+    try {
+
+      const finalURL = buildFilteredURL(url);
+
+      let html = null;
+
+      // stop background prefetch before real request
+      if (activePrefetchController) {
+        activePrefetchController.abort();
+      }
+
+      /* ---------- USE PREFETCH ---------- */
+
+      if (
+        usePrefetch &&
+        prefetchedHTML &&
+        prefetchedURL === finalURL
+      ) {
+
+        html = prefetchedHTML;
+
+        prefetchedHTML = null;
+        prefetchedURL = null;
+
+      } else {
+
+        const response = await fetch(finalURL, {
+          method: 'GET',
+          credentials: 'same-origin',
+          cache: 'force-cache'
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to load products: ${response.status}`);
+        }
+
+        html = await response.text();
+      }
+
+      /* ---------- PARSE HTML ---------- */
+
+      const parser = new DOMParser();
+
+      const doc = parser.parseFromString(html, 'text/html');
+
+      const newGrid = doc.querySelector('.product-grid');
+
+      if (!newGrid) {
+        return false;
+      }
+
+      const newItems = newGrid.querySelectorAll('.product-grid__item');
+
+      if (!newItems.length) {
+
+        const wrapper = loadMoreButton.closest('.load-more-wrapper');
+
+        if (wrapper) {
+          wrapper.style.display = 'none';
+        }
+
+        return false;
+      }
+
+      /* ---------- APPEND PRODUCTS ---------- */
+
+      const fragment = document.createDocumentFragment();
+
+      newItems.forEach(item => {
+
+        const pid = item.dataset.productId;
+
+        // duplicate safety
+        if (
+          pid &&
+          currentGrid.querySelector(`.product-grid__item[data-product-id="${pid}"]`)
+        ) {
+          return;
+        }
+
+        fragment.appendChild(item);
+
+      });
+
+      currentGrid.appendChild(fragment);
+
+      /* ---------- UPDATE NEXT PAGE ---------- */
+
+      const newBtn = doc.querySelector('.load-more-button');
+
+      if (
+        newBtn &&
+        newBtn.dataset.nextPageUrl
+      ) {
+
+        const nextURL = buildFilteredURL(
+          newBtn.dataset.nextPageUrl
+        );
+
+        loadMoreButton.dataset.nextPageUrl = nextURL;
+
+        // background prefetch
+        prefetchNext(nextURL);
+
+      } else {
+
+        const wrapper = loadMoreButton.closest('.load-more-wrapper');
+
+        if (wrapper) {
+          wrapper.style.display = 'none';
+        }
+      }
+
+      return true;
+
+    } catch (err) {
+
+      console.error('[LOAD MORE ERROR]', err);
+
+      return false;
+    }
+  }
+
+  /* ---------------- PREFETCH ---------------- */
+
+  async function prefetchNext(url) {
+
+    try {
+
+      const finalURL = buildFilteredURL(url);
+
+      // already prefetched
+      if (prefetchedURL === finalURL) {
+        return;
+      }
+
+      // cancel previous prefetch
+      if (activePrefetchController) {
+        activePrefetchController.abort();
+      }
+
+      activePrefetchController = new AbortController();
+
+      const res = await fetch(finalURL, {
+        method: 'GET',
+        credentials: 'same-origin',
+        cache: 'force-cache',
+        signal: activePrefetchController.signal
+      });
+
+      if (!res.ok) return;
+
+      prefetchedHTML = await res.text();
+      prefetchedURL = finalURL;
+
+    } catch (e) {
+
+      // ignore abort errors
+      if (e.name !== 'AbortError') {
+
+        prefetchedHTML = null;
+        prefetchedURL = null;
+      }
+    }
+  }
+
+  /* ---------------- CLICK ---------------- */
+
+  loadMoreButton.addEventListener('click', async function() {
+
+    if (isLoading) return;
+
+    const nextPageUrl = this.dataset.nextPageUrl;
+
+    if (!nextPageUrl) return;
+
+    setLoading(true);
+
+    const success = await fetchPage(nextPageUrl, true);
+
+    setLoading(false);
+
+    if (!success) {
+      loadMoreButton.disabled = false;
+    }
+  });
+
+  /* ---------------- INITIAL PREFETCH ---------------- */
+
+  if (loadMoreButton.dataset.nextPageUrl) {
+
+    const firstURL = buildFilteredURL(
+      loadMoreButton.dataset.nextPageUrl
+    );
+
+    loadMoreButton.dataset.nextPageUrl = firstURL;
+
+    prefetchNext(firstURL);
+  }
+
+})();
+</script>

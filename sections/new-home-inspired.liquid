@@ -1,0 +1,312 @@
+<section id="new-home-inspired-{{ section.id }}" class="new-home-inspired-section">
+    <div class="new-home-inspired-container">
+        {% if section.settings.title != blank or section.settings.content != blank %}
+        <div class="new-home-inspired-header">
+            {% if section.settings.title != blank %}
+            <h2 class="new-home-inspired-heading">
+                {{ section.settings.title }}
+            </h2>
+            {% endif %}
+
+            {% if section.settings.content != blank %}
+            <div class="new-home-inspired-description">
+                {{ section.settings.content }}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+            <div class="slider new-home-inspired-slider">
+                {% for block in section.blocks %}
+                    <div class="new-home-inspired-slides" {{ block.shopify_attributes }}>
+                        <div class="new-home-inspired-card">
+                            {% if block.settings.image != blank %}
+                                {{
+                                block.settings.image
+                                | image_url: width: 1800
+                                | image_tag:
+                                    loading: 'lazy',
+                                    class: 'new-home-inspired-image',
+                                    alt: block.settings.title
+                                }}
+                            {% else %}
+                                {{ 'image' | placeholder_svg_tag: 'new-home-inspired-placeholder' }}
+                            {% endif %}
+
+                            {% if block.settings.title != blank %}
+                                <div class="new-home-inspired-caption">
+                                {{ block.settings.title }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+    #new-home-inspired-{{ section.id }} {
+        width: 100%;
+        overflow: hidden;
+        padding: 25px 0 60px;
+        background: #fff;
+    }
+    #new-home-inspired-{{ section.id }} .new-home-inspired-container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+    /* Header */
+    #new-home-inspired-{{ section.id }} .new-home-inspired-header {
+        text-align: center;
+        max-width: 680px;
+        margin: 0 auto 30px;
+        padding: 0 20px;
+    }
+    #new-home-inspired-{{ section.id }} .new-home-inspired-heading {
+        font-family: inherit;
+        font-size: 40px;
+        line-height: 1.25;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-weight: 400;
+        color: #395754;
+        margin: 0 0 12px;
+    }
+    #new-home-inspired-{{ section.id }} .new-home-inspired-description {
+        font-size: 14px;
+        line-height: 1.6;
+        letter-spacing: 1.5px;
+        color: #728080;
+        margin: 0 auto;
+    }
+    /* slider */
+    .new-home-inspired-slider .new-home-inspired-slides {
+        height: auto;
+        opacity: 0.25;
+        transition: opacity 0.5s ease;
+        padding:0px 8px;
+    }
+    .new-home-inspired-slider .new-home-inspired-slides.slick-active.slick-center {
+        opacity: 1;
+    }
+    .new-home-inspired-card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    .new-home-inspired-image {
+        display: block;
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+    }
+    .new-home-inspired-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+        background: #CEC1B6B2;
+        color: #000;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing:1.3px
+    }
+    .new-home-inspired-slider.slider {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .new-home-inspired-slider.slider.slick-initialized {
+      visibility: visible;
+      opacity: 1;
+    }
+    .new-home-inspired-slider .slick-dots {
+        bottom: -40px;
+        max-width: 353px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+    .new-home-inspired-slider .slick-dots li {
+        width: calc(100% / 5);
+        height: 3px;
+        margin: 0px;
+    }
+    .new-home-inspired-slider .slick-dots li button {
+        width: 100%;
+        height: 3px;
+        padding: 0px;
+        background-color: #72878566;
+    }
+    .new-home-inspired-slider .slick-dots li button:before{
+        display:none;
+    }
+    .new-home-inspired-slider .slick-dots li.slick-active button {
+      background: #395754;
+    }
+    /* Tablet */
+    @media screen and (max-width: 989px) {
+        #new-home-inspired-{{ section.id }} .new-home-inspired-heading {
+        font-size: 26px;
+        }
+    }
+    /* Mobile */
+    @media screen and (max-width: 749px) {
+        #new-home-inspired-{{ section.id }} {
+            padding: 18px 0 25px;
+        }
+        #new-home-inspired-{{ section.id }} .new-home-inspired-header {
+            margin-bottom: 18px;
+            padding: 0 20px;
+        }
+        #new-home-inspired-{{ section.id }} .new-home-inspired-heading {
+            font-size: 30px;
+            line-height: 1.3;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        #new-home-inspired-{{ section.id }} .new-home-inspired-description {
+            font-size: 15px;
+            line-height: 1.5;
+            letter-spacing: 2px;
+        }
+        .new-home-inspired-image {
+            height: 280px;
+        }
+        #new-home-inspired-{{ section.id }} .new-home-inspired-image,
+        #new-home-inspired-{{ section.id }} .new-home-inspired-placeholder {
+            min-height: 0;
+            aspect-ratio: 1 / 1;
+        }
+        #new-home-inspired-{{ section.id }} .new-home-inspired-caption {
+            padding: 9px 5px;
+            font-size: 10px;
+        }
+        #new-home-inspired-{{ section.id }} .new-home-inspired-pagination {
+            width: 180px;
+            margin-top: 20px;
+        }
+        .new-home-inspired-slider .slick-dots {
+            max-width: 235px;
+        }
+        .new-home-inspired-slider .new-home-inspired-slides {
+            padding:0px 4px;
+        }
+    }
+</style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const slider = document.querySelector('.new-home-inspired-slider');
+
+        if (!slider) return;
+
+        new Swiper(slider, {
+            slidesPerView: 3.5,
+            centeredSlides: true,
+            centeredSlidesBounds: true,
+            spaceBetween: 30,
+            loop: true,
+            {% comment %} autoplay: true; {% endcomment %}
+            grabCursor: true,
+            speed: 700,
+            {% comment %} watchSlidesProgress: true, {% endcomment %}
+            pagination: {
+            el: slider.querySelector('.swiper-pagination'),
+            type: 'progressbar',
+            },
+            {% comment %} mousewheel: {
+                forceToAxis: true,
+                releaseOnEdges: true
+            }, {% endcomment %}
+            breakpoints: {
+            320: {
+                slidesPerView: 1.3,
+                spaceBetween: 10,
+            },
+            600: {
+                slidesPerView: 2.3,
+                spaceBetween: 12,
+            },
+            768: {
+                slidesPerView: 3.2,
+                spaceBetween: 15,
+            },
+            1200: {
+                slidesPerView: 4.5,
+                spaceBetween: 15,
+            }
+            }
+        });
+
+    });
+</script>
+
+{% schema %}
+{
+  "name": "New Home Inspired",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "INSPIRED BY YOU"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Section Content",
+      "default": "A tribute to the individuals who inspire everything we do."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "inspired_item",
+      "name": "Inspired Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Home Inspired",
+      "blocks": [
+        {
+          "type": "inspired_item"
+        },
+        {
+          "type": "inspired_item"
+        },
+        {
+          "type": "inspired_item"
+        },
+        {
+          "type": "inspired_item"
+        },
+        {
+          "type": "inspired_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

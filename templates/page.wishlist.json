@@ -1,0 +1,78 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "wishlist-page",
+      "settings": {}
+    },
+    "custom_liquid_AFjBhn": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".CustomWishlist_Page {padding: 0;}"
+      ],
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"CustomWishlist_Page\">\n<h2>Continue shopping</h2>\n</div>",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "custom_img_txt_grid_xBjHXc": {
+      "type": "custom-ImgTxt-grid",
+      "blocks": {
+        "card_W9iQaD": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/WishList_Final-03.jpg",
+            "button_label": "Wedding bands",
+            "button_link": "shopify://collections/womens-wedding-bands"
+          }
+        },
+        "card_E8wKNx": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/WishList_Final-02.jpg",
+            "button_label": "Engagement rings",
+            "button_link": "shopify://collections/engagement-rings"
+          }
+        },
+        "card_GNXzmp": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/WishList_Final-01.jpg",
+            "button_label": "Diamond Studs",
+            "button_link": "shopify://collections/fine-jewelry"
+          }
+        }
+      },
+      "block_order": [
+        "card_W9iQaD",
+        "card_E8wKNx",
+        "card_GNXzmp"
+      ],
+      "name": "Custom Image Text Grid",
+      "settings": {
+        "custom_class": "",
+        "columns": 4,
+        "page_width": 1320,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_AFjBhn",
+    "custom_img_txt_grid_xBjHXc"
+  ]
+}

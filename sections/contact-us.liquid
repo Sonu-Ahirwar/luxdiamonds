@@ -1,0 +1,183 @@
+<form class="contact-us-form custom_form" id="contactUsForm">
+  <div class="col-grid">
+    <div class="form-grid">
+      <div class="left_col">
+        <div class="form-field">
+          <label class="form-label" for="contactUsFirstName">First Name <span>*</span></label>
+          <input type="text" placeholder="FIRST NAME" name="firstName" id="contactUsFirstName">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="contactUsLastName">Last Name <span>*</span></label>
+          <input type="text" placeholder="LAST NAME" name="lastName" id="contactUsLastName">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="contactUsEmail">Email <span>*</span></label>
+          <input type="email" placeholder="EMAIL" name="email" id="contactUsEmail">
+        </div>
+
+        <div class="form-field ph_no">
+          <label class="form-label" for="contactUsPhone">Phone Number <span>*</span></label>
+          <input type="tel" placeholder="PHONE NUMBER" name="phone" id="contactUsPhone">
+        </div>
+
+        <div class="form-field location">
+          <label class="form-label" for="contactUsLocation">Choose a Location <span>*</span></label>
+          <select name="location" id="contactUsLocation">
+            <option value="">Choose Location</option>
+            <option value="Burnsville">Burnsville</option>
+            <option value="Richfield">Richfield</option>
+            <option value="Minnetonka">Minnetonka</option>
+            <option value="Eden Prairie">Eden Prairie</option>
+            <option value="Maple Grove">Maple Grove</option>
+            <option value="St. Cloud">St. Cloud</option>
+            <option value="Woodbury">Woodbury</option>
+            <option value="Roseville">Roseville</option>
+            <option value="Rochester">Rochester</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="right_col">
+        <textarea placeholder="COMMENT" name="additionalDetails"></textarea>
+
+        <div class="form-message" id="contactUsFormMessage" style="display:none;"></div>
+
+        <button type="submit" class="submit-btn cutom_btn" id="contactUsSubmitBtn">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<style>
+  .form-message {
+    margin: 12px 0;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .form-message.success {
+    background: #e8f7ee;
+    color: #1f7a3d;
+    border: 1px solid #b7e4c7;
+  }
+
+  .form-message.error {
+    background: #fdecec;
+    color: #b42318;
+    border: 1px solid #f5c2c0;
+  }
+
+  .submit-btn[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+</style>
+
+
+<script>
+(function () {
+  function initContactUsForm(scope) {
+    const form = (scope || document).querySelector("#contactUsForm");
+    if (!form || form.dataset.bound === "true") return;
+
+    form.dataset.bound = "true";
+
+    const submitBtn = form.querySelector("#contactUsSubmitBtn");
+    const messageBox = form.querySelector("#contactUsFormMessage");
+
+    function showMessage(text, type) {
+      if (!messageBox) return;
+      messageBox.style.display = "block";
+      messageBox.textContent = text;
+      messageBox.className = "form-message " + type;
+    }
+
+    function clearMessage() {
+      if (!messageBox) return;
+      messageBox.style.display = "none";
+      messageBox.textContent = "";
+      messageBox.className = "form-message";
+    }
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      clearMessage();
+
+      if (submitBtn && submitBtn.disabled) return;
+
+      const fd = new FormData(form);
+
+      const payload = {
+        contactType: "contact_us",
+        firstName: fd.get("firstName"),
+        lastName: fd.get("lastName"),
+        email: fd.get("email"),
+        phone: fd.get("phone"),
+        location: fd.get("location"),
+        additionalDetails: fd.get("additionalDetails") || ""
+      };
+
+      if (
+        !payload.firstName ||
+        !payload.lastName ||
+        !payload.email ||
+        !payload.phone ||
+        !payload.location
+      ) {
+        showMessage("Please fill all required fields.", "error");
+        return false;
+      }
+
+      try {
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting...";
+        }
+
+        const response = await fetch("/apps/custom-forms/contact-us", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showMessage("Your request has been submitted successfully.", "success");
+          form.reset();
+        } else {
+          showMessage(result.message || "Something went wrong. Please try again.", "error");
+        }
+      } catch (error) {
+        console.error("Contact us form submit error:", error);
+        showMessage("Unable to submit the form right now. Please try again later.", "error");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit";
+        }
+      }
+
+      return false;
+    }
+
+    form.addEventListener("submit", handleSubmit, true);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initContactUsForm(document);
+  });
+
+  document.addEventListener("shopify:section:load", function (event) {
+    initContactUsForm(event.target);
+  });
+})();
+</script>

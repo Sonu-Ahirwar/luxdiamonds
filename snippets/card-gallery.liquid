@@ -1,0 +1,863 @@
+{%- doc -%}
+  Displays product images in a carousel.
+  Settings allow for a full slideshow, showing only the first image, or showing the second image when hovering.
+  Note: When the product card itself is in a carousel layout, the card-gallery's carousel is disabled with JavaScript.
+
+  @param [children] - Additional content rendered below the card gallery
+  @param [section] - The section object the snippet is rendered in
+  @param [block] - The block object the snippet is rendered in
+  @param [has_applied_colour_filter] - Whether there's an applied colour filter
+{%- enddoc -%}
+
+{% liquid
+  assign product = closest.product
+  assign block_settings = block.settings
+  assign image_sizes = '(min-width: 750px) 50vw, 100vw'
+
+  # if the card-gallery has a section.settings.product_card_size:
+  # assume grid-template autofill(card-size, 1fr) and calculate the sizes attribute based on the minimum card size
+  #
+  # if section has section.settings.columns:
+  # assume grid-template repeat(column-count, 1fr) and calculate the sizes attribute based on the number of columns
+  if section.settings.product_card_size
+    capture card_size
+      render 'util-product-grid-card-size', section: section
+    endcapture
+    assign card_size = card_size | strip | replace: 'px', '' | plus: 0
+    capture sizes_attribute
+      render 'util-autofill-img-size-attr', card_size: card_size, card_gap: section.settings.columns_gap_horizontal
+    endcapture
+    assign image_sizes = sizes_attribute | strip
+  elsif section.settings.columns and section.settings.layout_type != 'editorial'
+    assign viewport_width = 100.0 | divided_by: section.settings.columns
+    assign sizes_attribute = '(min-width: 750px) [viewport_width]vw, 100vw' | replace: '[viewport_width]', viewport_width
+    assign image_sizes = sizes_attribute | strip
+  endif
+
+  assign ratio = '1'
+  case block_settings.image_ratio
+    when 'landscape'
+      assign ratio = '16 / 9'
+    when 'portrait'
+      assign ratio = '4 / 5'
+    when 'square'
+      assign ratio = '1'
+    when 'adapt'
+      if product != blank
+        assign current_featured_image_for_ratio = product.featured_image
+        if current_featured_image_for_ratio == blank and product.featured_media.preview_image != blank
+          assign current_featured_image_for_ratio = product.featured_media.preview_image
+        endif
+
+        if current_featured_image_for_ratio != blank and current_featured_image_for_ratio.aspect_ratio != null and current_featured_image_for_ratio.aspect_ratio > 0
+          assign ratio = current_featured_image_for_ratio.aspect_ratio
+        endif
+      endif
+  endcase
+
+  assign selected_variant_image = product.selected_or_first_available_variant.image.src
+  assign cdn_prefix = 'https://im.lgdus.co/Jwl/'
+
+
+  if block_settings.image_ratio == 'adapt' and block_settings.constrain_to_viewport
+    if block_settings.constrain_to_viewport != ''
+      assign constrain_to_viewport = true
+      assign media_fit = block_settings.constrain_to_viewport
+    endif
+  endif
+
+  assign all_media = product.media
+
+  # For combined listings: make sure to include the featured media of the color variants so that the swatch picker
+  # works as expected.
+  for product_option in product.options_with_values
+    for product_option_value in product_option.values
+      if product_option_value.swatch
+        assign featured_media = product_option_value.variant.featured_media
+
+        # If the variant has no featured media, and we have a combined listing product, then fall back to using the
+        # featured media of the child product that is linked to this option value.
+
+        if featured_media == blank and product_option_value.product_url
+          assign featured_media = product_option_value.variant.product.featured_media
+        endif
+
+        assign existing_media = all_media | has: 'id', featured_media.id
+        unless existing_media
+          assign variant_featured_media = product_option_value.variant.product.media | where: 'id', featured_media.id
+          assign all_media = all_media | concat: variant_featured_media
+        endunless
+      endif
+    endfor
+  endfor
+
+  # === Parent handle based URL override ===
+  assign parent_handle_mf = product.metafields.custom.parent_handle
+
+  if parent_handle_mf == blank
+    assign parent_handle_mf = ''
+  endif
+
+  if parent_handle_mf != ''
+    # PLP clone → parent PDP pe bhejna
+    assign base_card_url = routes.root_url | append: 'products/' | append: parent_handle_mf
+    if collection.handle != blank
+          assign base_card_url = routes.root_url | append: collection.url | append: 'products/' | append: parent_handle_mf
+    endif
+  else
+    # Normal product → theme ka default variant URL
+    capture default_card_url
+      render 'product-card-variant-url', product: product
+    endcapture
+    assign base_card_url = default_card_url | strip
+  endif
+
+  assign prod = product
+
+  # ---------- JSON SOURCE (PLP) ----------
+  assign use_prod = prod
+  assign parent_handle_val = prod.metafields.custom.parent_handle.value | default: ''
+  if parent_handle_val != ''
+    assign parent_prod = all_products[parent_handle_val]
+    if parent_prod != blank
+      assign use_prod = parent_prod
+    endif
+  endif
+
+  assign fields = 'all_sku_plp,all_sku_plp_1,all_sku_plp_2' | split: ','
+  assign mf_items = '' | split: ','
+
+  for f in fields
+    assign m = use_prod.metafields.custom[f]
+    if m != blank and m.value != blank
+      assign mf_items = mf_items | concat: m.value
+    endif
+  endfor
+
+  assign sku_list = mf_items
+
+  # ---------- DEFAULT ROW PICK (exact product default) ----------
+  # Priority:
+  # 1) if current_tags present -> match metal or shape (as your filters)
+  # 2) else if selected variant sku exists -> match sku
+  # 3) else first row
+  assign picked = blank
+  assign card_sku = product.selected_or_first_available_variant.sku | default: '' | strip
+
+  if current_tags != blank and sku_list != blank
+    for s in sku_list
+      if current_tags contains s.metal_color and current_tags contains s.center_stone_shape
+        assign picked = s
+        break
+      endif
+    endfor
+
+    if picked == blank
+      for s in sku_list
+        if current_tags contains s.metal_color
+          assign picked = s
+          break
+        endif
+      endfor
+    endif
+
+
+    if picked == blank
+      for s in sku_list
+        if current_tags contains s.center_stone_shape
+          assign picked = s
+          break
+        endif
+      endfor
+    endif
+  endif
+
+  if picked == blank and card_sku != '' and sku_list != blank
+    for s in sku_list
+      assign s_sku = s.sku | default: '' | strip
+      if s_sku != '' and s_sku == card_sku
+        assign picked = s
+        break
+      endif
+    endfor
+  endif
+
+    if picked 
+      for s in sku_list
+        if current_tags contains s.gemstone_type
+          assign picked = s
+          break
+        endif
+      endfor
+    endif
+    
+  if picked == blank and sku_list != blank
+    assign picked = sku_list[0]
+  endif
+  
+   assign picked_row = blank
+  assign selected_color = blank
+
+  assign count = 0
+  for filter in collection.filters 
+   if filter.param_name contains 'metal' 
+     for value in filter.active_values 
+     assign count = count | plus: 1
+      if count <= 1
+       assign selected_color = value.label 
+       endif
+     endfor 
+   endif 
+
+   
+  assign count_s = 0
+   if filter.param_name contains 'shape' 
+     for value in filter.active_values 
+     assign count_s = count_s | plus: 1
+      if count_s <= 1
+       assign selected_shape = value.label 
+       endif
+     endfor 
+   endif 
+
+  assign count_g = 0
+    if filter.param_name contains 'gemstone' 
+     for value in filter.active_values 
+     assign count_g = count_g | plus: 1
+      if count_g <= 1
+       assign selected_gem = value.label 
+       endif
+     endfor 
+   endif 
+ endfor 
+
+ assign filter_metal = selected_color 
+ assign filter_shape = selected_shape 
+ assign filter_gem = selected_gem 
+ assign filter_shape_meta = product.metafields.custom.active_shape_on_plp.value | escape 
+ assign filter_metal_meta = product.metafields.custom.active_metal_on_plp.value | escape 
+
+ assign filtered_rows = mf_items  | where: 'metal_color', filter_metal  | where: 'center_stone_shape', filter_shape 
+
+   
+  if picked_row == blank
+    assign picked_row = filtered_rows | first 
+  endif
+ 
+  # Build metal/shape arrays for chips
+  assign metalvalue = blank
+  assign shapevalue = blank
+  for it in sku_list
+    if it.metal_color != blank
+      if metalvalue != blank
+        assign metalvalue = metalvalue | append: ', '
+      endif
+      assign metalvalue = metalvalue | append: it.metal_color
+    endif
+    if it.center_stone_shape != blank
+      if shapevalue != blank
+        assign shapevalue = shapevalue | append: ', '
+      endif
+      assign shapevalue = shapevalue | append: it.center_stone_shape
+    endif
+  endfor
+  assign metalvalue = metalvalue | split: ', ' | uniq | join: ', ' | split: ', '
+  assign shapevalue = shapevalue | split: ', ' | uniq | join: ', ' | split: ', '
+%}
+
+{%  if filter_gem != blank %}
+ {%  for row in filtered_rows %}
+   {%  assign gemstone_values = row.gemstone_type | downcase %}
+   {%  if gemstone_values contains filter_gem %}
+     {% assign matched_products = row %}
+     {%  break%}
+   {%  endif%}
+ {%  endfor%}
+{% endif %}
+{% if matched_products %}
+{%  assign picked = matched_products %}
+{% endif %}
+
+<div
+  ref="cardGallery"
+  class="card-gallery card-gallery-{{ block.id }} spacing-style border-style"
+  style="
+    {% render 'border-override', settings: block_settings %}
+    {% render 'spacing-style', settings: block_settings %}
+    --gallery-aspect-ratio: {{ ratio }};
+  "
+  data-product-id="{{ product.id }}"
+  data-initial-media1="{{ 'https://im.lgdus.co/Jwl/' | append: picked.media1 }}"
+  {% if picked.hover_image1 != blank or  picked.media2 != blank %}
+     data-initial-media2="{{ 'https://im.lgdus.co/Jwl/' | append: picked.hover_image1 | default: picked.media2 }}"
+  {% else %}
+     data-initial-media2="{{ 'https://im.lgdus.co/Jwl/' | append: picked.media1 }}"
+  {% endif %}
+  {% if settings.show_second_image_on_hover %}
+    on:pointerenter="/previewImage"
+    on:pointerleave="/resetImage"
+  {% endif %}
+  {% if settings.transition_to_main_product %}
+    data-view-transition-to-main-productZ
+  {% endif %}
+  data-image-ratio="{{ block_settings.image_ratio }}"
+  {{ block.shopify_attributes }}
+>
+{% unless collection.handle == 'new-arrivals' or collection.handle == 'custom-jewelry' %}
+  <span class="product_shipping_icon">
+    <img src="{{ 'Shipping.png' | file_url }}" alt="Shipping" loading="lazy" width="" height="" >
+  </span>
+{% endunless %}
+
+{% if product.metafields.custom.card_badge_name.value %}
+  <div class="product_tag_wrap {{ product.metafields.custom.card_badge_name.value | handleize }} {% if product.metafields.custom.badge_design_type.value == "Special" %} badge-special {% endif %}">
+  {% if product.metafields.custom.badge_design_type.value == "Special" %} 
+    <img src="{{ 'special-badge-img.png' | file_url }}"
+      width=""
+      height=""
+      loading="lazy"
+      alt="wishlist">    
+  {% endif %}
+  {% if product.metafields.custom.card_badge_name.value == "Top Pick" %} 
+    <img src="{{ 'gift-icon.png' | file_url }}"
+      width=""
+      height=""
+      loading="lazy"
+      alt="gift">    
+  {% endif %}
+  {% if product.metafields.custom.card_badge_name.value contains 'Holiday Pick' %}
+    <img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/Red_Sparkle_1.png?v=1793716316" alt="sparkle">
+  {% endif %}
+    {{ product.metafields.custom.card_badge_name.value }}
+  </div>
+{% endif %}
+
+{% if block_settings.show_icons %}
+<span class="iconWrap">
+  {% unless canonical_url contains 'recommendations' %}
+  {% comment %} <span class="shipping_icon">
+    <img src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/shipping2.png" 
+      width=""
+      height=""
+      loading="lazy"
+      alt="Shipping">
+  </span> {% endcomment %}
+  {% endunless %}
+  <span class="add-to-wishlist">
+     <div
+      class="wishlist-engine"
+      data-product_id="{{ product.id }}"
+      data-variant_id="{{ product.selected_or_first_available_variant.id }}"
+      data-product_handle="{{ parent_handle_mf | default: product.handle }}"
+      data-title="{{ picked.pdp_name | default: product.title | escape }}"
+      data-image="{{ 'https://im.lgdus.co/Jwl/' | append: picked.media1 | escape }}"
+      data-price="{{ picked.price | default: product.price | default: 0 }}"
+      data-url="{{ base_card_url | split: '?variant' | first | append: linkParameter | escape }}"
+      data-sku="{{ picked.sku | default: product.selected_or_first_available_variant.sku | escape }}"
+      data-metafields='{{ picked | json | escape }}'
+      data-full_button="false"
+      data-css="true"
+    ></div>
+  </span>
+</span>
+{% else %}
+  <span class="iconWrap">
+    <span class="add-to-wishlist">
+     <div
+      class="wishlist-engine"
+      data-product_id="{{ product.id }}"
+      data-variant_id="{{ product.selected_or_first_available_variant.id }}"
+      data-product_handle="{{ parent_handle_mf | default: product.handle }}"
+      data-title="{{ picked.pdp_name | default: product.title | escape }}"
+      data-image="{{ 'https://im.lgdus.co/Jwl/' | append: picked.media1 | escape }}"
+      data-price="{{ picked.price | default: product.price | default: 0 }}"
+      data-url="{{ base_card_url | split: '?variant' | first | append: linkParameter | escape }}"
+      data-sku="{{ picked.sku | default: product.selected_or_first_available_variant.sku | escape }}"
+      data-metafields='{{ picked | json | escape }}'
+      data-full_button="false"
+      data-css="true"
+    ></div>
+  </span>
+  </span>
+{% endif %}
+
+    {%- liquid
+      # sku_list already built from: all_sku_plp, all_sku_plp_1, all_sku_plp_2
+      assign linkParameter = ''
+      assign skuData = blank
+
+      if sku_list != blank and sku_list.size > 0
+        if current_tags != blank
+          for item in sku_list
+            if item.metal_color != blank and current_tags contains item.metal_color
+              assign skuData = item
+              break
+            endif
+
+            if item.center_stone_shape != blank and current_tags contains item.center_stone_shape
+              assign skuData = item
+              break
+            endif
+          endfor
+        endif       
+      endif
+    -%}
+    {% if skuData == blank %}
+  {% assign MetalValue_t = product.metafields.custom.active_metal_on_plp.value | escape  %}
+  
+  {% assign ShapeValue_t = product.metafields.custom.active_shape_on_plp.value | escape  %}
+
+  {% for skuDatadate in product.metafields.custom.all_sku_plp.value  %}          
+    {% assign default_name = product.metafields.custom.pdp_title.value | handleize %}
+    {% assign skudefault = skuDatadate.name | handleize %}
+    
+    {% if MetalValue_t contains skuDatadate.metal_color and ShapeValue_t contains skuDatadate.center_stone_shape and skudefault == default_name %}    
+          {% assign skuData = skuDatadate %}
+          {%  break %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign linkParameter = '?new_url=' | append: skuData.url_key %}
+    {% assign skuData = skuDatadate %}
+    {% endif %}
+   {% if skuData == blank %}
+{%  assign skuData = sku_list | first  %}
+ {% assign linkParameter = '?new_url=' | append: skuData.url_key %}
+    {%  endif %}
+
+  {%- if all_media.size > 1 -%}
+    
+    {% liquid
+      # Check if there are generic media that are not variant images
+      assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src'
+      assign generic_media_size = all_media.size | minus: variant_images.size
+      assign combined_listing_count = product.options_with_values | map: 'values' | map: 'product_url' | compact | size
+
+      if combined_listing_count > 0 or has_applied_colour_filter
+        # Sort media so selected variant image comes first
+        assign selected_media = all_media | where: 'src', selected_variant_image
+        assign other_media = all_media | reject: 'src', selected_variant_image
+        assign all_media_sorted = selected_media | concat: other_media
+        assign media_list_to_show = all_media_sorted
+      else
+        assign media_list_to_show = all_media
+      endif
+
+      if all_media.size > 2 and generic_media_size > 0
+        assign show_arrows = true
+      endif
+
+      # Don't overfetch media if we don't need to
+      assign max_visible_slide_count = 1
+      if settings.product_card_carousel
+        assign max_visible_slide_count = 5
+      elsif settings.show_second_image_on_hover
+        assign max_visible_slide_count = 2
+      endif
+
+      capture slides
+        for media in media_list_to_show  limit: 2
+          assign loading = 'lazy'
+          assign sizes = 'auto, ' | append: image_sizes
+
+          assign hidden = false
+          assign attributes = ''
+          if variant_images contains media.src
+            assign attributes = 'variant-image'
+            if combined_listing_count > 0
+              # hide all variant images of combined listings unless it's the first image or there are no generic media
+              unless forloop.first and media.src == selected_variant_image or generic_media_size == 0
+                assign hidden = true
+              endunless
+            elsif has_applied_colour_filter
+              # with colour filters, hide all variant images unless the image is the selected_variant
+              unless media.src == selected_variant_image
+                assign hidden = true
+              endunless
+            elsif forloop.first == false
+              # hide all variant images that aren't the first one (when there are no combined listings or colour filters applied)
+              assign hidden = true
+            endif
+          endif
+
+          # Performance improvement: don't render more than 5 visible images into the slideshow
+          # We'll keep the images that we need for the variant images and hover next.
+          if forloop.first
+            assign visible_slide_count = 0
+          endif
+          unless hidden
+            assign visible_slide_count = visible_slide_count | plus: 1
+          endunless
+          if hidden == false and visible_slide_count > max_visible_slide_count
+            continue
+          endif
+
+          if forloop.first and section.index == null or section.index < 5
+            assign loading = 'eager'
+            assign sizes = image_sizes
+          endif
+
+          assign class = 'product-media-container media-fit product-media-container--[media_type]' | replace: '[media_type]', media.media_type
+          if constrain_to_viewport
+            assign class = class | append: ' constrain-height'
+          endif
+
+          capture slideshow_children
+            render 'product-media', media: media, sizes: sizes, loading: loading, preview_image_only: true, product: product, indeximage: forloop.index0
+          endcapture
+
+          render 'slideshow-slide', slide_id: media.id, index: forloop.index, hidden: hidden, class: class, attributes: attributes, children: slideshow_children, media_fit: media_fit, product:product
+        endfor
+      endcapture
+
+      assign slideshow_attributes = 'data-generic-media-size="[generic_media_size]"' | replace: '[generic_media_size]', 2
+      if settings.product_card_carousel == false
+        assign slideshow_attributes = slideshow_attributes | append: ' disabled="true"'
+      endif
+    %}
+
+    <a
+      class="contents wdd-card-link aaaaaaa"
+      ref="cardGalleryLink"
+      href="{{ base_card_url | split: '?variant' | first  }}{{ linkParameter }}"
+      aria-label="{{- product.title -}}"
+    >
+      {% render 'slideshow',
+        ref: 'slideshow',
+        initial_slide: 0,
+        slides: slides,
+        slide_count: all_media.size,
+        show_arrows: show_arrows,
+        attributes: slideshow_attributes
+      %}
+    </a>
+    {% comment %} {% assign Collectionfiltershow = false %}
+    {% if template == 'collection' or template == 'collection.engagement-rings' or template == 'collection.womens-wedding-bands' or template == 'collection.special' or template == 'collection.fine-jewelry' %}
+      {% assign Collectionfiltershow = true %}
+    {% endif %} {% endcomment %}
+    {% assign Collectionfiltershow = false %}
+    {% if request.page_type == 'collection' or request.page_type == 'search' %}
+      {% assign Collectionfiltershow = true %}
+    {% endif %}
+    {% if metalvalue.size > 1 and Collectionfiltershow  %}
+    <div class="wdd-metals" role="group" aria-label="Select metal" data-metals testa>
+     
+      {% for metal in metalvalue  %}
+         {% assign active_val = false %}
+        
+        {% if picked != blank %}
+          {% if selected_color != blank %}
+              {%  if metal == selected_color %}
+                {% assign active_val = true %}
+              {% endif %} 
+            {% else %}
+              {%  if metal == filter_metal_meta %}
+                {% assign active_val = true %}
+              {% endif %} 
+          {% endif %} 
+        {% endif %}
+        <button class="metal-chip page_{{page_current}} {% if active_val == true %} active {% endif %}" 
+          data-metal="{{ metal }}" title="{{ metal | capitalize }}" data-productId="{{ prod.id }}" >
+              <img src="{{ metal | replace: ' ', '_' | downcase | append: '.svg' | file_url }}" 
+                alt="{{ metal }}" 
+                title="{{ metal }}"
+                height=""
+                width=""
+                loading="lazy" data-metal="{{ metal | capitalize }}" title="{{ metal | capitalize}}"
+              data-productId="{{ prod.id }}"/>
+          </button>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% elsif product != blank and product.media.size == 1 %}
+     <a
+      class="contents wdd-card-link new_image"
+      ref="cardGalleryLink"
+      href="{{ base_card_url | split: '?variant' | first }}{{ linkParameter }}"
+      aria-label="{{- product.title -}}"
+    >
+    <slideshow-component ref="slideshow" style="--slideshow-timeline: --slide-1, --slide-2;" initial-slide="0" infinite="" data-generic-media-size="2" disabled="false" paused="">
+     <slideshow-container ref="slideshowContainer">
+         <slideshow-slides
+      tabindex="-1"
+      ref="scroller"
+      {% if slide_size %}
+        size="{{ slide_size }}"
+      {% endif %}
+      {% if slideshow_gutters %}
+        gutters="{{ slideshow_gutters }}"
+      {% endif %}
+    >
+    {% assign class = 'product-media-container media-fit product-media-container--image'  %}
+         {%  if constrain_to_viewport%}
+           {%  assign class = class | append: ' constrain-height'%}
+        {% endif %}
+    {%  for i in (1..2) %}
+      {% assign image_1 = 'https://im.lgdus.co/Jwl/' | append: picked.media1 %}
+      {%  if  picked.hover_image1 != blank or picked.media2 != blank %}
+        {% assign image_2 = 'https://im.lgdus.co/Jwl/' | append: picked.hover_image1 | default: picked.media2 %}
+      {% else %}
+        {% assign image_2 = 'https://im.lgdus.co/Jwl/' | append: picked.media1 %}
+      {% endif %}
+        {% capture slideshow_children%}
+          {% render 'product-media', media: image_1, sizes: sizes, loading: loading, preview_image_only: true, product: product, indeximage: forloop.index0 %}
+        {% endcapture %}
+
+      {%  render 'slideshow-slide', slide_id: product.featured_image.id, index: forloop.index, hidden: hidden, class: class, attributes: attributes, children: slideshow_children, media_fit: media_fit, product:product %}
+    {% endfor %}
+  </slideshow-slides>
+  </slideshow-container>
+</slideshow-component>
+</a>
+
+ {% assign Collectionfiltershow = false %}
+    {% if request.page_type == 'collection' or request.page_type == 'search'%}
+      {% assign Collectionfiltershow = true %}
+    {% endif %}
+    {% if metalvalue.size > 1 and Collectionfiltershow  %}
+    {% assign metal_order = "silver,yellow,white,Rose,Platinum" | split: "," %}
+
+    <div class="wdd-metals" role="group" aria-label="Select metal" data-metals testb>
+    {% for order in metal_order %}
+      {% for metal in metalvalue  %}
+      {% assign metal_h = metal | handleize %}
+      {% assign order_h = order | handleize %}
+      {% if metal_h == order_h %}
+         {% assign active_val = false %}
+        {% if picked != blank %}
+          {% if selected_color != blank %}
+              {%  if metal == selected_color %}
+                {% assign active_val = true %}
+              {% endif %} 
+            {% else %}
+              {%  if metal == filter_metal_meta %}
+                {% assign active_val = true %}
+              {% endif %} 
+          {% endif %} 
+        {% endif %}
+        <button class="metal-chip page_{{page_current}} {% if active_val == true %} active {% endif %}" 
+          data-metal="{{ metal }}" title="{{ metal | capitalize }}" data-productId="{{ prod.id }}" >
+              <img src="{{ metal | replace: ' ', '_' | downcase | append: '.svg' | file_url }}" 
+                alt="{{ metal }}" 
+                title="{{ metal }}"
+                height=""
+                width=""
+                loading="lazy" data-metal="{{ metal | capitalize }}" title="{{ metal | capitalize}}"
+              data-productId="{{ prod.id }}"/>
+          </button>
+      {% endif %}
+      {% endfor %}
+    {% endfor %}
+    </div>
+  {% endif %}
+  {% elsif product != blank and product.media.size == 0 %}
+    <product-title class="product-card-gallery__title-placeholder">
+      <a
+        class="contents"
+        ref="productTitleLink"
+        href="{{ base_card_url }}"
+        aria-hidden="true"
+      >
+        <span class="title-text">{{- product.title -}}</span>
+      </a>
+    </product-title>
+  {% elsif product == blank %}
+    {% liquid
+      capture placeholder_image
+        # Extract index from block ID (e.g., "product-card-3" -> "3")
+        assign block_parts = block.id | split: '-'
+        assign placeholder_index = block_parts.last | default: 0
+        assign variant = placeholder_index | modulo: 3 | plus: 1
+        assign placeholder_name = 'product-apparel-' | append: variant
+        echo placeholder_name | placeholder_svg_tag: 'placeholder-image'
+      endcapture
+      capture placeholder_slide
+        render 'slideshow-slide', index: 1, children: placeholder_image, class: 'product-media-container card-gallery__placeholder'
+      endcapture
+      render 'slideshow', ref: 'slideshow', slides: placeholder_slide, slide_count: 1, attributes: 'disabled="true"'
+    %}
+  {%- endif -%}
+  {{ children }}
+</div>
+
+{% stylesheet %}
+  .card-gallery {
+    overflow: hidden;
+    container-type: inline-size; /* Make card-gallery a container */
+    container-name: card-gallery-container; /* Optional: name the container */
+  }
+
+  .card-gallery__placeholder svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  .card-gallery svg {
+    aspect-ratio: var(--gallery-aspect-ratio, var(--ratio));
+  }
+
+  .product-card-gallery__title-placeholder {
+    padding: var(--padding-md);
+    font-size: var(--font-size--2xl);
+    line-height: var(--line-height--display-loose);
+    word-break: break-word;
+    color: var(--color-foreground);
+    background-color: rgb(var(--color-foreground-rgb) / var(--opacity-5));
+    aspect-ratio: var(--gallery-aspect-ratio);
+    border-radius: var(--product-corner-radius);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .product-card-gallery__title-placeholder a {
+    color: var(--color-foreground);
+  }
+
+  @media screen and (min-width: 750px) {
+    .product-grid[data-product-card-size='extra-large'] .product-card-gallery__title-placeholder {
+      padding: var(--padding-3xl);
+      font-size: var(--font-size--3xl);
+    }
+
+    .product-grid[data-product-card-size='large'] .product-card-gallery__title-placeholder {
+      padding: var(--padding-2xl);
+      font-size: var(--font-size--2xl);
+    }
+
+    .product-grid[data-product-card-size='medium'] .product-card-gallery__title-placeholder {
+      padding: var(--padding-xl);
+      font-size: var(--font-size--xl);
+    }
+
+    .product-grid[data-product-card-size='small'] .product-card-gallery__title-placeholder {
+      padding: var(--padding-sm);
+      font-size: var(--font-size--lg);
+    }
+
+    .product-grid[data-product-card-size='extra-large']
+      .card-gallery:has(.product-badges--top-right .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-right: calc(var(--padding-3xl) + 50px);
+    }
+
+    .product-grid[data-product-card-size='large']
+      .card-gallery:has(.product-badges--top-right .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-right: calc(var(--padding-2xl) + 50px);
+    }
+
+    .product-grid[data-product-card-size='medium']
+      .card-gallery:has(.product-badges--top-right .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-right: calc(var(--padding-xl) + 50px);
+    }
+
+    .product-grid[data-product-card-size='small']
+      .card-gallery:has(.product-badges--top-right .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-right: calc(var(--padding-sm) + 50px);
+    }
+
+    .product-grid[data-product-card-size='extra-large']
+      .card-gallery:has(.product-badges--top-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-top: calc(var(--padding-3xl) + 40px);
+    }
+
+    .product-grid[data-product-card-size='large']
+      .card-gallery:has(.product-badges--top-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-top: calc(var(--padding-2xl) + 40px);
+    }
+
+    .product-grid[data-product-card-size='medium']
+      .card-gallery:has(.product-badges--top-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-top: calc(var(--padding-xl) + 40px);
+    }
+
+    .product-grid[data-product-card-size='small']
+      .card-gallery:has(.product-badges--top-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-top: calc(var(--padding-sm) + 40px);
+    }
+
+    .product-grid[data-product-card-size='extra-large']
+      .card-gallery:has(.product-badges--bottom-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-bottom: calc(var(--padding-3xl) + 40px);
+    }
+
+    .product-grid[data-product-card-size='large']
+      .card-gallery:has(.product-badges--bottom-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-bottom: calc(var(--padding-2xl) + 40px);
+    }
+
+    .product-grid[data-product-card-size='medium']
+      .card-gallery:has(.product-badges--bottom-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-bottom: calc(var(--padding-xl) + 40px);
+    }
+
+    .product-grid[data-product-card-size='small']
+      .card-gallery:has(.product-badges--bottom-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-bottom: calc(var(--padding-sm) + 40px);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .product-card-gallery__title-placeholder {
+      font-size: var(--font-size--xl);
+      padding: var(--padding-md);
+    }
+
+    .product-grid[data-product-card-size]
+      .card-gallery:has(.product-badges--top-right .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-right: calc(var(--padding-sm) + 50px);
+    }
+
+    .product-grid[data-product-card-size]
+      .card-gallery:has(.product-badges--top-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-top: calc(var(--padding-sm) + 40px);
+    }
+
+    .product-grid[data-product-card-size]
+      .card-gallery:has(.product-badges--bottom-left .product-badges__badge)
+      .product-card-gallery__title-placeholder {
+      padding-bottom: calc(var(--padding-sm) + 40px);
+    }
+  }
+
+  [product-grid-view='zoom-out'] .card-gallery .product-card-gallery__title-placeholder {
+    /* stylelint-disable-next-line declaration-no-important */
+    padding: var(--padding-xs) !important;
+    font-size: var(--font-size--xs);
+  }
+
+  [product-grid-view='zoom-out'] .card-gallery .slideshow-control {
+    min-width: auto;
+  }
+{% endstylesheet %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "            render 'product-media', media: media, sizes: sizes, loading:
+    loading, preview_image_only: true, product: product, , indeximage: forloop.index0"
+  to: "            render 'product-media', media: media, sizes: sizes, loading: loading,
+    preview_image_only: true, product: product, indeximage: forloop.index0"
+  position: 18692..18844
+- from: "{%  render 'product-media', media: image_1, sizes: sizes, loading: loading,
+    preview_image_only: true, product: product, , indeximage: forloop.index0 %}"
+  to: "{% render 'product-media', media: image_1, sizes: sizes, loading: loading,
+    preview_image_only: true, product: product, indeximage: forloop.index0 %}"
+  position: 23133..23281
+{% endcomment %}

@@ -1,0 +1,5 @@
+{% layout none %}
+{% paginate collection.products by 250 %}
+{% assign comma = false %}
+[{% for product in collection.products %}{% assign fields = 'all_sku_plp,all_sku_plp_1,all_sku_plp_2,all_sku_plp_3,all_sku_plp_4,all_sku_plp_5' | split: ',' %}{% for f in fields %}{% assign items = product.metafields.custom[f].value %}{% for item in items %}{% if comma %},{% endif %}{% assign comma = true %}{"s":{{ item.sku | json }},"u":{{ item.url_key | json }},"h":{{ product.handle | json }},"n":{{ item.pdp_name | json }},"p":{{ item.price | json }},"i":{{ item.media1 | json }}}{% endfor %}{% endfor %}{% endfor %}]
+{% endpaginate %}

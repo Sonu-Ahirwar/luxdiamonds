@@ -1,0 +1,124 @@
+<section class="testimonial-section" id="section-{{ section.id }}">
+  <div class="page-width">
+
+    <!-- TOP TITLE -->
+     <h2 class="testimonial-top-title">
+      {{ section.settings.top_title }}
+      <span class="testimonial-sub-title">
+        {{ section.settings.sub_title }}
+      </span>
+  </h2>
+
+    <!-- SLIDER -->
+    <div class="testimonial-slider" id="testimonial-slider-{{ section.id }}">
+
+      {% assign index = 0 %}
+      {% for block in section.blocks %}
+        <div class="testimonial-slide {% if forloop.first %}active{% endif %}" data-index="{{ index }}">
+          
+          <!-- STARS -->
+          <div class="testimonial-stars">
+            {% for i in (1..block.settings.stars) %} 
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 14 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path></svg>
+          {% endfor %}
+          </div>
+
+          <!-- REVIEW -->
+          <p class="testimonial-text">
+            {{ block.settings.review }}
+          </p>
+
+          <!-- AUTHOR -->
+          <p class="testimonial-author">
+            {{ block.settings.author }}
+          </p>
+
+        </div>
+        {% assign index = index | plus: 1 %}
+      {% endfor %}
+
+      <!-- DOTS -->
+      <div class="testimonial-dots">
+        {% for block in section.blocks %}
+          <span class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></span>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const section = document.querySelector("#testimonial-slider-{{ section.id }}");
+  const slides = section.querySelectorAll(".testimonial-slide");
+  const dots = section.querySelectorAll(".dot");
+  let index = 0;
+  const delay = {{ section.settings.autoplay_delay }};
+
+  function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    dots.forEach(d => d.classList.remove("active"));
+
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
+    index = i;
+  }
+
+  // dots click event
+  dots.forEach(dot => {
+    dot.addEventListener("click", () => {
+      showSlide(dot.dataset.index);
+    });
+  });
+
+  // autoplay
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }, delay);
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Testimonial Slider (JS)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "top_title",
+      "label": "Top Title",
+      "default": "TRUSTED WITH OVER 100,000 PROPOSALS"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle",
+      "default": "SINCE 1978"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Autoplay Delay (ms)",
+      "min": 2000,
+      "max": 9000,
+      "step": 100,
+      "default": 5000
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "range", "id": "stars", "label": "Stars", "min": 1, "max": 5, "default": 5 },
+        { "type": "textarea", "id": "review", "label": "Review Text" },
+        { "type": "text", "id": "author", "label": "Author Name" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Testimonial Slider" }]
+}
+{% endschema %}

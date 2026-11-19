@@ -1,0 +1,49 @@
+{%- layout none -%}
+{%- liquid
+  assign prod = product
+  assign use_prod = prod
+  assign parent_handle_val = prod.metafields.custom.parent_handle.value | default: prod.metafields.custom.parent_handle | default: ''
+  if parent_handle_val != ''
+    assign parent_prod = all_products[parent_handle_val]
+    if parent_prod != blank
+      assign use_prod = parent_prod
+    endif
+  endif
+
+  assign fields = 'all_sku_plp,all_sku_plp_1,all_sku_plp_2' | split: ','
+  assign mf_items = '' | split: ','
+
+  for f in fields
+    assign m = use_prod.metafields.custom[f]
+    if m != blank and m.value != blank
+      assign mf_items = mf_items | concat: m.value
+    endif
+  endfor
+
+  if mf_items == blank
+    assign all_s = use_prod.metafields.custom.all_skus
+    if all_s != blank and all_s.value != blank
+      assign mf_items = all_s.value
+    endif
+  endif
+-%}
+{
+  "product": {
+    "id": {{ prod.id | json }},
+    "handle": {{ prod.handle | json }},
+    "title": {{ prod.title | json }},
+    "parent_handle": {{ parent_handle_val | json }},
+    "pdp_title": {{ prod.metafields.custom.pdp_title.value | default: prod.metafields.custom.pdp_title | default: prod.title | json }},
+    "default_sku": {{ prod.metafields.custom.defaul_sku.value | default: prod.metafields.custom.default_sku.value | default: prod.selected_or_first_available_variant.sku | json }},
+    "default_metal": {{ prod.metafields.custom.active_metal_on_plp.value | default: prod.metafields.custom.active_metal_on_plp | json }},
+    "default_shape": {{ prod.metafields.custom.active_shape_on_plp.value | default: prod.metafields.custom.active_shape_on_plp | json }},
+    "available_metals": {{ prod.metafields.custom.available_metals.value | default: '' | json }},
+    "available_shapes": {{ prod.metafields.custom.available_shapes.value | default: '' | json }},
+    "card_badge_name": {{ prod.metafields.custom.card_badge_name.value | default: prod.metafields.custom.card_badge_name | default: '' | json }},
+    "badge_design_type": {{ prod.metafields.custom.badge_design_type.value | default: prod.metafields.custom.badge_design_type | default: '' | json }},
+    "quick_ship": {{ prod.metafields.custom.quick_ship.value | default: prod.metafields.custom.quick_ship | default: prod.metafields.custom.quickship.value | default: '' | json }},
+    "style_filter": {{ prod.metafields.custom.style_filter.value | default: prod.metafields.custom.style.value | default: '' | json }},
+    "collection_filter": {{ prod.metafields.custom.collection_filter.value | default: prod.metafields.custom.collection.value | default: '' | json }}
+  },
+  "items": {{ mf_items | json }}
+}

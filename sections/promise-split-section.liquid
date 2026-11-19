@@ -1,0 +1,301 @@
+{% style %}
+  .promise-split {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  .promise-split__outer {
+    {% if section.settings.full_width %}
+      width: 100%;
+    {% else %}
+      max-width: {{ section.settings.page_width }}px;
+      margin: 0 auto;
+    {% endif %}
+  }
+  .promise-split__grid {
+    display: flex;
+    align-items: stretch;
+    gap:1.2%;
+  }
+  /* Image position control */
+  .promise-split--left .promise-split__image { order: 1; }
+  .promise-split--left .promise-split__content { order: 2; }
+
+  .promise-split--right .promise-split__image { order: 2; }
+  .promise-split--right .promise-split__content { order: 1; }
+
+  .promise-split__image {
+    width:38%;
+  }
+  .promise-split__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .promise-split__content {
+    width:60.8%;
+    background: {{ section.settings.content_bg }};
+    display: flex;
+    align-items: center;
+  }
+  .promise-split__inner{
+    color: {{ section.settings.text_color }};
+    padding: 70px 10%;
+  }
+  .promise-split__title {
+    font-size: {{ section.settings.heading_size }}px;
+    font-family: 'Avenir-med';
+    font-weight: 200;
+    letter-spacing: 5px;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+  }
+  .promise-item {
+    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 18% 82%;
+    margin-bottom: 30px;
+  }
+  .promise-item:last-child{
+    margin-bottom: 0px;
+  }
+  .promise-item__icon img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+  }
+  .promise-item__text {
+    color: #395654;
+    font-family: 'Avenir-med';
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-left: 10px;
+  }
+  @media only screen and (max-width: 1750px) and (min-width: 1200px) {
+        .promise-split__inner {
+            padding: 50px 40px 50px 70px;
+        }
+        .promise-split__title {
+            font-size: 24px;
+            margin-bottom: 45px;
+        }
+        .promise-item__text {
+            font-size: 16px;
+            line-height: 1.3;
+        }
+    }
+  @media screen and (max-width:1025px){
+    .promise-split__grid {
+        display: block;
+    }
+    .promise-split__image, .promise-split__content {
+        width:100%;
+    }
+    .promise-split__image img {
+        height: 300px;
+    }
+    .promise-split {
+        padding-inline: 30px;
+    }
+    .promise-split__inner {
+        padding: 70px 50px;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    .promise-split__title {
+        font-size: 25px;
+    }
+  }
+  @media screen and (max-width:749px){
+    .promise-split {
+        padding: 30px;
+    }
+    .promise-split__inner {
+        padding: 40px 20px;
+    }
+    .promise-split__title {
+        font-size: 22px;
+    }
+    .promise-item {
+        grid-template-columns: 100%;
+        row-gap: 15px;
+    }
+    .promise-item__text {
+        font-size: 16px;
+        margin-left: 0px;
+    }
+  }
+{% endstyle %}
+
+<section class="promise-split promise-split--{{ section.settings.image_position }} {{ section.settings.custom_class }}">
+  <div class="promise-split__outer">
+
+    <div class="promise-split__grid">
+
+      <!-- IMAGE -->
+      <div class="promise-split__image">
+        {% if section.settings.image != blank %}
+          <img
+            src="{{ section.settings.image | image_url: width: 1600 }}"
+            alt="{{ section.settings.image.alt | escape }}"
+            loading="lazy" width="" height=""
+          >
+        {% endif %}
+      </div>
+
+      <!-- CONTENT -->
+      <div class="promise-split__content">
+        <div class="promise-split__inner">
+
+          {% if section.settings.title != blank %}
+            <h2 class="promise-split__title">
+              {{ section.settings.title }}
+            </h2>
+          {% endif %}
+
+          {% for block in section.blocks %}
+            <div class="promise-item" {{ block.shopify_attributes }}>
+
+              {% if block.settings.icon != blank %}
+                <div class="promise-item__icon">
+                  <img
+                    src="{{ block.settings.icon | image_url: width: 120 }}"
+                    alt="{{ block.settings.icon.alt | escape }}" width="" height=""
+                  >
+                </div>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <div class="promise-item__text">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Promise Split Section",
+
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Side Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width Section",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "content_bg",
+      "label": "Content Background",
+      "default": "#dcdcdc"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#2f4f4f"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 900,
+      "max": 2000,
+      "step": 20,
+      "default": 1320
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Promise Split Section"
+    }
+  ]
+}
+{% endschema %}

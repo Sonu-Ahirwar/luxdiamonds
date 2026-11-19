@@ -1,0 +1,130 @@
+
+{% assign contents = collection.metafields.custom.tag_base_content.value %}
+
+{% if contents != blank and current_tags != blank %}
+
+{% for item in contents %}
+{% assign meta_tag = item.tag | handleize %}
+
+{% for tag in current_tags %}
+  {% assign current = tag | handleize %}
+   {% if current == meta_tag %}
+    <div class="section section--page-width current_tag_active facets-block-wrapper--horizontal">
+    <div class="wdd_collection_banner  wdd-unique-banner custom_content">
+         {% if item.top_image != blank %}
+      <div class="{% if item.top_image_mobile != blank %}desktop_image {% endif %}full_width_img">  
+     
+          <img 
+            src="{{ item.top_image.value | image_url: width: 1600 }}" 
+            alt="{{ item.tag }}"
+            class="image-block__image border-style"
+            height=""
+            width=""
+          >
+       
+      </div>
+       {% endif %}
+        {% if item.top_image_mobile != blank %}
+      <div class="mobile_image ">         
+          <img 
+            src="{{ item.top_image_mobile.value | image_url: width: 1600 }}" 
+            alt="{{ item.tag }}"
+            class="image-block__image border-style"
+            height=""
+            width=""
+          >       
+      </div>
+       {% endif %}
+                      
+      <div class="wdd-unique-banner__content">            
+        <rte-formatter class="wdd-unique-banner__desc text-block spacing-style paragraph">
+          {{ item.top_content | metafield_tag }}
+        </rte-formatter>
+      </div>
+    </div>        
+
+<div class="wdd_collection_faq custom_meta ">
+  <h3><strong>{{ item.faq_title }}</strong></h3>
+<div class="wdd_collection_faq_inner ">
+ <div class="accordion accordion--caret accordion--dividers">
+  {% for i in (1..10) %}
+    {%  if forloop.index > 2 %}
+      {% assign q_key = 'faq' | append: i | append: '_question' %}
+    {% else %}
+      {% assign q_key = 'faq' | append: i | append: '_questions' %}
+    {% endif %}
+  {% assign a_key = 'faq' | append: i | append: '_answer' %}
+  
+   {% if item[q_key] != blank and item[a_key] != blank %}
+  <accordion-custom data-block-id="block_{{ section.id }}{{ forloop.index }}">
+  <details class="details" data-testid="accordion-details">
+    <summary class="details__header">
+      {{ item[q_key] }}
+      <span class="svg-wrapper icon-caret icon-animated">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 5.5L7 9.5L3 5.5" stroke="currentColor" stroke-width="var(--icon-stroke-width)" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </span>
+      <span class="svg-wrapper icon-plus">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="vertical" d="M2.75 7H11.25" stroke="currentColor" stroke-width="var(--icon-stroke-width)" stroke-linecap="round"></path>
+        <path class="horizontal" d="M7 2.75L7 11.25" stroke="currentColor" stroke-width="var(--icon-stroke-width)" stroke-linecap="round"></path>
+      </svg>
+    </span>
+    </summary>
+    <div class="details-content">  
+    {{ item[a_key] | metafield_tag }}
+    </div>
+  </details>
+</accordion-custom>
+{% endif %}
+{% endfor %}
+</div>
+  <div class="faq_image">  
+        {% if item.image_faq != blank %}
+          <img 
+            src="{{ item.image_faq.value | image_url: width: 1600 }}" 
+            alt="{{ item.tag }}"
+            class="image-block__image border-style"
+            height=""
+            width=""
+          >
+        {% endif %}
+      </div>
+</div>
+
+</div>
+</div>
+      {% endif %}
+
+    {% endfor %}
+  {% endfor %}
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:names.section",
+  "class": "section-wrapper",
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    },
+    {
+      "type": "_divider"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  },
+  "presets": [
+    {
+      "name": "Custom Section Meta",
+      "category": "Custom Section Meta"
+    }
+  ]
+}
+{% endschema %}

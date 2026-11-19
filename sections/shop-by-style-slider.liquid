@@ -1,0 +1,479 @@
+{% liquid
+  assign section_id = 'shop-by-style-' | append: section.id
+%}
+
+<div
+  id="{{ section_id }}"
+  class="shop-by-style"
+>
+  <div class="shop-by-style__container">
+    <!-- Section Heading -->
+    <div class="shop-by-style__header">
+      <h2 class="shop-by-style__heading">
+        {{ section.settings.title | default: 'SHOP BY STYLE' | escape }}
+      </h2>
+    </div>
+
+    <!-- Collection Cards -->
+    <div class="swiper shop-by-style__slider">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% assign collection = block.settings %}
+          <div class="swiper-slide" {{ block.shopify_attributes }}>
+            <div class="shop-by-style__slide">
+              <a
+                href="{{ collection.imageUrl | default: '#' }}"
+                class="shop-by-style__card"
+                {% if collection.imageUrl == blank %}
+                  aria-disabled="true" onclick="return false;"
+                {% endif %}
+                aria-label="{{ collection.title | escape }}"
+              >
+                <div class="shop-by-style__image-wrapper">
+                  {% if collection.image != blank %}
+                    <img
+                      src="{{ collection.image | image_url: width: 700 }}"
+                      srcset="
+                        {{ collection.image | image_url: width: 300 }} 300w,
+                        {{ collection.image | image_url: width: 500 }} 500w,
+                        {{ collection.image | image_url: width: 700 }} 700w,
+                        {{ collection.image | image_url: width: 1000 }} 1000w
+                      "
+                      sizes="(max-width: 749px) 50vw, 16.66vw"
+                      alt="{{ collection.title | escape }}"
+                      width="{{ collection.image.width }}"
+                      height="{{ collection.image.height }}"
+                      loading="lazy"
+                      class="shop-by-style__image"
+                    >
+
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'shop-by-style__placeholder' }}
+                  {% endif %}
+
+                  {% if collection.title != blank %}
+                    <div class="shop-by-style__overlay">
+                      <h3 class="shop-by-style__card-title">
+                        {{ collection.title | escape }}
+                      </h3>
+                    </div>
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Shop All -->
+    <div class="shop-by-style__footer">
+      {% if section.settings.shop_all_url != blank %}
+        <a
+          href="{{ section.settings.shop_all_url }}"
+          class="shop-by-style__shop-all"
+        >
+          {{ section.settings.shop_all_text | escape }}
+        </a>
+      {% else %}
+        <span class="shop-by-style__shop-all">
+          {{ section.settings.shop_all_text | escape }}
+        </span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* =====================================
+     SHOP BY STYLE - MAIN SECTION
+  ===================================== */
+
+  #{{ section_id }} {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  #{{ section_id }} *,
+  #{{ section_id }} *::before,
+  #{{ section_id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #{{ section_id }} .shop-by-style__container {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 35px 50px;
+  }
+
+  @media screen and (max-width: 1680px) {
+    #{{ section_id }} .shop-by-style__container {
+      padding: 30px 40px;
+    }
+  }
+
+  /* =====================================
+     SECTION HEADING
+  ===================================== */
+
+  #{{ section_id }} .shop-by-style__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+
+  #{{ section_id }} .shop-by-style__heading {
+    margin: 0;
+    padding: 0;
+    color: #395754;
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 5.4px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* =====================================
+     COLLECTION CARD
+  ===================================== */
+
+  #{{ section_id }} .shop-by-style__card {
+    display: block;
+    position: relative;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+    overflow: hidden;
+  }
+
+  #{{ section_id }} .shop-by-style__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.65s ease;
+  }
+
+  #{{ section_id }} .shop-by-style__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* =====================================
+     IMAGE TITLE OVERLAY
+  ===================================== */
+
+  #{{ section_id }} .shop-by-style__overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px 5px 12px;
+
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.34),
+      rgba(0, 0, 0, 0.10) 55%,
+      transparent
+    );
+  }
+  #{{ section_id }} .shop-by-style__card-title {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0 0 5px;
+    color: #F8F7F6;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  #{{ section_id }} .shop-by-style__card-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+  }
+  /* Hover effect */
+  @media (hover: hover) {
+    #{{ section_id }} .shop-by-style__card:hover
+    .shop-by-style__image {
+      transform: scale(1.045);
+    }
+  }
+
+  /* =====================================
+     SHOP ALL
+  ===================================== */
+
+  #{{ section_id }} .shop-by-style__footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  #{{ section_id }} .shop-by-style__shop-all {
+    color: #395754;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+
+  #{{ section_id }} .shop-by-style__shop-all:hover {
+    opacity: 0.65;
+  }
+
+  /* Hide mobile progress on desktop */
+  .shop-by-style__slider.swiper {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+  .shop-by-style__slider.swiper.swiper-initialized {
+    visibility: visible;
+    opacity: 1;
+  }
+    @media screen and (max-width:1440px){
+        .shop-by-style__slider.swiper {
+            padding-bottom: 40px;
+        }
+        #{{ section_id }} .shop-by-style__footer {
+            margin-top: 0px;
+            position: relative;
+            top: -30px;
+        }
+        .shop-by-style__slider .swiper-pagination.swiper-pagination-progressbar.swiper-pagination-horizontal {
+            top: unset;
+            bottom: 0px;
+            width: 100%;
+            max-width: 360px;
+            height:3px;
+            margin: 0 auto;
+            right: 0;
+            background-color:#72878566;
+        }
+        .shop-by-style__slider .swiper-pagination-progressbar-fill {
+            background: #395754;
+        }
+    }
+    @media screen and (max-width:1199px){
+        #{{ section_id }} .shop-by-style__heading {
+            font-size: 24px;
+        }
+    }
+    @media screen and (max-width:991px){
+        #{{ section_id }} .shop-by-style__heading {
+            font-size: 20px;
+        }
+    }
+
+  /* =====================================
+     MOBILE DESIGN
+     2 COLUMNS x 2 ROWS
+     HORIZONTAL SWIPE
+  ===================================== */
+
+    @media screen and (max-width: 749px) {
+        #{{ section_id }} .shop-by-style__container {
+            max-width: 100%;
+            padding: 25px 0 5px;
+        }
+        #{{ section_id }} .shop-by-style__header {
+            margin: 0 0 14px;
+        }
+        #{{ section_id }} .shop-by-style__heading {
+            font-size: 25px;
+        }
+
+        /* Mobile title */
+        #{{ section_id }} .shop-by-style__overlay {
+            padding: 12px 5px 12px;
+        }
+        #{{ section_id }} .shop-by-style__card-title {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            padding-bottom: 3px;
+        }
+        /* Shop All */
+        #{{ section_id }} .shop-by-style__footer {
+            margin-top: 0px;
+            padding: 0 12px;
+        }
+        #{{ section_id }} .shop-by-style__shop-all {
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+        .shop-by-style__slider.swiper {
+            padding-bottom: 50px;
+        }
+        #{{ section_id }} .shop-by-style__footer {
+            margin-top: 0px;
+            position: relative;
+            top: -40px;
+        }
+        .shop-by-style__slider .swiper-pagination.swiper-pagination-progressbar.swiper-pagination-horizontal {
+            max-width: 240px;
+        }
+    }
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        #{{ section_id }} .shop-by-style__image,
+        #{{ section_id }} .shop-by-style__progress-fill {
+            transition: none;
+        }
+        #{{ section_id }} .shop-by-style__slider {
+            scroll-behavior: auto;
+        }
+    }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.shop-by-style__slider', {
+      loop: true,
+      autoplay: true,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'progressbar',
+      },
+      mousewheel: {
+          forceToAxis: true,
+          releaseOnEdges: true
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 2,
+          spaceBetween: 14,
+          grid: {
+            rows: 2,
+            fill: 'row',
+          },
+        },
+        749: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+          grid: {
+            rows: 1,
+          },
+        },
+        1199: {
+          slidesPerView: 5,
+          spaceBetween: 20,
+          grid: {
+            rows: 1,
+          },
+        },
+        1440: {
+          slidesPerView: 6,
+          spaceBetween: 22,
+          grid: {
+            rows: 1,
+          },
+        },
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Shop By Style",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Heading",
+      "default": "SHOP BY STYLE"
+    },
+    {
+      "type": "text",
+      "id": "shop_all_text",
+      "label": "Shop All Text",
+      "default": "SHOP ALL"
+    },
+    {
+      "type": "url",
+      "id": "shop_all_url",
+      "label": "Shop All URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Style Collection",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Collection Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Collection Title",
+          "default": "SOLITAIRE"
+        },
+        {
+          "type": "url",
+          "id": "imageUrl",
+          "label": "Collection URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Shop By Style",
+      "blocks": [
+        {
+          "type": "collection_item"
+        },
+        {
+          "type": "collection_item"
+        },
+        {
+          "type": "collection_item"
+        },
+        {
+          "type": "collection_item"
+        },
+        {
+          "type": "collection_item"
+        },
+        {
+          "type": "collection_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

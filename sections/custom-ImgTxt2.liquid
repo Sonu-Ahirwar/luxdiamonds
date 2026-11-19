@@ -1,0 +1,150 @@
+{% style %}
+    .imgtxt2 {
+        padding-block:80px;
+    }
+    .imgtxt2__container {
+        width:100%;
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+    .imgtxt2__grid {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+    .imgtxt2__image{
+        width: calc(100% * 5 / 12 - 12px);
+    }
+    .imgtxt2__text{
+        width: calc(100% * 7 / 12 - 12px);
+    }
+    .imgtxt2--right .imgtxt2__image { 
+        order: 2; 
+    }
+    .imgtxt2--right .imgtxt2__text { 
+        order: 1; 
+    }
+    .imgtxt2__image img {
+        width:auto;
+        margin:0 auto;
+        object-fit: cover;
+        {% if section.settings.circle_image %}
+        border-radius: 50%;
+        {% endif %}
+    }
+    .imgtxt2__text {
+        font-size: 16px;
+        color: #728080;
+        letter-spacing: 1px;
+        line-height: 28px;
+        margin-bottom: 20px;
+    }
+    .imgtxt2__text a{
+        font-weight: 600;
+        text-decoration: underline;
+        color: #395754;
+    }
+    @media screen and  (max-width: 1400px){
+        .imgtxt2__container {
+            max-width: 1140px;
+        }
+    }
+    @media screen and  (max-width: 1199px){
+        .imgtxt2__container {
+            max-width: 960px;
+        }
+    }
+    @media screen and  (max-width: 991px){
+        .imgtxt2__container {
+            max-width: 720px;
+            padding-inline:15px;
+        }
+        .imgtxt2 {
+            padding-block: 30px;
+        }
+    }
+    @media screen and  (max-width: 749px) {
+        .imgtxt2__grid {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .imgtxt2__image, .imgtxt2__text {
+            width: 100%;
+        }
+    }
+{% endstyle %}
+
+<div class="imgtxt2 imgtxt2--{{ section.settings.image_position }} {{ section.settings.custom_class }}">
+  <div class="imgtxt2__container">
+
+    <div class="imgtxt2__grid">
+
+      {% if section.settings.image != blank %}
+        <div class="imgtxt2__image">
+          <img
+            src="{{ section.settings.image | image_url: width: 600 }}"
+            alt="{{ section.settings.image.alt | escape }}"
+            loading="lazy" width="" height=""
+          >
+        </div>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="imgtxt2__text">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image + Rich Text",
+
+  "disabled_on": {
+     "groups": ["header", "footer"] 
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Rich Text",
+      "default": "<p>Add your content here.</p>"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "circle_image",
+      "label": "Make Image Circular",
+      "default": true
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Image + Rich Text"
+    }
+  ]
+}
+{% endschema %}

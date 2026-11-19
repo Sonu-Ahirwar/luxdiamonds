@@ -1,0 +1,117 @@
+
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="{% unless page.handle == 'stunning-rose-cut-diamond-ring-inspiration' or page.handle == 'top-bridal-earrings-for-a-stunning-wedding' %}section page-width-content{% else %}section_btm{% endunless %} color-{{ section.settings.color_scheme }}">
+  <div
+    class="
+      spacing-style
+      layout-panel-flex
+      layout-panel-flex--column
+      section-content-wrapper
+      mobile-column
+    "
+    style="
+      {% render 'layout-panel-style', settings: section.settings %}
+      {% render 'spacing-style', settings: section.settings %}
+    "
+  >
+    {% unless page.handle == 'stunning-rose-cut-diamond-ring-inspiration' or page.handle == 'top-bridal-earrings-for-a-stunning-wedding' %}
+    {% content_for 'blocks' %}
+    {% else %}
+      {{ page.content }}
+    {% endunless %}
+  </div>
+</div>
+
+{% if page.handle == 'stunning-rose-cut-diamond-ring-inspiration' or page.handle == 'top-bridal-earrings-for-a-stunning-wedding' %}
+  <style>
+{% comment %} .section_btm p{
+  color: #728080 !important;
+} {% endcomment %}
+{% comment %} .mcnTextContent span{
+  color: #fff !important;
+} {% endcomment %}
+.section_btm span ,.mcnTextContent{
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 28px;
+    font-family: "Open Sans", sans-serif !important;
+}
+</style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:names.page",
+  "class": "section-wrapper",
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    },
+    {
+      "type": "_divider"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "content_direction",
+      "label": "t:settings.direction",
+      "options": [
+        {
+          "value": "column",
+          "label": "t:options.vertical"
+        }
+      ],
+      "default": "column",
+      "visible_if": "{{ section.settings.gap < 0 }}"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

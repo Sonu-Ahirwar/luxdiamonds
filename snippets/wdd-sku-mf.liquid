@@ -1,0 +1,14 @@
+{%- liquid
+  # input: prod (product object)
+  assign fields = 'all_sku_plp,all_sku_plp_1,all_sku_plp_2' | split: ','
+  assign mf_items = '' | split: ','
+
+  for f in fields
+    assign m = prod.metafields.custom[f]
+    if m != blank and m.value != blank
+      assign mf_items = mf_items | concat: m.value
+    endif
+  endfor
+
+  # output: mf_items (array of objects)
+-%}

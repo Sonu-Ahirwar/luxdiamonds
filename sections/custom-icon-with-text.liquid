@@ -1,0 +1,248 @@
+{% style %}
+ 
+  .custom-icon-text {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-inline:6rem;
+  }
+  .custom-icon-text__inner {
+    width:100%;
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+  }
+  .custom-icon-text__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: 15px;
+  }
+  .custom-icon-text__card {
+    background: #aabab7;
+    height: 230px;
+    padding: 1rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .custom-icon-text__image {
+    margin-bottom: 20px;
+  }
+  .custom-icon-text__image img {
+    width: 40px;
+    height: 48px;
+    object-fit: contain;
+  }
+  .custom-icon-text__title {
+    font-family: "Avenir-med";
+    font-size: 18px;
+    line-height:1.2;
+    letter-spacing: 5px;
+    color:#fff;
+    margin:0px 0px 5px;
+    text-transform: uppercase;
+  }
+  .custom-icon-text__subtitle {
+    font-size: 16px;
+    line-height:1.2;
+    letter-spacing: 3px;
+    color:#fff;
+    margin:0px 0px 5px;
+  }
+  .custom-icon-text__desc p{
+    font-size: 14px;
+    line-height:1.5;
+    color:#fff;
+    margin:0px;
+  }
+ @media screen and (max-width:2200px) and (min-width: 1750px){
+    .custom-icon-text__grid {
+        grid-gap: 15px;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .custom-icon-text__title {
+        font-size: 19px;
+    }
+    .custom-icon-text__desc p{
+      font-size: 14px;
+    }
+    .custom-icon-text__card{
+      height: 270px;
+      padding: 3rem;
+    }
+  }
+  @media screen and (max-width: 1500px) {
+    .custom-icon-text__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media screen and (max-width: 1199px) {
+    .custom-icon-text__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .custom-icon-text {
+        padding-inline: 3rem;
+    }
+    .custom-icon-text__grid {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .custom-icon-text__card {
+        height: 220px;
+        padding:3rem;
+        width: calc(100% / 2 - 1 / 2 * 20px);
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .custom-icon-text__card {
+      width:100%;
+    }
+    .custom-icon-text{
+        padding-inline:24px;
+    }
+    .custom-icon-text__title {
+        font-size: 19px;
+    }
+    .custom-icon-text__desc p{
+        font-size: 16px;
+    }
+  }
+{% endstyle %}
+
+<div class="custom-icon-text {{ section.settings.custom_class }}">
+    <div class="custom-icon-text__inner">
+        <div class="custom-icon-text__grid">
+        {% for block in section.blocks %}
+            <div class="custom-icon-text__card" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+                <div class="custom-icon-text__image">
+                <img
+                    src="{{ block.settings.image | img_url: 'master' }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    loading="lazy"
+                    width=""
+                    height=""
+                >
+                </div>
+            {% endif %}
+
+            {% if block.settings.title != blank %}
+                <h3 class="custom-icon-text__title">
+                {{ block.settings.title }}
+                </h3>
+            {% endif %}
+
+            {% if block.settings.subtitle != blank %}
+                <div class="custom-icon-text__subtitle">
+                {{ block.settings.subtitle }}
+                </div>
+            {% endif %}
+
+            {% if block.settings.description != blank %}
+                <div class="custom-icon-text__desc">
+                {{ block.settings.description }}
+                </div>
+            {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Icon With Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 40
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 40
+    },
+
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 900,
+      "max": 2000,
+      "step": 20,
+      "default": 1400
+    },
+
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Number of Columns (Desktop)",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 5
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Icon Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon/Image"
+        },
+
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Card Title"
+        },
+
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Custom Icon With Text"
+    }
+  ]
+}
+{% endschema %}

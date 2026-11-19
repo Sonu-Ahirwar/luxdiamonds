@@ -1,0 +1,49 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_liquid_JwRKRH": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "{% if page.handle == 'gabriel-co' %}\n <div id=\"gabriel-embed\"><div id=\"container\">\n  <script  src=\"https://embed.gabrielny.com/eshopreact.js?key=fc38c029-4144-48ab-b2a3-fba08ee99689&amp;division=bridal&amp;noframe=1&amp;attachTo=gabriel-embed&amp;eager=1\"></script> \n</div></div>\n<style>\n#gabriel-embed {\n          max-width: 1320px;\n          display: block;\n          margin: 0 auto;\n        }\n        @media only screen and (max-width: 1400px) and (min-width: 1200px) {\n          #gabriel-embed {\n            max-width: 1140px;\n          }\n        }\n        #gabriel-embed {\n          display: flex;\n          flex-direction: column-reverse;\n        }\n</style>\n{% endif %}",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "page-content"
+      ],
+      "custom_css": [],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    }
+  },
+  "order": [
+    "custom_liquid_JwRKRH",
+    "main"
+  ]
+}

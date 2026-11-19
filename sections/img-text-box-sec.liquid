@@ -1,0 +1,105 @@
+{% comment %}
+Visit a Showroom Section
+{% endcomment %}
+
+<section class="visit-showroom-section" style="padding: {{ section.settings.section_padding }};">
+  <style>
+    .visit-showroom-wrapper {
+        display: flex;
+        width: 100%;
+        gap: 15px;
+    }
+    .visit-showroom-img img {
+      width: 100%;
+      height: {{ section.settings.image_height }};
+      object-fit: cover;
+      display: block;
+    }
+    .visit-showroom-box {
+      background: {{ section.settings.box_bg }};
+      display: flex;
+      align-items: end;
+      width: 50%;
+      padding: 60px 0 35px 40px;
+    }
+
+    .visit-showroom-img.img_two {
+        width: 50%;
+    }
+
+    .visit-showroom-box h1 {
+      color: {{ section.settings.text_color }};
+      font-size: {{ section.settings.text_size }};
+      letter-spacing: 4px;
+    }
+    @media (min-width: 1440px) and (max-width: 1900px) {
+    .visit-showroom-img img {
+        height: 400px;
+    }
+  }
+    @media only screen and (max-width: 1750px) and (min-width: 1200px) {
+    .visit-showroom-img img {
+        height: 330px !important;
+    }
+  }
+  @media (min-width: 992px) and (max-width: 1439px) {
+      .visit-showroom-img img {
+          height: 350px;
+      }
+  }
+  @media only screen and (max-width: 1024px) {
+    .visit-showroom-img img {
+        height: 280px !important;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .visit-showroom-img.img_two {
+        display: none;
+    }
+        .visit-showroom-img img {
+        height: 210px !important;
+    }
+}
+
+  </style>
+
+  <div class="visit-showroom-wrapper">
+
+    <div class="visit-showroom-img img_one">
+      {% if section.settings.image1 != blank %}
+        <img src="{{ section.settings.image1 | img_url: 'master' }}" alt="Showroom Image 1">
+      {% endif %}
+    </div>
+
+    <div class="visit-showroom-img img_two">
+      {% if section.settings.image2 != blank %}
+        <img src="{{ section.settings.image2 | img_url: 'master' }}" alt="Showroom Image 2">
+      {% endif %}
+    </div>
+
+    <div class="visit-showroom-box">
+      <h1>{{ section.settings.box_heading }}</h1>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Visit Showroom Section",
+  "settings": [
+    { "type": "image_picker", "id": "image1", "label": "Left Image" },
+    { "type": "image_picker", "id": "image2", "label": "Middle Image" },
+    { "type": "text", "id": "box_heading", "label": "Right Box Heading", "default": "VISIT A SHOWROOM" },
+    { "type": "color", "id": "box_bg", "label": "Right Box Background", "default": "#b8c1c2" },
+    { "type": "color", "id": "text_color", "label": "Heading Text Color", "default": "#ffffff" },
+    { "type": "text", "id": "text_size", "label": "Heading Font Size", "default": "32px" },
+    { "type": "text", "id": "section_padding", "label": "Section Padding", "default": "20px 0" },
+    { "type": "text", "id": "grid_gap", "label": "Grid Gap", "default": "20px" },
+    { "type": "text", "id": "image_height", "label": "Image Height", "default": "400px" }
+  ],
+  "presets": [
+    { "name": "Visit Showroom Section" }
+  ]
+}
+{% endschema %}

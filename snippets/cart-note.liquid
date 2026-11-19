@@ -1,0 +1,148 @@
+<script
+  type="module"
+  src="{{ 'cart-note.js' | asset_url }}"
+></script>
+
+<cart-note style="display: flex;">
+  <accordion-custom
+    class="cart-note"
+    {% if settings.cart_note_open_by_default %}
+      open-by-default-on-desktop
+      open-by-default-on-mobile
+    {% endif %}
+  >
+    <details
+      class="details"
+      {% if settings.cart_note_open_by_default %}
+        open
+      {% endif %}
+    >
+      <summary class="cart-note__summary">
+        <span class="cart-note__label ">
+          {{ 'content.seller_note' | t }} and Gift
+        </span>
+
+        <span class="svg-wrapper icon-plus">
+          {{- 'icon-plus.svg' | inline_asset_content -}}
+        </span>
+      </summary>
+
+      <div class="details-content cart-note__inner">
+        <label
+          for="cart-note"
+          class="visually-hidden"
+        >
+          {{- 'content.seller_note' | t -}}
+        </label>
+        <textarea
+          form="cart-form"
+          on:input="/updateCartNote"
+          id="cart-note"
+          placeholder="DETAILS"
+          class="cart-note__instructions"
+          name="note"
+          maxlength="100"
+        >{{ cart.note }}</textarea>
+      </div>
+       <div class="cart-additional-details">
+
+  {% comment %} <h3>Sending a Gift</h3> {% endcomment %}
+
+  <label>
+    <input
+      type="checkbox"
+      name="attributes[Gift Wrapping]"
+      value="Yes"
+      form="cart-form"
+      {% if cart.attributes["Gift Wrapping"] == "Yes" %}checked{% endif %}>
+   <span class="dot"><i class="filleddot"></i></span>  Free Gift Wrapping
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      id="gift-message-toggle"
+      form="cart-form"
+      {% if cart.attributes["Gift Message"] != blank %}checked{% endif %}>
+    <span class="dot"><i class="filleddot"></i></span> Add a Gift Message
+  </label>
+
+  <div id="gift-message-fields"
+       {% unless cart.attributes["Gift Message"] != blank %}style="display:none"{% endunless %}>
+
+    <input
+      type="text"
+       form="cart-form"
+      name="attributes[Gift From]"
+      placeholder="From Name (Optional)"
+      value="{{ cart.attributes["Gift From"] }}">
+
+    <textarea
+       form="cart-form"
+      name="attributes[Gift Message]"
+      placeholder="Gift Message (Optional)"
+      maxlength="100"
+      rows="3">{{ cart.attributes["Gift Message"] }}</textarea>
+
+  </div>
+
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  const checkbox = document.getElementById('gift-message-toggle');
+  const fields = document.getElementById('gift-message-fields');
+
+  if (!checkbox || !fields) return;
+
+  checkbox.addEventListener('change', function () {
+
+    if (this.checked) {
+      fields.style.display = 'block';
+    } else {
+      fields.style.display = 'none';
+
+      // Clear all inputs inside the container
+      fields.querySelectorAll('input, textarea, select').forEach(function (field) {
+        field.value = '';
+        console.log('val: ', field.value)
+      });
+     updateCartAttributes();
+    }
+  });
+
+});
+function updateCartAttributes() {
+  console.log('test: ', document.querySelector('[name="attributes[Gift From]"]')?.value || '')
+  console.log('test: ', document.querySelector('[name="attributes[Gift Message]"]')?.value || '')
+  fetch('/cart/update.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      attributes: {
+        "Gift Wrapping": document.querySelector('[name="attributes[Gift Wrapping]"]')?.checked ? 'Yes' : '',
+        "Gift From": document.querySelector('[name="attributes[Gift From]"]')?.value || '',
+        "Gift Message": document.querySelector('[name="attributes[Gift Message]"]')?.value || ''
+      }
+    })
+  })
+  .then(res => res.json())
+  .then(cart => console.log(cart.attributes));
+}
+document.querySelector('[name="attributes[Gift Wrapping]"]')
+  .addEventListener('change', updateCartAttributes);
+
+{% comment %} document.querySelector('#gift-message-toggle')
+  .addEventListener('change', updateCartAttributes); {% endcomment %}
+
+document.querySelector('[name="attributes[Gift From]"]')
+  .addEventListener('blur', updateCartAttributes);
+
+document.querySelector('[name="attributes[Gift Message]"]')
+  .addEventListener('blur', updateCartAttributes);
+</script>
+    </details>
+  </accordion-custom>
+</cart-note>

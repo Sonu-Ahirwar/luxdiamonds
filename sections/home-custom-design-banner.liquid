@@ -1,0 +1,307 @@
+<style>
+    #home-custom-design-{{ section.id }} {
+      position: relative;
+      padding:0px;
+      margin-bottom:50px;
+    }
+    .home-custom-design-banner-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+    }
+    .home-custom-design-banner--image{
+      background-image:url({{ section.settings.desktop_image | image_url: width: 2000 }});
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      width: 100%;
+      height: 500px;
+    }
+    .home-custom-design-banner-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .home-custom-design-banner-image.mobile {
+        display: none;
+    }
+    .home-custom-design-banner-content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fff;
+        max-width: 622px;
+        padding: 20px;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    /* Text positions */
+    .home-custom-design-content-left { left: 0%; text-align: center; }
+    .home-custom-design-content-center { left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .home-custom-design-content-right { right: 0%; text-align: center; }
+
+    .home-custom-design-banner-content h2 {
+        font-family: "Lora", serif;
+        font-weight: 200;
+        font-size: 40px;
+        line-height: 1.25;
+        letter-spacing: 15%;
+        margin:0px;
+    }
+    .home-custom-design-banner-content p {
+        font-family: 'AvenirLTStd';
+        font-size: 14px;
+        line-height: 30px;
+        letter-spacing: 19%;
+        margin: 0px 0px 40px;
+    }
+    .content_inner_wrap_btn2 {
+        padding: 8px 18px;
+        border: 2px solid #fff;
+        border-radius:8px;
+        text-decoration: none;
+        color: #fff;
+        font-size: 12px;
+        line-height: 16.5px;
+        font-weight: 400;
+        letter-spacing: 2.75px;
+        transition: all .3s ease;
+        text-transform: uppercase;
+        position: absolute;
+        top: 65%;
+        left: 17%;
+        width: 15%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .content_inner_wrap_btn2:hover {
+        background: #fff;
+        color: #395754;
+    }
+    @media screen and (max-width:1560px){
+      .home-custom-design-banner--image{
+        {% comment %} background-size: cover; {% endcomment %}
+        width: 100%;
+        height: 450px;
+      }
+      .content_inner_wrap_btn2 {
+        left: 18.5%;
+        }
+    }
+    @media screen and (max-width:1440px){
+      .content_inner_wrap_btn2 {
+        left: 17.5%;
+      }
+    }
+    @media screen and (max-width:1367px){
+      .content_inner_wrap_btn2 {
+        left: 15.5%;
+      }
+    }
+    @media screen and (max-width:1300px){
+      .content_inner_wrap_btn2 {
+        left: 15%;
+      }
+    }
+    @media screen and (max-width:1240px){
+      .content_inner_wrap_btn2 {
+        left: 14%;
+      }
+    }
+    @media screen and (max-width:1199px){
+      .home-custom-design-banner--image {
+        height: 290px;
+        margin: 20px auto;
+      }
+      #home-custom-design-{{ section.id }} {
+      margin-bottom:30px;
+      }
+
+      .home-custom-design-banner-content {
+        max-width: 360px;
+      }
+      .home-custom-design-banner-wrapper::after {
+        max-width: 380px;
+      }
+      .home-custom-design-banner-content h2 {
+          font-size: 26px;
+          letter-spacing: 10%;
+      }
+      .home-custom-design-banner-content p {
+        font-size: 11px;
+        line-height: 26px;
+        letter-spacing: 10%;
+        margin: 0px 0px 20px;
+      }
+      .home-custom-design-banner-content a {
+        padding: 8px 30px;
+        letter-spacing: 1px;
+      }
+      .content_inner_wrap_btn2 {
+        padding: 6px 10px;
+        font-size: 11px;
+        letter-spacing: 1.75px;
+        left: 18%;
+      }
+    }
+    @media screen and (max-width:991px){
+      #home-custom-design-{{ section.id }} {
+        padding:0px 12px;
+      }
+      .home-custom-design-banner--image {
+        height: 270px;
+      }
+      
+    }
+    @media screen and (max-width:840px){
+      .content_inner_wrap_btn2 {
+        width:25%;
+        left: 9%;
+      }
+      
+    }
+    @media screen and (max-width: 767px) {
+      #home-custom-design-{{ section.id }} {
+        padding:0px;
+        margin: 0;
+      }
+      .home-custom-design-banner--image{
+        background-image:url({{ section.settings.mobile_image | image_url: width: 800 }});
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        aspect-ratio: 75 / 104;
+        height: 550px;
+      }
+      .home-custom-design-banner-wrapper::after{
+        display:none;
+      }
+      .home-custom-design-banner-content {
+        max-width: 100%;
+        padding: 20px 0px;
+        justify-content: space-between;
+      }
+      .home-custom-design-banner-content h2 {
+        font-size: 34px;
+        letter-spacing: 15%;
+      }
+      .home-custom-design-banner-content p {
+        font-size: 14px;
+      }
+      .home-custom-design-banner-content a {
+        padding: 8px 38px;
+        letter-spacing: 2.75px;
+      }
+      .content_inner_wrap_btn2 {
+        right: 50%;
+        width: max-content;
+        transform: translate(50%, -90%);
+        padding: 6px 38px;
+        top: 90%;
+        left: unset;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      .home-custom-design-banner--image {
+        height: 580px;
+      }
+      .home-custom-design-banner--image{
+        background-size: cover;
+      }
+    }
+
+</style>
+
+<div class="home-custom-design-banner" id="home-custom-design-{{ section.id }}">
+    <div class="home-custom-design-banner-wrapper">
+     <a href="{{ section.settings.button_link }}">
+        <div class="home-custom-design-banner--image"></div>
+          {% if section.settings.title != blank or section.settings.subtitle != blank%}
+        <div class="home-custom-design-banner-content home-custom-design-content-{{ section.settings.text_position }}">
+            <div class="content_inner_wrap">
+              {% if section.settings.title != blank %}
+                <h2>{{ section.settings.title }}</h2>
+              {% endif %}
+              {% if section.settings.subtitle != blank %}
+                <p>{{ section.settings.subtitle }}</p>
+              {% endif %}
+            </div>
+        
+          </div>
+        {% endif %}
+        {% if section.settings.button_label != blank %}
+            <div class="content_inner_wrap_btn2">
+              {{ section.settings.button_label }}
+            </div>
+          {% endif %}
+      </a>
+
+    </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Home Design Custom Banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "NEW ARRIVALS"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text Position",
+      "default": "right",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Design Custom Banner"
+    }
+  ]
+}
+{% endschema %}

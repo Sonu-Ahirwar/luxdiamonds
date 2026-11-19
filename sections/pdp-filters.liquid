@@ -1,0 +1,1779 @@
+{%- liquid
+  assign fields = 'custom_all_skus,custom_all_skus_1,custom_all_skus_2,custom_all_skus_3,custom_all_skus_4,custom_all_skus_5' | split: ','
+  assign mf_items = '' | split: ','
+
+  for f in fields
+    assign m = product.metafields.custom[f]
+    if m != blank and m.value != blank
+      assign mf_items = mf_items | concat: m.value
+    endif
+  endfor
+
+  assign mf = mf_items
+  if mf != blank
+   assign mf = mf
+  endif
+-%}
+{% assign custom_design = false %}
+{% for col in product.collections %}
+  {% if col.handle == 'custom-design' %}
+    {% assign custom_design = true %}
+  {% endif %}
+{% endfor %}
+<script>
+  window.__PARENT_PRODUCT_ID__ = {{ product.id }};
+  window.__PARENT_HANDLE__ = {{ product.handle | json }};
+  window.__CUSTOMER_ID__ = {% if customer %}{{ customer.id | json }}{% else %}null{% endif %};
+  window.__PDP_FALLBACK_VARIANT_ID__ = 48110669693149;
+</script>
+<style>
+   .green-backdrop.show {
+        background: #395754;
+        opacity: .4 !important;
+        display: block;
+    }
+      .green-backdrop {
+        display: none;
+    }
+    .modal-backdrop.fade {
+        opacity: 0;
+    }
+    .modal-backdrop {
+        --bs-backdrop-zindex: 1050;
+        --bs-backdrop-bg: #000;
+        --bs-backdrop-opacity: 0.5;
+        background-color: var(--bs-backdrop-bg);
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: var(--bs-backdrop-zindex);
+    }
+    .fade {
+        transition: opacity .15s linear;
+    }
+    .modal {
+        --bs-modal-zindex: 1055;
+        --bs-modal-width: 500px;
+        --bs-modal-padding: 1rem;
+        --bs-modal-margin: 0.5rem;
+        --bs-modal-color: ;
+        --bs-modal-bg: #fff;
+        --bs-modal-border-color: var(--bs-border-color-translucent);
+        --bs-modal-border-width: 1px;
+        --bs-modal-border-radius: 0.5rem;
+        --bs-modal-box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+        --bs-modal-inner-border-radius: calc(0.5rem - 1px);
+        --bs-modal-header-padding-x: 1rem;
+        --bs-modal-header-padding-y: 1rem;
+        --bs-modal-header-padding: 1rem 1rem;
+        --bs-modal-header-border-color: var(--bs-border-color);
+        --bs-modal-header-border-width: 1px;
+        --bs-modal-title-line-height: 1.5;
+        --bs-modal-footer-gap: 0.5rem;
+        --bs-modal-footer-bg: ;
+        --bs-modal-footer-border-color: var(--bs-border-color);
+        --bs-modal-footer-border-width: 1px;
+        display: none;
+        height: 100%;
+        left: 0;
+        outline: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: var(--bs-modal-zindex);
+    }
+    .modal.show .modal-dialog {
+        -webkit-transform: none;
+        transform: none;
+    }
+    .modal-dialog-centered {
+        align-items: center;
+        display: flex;
+        min-height: calc(100% - var(--bs-modal-margin)*2);
+    }
+    .send_hint .modal-content {
+        border: 0;
+        border-radius: 0;
+        box-shadow: 3px 3px 10px var(--primary);
+        padding: 15px;
+    }
+    .modal-content {
+        background-clip: padding-box;
+        background-color: var(--bs-modal-bg);
+        border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+        border-radius: var(--bs-modal-border-radius);
+        color: var(--bs-modal-color);
+        display: flex;
+        flex-direction: column;
+        outline: 0;
+        pointer-events: auto;
+        position: relative;
+        width: 100%;
+    }
+    .send_hint .sent-hint-close, .sent-hint-close {
+        cursor: pointer;
+        font-size: 35px;
+        opacity: .3;
+        position: absolute;
+        right: 30px;
+        top: 10px;
+        z-index: 1;
+    }
+    .visit-wrapper .form-label span {
+    color: red;
+}
+    .modal-body {
+        flex: 1 1 auto;
+        padding: var(--bs-modal-padding);
+        position: relative;
+    }
+    .send_hint_head {
+        margin-bottom: 20px;
+    }
+    .text-center {
+        text-align: center!important;
+    }
+    .send_hint h3 {
+        color: #305854;
+        font-size: 20px;
+        letter-spacing: .2em;
+    }
+    .send_hint p {
+        color: #728080;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        margin-top: 20px;
+    }
+    .modal-dialog {
+        margin: var(--bs-modal-margin);
+        pointer-events: none;
+        position: relative;
+        width: auto;
+    }
+    .send_hint .hintBox, .send_hint .productBox {
+        padding: 0 20px 0 30px;
+    }
+    .send_hint .txt {
+        color: #305854;
+        font-size: 16px;
+        letter-spacing: .2em;
+        margin: 20px 0;
+    }
+    .send_hint .hintBox .persone-info {
+        margin-bottom: 20px;
+    }
+    .send_hint .persone-info input, .send_hint .persone-info textarea {
+        font-size: 10px;
+    }
+    .contact_fotm.container input, .contact_fotm.container select, .persone-info input, .persone-info select, .persone-info.l-name select {
+        color: #728080;
+        color: var(--primary);
+        font-size: 13px;
+        letter-spacing: 1px;
+        padding: 6px 15px;
+        text-transform: uppercase;
+    }
+    .form-control {
+        -webkit-appearance: none;
+        appearance: none;
+        background-clip: padding-box;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: .375rem;
+        color: #212529;
+        display: block;
+        font-size: 1rem;
+        font-weight: 200;
+        line-height: 1.5;
+        padding: .375rem .75rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        width: 100%;
+    }
+    .validation {
+        color: #e22e2e;
+        font-size: 12px;
+        margin-bottom: 5px;
+        text-align: right;
+        display: none;
+    }
+    .send_hint input::placeholder,
+  .send_hint textarea::placeholder{
+      color: #728080;
+  }
+  .send_hint input:hover,
+  .send_hint textarea:hover{
+     background: transparent;
+  }
+  .send_hint input:focus,
+  .send_hint textarea:focus
+  {
+      background-color: #fff;
+      border-color: #86b7fe;
+      box-shadow: 0 0 0 .25rem rgba(68, 85, 84, .1);
+      outline: 0;
+  }
+    @media (min-width: 992px) {
+    .modal-lg, .modal-xl {
+        --bs-modal-width: 800px;
+    }
+    .modal-dialog .col-lg-6 {
+        flex: 0 0 auto;
+        width: 50%;
+        padding: 0px 10px;
+    }
+    }
+    @media (min-width: 576px) {
+        .modal-dialog {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: var(--bs-modal-width);
+        }
+    }
+
+
+    .modal-dialog .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .persone-info-btn .theme_btn {
+        background: #305854;
+        border: 0;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 3px;
+        line-height: 30px;
+        width: 250px;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px;
+    }
+    .greenBtn:hover, .theme_btn:hover {
+        background: #9cadab;
+        border-color: #9cadab;
+    }
+
+    .persone-info-btn.text-center.mt-4 {
+        margin-top: 20px;
+    }
+    .send_hint .productBox p {
+        color: #a8b2b0;
+        font-size: 10px;
+        line-height: 14px;
+        padding: 0 10px;
+    }
+    .send_hint .productBox img {
+        display: table;
+        margin: auto auto 12px;
+        max-width: 230px;
+    }
+    .fade.send_hint.modal.show {
+        display: block;
+    }
+    .BookAppointment_modal.show{
+        display: block;
+    }
+
+    .BookAppointment_modal .in-person-consult-header, .BookAppointment_modal .visit-wrapper form .col, .BookAppointment_modal .visit-wrapper h6, .BookAppointment_modal form .radio-wrapper {
+      display: none;
+  }
+  .page-header.in-person-consult-header {
+      background-color: #faf7f8;
+  }
+  .page-header {
+      background: #f9f8f8;
+      color: #395754;
+      color: var(--primary-dark);
+      margin-bottom: 30px;
+      padding: 60px;
+  }
+  .page-header .page-title {
+      font-size: 25px;
+      letter-spacing: 4px;
+      margin-bottom: 0;
+  }
+  .in-person-consult-header span p {
+      font-weight: 500;
+      padding: 0!important;
+      text-align: left!important;
+  }
+  .visit-wrapper .form-container {
+      margin-top: 60px;
+  }
+  .visit-wrapper .form-label {
+      margin-bottom: 13px !important;
+      display: inline-block;
+  }
+  .visit-wrapper .form-label, .visit-wrapper h6 {
+      color: #395754;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+  }
+ input#engraving_formBasicEmail {
+    color: #728080;
+    font-size: 12px;
+    letter-spacing: .5px;
+    width: 100%;
+    margin: 13px 0px;
+    padding: 16px 20px;
+    border: 1px solid #bcbcbc;
+    border-radius: 10px;
+}
+  .visit-wrapper .form-control, .visit-wrapper .form-select {
+      border-color: #ebebeb;
+      border-radius: 4px;
+      box-shadow: none;
+      color: var(--primary-dark);
+      font-size: 12px;
+      height: 32px;
+      letter-spacing: 2px;
+      margin-left: 10px;
+      text-transform: uppercase;
+      width: 97%;
+      padding: 6px 12px;
+  }
+  .visit-wrapper .form-container textarea {
+      height: 142px;
+      margin-bottom: 28px!important;
+  }
+  .BookAppointment_modal .visit-wrapper .form-container form button.inner-theme-btn {
+      display: table;
+      margin: 20px auto;
+      background: #395754;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 300;
+      height: 40px;
+      letter-spacing: 3px;
+      margin-top: 45px;
+      min-width: 217px;
+      text-transform: uppercase;
+  }
+  .send_hint .hintBox .persone-info textarea {
+      height: 120px;
+  }
+  @media (min-width: 992px) {
+      .col-lg-10 {
+          flex: 0 0 auto;
+          width: 83.33333333%;
+          padding: 0px 10px;
+      }
+          .col-lg-12 {
+          flex: 0 0 auto;
+          width: 100%;
+          padding: 0px 10px;
+
+      }
+  }
+  span.affirm-ala-price {
+    padding-left: 5px;
+  }
+  .active_slider .mySwiper2 .pdpfx-buttons {
+    gap: unset !important;
+  }
+  .No_slider .swiper  {
+    margin: unset;
+  }
+  .No_slider .swiper-slide {
+   width: auto;
+  }
+  .pdpfx-price-compare {
+    text-decoration: line-through;
+    text-decoration-color: red;   /* 🔴 line red */
+    text-decoration-thickness: 2px; /* line thodi bold */
+    color: #8a8a8a;
+    font-size: 22px;   /* 🔼 font bada */
+    font-weight: 500;
+    margin-right: 10px;
+  }
+
+  .pdpfx-price-compare.hidden {
+    display: none;
+  }
+
+  /* discounted price ko bhi thoda highlight karo */
+  .pdpfx-price.has-discount {
+    color: #305854;
+    font-size: 24px;
+    font-weight: 700;
+  }
+</style>
+<!-- Link Swiper's CSS -->
+ 
+
+{% comment %} assign om = product.metafields.custom.option_map {% endcomment %}
+{% if mf and mf.size > 0 %}
+  <div class=" section section--page-width color-scheme-1 section-resource-list spacing-style gap-style">
+    <div class="fade modal-backdrop green-backdrop"></div>
+    <div role="dialog" aria-modal="true" class="fade send_hint main modal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <span class="sent-hint-close">x</span>
+          <div class="modal-body">
+            <div class="send_hint_head text-center">
+              <h3>SEND A HINT!</h3>
+              <p>Let someone know exactly what you want.</p>
+            </div>
+            <form class="">
+              <div class="row">
+                <div class="col-lg-6 col-md-6">
+                  <div class="hintBox">
+                    <p class="txt">TO:</p>
+                    <div class="persone-info">
+                      <input placeholder="FIRST NAME" name="to_name" type="text" class="form-control" value="">
+                    </div>
+                    <div class="persone-info">
+                      <input placeholder="EMAIL" name="to_email" type="email" class="form-control" value="">
+                      <div class="validation mt-0">From Email is required</div>
+                    </div>
+                    <p class="txt mt-4">FROM:</p>
+                    <div class="persone-info">
+                      <input placeholder="FIRST NAME" name="from_name" type="text" class="form-control" value="">
+                    </div>
+                    <div class="persone-info">
+                      <input placeholder="EMAIL" name="from_email" type="email" class="form-control" value="">
+                      <div class="validation mt-0">From Email is required</div>
+                    </div>
+                    <div class="persone-info messagebox">
+                      <textarea placeholder="MESSAGE (OPTIONAL)" name="message" class="form-control"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                  <div class="productBox text-center d-flex align-items-center">
+                    <div>
+                      {% for media_mf in mf[0].media limit: 1 %}
+                      <img
+                          src="{{ media_mf }}"
+                          alt="{{ mf[0].pdp_name | default: product.title }}"
+                          style="opacity: 1; transform: scale(1); transform-origin: center center;"
+                          width=""
+                          height=""
+                          loading="lazy"
+                        >
+                        {%endfor %}
+                      <p>{{ mf[0].pdp_name | default: product.title }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="persone-info-btn text-center mt-4">
+                <button type="submit" class="theme_btn btn btn-primary">SEND HINT</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="dialog" aria-modal="true" class="fade send_hint BookAppointment_modal modal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <span class="sent-hint-close">x</span>
+          <div class="modal-body">
+            <div class="send_hint_head text-center">
+              <h3>CUSTOM INQUIRY</h3>
+              <p>Let us know exactly what you want.</p>
+            </div>
+            <div class="Toastify"></div>
+            <div class="page-header in-person-consult-header">
+              <h1 class="page-title text-center text-uppercase">Schedule an in person appointment</h1>
+              <span
+                ><img src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/calender.png" alt="person appointment"
+                 height=""
+                  width=""
+                  loading="lazy">
+                <p class="page-subtitle text-center">
+                  Schedule a visit and see for yourself why Wedding Day Diamonds is Minnesota's favorite engagement ring
+                  store.
+                </p>
+              </span>
+            </div>
+            <div class="visit-wrapper">
+              <div class="form-container container">
+                <h6>Reason for visit</h6>
+                <form class="custom-inquiry-form custom_form" id="customInquiryForm">
+                  <div class="radio-wrapper">
+                    <div class="radio-item">
+                      <label class="form-label">
+                        <input type="radio" name="reasonForVisit" value="Engagement Ring">
+                        <span><img src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/engagement-ring.png" alt="Engagement Ring"></span>
+                        <h6>Engagement Ring</h6>
+                      </label>
+                    </div>
+
+                    <div class="radio-item">
+                      <label class="form-label">
+                        <input type="radio" name="reasonForVisit" value="Wedding Band">
+                        <span><img src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/wedding-band.png" alt="Wedding Band"></span>
+                        <h6>Wedding Band</h6>
+                      </label>
+                    </div>
+
+                    <div class="radio-item">
+                      <label class="form-label">
+                        <input type="radio" name="reasonForVisit" value="Earrings">
+                        <span><img src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/earrings.png" alt="Earrings"></span>
+                        <h6>Earrings</h6>
+                      </label>
+                    </div>
+
+                    <div class="radio-item">
+                      <label class="form-label">
+                        <input type="radio" name="reasonForVisit" value="Fashion Jewelry">
+                        <span><img src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/fashion-jewelry.png" alt="Fashion Jewelry"></span>
+                        <h6>Fashion Jewelry</h6>
+                      </label>
+                    </div>
+
+                    <div class="radio-item">
+                      <label class="form-label">
+                        <input type="radio" name="reasonForVisit" value="Return/Exchange">
+                        <span><img src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/return.png" alt="Return/Exchange"></span>
+                        <h6>Return/Exchange</h6>
+                      </label>
+                    </div>
+
+                    <div class="radio-item">
+                      <label class="form-label">
+                        <input type="radio" name="reasonForVisit" value="Repairs">
+                        <span><img src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/repairs.png" alt="Repairs"></span>
+                        <h6>Repairs</h6>
+                      </label>
+                    </div>
+
+                    <div class="radio-item">
+                      <label class="form-label">
+                        <input type="radio" name="reasonForVisit" value="General Inquiry">
+                        <span><img src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/inquiry.png" alt="General Inquiry"></span>
+                        <h6>General Inquiry</h6>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                      <div class="mb-0">
+                        <label class="form-label" for="customInquiryFirstName">First Name dsfdsffsd <span>*</span></label>
+                        <input placeholder="FIRST NAME" name="firstName" type="text" id="customInquiryFirstName" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="mb-0">
+                        <label class="form-label" for="customInquiryLastName">Last Name <span>*</span></label>
+                        <input placeholder="LAST NAME" name="lastName" type="text" id="customInquiryLastName" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="mb-0">
+                        <label class="form-label" for="customInquiryEmail">Email <span>*</span></label>
+                        <input placeholder="EMAIL" name="email" type="email" id="customInquiryEmail" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="mb-0">
+                        <label class="form-label" for="customInquiryPhone">Phone Number <span>*</span></label>
+                        <input placeholder="Phone Number" name="phone" type="tel" id="customInquiryPhone" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-lg-10 col-md-10">
+                      <div class="mb-0">
+                        <label class="form-label" for="customInquiryComment">Please provide any additional notes.</label>
+                        <textarea
+                          placeholder="Notes"
+                          rows="5"
+                          name="comment"
+                          id="customInquiryComment"
+                          class="form-control additional_note"
+                        ></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="mb-0">
+                        <label class="form-label" for="customInquiryLocation">Location <span>*</span></label>
+                        <select name="location" class="form-select" id="customInquiryLocation">
+                          <option value="">Choose Location</option>
+                          <option value="Burnsville">Burnsville</option>
+                          <option value="Richfield">Richfield</option>
+                          <option value="Minnetonka">Minnetonka</option>
+                          <option value="Eden Prairie">Eden Prairie</option>
+                          <option value="Maple Grove">Maple Grove</option>
+                          <option value="St. Cloud">St. Cloud</option>
+                          <option value="Woodbury">Woodbury</option>
+                          <option value="Roseville">Roseville</option>
+                          <option value="Rochester">Rochester</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="mb-0">
+                        <label class="form-label" for="customInquiryDate">Date</label>
+                        <input
+                          type="date"
+                          name="date"
+                          placeholder="Choose Date"
+                          class="form-control w-100"
+                          id="customInquiryDate"
+                        >
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="mb-0">
+                        <label class="form-label" for="customInquiryTime">Time</label>
+                        <select name="time" class="form-select" id="customInquiryTime">
+                          <option value="">Choose a Time</option>
+                          <option value="11:00 am - 12:00 pm">11:00 am - 12:00 pm</option>
+                          <option value="12:00 pm - 1:00 pm">12:00 pm - 1:00 pm</option>
+                          <option value="1:00 pm - 2:00 pm">1:00 pm - 2:00 pm</option>
+                          <option value="2:00 pm - 3:00 pm">2:00 pm - 3:00 pm</option>
+                          <option value="3:00 pm - 4:00 pm">3:00 pm - 4:00 pm</option>
+                          <option value="4:00 pm - 5:00 pm">4:00 pm - 5:00 pm</option>
+                          <option value="5:00 pm - 6:00 pm">5:00 pm - 6:00 pm</option>
+                          <option value="6:00 pm - 7:00 pm">6:00 pm - 7:00 pm</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="form-message" id="customInquiryFormMessage" style="display:none;"></div>
+                      <button type="submit" class="btn inner-theme-btn" id="customInquirySubmitBtn">Schedule</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="pdp-filters" class="pdpfx">
+      <div class="pdpfx-grid">
+        <div class="pdpfx-left">
+          <div class="pdpfx-gallery-wrap test" style="--pdpfx-gallery-h: 1131px;">
+            {% comment %} {% if product.metafields.custom.card_badge_name.value %}
+              <div class="product_tag_wrap {{ product.metafields.custom.card_badge_name.value | handleize }} {% if product.metafields.custom.badge_design_type.value == "Special" %} badge-special {% endif %}">
+              {% if product.metafields.custom.badge_design_type.value == "Special" %} 
+                <img src="{{ 'special-badge-img.png' | file_url }}"
+                  width=""
+                  height=""
+                  loading="lazy"
+                  alt="wishlist">    
+              {% endif %}
+              {% if product.metafields.custom.card_badge_name.value == "Top Pick" %} 
+                <img src="{{ 'gift-icon.png' | file_url }}"
+                  width=""
+                  height=""
+                  loading="lazy"
+                  alt="gift">    
+              {% endif %}
+              {% if product.metafields.custom.card_badge_name.value contains 'Holiday Pick' %}
+                <img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/Red_Sparkle_1.png?v=1793716316" alt="sparkle">
+              {% endif %}
+                {{ product.metafields.custom.card_badge_name.value }}
+              </div>
+            {% endif %} {% endcomment %}
+
+            <div id="pdpfx-gallery" class="pdpfx-media-grid owl-carousel owl-theme">
+              {% for media_mf in mf[0].media %}
+                <div class="pdpfx-cell item">
+                  <div class="pdpfx-inner">
+                    {% unless media_mf contains '.mp4' %}
+                      <div class="media-item" style="">
+                        <div class="skeleton" aaaaa></div>
+                          {% if forloop.index == 1 %}
+                          <span class="media_overlay_text">Shown with 1 Carat Diamond</span>
+                          {% endif %}
+                        <img
+                          src="{{ media_mf }}"
+                          alt="{{ mf[0].pdp_name | default: product.title }}"
+                          style="opacity: 1; transform: scale(1); transform-origin: center center;"
+                          width=""
+                          height=""
+                          loading="lazy"
+                          class="hidden testingimage"
+                        >
+                      </div>
+                    {% else %}
+                      <video
+                        src="{{ media_mf }}"
+                        autoplay
+                        loop
+                        playsinline
+                        preload="auto"
+                      ></video>
+                    {% endunless %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="pdpfx-skeleton-grid" data-reason="interaction">
+              {% for media in mf[0].media %}
+                <div class="pdpfx-skel-card"></div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="pdpfx-right">
+          <div class="pdpfx-sticky">
+            <div class="product_title_wrap">
+              <h1 class="pdpfx-title" data-product-title>{{ mf[0].pdp_name | default: product.title }}</h1>
+              <div
+                class="wishlist-engine wk-button"
+                data-product_id="{{  product.id }}"
+                data-product_handle="{{ product.handle }}"
+                data-variant_id="{{ product.selected_or_first_available_variant.id }}"
+                data-title="{{ product.title | escape }}"
+                data-url="{{ product.url }}"
+                data-image="{{ product.featured_image | img_url: '400x' }}"
+                data-full_button="false"
+                data-css="true"
+              ></div>
+            </div>
+            <div id="icon_outer_pdp" class="logos manageH hidden">
+                <img id="made_in_usa" class="hidden" src="{{ 'logo1.svg' | file_url }}" width="" height="" loading="lazy" alt="Made in USA">
+                <img id="recycled_metals" class="hidden" src="{{ 'logo2.svg' | file_url }}" width="" height="" loading="lazy" alt="Recycled Metals">
+                <div id="recycled_metals_disc" class="info_hoverbox metalRecycle">
+                  <img
+                    src="{{ 'recycle_icon_blue.png' | file_url }}"
+                    width=""
+                    height=""
+                    loading="lazy"
+                    class="metalTrigger"
+                    alt="Recycled Metals Blue"
+                  >
+                <div class="center_stone_info_hoverbox">
+                  <div class="center_stone_inner-box">
+                    <div class="d-flex align-items-center justify-content-center mx-auto col-lg-9">
+                      <div style="margin-right: 20px;">
+                        <img
+                          src="{{ 'PerfectRingPromise_Final-06.png' | file_url }}"
+                          width=""
+                          height=""
+                          loading="lazy"
+                          class="img-fluid innerH"
+                          alt="WORRY-FREE DIAMOND SELECTION"
+                        >
+                      </div>
+                      <div class="text-start">
+                        <h2>WHY CHOOSE A WEDDING DAY DIAMONDS RING?</h2>
+                      </div>
+                    </div>
+                    <p>
+                      Most rings sold online are made to be delicate, designed for style &amp; price, but not made to
+                      last. These same rings are also sold by online jewelers that want you to purchase an extended
+                      warranty which will only last for a few years. At Wedding Day Diamonds, we custom design and
+                      manufacture each ring to last a lifetime with no risk to you on future repairs or damage. All
+                      engagement rings come with our Free No Fine Print Lifetime Warranty and a 365 Day Perfect Ring
+                      Promise. No inspections required, ever.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% comment %} Metafield {% endcomment %}
+            <p id="collection_handle" class="single_product_cat mobile_hide">{{mf[0].collection_handle }}</p>
+            <p class="single_product_des mobile_hide">
+              <span class="short-text" data-product-description-more>
+                {{ mf[0].description | truncate: 100 }}
+                <!-- Pehle 150 characters -->
+              </span>
+              <span class="full-text hidden" data-product-description-less>
+                {{ mf[0].description }}
+              </span>
+              <a href="javascript:void(0);" class="toggle-text hidden">Read more</a>
+            </p>
+
+            {% comment %} <div class="pdpfx-price-row">
+              {% if custom_design == true %}<span class="single_product_des ">Complete as shown from </span>{% endif %}
+              <span class="pdpfx-price" data-product-price>
+                {{- mf[0].price | times: 100 | default: product.price | money | split: '.' | first -}}
+              </span>
+              <span class="pdpfx-sku"
+                >SKU: <strong data-product-sku>{{ mf[0].sku }}</strong></span
+              >
+            </div> {% endcomment %}
+            <div class="pdpfx-price-row">
+              {% if custom_design == true %}<span class="single_product_des ">Complete as shown from </span>{% endif %}
+
+              <span class="pdpfx-price-compare hidden" data-product-compare-price></span>
+
+              <span class="pdpfx-price" data-product-price>
+                {{- mf[0].price | times: 100 | default: product.price | money | split: '.' | first -}}
+              </span>
+
+              <span class="pdpfx-sku">
+                SKU: <strong data-product-sku>{{ mf[0].sku }}</strong>
+              </span>
+            </div>
+            {% if custom_design == true %}<p class="custom_design_content"><i>Can be customized to fit your budget with any diamonds, gemstones, shapes, sizes and metal colors.</i></p>{% endif %}
+            <div class="single_pro_loan mb-4">
+                <p class="affirm-as-low-as"
+                  data-page-type="product"
+                  data-amount="{{ mf[0].price | times:100 | default: product.price | times:100  }}">
+                </p>
+            </div>
+            {% comment %} <p class="affirm-as-low-as"
+              data-page-type="product"
+             data-amount="{{ mf[0].price | times:100 | default: product.price | money_without_currency }}">
+            </p> {% endcomment %}
+            <div class="pdpfx-label single_filter_title single_filter_title_SHAPE">SHAPE</div>
+            <div class="shape-slider-wrapper">
+              <button class="slider-arrow left">
+                {% render 'pdp-svg-icons', icon: 'slider-arrow left' %}
+              </button> 
+              {% comment %} <div class="swiper-button-prev1 slider-arrow left" onclick="scrollShapes(-1)>  {% render 'pdp-svg-icons', icon: 'slider-arrow left' %}</div> {% endcomment %}
+              <div class="shape-slider swiper mySwiper">
+                <ul class="diamond-shapes swiper-wrapper">
+                  {% assign shape_images = 'oval.svg, round.svg, marquise.svg, Elongated_Cushion.svg, emerald.svg, pear.svg, radiant.svg, princess.svg, asscher.svg, cushion.svg'
+                    | split: ', '
+                  %}
+
+                  {% for file in shape_images %}
+                    {% assign shape_name = file
+                      | split: '.'
+                      | first
+                      | replace: '_', ' '
+                      | replace: '-', ' '
+                      | capitalize
+                    %}
+                    <li class="diamond-shapes_li swiper-slide">
+                      <button
+                        class="pdpfx-btn"
+                        type="button" aaaaaaaa
+                        data-key="center_stone_shape"
+                        data-value="{{ shape_name | replace: 'Elongated cushion', 'Elongated Cushion' }}"
+                      >
+                        <img src="{{ file | file_url }}" alt="{{ shape_name }}" title="{{ shape_name }}" width="" height="" loading="lazy" data-tooltip="{{ shape_name }}">
+                        {% comment %} <span class="tooltip_shape tooltip-text">{{ shape_name }}</span> {% endcomment %}
+                      </button>
+                    </li>
+                  {% endfor %}
+                </ul>
+            
+               
+              </div>
+               {% comment %} <div onclick="scrollShapes(1)" class="swiper-button-next1 slider-arrow right"> {% render 'pdp-svg-icons', icon: 'slider-arrow right' %}</div> {% endcomment %}
+              <button class="slider-arrow right">
+                {% render 'pdp-svg-icons', icon: 'slider-arrow right' %}
+              </button> 
+            </div>
+            
+            <!-- CARAT -->
+            <div class="pdpfx-block carat_weight_outer">
+              <div class="pdpfx-label single_filter_title">CENTER STONE CARAT WEIGHT</div>
+              <div class="carat_weight-slider-wrapper">
+                {% comment %} onclick="scrollCaratWeight(-1)" {% endcomment %}
+                <button class="slider-arrow left">
+                  {% render 'pdp-svg-icons', icon: 'slider-arrow left' %}
+                </button>
+                <div class="shape-slider swiper mySwiper2">
+                  <ul
+                    class="pdpfx-buttons center_stone_carat_weight_cls swiper-wrapper"
+                    data-buttons-for="center_stone_carat_weight"
+                  ></ul>
+                </div>
+                {% comment %} onclick="scrollCaratWeight(1)" {% endcomment %}
+                <button class="slider-arrow right">
+                  {% render 'pdp-svg-icons', icon: 'slider-arrow right' %}
+                </button>
+              </div>
+            </div>
+
+            <!-- QUALITY -->
+            <div class="pdpfx-block diamond_quality">
+              <div class="pdpfx-label single_filter_title">
+                DIAMOND QUALITY
+                <div class="info_hoverbox metalRecycle">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/centerston.png?v=1765598523"
+                    width=""
+                    height=""
+                    loading="lazy"
+                    class="metalTrigger"
+                    alt="Recycled Metals Blue"
+                  >
+                  <div class="center_stone_info_hoverbox">
+                    <div class="center_stone_inner-box">
+                      <div class="d-flex align-items-center justify-content-center mx-auto col-lg-9">
+                        <div style="margin-right: 20px;">
+                          <img
+                            src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/worry-free.png?v=1765598581"
+                            width=""
+                            height=""
+                            loading="lazy"
+                            class="img-fluid innerH"
+                            alt="WORRY-FREE DIAMOND SELECTION"
+                          >
+                        </div>
+                        <div class="text-start">
+                          <h2>WORRY-FREE DIAMOND SELECTION</h2>
+                        </div>
+                      </div>
+                      <p>
+                        At Wedding Day Diamonds, you can safely buy your diamond sight unseen. How? Because unlike other
+                        jewelers who choose the cheapest lab-grown diamonds, we choose only the best. Your custom-made
+                        ring will be paired with the highest quality lab-grown diamond available and is guaranteed to
+                        have a minimum rating within the diamond quality category you choose. If we find a diamond with
+                        even higher ratings, we include it at no extra charge.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pdpfx-buttons DIAMOND_QUALITY_cls" data-buttons-for="diamond_quality"></div>
+            </div>
+
+            <!-- METAL -->
+            <div class="metal-slider-wrapper pdpfx-block">
+              <div class="pdpfx-label single_filter_title">
+                METAL
+                <span class="pdpfx-sub metal_span" id="pdpfx-metal-current">
+                  {%- if mf[0].metal_color %}({{ mf[0].metal_color }} {% if mf[0].metal_color != 'Silver' or mf[0].metal_color !='Platinum' %}Gold{% endif %}){% endif -%}
+                </span>
+              </div>
+
+              <div class="metal-slider">
+                <ul class="metal-colors">
+                  {% assign metal_images = 'silver.svg, yellow.svg, white.svg, rose.svg, platinum.svg' | split: ', ' %}
+
+                  {% for file in metal_images %}
+                    {% assign metal_name = file
+                      | split: '.'
+                      | first
+                      | replace: '_', ' '
+                      | replace: '-', ' '
+                      | capitalize
+                    %}
+                    <li class="metal-colors_li">
+                      <button
+                        class="pdpfx-btn {% if forloop.first %}active{% endif %}"
+                        type="button"
+                        data-key="metal_color"
+                        data-value="{{ metal_name }}"
+                      >
+                        <img src="{{ file | file_url }}" alt="{{ metal_name }}" width="" height="" loading="lazy">
+                        <span class="tooltip-text">{{ metal_name }}</span>
+                      </button>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <!-- AUTO / DYNAMIC FILTERS – yaha JS blocks inject karega -->
+            {% comment %} <div id="pdpfx-extra-filters"></div> {% endcomment %}
+            <div class="pdpfx-block">
+              <div class="pdpfx-label single_filter_title">GEMSTONE SHAPE</div>
+              <div class="pdpfx-buttons GEMSTONE_SHAPE_cls" data-buttons-for="gemstone_shape"></div>
+            </div>
+
+            <div class="pdpfx-block">
+              <div class="pdpfx-label single_filter_title">DIAMOND CARAT WEIGHT</div>
+              <div class="pdpfx-buttons GEMSTONE_SHAPE_cls" data-buttons-for="diamond_carat_weight"></div>
+            </div>
+
+            <div class="pdpfx-block">
+              <div class="pdpfx-label single_filter_title">GEMSTONE TYPE <span class="pdpfx-sub gemstone_span" id="pdpfx-gemstone-current"></span></div>
+              <div class="pdpfx-buttons GEMSTONE_SHAPE_cls" data-buttons-for="gemstone_type_filter"></div>
+            </div>
+            <!-- RING SIZE -->
+            
+            {% unless custom_design == true %}
+            <div class="RING_SIZE_cls hidden">
+              <div class="pdpfx-block">
+                <div class="pdpfx-label single_filter_title">
+                  RING SIZE
+                  <a
+                    class="SizeGuide text-capitalize"
+                    href="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/RingSizeChart_Final.pdf"
+                    target="_blank"
+                    >Size Guide</a
+                  >
+                </div>
+                <select id="pdp-ring-size" class="pdpfx-select">
+                  {% comment %}
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                  {% endcomment %}
+                </select>
+              </div>
+              <div class="p-0 col-lg-7 col-md-7 col-sm-12">
+                <h3 class="single_filter_title d-flex pb-0 mb-0 engMob flex-wrap openerTitle">
+                  <div class="single_filter_inner">
+                    ENGRAVING<span class="pdpfx-sub">(+$40)</span>
+                    <div class="d-flex align-items-center form-check">
+                      <input
+                        name="engraving"
+                        value="yes"
+                        aria-label="yes"
+                        type="radio"
+                        class="form-check-input"
+                        id="engraving_yes"
+
+                      ><label title="" for="engraving_yes" class="form-check-label">Yes</label>
+                    </div>
+                    <div class="d-flex align-items-center form-check">
+                      <input name="engraving" value="no" aria-label="no" type="radio" id="engraving_no" class="form-check-input"
+                      ><label title="" class="form-check-label" for="engraving_no">No</label>
+                    </div>
+                  </div>
+                  <div id="engraving_div" class="hidden">
+                    <input
+                      maxlength="15"
+                      placeholder="Limit 15 Characters"
+                      required=""
+                      type="text"
+                      id="engraving_formBasicEmail"
+                      class=""
+                      value=""
+                    >
+                    <div class="designFontScript dropdown">
+                      <select id="engraving_select" name="engraving_select">
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Script MT Bold">Script MT Bold</option>
+                      </select>
+                    </div>
+                  </div>
+                </h3>
+              </div>
+              {% endunless %}
+            </div>
+          
+            <article class="warrantySection px-3 py-4 px-lg-4 mt-2 {% if custom_design == true %}custom_deisgn{% endif %}">
+              <div>
+                <h5><strong>FREE</strong> LIFETIME WARRANTY</h5>
+              </div> 
+              <div>
+                <ul>
+                  <li>No inspections required.</li>
+                  {% if mf[0].category == 'Engagement Rings' %}
+                    <li>All maintenance is free forever.</li>
+                    <li>No extended warranty needed, ever.</li>
+                    <span class="warrantySection_ul_li">
+                      <li>60 Day Returns</li>
+                      <li>365 Day Exchange</li>
+                    </span>
+                  {% elsif mf[0].category == 'New Arrivals Engagement Rings'  %}
+                      <li>60 Day Returns.</li>
+                      <li>Free Shipping.</li>
+                  {% else %}
+                      <li>All maintenance is free forever.</li>
+                      <li>No extended warranty needed, ever.</li>
+                      <li>60 Day Returns.</li>
+                {% endif %}
+                </ul>
+                {% if mf[0].category == 'New Arrivals Engagement Rings'  %}
+                  <p class="limit">*Limits apply, <a href="/pages/customer-service">click here</a> for details.</p>
+                {% endif %}
+              </div>
+            </article>
+            {% unless custom_design == true %}
+            <div class="shipping-info">
+              <span class="busShip">
+                {% render 'pdp-svg-icons', icon: 'busShip' %}
+              </span>
+              <span class="shipping-text">{% if mf[0].category == "Women's Wedding Bands" %}Usually{% else %}Custom Made.{%  endif %} Ships by <span id="shipping_time"></span></span>
+              <a href="#" class="faster-link">Need it faster?</a>
+            </div>
+           {% endunless %}
+
+            {%- form 'product', product, id: 'pdp-product-form', novalidate: 'novalidate' -%}
+              <input type="hidden" name="id" id="pdp-variant-id-default" value="">
+              <input type="hidden" name="quantity" id="pdp-qty-hidden-default" value="1">
+              
+              {% comment %} {% if custom_design == true or mf[0].quantity < 1 or mf[0].quantity == '' or mf[0].quantity == null %}
+              <button type="button" class="pdp-inquire appointment_box">Inquire Now</button>
+              {% else %}
+              <button type="submit" id="pdp-atc">Add to cart</button>
+              {% endif %} {% endcomment %}
+
+         {% assign is_out_of_stock = false %}
+          {% if mf[0].quantity == blank or mf[0].quantity == nil %}
+            {% assign is_out_of_stock = true %}
+          {% elsif mf[0].quantity < 1 %}
+            {% assign is_out_of_stock = true %}
+          {% endif %}
+
+          {% if custom_design == true %}
+            <button type="button" class="pdp-inquire appointment_box">Inquire Now</button>
+          {% elsif mf[0].category == 'New Arrivals Engagement Rings' and is_out_of_stock == true %}
+            <button type="button" class="pdp-inquire appointment_box">Inquire Now</button>
+          {% else %}
+            <button type="submit" id="pdp-atc">Add to cart</button>
+          {% endif %}
+            {%- endform -%}
+            <ul class="single_pro_listbtn">
+              <li class="share-toggle">
+                {% render 'pdp-svg-icons', icon: 'SHARE' %}
+                SHARE
+                <div class="socialmediaIconBox">
+                  <button
+                    type="button"
+                    aria-label="facebook"
+                    data-share="facebook"
+                    class="react-share__ShareButton Demo__some-network__share-button"
+                    style="background-color: transparent; border: none; padding: 0px; font: inherit; color: inherit; cursor: pointer;"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path>
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="pinterest"
+                    data-share="pinterest"
+                    class="react-share__ShareButton"
+                    style="background-color: transparent; border: none; padding: 0px; font: inherit; color: inherit; cursor: pointer;"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 496 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"></path>
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="twitter"
+                    data-share="twitter"
+                    class="react-share__ShareButton"
+                    style="background-color: transparent; border: none; padding: 0px; font: inherit; color: inherit; cursor: pointer;"
+                  >
+                    <svg
+                      fill="#395754"
+                      viewBox="0 0 24 24"
+                      aria-label="X"
+                      role="img"
+                      class="r-18jsvk2 r-4qtqp9 r-yyyyoo r-16y2uox r-lwhw9o r-dnmrzs r-bnwqim r-1plcrui r-lrvibr"
+                    >
+                      <g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g>
+                    </svg></button
+                  ><button
+                    aria-label="email"
+                    data-share="email"
+                    class="react-share__ShareButton"
+                    style="background-color: transparent; border: none; padding: 0px; font: inherit; color: inherit; cursor: pointer;"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="height: 22px;"
+                    >
+                      <path d="M460.6 147.3L353 256.9c-.8.8-.8 2 0 2.8l75.3 80.2c5.1 5.1 5.1 13.3 0 18.4-2.5 2.5-5.9 3.8-9.2 3.8s-6.7-1.3-9.2-3.8l-75-79.9c-.8-.8-2.1-.8-2.9 0L313.7 297c-15.3 15.5-35.6 24.1-57.4 24.2-22.1.1-43.1-9.2-58.6-24.9l-17.6-17.9c-.8-.8-2.1-.8-2.9 0l-75 79.9c-2.5 2.5-5.9 3.8-9.2 3.8s-6.7-1.3-9.2-3.8c-5.1-5.1-5.1-13.3 0-18.4l75.3-80.2c.7-.8.7-2 0-2.8L51.4 147.3c-1.3-1.3-3.4-.4-3.4 1.4V368c0 17.6 14.4 32 32 32h352c17.6 0 32-14.4 32-32V148.7c0-1.8-2.2-2.6-3.4-1.4z"></path><path d="M256 295.1c14.8 0 28.7-5.8 39.1-16.4L452 119c-5.5-4.4-12.3-7-19.8-7H79.9c-7.5 0-14.4 2.6-19.8 7L217 278.7c10.3 10.5 24.2 16.4 39 16.4z"></path>
+                    </svg>
+                  </button>
+                </div>
+              </li>
+
+              <li>
+                <span>
+                  <div
+                    class="wishlist-engine wk-button"
+                    data-product_id="{{  product.id }}"
+                    data-product_handle="{{ product.handle }}"
+                    data-variant_id="{{ product.selected_or_first_available_variant.id }}"
+                    data-title="{{ product.title | escape }}"
+                    data-url="{{ product.url }}"
+                    data-image="{{ product.featured_image | img_url: '400x' }}"
+                    data-full_button="true"
+                    data-css="true"
+                  ></div>
+                </span>
+              </li>
+              <li class="send_hint_btn">
+                {% render 'pdp-svg-icons', icon: 'SEND A HINT' %}
+                SEND A HINT
+              </li>
+            </ul>
+            {% unless custom_design == true %}
+            <div class="my-3">
+              <img
+                src="{{ 'store.jpg' | file_url }}"
+                width=""
+                height=""
+                loading="lazy"
+                alt="BOOK AN APPOINTMENT"
+                class="w-100"
+              >
+            </div>
+            <div class="w-100 mb-4 mt-3">
+              <button
+                class="d-flex align-items-center text-center appointment_box justify-content-center w-100"
+              >
+                <img
+                  src="{{ 'apnt.svg' | file_url }}"
+                  width=""
+                  height=""
+                  loading="lazy"
+                  alt="BOOK AN APPOINTMENT"
+                  class="w-100"
+                >
+                SEE IT IN PERSON
+              </button>
+            </div>
+            {% endunless %}
+
+            <ul class="single_pro_features list_style_none">
+              <li>
+                {% render 'pdp-svg-icons', icon: 'FREE Fast Shipping' %}
+                FREE Fast Shipping
+              </li>
+              <li>
+                {% render 'pdp-svg-icons', icon: 'FREE 60 Day Returns' %}
+                FREE 60 Day Returns
+              </li>
+              <li>
+                {% render 'pdp-svg-icons', icon: 'FREE Lifetime Warranty' %}
+                FREE Lifetime Warranty
+              </li>
+              {% if mf[0].category == 'Custom Engagement Rings' or  mf[0].category == "New Arrivals Engagement Rings" or  mf[0].category == 'Engagement Rings' %}
+              <li>
+                {% render 'pdp-svg-icons', icon: '365 Day Exchange' %}
+                365 Day Exchange{% if mf[0].category == "New Arrivals Engagement Rings" %}*{% endif %}
+                {% if mf[0].category == "New Arrivals Engagement Rings" %}(Natural Gemstone Jewelry not included){% endif %}
+              </li>
+              {% endif %}
+            </ul>
+            <div class="accordion-item pdpfx_accordion">
+              <h2 class="accordion-header">
+                <button type="button" class="accordion-button" aria-expanded="false">
+                  PRODUCT DETAILS
+                  <span>
+                    {% render 'pdp-svg-icons', icon: 'PRODUCT DETAILS' %}
+                  </span>
+                </button>
+              </h2>
+              <div class="accordion-body pdpfx-desc" data-product-description>
+                <p id="data-product_main-desc">{{ mf[0].description }}</p>
+                <div>
+                  <h6>GENERAL</h6>
+                  <p>
+                    <span id="data-product_stock"> <span class="text-uppercase">Stock</span> :
+                    <span class="desc-value">{{ mf[0].sku }}</span><br></span>
+                    <span id="data-product_style"><span class="text-uppercase">Style</span> :
+                    <span class="desc-value">{{ mf[0].style }}</span><br></span>
+                    <span id="data-product_designer"> <span class="text-uppercase">Designer</span> : 
+                    <span class="desc-value">{{ mf[0].collection_handle }}</span><br></span>
+                    <span id="data-product_side-stone-type"> <span class="text-uppercase">Side Stone Type</span> :
+                    <span class="desc-value">{{ mf[0].gemstone_type }}</span><br></span>
+                    <span id="data-product_gemstone_shape"><span class="text-uppercase">Gemstone Shape</span> :
+                    <span class="desc-value"> {{ mf[0].gemstone_shape }}</span><br></span>
+                    <span id="data-product_diamond_clarity"> <span class="text-uppercase">Diamond Clarity</span> :
+                    <span class="desc-value">{{ mf[0].diamond_clarity }}</span><br></span>
+                    <span id="data-product_diamond_color"><span class="text-uppercase">Diamond Color</span> :
+                    <span class="desc-value"> {{ mf[0].diamond_color }}</span><br></span>
+                    <span id="data-product_gemstone_setting"><span class="text-uppercase">Gemstone Setting</span> : 
+                    <span class="desc-value">{{ mf[0].gemstone_setting }}</span><br></span>
+                    <span id="data-product_side-diamond-caret-weight"><span class="text-uppercase">Overall Diamond Carat Weight</span> : 
+                    <span class="desc-value">{{ mf[0].diamond_carat_weight }}</span><br></span>
+                    <span id="data-product_metal-type"><span class="text-uppercase">Metal Type</span> :
+                    <span class="desc-value">{{ mf[0].metal_type }}</span><br> </span>
+                    <span id="data-product_metal-value"><span class="text-uppercase">Metal</span> : 
+                    <span class="desc-value">{{ mf[0].metal_color }}</span><br></span>
+                  </p>
+                </div>
+                <div>
+                  {% if mf[0].center_stone_quality_1 %}
+                  <h6>CENTER STONE</h6>
+                  <p class="">
+                    <span id="data-product_center-stone-quality"><span class="text-uppercase">Center Stone Quality</span>:
+                    <span class="desc-value">{{ mf[0].center_stone_quality_1 }}</span><br></span>
+                    <span id="data-product_center-stone-type"><span class="text-uppercase">Center Stone Type</span>:
+                    <span class="desc-value">{{ mf[0].gemstone_type }}</span><br></span>
+                    <span id="data-product_stone-caret-weight"><span class="text-uppercase">Center Stone Carat Weight</span>:
+                    <span class="desc-value">{{ mf[0].center_stone_carat_weight }}</span><br></span>
+                    <span id="data-product_sahpe"><span class="text-uppercase">Shape</span>: 
+                    <span class="desc-value">{{ mf[0].center_stone_shape }}</span><br></span>
+                    <span id="data-product_certificate"><span class="text-uppercase">Certification</span>: 
+                    <span class="desc-value">{{ mf[0].center_stone_certification }}</span><br></span>
+                    <span id="data-product_cut"><span class="text-uppercase">Cut</span>: 
+                    <span class="desc-value">{{ mf[0].center_stone_cut }}</span><br></span>
+                    <span id="data-product_setting"><span class="text-uppercase">Setting</span>: 
+                    <span class="desc-value">{{ mf[0].center_stone_setting }}</span><br></span>
+                    {% if mf[0].center_stone_shape_options != '' %}
+                      <span class="text-uppercase">Ring Setting Options</span>:<br>
+                      <div class="pdp-description-large-images">
+                        {% assign shape_images = mf[0].center_stone_shape_options
+                        | split: ','
+                        %}
+
+                        {% for shape in shape_images %}
+                          {% assign shape_name = shape | replace: 'Elongated cushion', 'Long Cushion'%}
+                          <img
+                            id="data-product-img-{{shape}}"
+                            src="{{ shape | replace: ' ', '-'| replace: ' ', '-' | downcase | append: '.svg'  | file_url }}"
+                            alt="{{ shape }}"
+                            width=""
+                            height=""
+                            loading="lazy"
+                          >
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </p>
+                 {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    {%- if mf == blank and product.url contains '-grp' -%}
+      window.location.href = "{{ product.url | split: '-grp' | first}}";
+    {%- endif -%}
+    window.PDP_ALL_SKUS = [];
+    window.PDP_ALL_SKUS_RAW = [];
+    window.PDP_ITEMS = [];
+    window.PDP_ALL_SKUS = window.PDP_ALL_SKUS.concat({{ mf | json }});
+    window.PDP_ALL_SKUS_RAW.push({{ mf | json }});
+    window.PRODUCT_VARIANTS = {{ product.variants | json }};
+    window.COLLECTION_HANDLES = {{ product.collections | map:'handle' | json }};
+    window.OPTION_MAP = {{ product.metafields.custom.option_map.value | json }};
+    window.PDP_ITEMS = window.PDP_ITEMS.concat(window.PDP_ALL_SKUS);
+    window.current = window.PDP_ITEMS[0];
+    window.SKU_TO_VARIANT = {{ product.metafields.custom.sku_to_variant.value | json }};
+    window.imagesPdp = {
+      RedRuby: "{{ 'RedRuby.png' | file_url }}",
+      RedRubyTitle: "Red Ruby",
+      GreenEmerald: "{{ 'GreenEmerald.png'  | file_url }}",
+      GreenEmeraldTitle: "Green Emerald",
+      BlueSapphire: "{{ 'BlueSapphire.webp' | file_url }}",
+      BlueSapphireTitle: "Blue Sapphire",
+      Amethyst: "{{ 'Amethyst.svg' | file_url }}",
+      Sapphire: "{{ 'BlueSapphire.svg' | file_url }}",
+      Emerald: "{{ 'GreenEmerald.png'  | file_url }}",
+      Aquamarine: "{{ 'Aquamarine.svg'  | file_url }}",
+      BlackDiamond: "{{ 'BlackDiamond.svg' | file_url }}",
+      Ruby: "{{ 'RedRuby.png' | file_url }}",
+      LabGrownDiamond: "{{ 'LabGrownDiamond.svg' | file_url }}"
+    };
+    window.ProductExtraDeatils = {
+      PRODUCT_TITLE_FB: "{{ product.title | strip | escape }}",
+      PRODUCT_DESC_FB: "{{ product.description | strip_html | strip_newlines | truncate: 160 | escape }}",
+      PRODUCT_TAGS_FB: "{{ product.tags | join: ', ' | escape }}",
+      baseTitle: '{{ product.title | escape }}',
+      PROD_URL: "{{ shop.url }}{{ product.url }}",
+    }
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const shareLi = document.querySelector('.share-toggle');
+      if (!shareLi) return;
+
+      const iconBox = shareLi.querySelector('.socialmediaIconBox');
+      const buttons = iconBox.querySelectorAll('button');
+
+      // 🔐 LOCK URL ON PAGE LOAD (THIS FIXES BLANK WINDOW ISSUE)
+      const PAGE_URL = encodeURIComponent(
+        document.querySelector('link[rel="canonical"]')?.href || window.location.href
+      );
+
+      /* ---------------- TOGGLE SHARE BOX ---------------- */
+      shareLi.addEventListener('click', function (e) {
+        shareLi.classList.toggle('active');
+        if (e.target.closest('button')) return;
+        iconBox.classList.toggle('active');
+      });
+
+      /* ---------------- SHARE HANDLERS ---------------- */
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          let shareUrl = '';
+
+          switch (btn.getAttribute('data-share')) {
+            case 'facebook':
+              shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + PAGE_URL;
+              break;
+
+            case 'twitter':
+              shareUrl = 'https://twitter.com/intent/tweet?url=' + PAGE_URL;
+              break;
+
+            case 'pinterest':
+              shareUrl = 'https://pinterest.com/pin/create/button/?url=' + PAGE_URL;
+              break;
+
+            case 'email':
+              shareUrl = 'mailto:?subject=Check this out&body=' + PAGE_URL;
+              break;
+              
+          }
+          if (!shareUrl) return;
+         
+          
+
+          window.open(shareUrl, '_blank', 'noopener,noreferrer,width=600,height=500');
+
+          // Optional: auto close after click
+          iconBox.classList.remove('active');
+          shareLi.classList.remove('active');
+        });
+      });
+
+      /* ---------------- CLICK OUTSIDE CLOSE ---------------- */
+      document.addEventListener('click', function (e) {
+        if (!shareLi.contains(e.target)) {
+          iconBox.classList.remove('active');
+          shareLi.classList.remove('active');
+        }
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal_outer = document.querySelector('.modal-backdrop');
+
+      const send_hint_btn = document.querySelector('.send_hint_btn');
+      const send_hint_modal = document.querySelector('.send_hint.main.modal');
+
+      const appointment_btn = document.querySelector('.appointment_box');
+      const appointment_modal = document.querySelector('.BookAppointment_modal.modal');
+
+      const close_buttons = document.querySelectorAll('.sent-hint-close');
+
+      // -------- OPEN SEND HINT MODAL --------
+      if (send_hint_btn && send_hint_modal) {
+        send_hint_btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          modal_outer.classList.add('show');
+          send_hint_modal.classList.add('show');
+        });
+      }
+
+      // -------- OPEN APPOINTMENT MODAL --------
+    if (appointment_btn && appointment_modal) {
+
+        appointment_btn.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          // Open modal
+          modal_outer.classList.add('show');
+          appointment_modal.classList.add('show');
+
+          // Get current URL
+          var currentUrl = window.location.href;
+
+          // Set URL inside .additional_note
+          var noteField = appointment_modal.querySelector('.additional_note');
+
+          if (noteField) {
+            if (noteField.tagName === 'INPUT' || noteField.tagName === 'TEXTAREA') {
+              noteField.value = currentUrl;
+            } else {
+              noteField.textContent = currentUrl;
+            }
+          }
+        });
+
+      }
+
+
+      // -------- CLOSE MODALS --------
+      close_buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          modal_outer.classList.remove('show');
+
+          send_hint_modal?.classList.remove('show');
+          appointment_modal?.classList.remove('show');
+        });
+      });
+
+      // -------- CLICK BACKDROP TO CLOSE --------
+      if (modal_outer) {
+        modal_outer.addEventListener('click', function () {
+          modal_outer.classList.remove('show');
+
+          send_hint_modal?.classList.remove('show');
+          appointment_modal?.classList.remove('show');
+        });
+      }
+    });
+  </script>
+
+  {% comment %}
+    <script id="option-map-json" type="application/json">
+      {{ om.value | default: om | strip }}
+    </script>
+  {% endcomment %}
+  <script src="{{ 'product-custom-old.js' | asset_url }}" defer="defer"></script>
+
+  {% assign offers_mf = mf %}
+  {% capture offers_json %}
+  
+  {% if mf and mf != blank and mf.size > 0 %}
+    {% assign first = true %}
+    {% for r in offers_mf %}
+      {% assign sku = r.sku | default: r.SKU | default: r.variant_sku | default: r.sku_code | default: r.id %}
+      {% if sku != blank %}
+        {% assign price_raw = r.sale_price | default: r.current_price | default: r.variant_price | default: r.price | default: r.price_cents %}
+        {% assign p = price_raw | append: '' | replace:',','' | replace:'₹','' | replace:'$','' | replace:'USD','' | strip %}
+        {% if p != blank and p != '0' %}
+          {% assign inv_num = r.inventory | default: r.quantity | default: 0 | plus: 0 %}
+          {% assign in_stock = r.in_stock | default: r.available | default: false %}
+          {% if in_stock or inv_num > 0 %}
+            {% assign availability_str = 'InStock' %}
+          {% else %}
+            {% assign availability_str = 'OutOfStock' %}
+          {% endif %}
+
+          {% unless first %},{% endunless %}
+          {
+            "@type":"Offer",
+            "sku":"{{ sku | escape }}",
+            "url":"{{ shop.url }}{{ product.url | append: '?sku=' | append: sku }}",
+            "priceCurrency":"{{ shop.currency }}",
+            "price":"{{ p }}",
+            "availability":"http://schema.org/{{ availability_str }}"
+          }
+          {% assign first = false %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% assign first = true %}
+    {% for v in product.variants %}
+      {% unless v.sku == blank %}
+        {% unless first %},{% endunless %}
+        {
+          "@type":"Offer",
+          "sku":"{{ v.sku | escape }}",
+          "url":"{{ shop.url }}{{ v.url }}",
+          "priceCurrency":"{{ shop.currency }}",
+          "price":"{{ v.price | money_without_currency | replace:',','' }}",
+          "availability":"http://schema.org/{% if v.available %}InStock{% else %}OutOfStock{% endif %}"
+        }
+        {% assign first = false %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+  
+  {% endcapture %}
+  <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Product",
+      "name":"{{ product.title | escape }}",
+      "description":"{{ product.description | strip_html | truncate: 500 | escape }}",
+      "brand":{"@type":"Brand","name":"{{ product.vendor | default: shop.name | escape }}"},
+      "sku":"{{ product.selected_or_first_available_variant.sku | escape }}",
+      "image":["{{ shop.url }}{{ product.featured_image | image_url: width:1200 }}"],
+      "url":"{{ shop.url }}{{ product.url }}",
+      "offers": {{ offers_json | strip }}
+    }
+    {
+      "@context":"https://schema.org",
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        { "@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}"}
+        {% if collection %}
+        ,{ "@type":"ListItem","position":2,"name":"{{ collection.title | escape }}","item":"{{ shop.url }}{{ collection.url }}"}
+        ,{ "@type":"ListItem","position":3,"name":"{{ product.title | escape }}","item":"{{ shop.url }}{{ product.url }}"}
+        {% else %}
+        ,{ "@type":"ListItem","position":2,"name":"{{ product.title | escape }}","item":"{{ shop.url }}{{ product.url }}"}
+        {% endif %}
+      ]
+    }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "PDP Filters (Split UI)",
+  "settings": [],
+  "presets": [{ "name": "PDP Filters (Split UI)" }]
+}
+{% endschema %}
+
+<script>
+(function () {
+  function initCustomInquiryForm(scope) {
+    const form = (scope || document).querySelector("#customInquiryForm");
+    if (!form || form.dataset.bound === "true") return;
+
+    form.dataset.bound = "true";
+
+    const submitBtn = form.querySelector("#customInquirySubmitBtn");
+    const messageBox = form.querySelector("#customInquiryFormMessage");
+
+    function showMessage(text, type) {
+      if (!messageBox) return;
+      messageBox.style.display = "block";
+      messageBox.textContent = text;
+      messageBox.className = "form-message " + type;
+    }
+
+    function clearMessage() {
+      if (!messageBox) return;
+      messageBox.style.display = "none";
+      messageBox.textContent = "";
+      messageBox.className = "form-message";
+    }
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      clearMessage();
+
+      if (submitBtn && submitBtn.disabled) return false;
+
+      const fd = new FormData(form);
+
+      const payload = {
+        inquiryType: "custom_inquiry",
+        firstName: fd.get("firstName"),
+        lastName: fd.get("lastName"),
+        email: fd.get("email"),
+        phone: fd.get("phone"),
+        comment: fd.get("comment") || "",
+        location: fd.get("location"),
+        date: fd.get("date") || "",
+        time: fd.get("time") || ""
+      };
+
+      if (
+        !payload.firstName ||
+        !payload.lastName ||
+        !payload.email ||
+        !payload.phone ||
+        !payload.location
+      ) {
+        showMessage("Please fill all required fields.", "error");
+        return false;
+      }
+
+      try {
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting...";
+        }
+
+        const response = await fetch("/apps/custom-forms/custom-inquiry", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showMessage("Your custom inquiry has been submitted successfully.", "success");
+          form.reset();
+        } else {
+          showMessage(result.message || "Something went wrong. Please try again.", "error");
+        }
+      } catch (error) {
+        console.error("Custom inquiry submit error:", error);
+        showMessage("Unable to submit the form right now. Please try again later.", "error");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Schedule";
+        }
+      }
+
+      return false;
+    }
+
+    form.addEventListener("submit", handleSubmit, true);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initCustomInquiryForm(document);
+  });
+
+  document.addEventListener("shopify:section:load", function (event) {
+    initCustomInquiryForm(event.target);
+  });
+})();
+</script>
+
+<script>
+  {% comment %} $(document).ready(function () {
+    setTimeout(function () {
+      var $gallery = $('#pdpfx-gallery');
+
+      console.log('gallery found:', $gallery.length);
+
+      if (!$gallery.length) return;
+
+      if (window.innerWidth < 991) {
+        $gallery.addClass('owl-carousel');
+
+        $gallery.owlCarousel({
+          items: 1,
+          loop: true,
+          dots: true,
+          nav: false
+        });
+      }
+    }, 100); // delay is IMPORTANT
+  }); {% endcomment %}
+</script>
+<script>
+  const tooltip = document.createElement('div');
+tooltip.id = 'custom-tooltip';
+document.body.appendChild(tooltip);
+
+document.querySelectorAll('.diamond-shapes .pdpfx-btn img').forEach(img => {
+
+  img.addEventListener('mouseenter', () => {
+    const parentBtn = img.closest('.pdpfx-btn');
+
+    if (parentBtn.classList.contains('active')) return;
+
+    const rect = img.getBoundingClientRect();
+
+    tooltip.textContent = img.dataset.tooltip || img.title;
+
+    tooltip.style.top = (rect.top - 30) + 'px';
+    tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+
+    tooltip.classList.add('show');
+  });
+
+  img.addEventListener('mouseleave', () => {
+    tooltip.classList.remove('show');
+  });
+
+});
+</script>
+

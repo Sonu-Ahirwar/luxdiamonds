@@ -1,0 +1,393 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "hero_ccLT9h": {
+      "type": "hero",
+      "name": "t:names.hero",
+      "settings": {
+        "hero_banner_class": "",
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/Fall_Band_Event_Homepage_Banner_-_Desktop.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": true,
+        "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/Fall_Band_Event_Top_Banner_-_Mobile.png",
+        "media_type_2_mobile": "image",
+        "btn_text": "",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "1773117628caaa1fcf": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ce7409e_A9XymQ": {
+          "type": "ai_gen_block_ce7409e",
+          "settings": {
+            "image": "shopify://shop_images/discount_fe66dca3-f0f2-4af7-8dfd-c84987c31d53.webp",
+            "heading": "",
+            "text": "<p>Receive a special discount on every</p><p>wedding band purchased at the event.*<br/><br/></p><p>One lucky client will win <strong>$500 off</strong>!<br/><br/></p><p><em><strong>+</strong></em><em> A chance to </em><em><strong>win fun prizes</strong></em><em> including</em><em><strong> lab grown diamond studs, gift certificates toward fashion jewelry + fun swag!<br/><br/></strong></em></p><p><em>*Wedding band must be $300 or more (before tax) to receive special discount. Some restrictions may apply.</em></p>",
+            "button_text": "",
+            "button_link": "",
+            "text_alignment": "center",
+            "layout": "image_first",
+            "vertical_alignment": "center",
+            "desktop_width_percent": 100,
+            "gap": 40,
+            "text_padding": 0,
+            "heading_size": 32,
+            "heading_spacing": 20,
+            "text_size": 20,
+            "heading_color": "#395754",
+            "text_color": "#b27070",
+            "button_spacing": 20,
+            "button_bg_color": "#ffffff",
+            "button_text_color": "#305854",
+            "button_border_color": "#728080",
+            "button_hover_bg_color": "#383838",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#383838"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ce7409e_A9XymQ"
+      ],
+      "custom_css": [
+        ".ai-image-text-text-azfhhqwfjbhd3r0djnaigenblockce7409ea9xymq {color: #b27070;}",
+        "@media (max-width: 767px) {.text-block > *:last-child {white-space: normal; word-break: break-word; text-align: center; font-size: 20px; }}"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_R96FE9": {
+      "type": "section",
+      "blocks": {
+        "text_wTRyLK": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Schedule an Appointment</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.5rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_wTRyLK"
+      ],
+      "custom_css": [
+        "@media (max-width: 767px) {h2 {white-space: normal; word-break: break-word; text-align: center; font-size: 20px; }}"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "custom_class": "",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "appointment_form_gHNADM": {
+      "type": "appointment-form",
+      "name": "Appointment Form",
+      "settings": {}
+    },
+    "section_GaAtnR": {
+      "type": "section",
+      "blocks": {
+        "text_UMU7Rm": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>SHOP WEDDING BANDS</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.5rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_eVEUUg": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-4",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "button_Yffc4W": {
+              "type": "button",
+              "name": "t:names.button",
+              "settings": {
+                "label": "WOMEN'S WEDDING BANDS",
+                "link": "shopify://collections/womens-wedding-bands",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            },
+            "button_cQn7Uz": {
+              "type": "button",
+              "name": "t:names.button",
+              "settings": {
+                "label": "MEN'S WEDDING BANDS",
+                "link": "https://daywdd.myshopify.com/collections/mens-wedding-bands",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "button_Yffc4W",
+            "button_cQn7Uz"
+          ]
+        }
+      },
+      "block_order": [
+        "text_UMU7Rm",
+        "group_eVEUUg"
+      ],
+      "custom_css": [
+        ".custom_top_section {background: #f9f7f5; margin-bottom: 30px;}",
+        ".custom_top_section a.button {margin: 50px 80px 0;}",
+        ".custom_top_section a.button {height: 55px; min-width: 370px; border-radius: 5px;}",
+        "@media (min-width: 750px) and (max-width: 1180px) {.custom_top_section a.button {margin: 20px 20px 0; }}",
+        "@media (max-width: 749px) {.custom_top_section a.button {margin: 20px 0 0; width: 100%; min-width: 320px; flex: auto; }}"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "custom_class": "custom_top_section",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5d6623b3-4586-4393-8973-333cce0f64c6",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_ccLT9h",
+    "1773117628caaa1fcf",
+    "section_R96FE9",
+    "appointment_form_gHNADM",
+    "section_GaAtnR"
+  ]
+}

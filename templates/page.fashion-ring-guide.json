@@ -1,0 +1,418 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "custom_common_hero_fJMUjD": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "FashionRingGuide_banner",
+        "image": "shopify://shop_images/fashionRingBanner.png",
+        "section_width": "full-width",
+        "title": "<h1>Must-Have Fashion Rings To Always Make A Statement</h1>",
+        "subtitle": "",
+        "description": "<p>Rings are powerful accessories that dress up any outfit on any occasion, making them staple pieces everyone should have in their jewelry boxes. In fact, these versatile jewelry pieces are so indispensable that many of us never leave the house without a couple of rings on our fingers.</p><p>So, to make sure you always have the perfect rings to top off your outfits, let’s explore the most iconic ring styles you need in your collection.</p>",
+        "bg_color": "#f9f7f5",
+        "padding_top": 110,
+        "padding_bottom": 80,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    },
+    "section_wP3zJz": {
+      "type": "section",
+      "blocks": {
+        "group_QTcWzW": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-5d6623b3-4586-4393-8973-333cce0f64c6",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 50,
+            "padding-block-end": 50,
+            "padding-inline-start": 50,
+            "padding-inline-end": 50
+          },
+          "blocks": {
+            "text_RbHmat": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>What is a fashion ring?</h2>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "h2",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_gqDWgq": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Unlike engagement rings, wedding bands, class rings, and any other designs that have a particular meaning behind them, fashion rings don’t necessarily carry any symbolic significance. You wear these beautiful pieces simply to express your unique personal style and elevate your outfits.</p><p>From dainty stackable bands to lavish oversized diamond rings, fashion rings come in a wide range of designs to suit every taste and style. That’s what’s so great about them - you can always find the perfect fashion rings for you, no matter what you’re looking for!</p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_RbHmat",
+            "text_gqDWgq"
+          ]
+        },
+        "group_eiitfM": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-b946701a-8ff2-4abe-be08-bb66256b23c6",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 50,
+            "padding-block-end": 50,
+            "padding-inline-start": 50,
+            "padding-inline-end": 50
+          },
+          "blocks": {
+            "text_yEtjAL": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>How to wear fashion rings</h2>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_h4X7Nf": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>There really isn’t a right or wrong way to wear fashion rings. So, the way you choose to style your rings is completely up to you. However, a great tip is to always take into consideration the other accessories you’re wearing to create a cohesive look.</p><p>Don’t be afraid to wear more than one fashion ring at a time or to mix metals and styles. You can mix and match rings of different metal colors, pair minimalist designs with statement rings, or even stack several dainty rings on top of each other to give the illusion of being a single oversized ring - the sky’s the limit.</p><p>And, if you’re wondering whether you can wear fashion rings on your wedding finger, the truth is that it all boils down to personal preference. Some people choose not to do that for superstitious reasons, others don’t wear fashion rings on their ring finger because they don’t want people to think they’re engaged, and there are people who don’t mind any of that. There are no set rules, so just go with what’s best for you.</p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_yEtjAL",
+            "text_h4X7Nf"
+          ]
+        }
+      },
+      "block_order": [
+        "group_QTcWzW",
+        "group_eiitfM"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "custom_class": "FashionRingGuidePage_sec2",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 100,
+        "padding-block-end": 100
+      }
+    },
+    "multiple_text_with_image_VGPgd8": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_pRGzQH": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/fashionRing-1.jpg",
+            "image_position": "left",
+            "title": "Gold fashion rings",
+            "title_url": "shopify://collections/fashion-rings",
+            "description": "<p>Whether you prefer yellow, white, or rose gold fashion rings, the truth is that gold rings are simply timeless. Not to mention, with three different gold shades to choose from, your design options are virtually endless. And, the best part is that you can mix and match rings of all three gold colors to create a fun and unique combo.</p>",
+            "content_width": 50
+          }
+        },
+        "item_QMDLcH": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/fashionRing-2.jpg",
+            "image_position": "left",
+            "title": "Diamond rings",
+            "title_url": "shopify://collections/fashion-rings",
+            "description": "<p>Don’t think for a second that diamond rings are exclusive to engagements. On the contrary, actually! After all, these stunning rings were worn as fashion accessories long before they became the iconic symbol of eternal love we associate with them today. From dainty stackable bands to oversized designs, diamond fashion rings are the perfect pieces to add some glitz and glam to any outfit and make quite the statement.</p>",
+            "content_width": 50
+          }
+        },
+        "item_QPiijw": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/fashionRing-3.jpg",
+            "image_position": "left",
+            "title": "Gemstone rings",
+            "title_url": "shopify://collections/fashion-rings",
+            "description": "<p>Sure, precious gemstones are incredibly elegant, but they’re much more than that. They’re a great way for you to add a pop of color and a touch of fun to any outfit, no matter the occasion. If you love to make a statement with eye-catching pieces, then bold cocktail rings are the perfect accessories for you. But, if you prefer daintier jewelry, opt for gemstone stackable bands to create minimalist-yet-colorful looks.</p>",
+            "content_width": 50
+          }
+        },
+        "item_Hdiicd": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/fashionRing-4.jpg",
+            "image_position": "left",
+            "title": "Stackable bands",
+            "title_url": "shopify://collections/fashion-rings",
+            "description": "<p>Speaking of stackable bands, these rings are the best accessories for you to express your personal style because you get to create unique ring combinations with them. Whether you prefer to stack them on top of each other or wear each ring on one finger, you get to use your creativity to mix and match stackable bands of different styles, widths, and metals to create something that’s entirely your own.</p>",
+            "content_width": 50
+          }
+        },
+        "item_yihAx4": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/fashionRing-5.jpg",
+            "image_position": "left",
+            "title": "Cocktail rings",
+            "title_url": "shopify://collections/fashion-rings",
+            "description": "<p>Cocktail rings are must-have statement pieces as they take any outfit from plain to drop-dead gorgeous. Even though these bold statement rings were initially intended to be worn at night - while you’re having a cocktail at a party - more and more people have been incorporating these beautiful rings into their everyday style. So, if you feel like wearing them as everyday accessories, go for it. You won’t regret it!</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_pRGzQH",
+        "item_QMDLcH",
+        "item_QPiijw",
+        "item_Hdiicd",
+        "item_yihAx4"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "FashionRingGuidePage_sec3",
+        "section_heading": "Lab-grown diamond jewelry",
+        "section_description": "",
+        "heading_size": 25,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "page_width": 1320,
+        "show_footer_info": true,
+        "share_label": "Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/7wbdoos8ln",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding Day - Engagement Rings: https://marketing.smartagesolutions.com/7wbdoos8ln"
+      }
+    },
+    "custom_common_hero_UUrKKj": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "FashionRingGuidePage_sec4",
+        "image": "shopify://shop_images/fashionRingBanner.jpg",
+        "section_width": "full-width",
+        "title": "<h2>Where to buy fashion rings in Minnesota?</h2>",
+        "subtitle": "",
+        "description": "<p>Wedding Day Diamonds’ showroom is brimming with fashion rings that you’ll love so much, you’ll never want to take them off.</p><p>Our curated selection of unique fashion rings includes beautiful designs of every style, from minimalist to lavish - all created by renowned designers like Gabriel and Co. and Lafonn, as well as our exclusive designs, which you can only find at Wedding Day Diamonds.</p><p>Visit one of our <a href=\"/pages/showroom\" target=\"_blank\" title=\"Showroom\">nine locations in Minnesota</a>, or call us at 1-866-740-RING. And don’t forget to follow us on <a href=\"https://www.instagram.com/weddingdaydiamonds/\" target=\"_blank\">Instagram</a> and <a href=\"https://www.facebook.com/WeddingDayDiamondsMN/\" target=\"_blank\">Facebook</a> for our latest news and stunning jewelry inspiration!</p>",
+        "bg_color": "#f9f7f5",
+        "padding_top": 110,
+        "padding_bottom": 100,
+        "title_size": 30,
+        "page_width": 1400
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_common_hero_fJMUjD",
+    "section_wP3zJz",
+    "multiple_text_with_image_VGPgd8",
+    "custom_common_hero_UUrKKj"
+  ]
+}

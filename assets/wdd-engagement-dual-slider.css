@@ -1,0 +1,121 @@
+/* WDD Engagement dual price slider - standalone, Shopify-safe CSS */
+.wdd-price-filter--range {
+  padding: 18px 28px 24px;
+  min-width: 320px;
+  background: #fff;
+}
+
+.wdd-price-values {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 34px;
+  color: #315f59;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.wdd-dual-range {
+  position: relative;
+  height: 46px;
+  margin: 0 0 4px;
+}
+
+.wdd-dual-range__track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 7px;
+  border-radius: 999px;
+  background: #d9e2df;
+  transform: translateY(-50%);
+  overflow: hidden;
+}
+
+.wdd-dual-range__track::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--price-left, 0%);
+  right: calc(100% - var(--price-right, 100%));
+  border-radius: 999px;
+  background: #315f59;
+  transition: left 180ms ease, right 180ms ease;
+}
+
+.wdd-dual-range__input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 46px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.wdd-dual-range__input--min { z-index: 4; }
+.wdd-dual-range__input--max { z-index: 3; }
+
+.wdd-dual-range__input::-webkit-slider-runnable-track {
+  height: 7px;
+  background: transparent;
+  border: 0;
+}
+
+.wdd-dual-range__input::-webkit-slider-thumb {
+  width: 31px;
+  height: 31px;
+  border: 4px solid #315f59;
+  border-radius: 50%;
+  background: #fff;
+  cursor: grab;
+  pointer-events: auto;
+  box-shadow: 0 8px 22px rgba(49,95,89,.28);
+  appearance: none;
+  -webkit-appearance: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  margin-top: -12px;
+}
+
+.wdd-dual-range__input::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.08);
+  box-shadow: 0 10px 28px rgba(49,95,89,.36);
+}
+
+.wdd-dual-range__input::-moz-range-track {
+  height: 7px;
+  background: transparent;
+  border: 0;
+}
+
+.wdd-dual-range__input::-moz-range-thumb {
+  width: 31px;
+  height: 31px;
+  border: 4px solid #315f59;
+  border-radius: 50%;
+  background: #fff;
+  cursor: grab;
+  pointer-events: auto;
+  box-shadow: 0 8px 22px rgba(49,95,89,.28);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.wdd-dual-range__input::-moz-range-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.08);
+  box-shadow: 0 10px 28px rgba(49,95,89,.36);
+}
+
+.wdd-price-filter--range [data-price-apply] {
+  display: none !important;
+}

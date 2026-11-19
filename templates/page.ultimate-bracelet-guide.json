@@ -1,0 +1,582 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "section_DmJYTh": {
+      "type": "section",
+      "blocks": {
+        "text_GFJBfj": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h1>Must-Have Bracelets Every<br/>Timeless Jewelry Collection Needs</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-heading--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_K7KFM4": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>From minimalist bangles to lavish diamond tennis bracelets, bracelets are must-have pieces in every jewelry collection.</p><p>After all, adding a couple of bracelets to your outfits is all it takes to make even the most casual look feel incredibly stylish.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_GFJBfj",
+        "text_K7KFM4"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "UltimateBraceletGuide_Banner",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5d6623b3-4586-4393-8973-333cce0f64c6",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": true,
+        "overlay_color": "#f9f7f5",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 85,
+        "padding-block-end": 95
+      }
+    },
+    "section_gH6WXU": {
+      "type": "section",
+      "blocks": {
+        "text_AfUxRg": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>But with so many beautiful designs to choose from, it can be hard to pick the right bracelets for you to have in your jewelry box. Don’t worry, though - we’ve got you covered. From minimalist chains to oversized bangles, here are some must-have bracelet styles that will never go out of style.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 30,
+            "padding-block-end": 30,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_AfUxRg"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "lab_grow_page_section2",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    },
+    "section_WwRFDi": {
+      "type": "section",
+      "blocks": {
+        "group_AfYxtC": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-5",
+            "background_media": "image",
+            "video_position": "cover",
+            "background_image": "shopify://shop_images/versatile-brac.jpg",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "hero-apparel-2",
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
+          },
+          "blocks": {}
+        },
+        "group_EHFQjK": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 20,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-5",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": true,
+            "overlay_color": "#f9f7f8",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "hero-apparel-1",
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
+          },
+          "blocks": {
+            "text_mDGwUr": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>Versatile bracelets that never go out of style</h2>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "balance",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_PGrK6r": {
+              "type": "text",
+              "settings": {
+                "text": "<p>If you want the bracelets in your jewelry collection to pair well with everything in your closet and be the perfect accessories for years to come, you need to invest in designs that are always in style.</p><p>To help you narrow down your options and build the ultimate bracelet collection that will stand the test, here are some of the most timeless bracelet designs that are perfect for every occasion.</p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_mDGwUr",
+            "text_PGrK6r"
+          ]
+        }
+      },
+      "block_order": [
+        "group_AfYxtC",
+        "group_EHFQjK"
+      ],
+      "name": "t:names.split_showcase",
+      "settings": {
+        "custom_class": "UltimateBraceletGuidePage_sec3",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 30,
+        "padding-block-end": 50
+      }
+    },
+    "multiple_text_with_image_DFzq4D": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_bt4mE3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ulti-1.jpg",
+            "image_position": "right",
+            "title": "Tennis Bracelets",
+            "title_url": "",
+            "description": "<p>Arguably the most iconic bracelet design of all time, these timeless statement pieces are must-have accessories. <a href=\"/collections/bracelets/Tennis\" title=\"/collections/bracelets/Tennis\">Diamond tennis bracelets</a> instantly add a touch of elegance to any outfit, and you can wear them with anything from jeans to gowns.</p><p>Not to mention, these beautiful accessories pair well with every piece in your jewelry box. No matter the occasion, tennis bracelets are always the perfect accessories.</p>",
+            "content_width": 50
+          }
+        },
+        "item_NQqpM6": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ulti-2.jpg",
+            "image_position": "left",
+            "title": "Diamond Bracelets",
+            "title_url": "",
+            "description": "<p>Although tennis bracelets have almost become synonymous with <a href=\"/collections/bracelets?grid-mobile=default&filter.p.m.custom.style=Diamond&filter.v.price.gte=0&filter.v.price.lte=29995&sort_by=manual\" title=\"/collections/bracelets?grid-mobile=default&filter.p.m.custom.style=Diamond&filter.v.price.gte=0&filter.v.price.lte=29995&sort_by=manual\">diamond bracelets</a> as a whole, there are countless other diamond bracelet designs for you to choose from besides the iconic tennis bracelet.</p><p>So, if you want to mix things up in your jewelry box, create a timeless collection of diamond bracelets with unique designs, such as diamond cuffs, bangles, and station bracelets.</p>",
+            "content_width": 50
+          }
+        },
+        "item_6wjULK": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ulti-3.jpg",
+            "image_position": "right",
+            "title": "Chain Bracelets",
+            "title_url": "",
+            "description": "<p><a href=\"/collections/bracelets\" title=\"/collections/bracelets\">Chain bracelets</a> are essential pieces in any jewelry collection - and it’s easy to see why. These versatile bracelets are always in vogue, and instantly make any outfit look incredibly stylish.</p><p>You can wear a dainty chain link for a minimalist look, stick to a single oversized chain bracelet as the focal eye-catching accessory, or layer bracelets of different widths and precious metals for the ultimate fashion statement.</p>",
+            "content_width": 50
+          }
+        },
+        "item_LzYdCQ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ulti-4.jpg",
+            "image_position": "left",
+            "title": "Bangles",
+            "title_url": "",
+            "description": "<p>Whether you prefer bold or delicate <a href=\"/collections/bracelets\" title=\"/collections/bracelets\">bangles</a>, there’s no denying that these solid bracelets always pack a punch. Designs can vary from minimalist to extravagant, so, no matter the occasion, there’s always the perfect bangle for it.</p><p>Whether you prefer to wear your bangles stacked or by themselves, you just can’t go wrong with these beautiful bracelets.</p>",
+            "content_width": 50
+          }
+        },
+        "item_8WTAtP": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ulti-5.jpg",
+            "image_position": "right",
+            "title": "Gold Bracelets",
+            "title_url": "",
+            "description": "<p>No matter which bracelet design has your heart, the truth is that <a href=\"/collections/bracelets\" title=\"/collections/bracelets\">gold bracelets</a> are simply timeless. Whether you prefer gold chain bracelets, bangles, diamond bracelets, or any other design, you just can never go wrong with gold bracelets.</p><p>From bold designs to minimalist styles, these bracelets are all you need to add the perfect finishing touches to any outfit.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_bt4mE3",
+        "item_NQqpM6",
+        "item_6wjULK",
+        "item_LzYdCQ",
+        "item_8WTAtP"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "UltimateBraceletGuidePage_sec4",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 30,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "page_width": 1320,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    },
+    "bracelets_styles_LrLbaG": {
+      "type": "bracelets-styles",
+      "blocks": {
+        "text_block_XEYDLg": {
+          "type": "text_block",
+          "settings": {
+            "heading": "Stick to a metal, but mix styles",
+            "text": "<p>An easy way of creating a harmonious bracelet stack is to opt for a single precious metal and make a statement by layering bangles, chains, diamond bracelets, and more. No matter which designs you choose, just make sure to stick to the same metal color and let your creativity run wild.</p>"
+          }
+        },
+        "text_block_HrMFVF": {
+          "type": "text_block",
+          "settings": {
+            "heading": "Stick to a design, but mix metals",
+            "text": "<p>If you prefer, you can also go in the opposite direction and layer multiple bracelets of the same style, but in different metal colors. You can stack three bangles, one in each shade of gold; wear a yellow gold tennis bracelet with a platinum one, or mix chain links of different widths, patterns, and precious metals. The sky’s the limit.</p>"
+          }
+        },
+        "text_block_gEf8aU": {
+          "type": "text_block",
+          "settings": {
+            "heading": "Stick to an aesthetic",
+            "text": "<p>Another option is to mix and match different metals and styles. In this case, you have to make sure the bracelets should have something in common between them, so your stack looks cohesive. You can wear a tennis bracelet with a diamond bangle or go for different bracelets that feature the same gemstone. Your options are endless.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_XEYDLg",
+        "text_block_HrMFVF",
+        "text_block_gEf8aU"
+      ],
+      "name": "Bracelet Styles Guide",
+      "settings": {
+        "custom_class": "",
+        "title": "How to style your bracelets",
+        "description": "<p>Bracelets stacks have been all the rage lately and, although we’ve been looking into timeless bracelet designs, sometimes it’s fun to mix things up a little and try out a new trend. So, if you want to hop on the bracelet stack trend, here are some expert tips on how to stack your bracelets like a pro.</p>",
+        "image": "shopify://shop_images/ultimate-abnm.jpg",
+        "image_position": "right"
+      }
+    },
+    "multiple_text_with_image_BfjzcC": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_dxMAUb": {
+          "type": "item",
+          "settings": {
+            "image_position": "right",
+            "title": "",
+            "title_url": "",
+            "description": "",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_dxMAUb"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 24,
+        "padding_top": 0,
+        "padding_bottom": 40,
+        "page_width": 1320,
+        "show_footer_info": true,
+        "share_label": "Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/rip6gm77wu",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding%20Day%20-%20Fashion%20Jewelry:%20https://marketing.smartagesolutions.com/rip6gm77wu"
+      }
+    },
+    "custom_common_hero_whBBrw": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "LabGrown_HeroBottom_section",
+        "image": "shopify://shop_images/banDownImg.jpg",
+        "section_width": "full-width",
+        "title": "<h2>Where to buy lab-grown diamonds in Minnesota?</h2>",
+        "subtitle": "",
+        "description": "<p>Wedding Day Diamonds is your go-to jewelry store for the best lab-grown diamonds in Minnesota. Here, you’ll find everything from timeless diamond studs to trendy diamond station necklaces and stunning lab-grown diamond engagement rings.</p><p>Visit one of our <a href=\"/pages/showroom\" target=\"_blank\" title=\"Showroom\">nine locations in Minnesota</a>, or call us at 1-866-740-RING. And don’t forget to follow us on <a href=\"https://www.instagram.com/weddingdaydiamonds/\" target=\"_blank\">Instagram</a> and <a href=\"https://www.facebook.com/WeddingDayDiamondsMN/\" target=\"_blank\">Facebook</a> for our latest news and stunning jewelry inspiration!</p>",
+        "bg_color": "#f4f4f4",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    },
+    "custom_img_txt2_qHQhrX": {
+      "type": "custom-ImgTxt2",
+      "name": "Image + Rich Text",
+      "settings": {
+        "custom_class": "",
+        "image": "shopify://shop_images/round-ultimate.jpg",
+        "text": "<p>Visit us today at our nine locations in Minnesota. <a href=\"/pages/showroom\" target=\"_blank\" title=\"Showroom\">Find our nearest store</a> here, or call us at 1-866-740-RING. And don’t forget to follow us on <a href=\"https://www.instagram.com/weddingdaydiamonds/\" target=\"_blank\">Instagram</a> and <a href=\"https://www.facebook.com/WeddingDayDiamondsMN/\" target=\"_blank\">Facebook</a> for our latest news and stunning jewelry inspiration!</p>",
+        "image_position": "left",
+        "circle_image": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_DmJYTh",
+    "section_gH6WXU",
+    "section_WwRFDi",
+    "multiple_text_with_image_DFzq4D",
+    "bracelets_styles_LrLbaG",
+    "multiple_text_with_image_BfjzcC",
+    "custom_common_hero_whBBrw",
+    "custom_img_txt2_qHQhrX"
+  ]
+}

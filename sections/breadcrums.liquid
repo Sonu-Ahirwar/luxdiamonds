@@ -1,0 +1,220 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }  
+ 
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+li.breadcrumb__item {
+    display: inline-block;
+    align-items: center;
+    gap: 10px;
+    color: #728080;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+li.breadcrumb__current {
+    color: #6c757d;
+}
+a.breadcrumb__link {
+    color: #a8b2b0;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+ol.breadcrumb__list {
+    align-items: center;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+{%- endstyle -%}
+
+{%- liquid
+  assign show_breadcrumb = false
+  
+  case template.name
+    when 'product', 'collection', 'blog', 'article', 'page', 'search', 'list-collections', 'cart'
+      assign show_breadcrumb = true
+    else
+      assign show_breadcrumb = false
+  endcase
+-%}
+
+{%- if show_breadcrumb and section.settings.show_breadcrumb -%}
+  <div class="section-{{ section.id }}-padding section--page-width">
+    <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+      <div class="{% if section.settings.add_horizontal_spacing %}container{% endif %}">
+        <nav class="breadcrumb breadcrumb--{{ section.settings.text_alignment }}" aria-label="breadcrumb navigation" role="navigation">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item">
+              <a href="{{ routes.root_url }}" class="breadcrumb__link">Home</a>
+            </li>
+            {%- case template.name -%}
+              {%- when 'product' -%}
+                {%- if product.collections.size > 0 -%}
+                  {%- assign primary_collection = product.collections.first -%}
+                  <li class="breadcrumb__item">
+                    <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                    <a href="{{ primary_collection.url }}" class="breadcrumb__link primary_collection">{{ primary_collection.title }}</a>
+                  </li>
+                {%- endif -%}
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                  <span class="breadcrumb__current" aria-current="page">{{ product.title }}</span>
+                </li>
+
+              {%- when 'collection' -%}
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                  <span class="breadcrumb__current" aria-current="page">{{ collection.title }}</span>
+                </li>
+
+              {%- when 'blog' -%}
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                  <span class="breadcrumb__current" aria-current="page">{{ blog.title }}</span>
+                </li>
+
+              {%- when 'article' -%}
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                  <a href="{{ blog.url }}" class="breadcrumb__link">{{ blog.title }}</a>
+                </li>
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                  <span class="breadcrumb__current" aria-current="page">{{ article.title }}</span>
+                </li>
+
+              {%- when 'page' -%}
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                  <span class="breadcrumb__current" aria-current="page">{{ page.title }}</span>
+                </li>
+
+              {%- when 'search' -%}
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                  <span class="breadcrumb__current" aria-current="page">Search</span>
+                </li>
+
+              {%- when 'list-collections' -%}
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                  <span class="breadcrumb__current" aria-current="page">Collections</span>
+                </li>
+
+              {%- when 'cart' -%}
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+                  <span class="breadcrumb__current" aria-current="page">Cart</span>
+                </li> 
+            {%- endcase -%}
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Breadcrumb",
+  "class": "shopify-section--breadcrumb",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show breadcrumb",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "html",
+      "id": "separator",
+      "label": "Separator",
+      "default": "|"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_vertical_spacing",
+      "label": "Add vertical spacing",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "add_horizontal_spacing",
+      "label": "Add horizontal spacing",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumb"
+    }
+  ]
+}
+{% endschema %}

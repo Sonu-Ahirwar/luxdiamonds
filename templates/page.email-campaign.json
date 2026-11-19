@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "disabled": true,
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "disabled": true,
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 29,
+        "padding-block-end": 20
+      }
+    },
+    "campaign_product_grid_Qe4rBp": {
+      "type": "campaign-product-grid",
+      "blocks": {
+        "product_PPBkna": {
+          "type": "product",
+          "settings": {
+            "main_image": "shopify://shop_images/LGP100018-1.jpg",
+            "hover_image": "shopify://shop_images/LGP100018-neck_7029ffe8-f579-4337-b6e3-b1c682948774.jpg",
+            "product_title": "White Gold Three Prong 1ct Lab Grown Diamond Solitaire Stationary Pendant",
+            "product_price": "$1,495",
+            "product_url": "/products/nk-sol-3p-lgrd-stationary-lgpo3003?new_url=14k-white-gold-1ct-diamond-solitaire-pendant-necklaces-lgp100018"
+          }
+        },
+        "product_A6ceHM": {
+          "type": "product",
+          "settings": {
+            "main_image": "shopify://shop_images/LGEHP0168-display_6c094792-da82-4eff-ab7c-2d8144b6e614.jpg",
+            "hover_image": "shopify://shop_images/LGEHP0168-ear.jpg",
+            "product_title": "White Gold Round Diamond Huggie Earrings (2ctw)",
+            "product_price": "$1,750",
+            "product_url": "/products/lgehp0168-lgehp0168?new_url=white-gold-round-diamond-huggie-earrings-2ctw-lgehp0168"
+          }
+        },
+        "product_7tKM4d": {
+          "type": "product",
+          "settings": {
+            "main_image": "shopify://shop_images/LGBT0106-1_4c5f0c48-0668-49a1-acfd-db25b031c2a1.jpg",
+            "hover_image": "shopify://shop_images/LGBT0106-wrist.jpg",
+            "product_title": "Yellow Gold Bubble Bezel Bracelet (1ctw)",
+            "product_price": "$2,150",
+            "product_url": "/products/brac-bubble-bezel-1ctw-lgbt0106?new_url=yellow-gold-bubble-bezel-bracelet-1ctw-bracelets-lgbt0106"
+          }
+        },
+        "product_mWPKfj": {
+          "type": "product",
+          "settings": {
+            "main_image": "shopify://shop_images/LGE200088-display_327bc949-dfba-4898-9d20-93887a7fc6d9.jpg",
+            "hover_image": "shopify://shop_images/LGE200088-ear_3252d1c8-1a4f-42d3-9ad1-fb2c001b71d1.jpg",
+            "product_title": "White Gold 2ctw Four Prong Martini Earrings",
+            "product_price": "$1,195",
+            "product_url": "/products/ear-stud-wgbf-lge200088?new_url=white-gold-2ctw-four-prong-martini-earrings-earrings-lge200088"
+          }
+        },
+        "product_rkPbH6": {
+          "type": "product",
+          "settings": {
+            "main_image": "shopify://shop_images/LGAB0183-1_18b47d9e-3d4c-489c-9737-e2da0f54ed97.jpg",
+            "hover_image": "shopify://shop_images/LGAB0183-hand.jpg",
+            "product_title": "White Gold Classic Shared Prong Band (1ctw)",
+            "product_price": "$1,495",
+            "product_url": "/products/holiday-wb-7stn-sp-lgrd-lgab0256?new_url=white-gold-classic-shared-prong-band-1ctw%C2%A0-womens-wedding-bands-lgab0255"
+          }
+        }
+      },
+      "block_order": [
+        "product_PPBkna",
+        "product_A6ceHM",
+        "product_7tKM4d",
+        "product_mWPKfj",
+        "product_rkPbH6"
+      ],
+      "name": "Campaign Product Grid",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "campaign_product_grid_Qe4rBp"
+  ]
+}

@@ -1,0 +1,524 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "top_banner_t89cLV": {
+      "type": "top-banner",
+      "name": "Top Banner",
+      "settings": {
+        "image1": "shopify://shop_images/Header_Footer-01.jpg",
+        "image2": "shopify://shop_images/Header_Footer-02.jpg",
+        "image3": "shopify://shop_images/Header_Footer-03.jpg",
+        "image4": "shopify://shop_images/Header_Footer-04.jpg"
+      }
+    },
+    "perfect_ring_promise_XqCbxR": {
+      "type": "perfect-ring-promise",
+      "custom_css": [
+        ".perfect-ring-section h1 {margin: 0;}"
+      ],
+      "name": "Perfect Ring Banner",
+      "settings": {
+        "title": "WE'RE HERE FOR YOU, EVERY STEP OF THE WAY.",
+        "title_h1": true,
+        "text": "",
+        "title_color": "#395754",
+        "text_color": "#395754",
+        "title_size": 25,
+        "text_size": 16,
+        "bg_color": "#f9f7f5",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "tabify_education_Qya9YR": {
+      "type": "tabify-education",
+      "blocks": {
+        "section_heading_eAjyjX": {
+          "type": "section_heading",
+          "settings": {
+            "heading_text": "Customer Service",
+            "target_id": ""
+          }
+        },
+        "nav_link_g6xkza": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Our Warranty",
+            "target_id": "Our-Warranty"
+          }
+        },
+        "content_richtext_NzFbHx": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Our-Warranty",
+            "content": "<p>NO FINE PRINT WARRANTY</p><p>If you bought it at Wedding Day Diamonds, it's guaranteed. It's just that simple. Even if you lose a diamond from a ring you purchased from Wedding Day Diamonds, we will replace it.</p><p>If you choose to trade in your diamond, simply find a diamond that retails for at least $1 more than the current market value. All maintenance is free forever.</p><p>The only thing we are unable to guarantee is that you won't lose your jewelry. For that you need insurance.</p><p><strong>ADDITIONAL INFORMATION</strong></p><ul><li>No clean and checks, ever. No inspections required. Most jewelers will require regular inspections to keep your warranty valid, but not Wedding Day Diamonds.</li><li>You do not pay for our warranty. It automatically comes with your purchase.</li><li>No need to keep a copy of our warranty for your records; we will never question it when your ring needs repairs.</li><li>Warranties are not transferable.</li><li>If you purchased your jewelry at Wedding Day Jewelers before 2007, or if you made purchases under our corporate warranty, please call us at 1-866-740-RING for more information.</li></ul><p><strong>PERFECT RING PROMISE</strong></p><p>If at any time during the first year of ownership you decide that your engagement ring isn’t perfect, we will do whatever it takes to make it perfect, up to and including a total remake. We’re able to make this promise because we have an exclusive Perfect Ring Promise, unequaled quality control, and most important, an absolute commitment to our clients. We are happy to exchange your engagement ring up to a year from your purchase date. You are allowed one exchange within one year. Custom orders ARE included.</p><p><strong>Natural Gemstone Warranty</strong></p><p>All care and maintenance of your ring’s mounting is covered for life. If a lab-grown side diamond or lab-grown gemstone becomes loose, breaks, or is lost from the mounting, we will replace it at no cost to you.</p><p>If your natural center gemstone is damaged or lost—and you still have your original mounting—Wedding Day Diamonds will issue store credit equal to the gemstone’s original purchase price, up to $5,000. This credit may be applied toward a replacement natural gemstone of your choice. While we cannot guarantee the replacement natural gemstone will look identical to your original, our team will make every effort to find the closest possible match.</p><ul><li>Natural Gemstone Center Replacement – If the replacement natural gemstone chosen with your store credit differs in size or shape from your original, any costs to modify, remake, or replace the mounting are the client’s responsibility.</li><li>Completed Set Natural Gemstone Replacement – If your natural gemstone was purchased as part of a pre-assembled, completed set (natural gemstone + ring), your total purchase price reflects the full set. For warranty purposes, natural gemstone and mounting values are tracked separately in your account. Please contact any Wedding Day Diamonds representative for an itemized pricing summary.</li></ul><p>Engagement rings featuring a natural gemstone center do not qualify for the Perfect Ring Promise. You may, however, return or exchange your purchase within 60 days of the original purchase date.</p><p>The only thing we are unable to guarantee is that you won't lose your jewelry. For that you need insurance.</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_iDq3L6": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Financing",
+            "target_id": "Financing"
+          }
+        },
+        "content_richtext_HUmrUn": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Financing",
+            "content": "<h4>We Make it Easy to Pay for Your Ring</h4><p>Wedding Day Diamonds offers Special Financing options with approved credit.<br/><a href=\"/pages/financing\" target=\"_blank\" title=\"Financing\">Learn more</a></p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_ic6KKf": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Layaways",
+            "target_id": "Layaways"
+          }
+        },
+        "content_richtext_KtaWD3": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Layaways",
+            "content": "<p>If you need additional time to pay for your ring before you get down on one knee, we’re here to help. With the Wedding Day Diamonds layaway policy, we’ll put your ring aside, with your name on it, and the price locked in. Just plan ahead, give yourself 6 months, and we will accept payments along the way.</p><ul><li>We require a minimum deposit of 10% of the purchase price for layaway.</li><li>Layaways must be paid in full within 180 days.</li><li>Each month, 10% of the purchase price is due.</li><li>No refunds after 60 days.</li><li>If any of these policies are non-compliant, the layaway will be cancelled and the money on the account will become store credit.</li></ul><p><a href=\"/pages/financing\" target=\"_blank\" title=\"Financing\">Payment options</a></p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_qFQdFj": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Appraisals",
+            "target_id": "Appraisals"
+          }
+        },
+        "content_richtext_XdLPrc": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Appraisals",
+            "content": "<p>When you pick up your new engagement ring from Wedding Day Diamonds, you will receive “Insurance Replacement Documentation” free of charge. Please use this documentation to find an insurance policy that fits your needs.</p><p>Although the Wedding Day Diamond warranty provides free maintenance forever, including the loss of diamonds, we cannot cover a completely lost or stolen piece of jewelry.</p><p>We will provide FREE Insurance Replacement Documentation for a lifetime.</p><p>It is recommended to update this documentation every 5 years.</p><p>Call 1-866-740-RING to request an updated document now.</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_t3AfVN": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Insurance",
+            "target_id": "Insurance"
+          }
+        },
+        "content_image_DYtCUk": {
+          "type": "content_image",
+          "settings": {
+            "parent_id": "Insurance",
+            "image": "shopify://shop_images/insurance.jpg"
+          }
+        },
+        "content_richtext_NcKeBB": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Insurance",
+            "content": "<p>Life is unpredictable. And in the event you lose your entire piece of jewelry, insurance is the way to have it replaced. Wedding Day Diamonds will guarantee that from the moment you put your ring on your finger, we will make sure it looks fabulous. But, make sure you are covered by insurance for those unpredictable moments in life.<br/><br/>Take our word for it, BriteCo. jewelry insurance is the insurance you want for your beautiful new ring. They make jewelry insurance faster, easier and more affordable wherever, whenever you choose. With exceptional coverage up to 125% of the appraised value, no deductibles and monthly pay options, they are our preferred jewelry insurance choice.<br/><br/>We invite you to<a href=\"https://brite.co/?ref=wdd&utm_source=wdd&utm_medium=lp&utm_campaign=cspage\"> check them out</a> for yourselves, and get a quote instantly.<br/><br/></p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_JrkQ4W": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Trade Ins",
+            "target_id": "Trade-Ins"
+          }
+        },
+        "content_richtext_9YAQAY": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Trade-Ins",
+            "content": "<h3>Our Amazing Trade-in Policy</h3>",
+            "content_html": ""
+          }
+        },
+        "content_richtext_ea6aDf": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Trade-Ins",
+            "content": "<p>Wedding Day Diamonds is here to help should you choose to trade your Wedding Day diamond for something new and different. Your spectacular new diamond will be just as special as that first stunning diamond you purchased.</p><p>If you choose to trade in your diamond, simply find a diamond that retails for at least $1 more than the current market value.</p><p>This trade-in policy applies to all loose diamonds.</p><p>If you have any questions regarding your warranty or trade in, please contact us at <a href=\"mailto:info@wddco.com\">info@wddco.com</a></p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_miihNV": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Returns Exchanges",
+            "target_id": "returns-exchanges"
+          }
+        },
+        "content_richtext_Y4VXgb": {
+          "type": "content_richtext",
+          "disabled": true,
+          "settings": {
+            "parent_id": "returns-exchanges",
+            "content": "<h3>Returns/Exchanges</h3>",
+            "content_html": ""
+          }
+        },
+        "content_richtext_h9aVMV": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "returns-exchanges",
+            "content": "<h3>Returns/Exchanges</h3><h3>Return Policy</h3><p>All jewelry has a 60-day return policy from the date of purchase.</p><h3>Exchange Policy</h3><h4>Semi Mounts</h4><p>You may exchange all semi mounts once within 365 days from the date of purchase.</p><h4>Diamond Fashion Hoops</h4><p>If you damage or lose a diamond fashion hoop within 365 days from the date of purchase, we will replace it once free of charge. You must still have the other earring within your possession. (For more information, please call 1-866-740-RING)</p><h4>Men's Wedding Bands</h4><p>For a fee of $150, you may exchange your wedding band for the identical style due to damage or size. In most cases, your wedding band will be repaired in house without having to replace it. However, Wedding Day Diamonds will determine if the work cannot be done by our in house goldsmiths. All exchanges must be approved by the store manager.</p><h4>Loose Diamonds</h4><p>You may trade in your Wedding Day diamond for a more expensive one at any time. You will get the current market value for your diamond and you must exchange it for a diamond that is at least $1 over that amount.<br/>See <a href=\"https://weddingdaydiamonds.com/customer-service#trade-ins\">Trade-In Policy</a> above.</p><p>If you purchased your diamond before 2004, please call 1-866-740-RING.</p><h4>Online Returns and Exchanges</h4><p>Our in-store return and exchange policies apply directly to online purchases as well. All purchases made online can be returned or exchanged via mail or in store. If you chose to stop into one of our stores, a sales associate will walk you through the entire process from start to finish.</p><h4>If you choose to mail your return:</h4><ul><li>Please make sure all original contents, packaging and paper work are included in your shipment. This includes but is not limited to:Purchased JewelryReceiptsRing BoxesDiamond CertificationsInsurance Replacement Documentation</li><li>Any package that is missing original contents may be refused.</li><li>Wedding Day Diamonds is not responsible for damage that occurs during shipping. We reserve the right to refuse a return if the items are damaged upon arrival.</li></ul><h4>If you need to exchange an item via mail:</h4><ul><li>Wedding Day Diamonds will process your exchange within 2 business days from the date of receiving your package. A customer service representative will call you with further information regarding any exchanges that need to be made. This is to ensure the accuracy of your order and offer more information in regards to time frame and shipping details.</li></ul><h4>Average timeframe for online orders:</h4><p>Engagement Rings</p><ul><li>Most engagement rings will ship within 3 weeks of the purchase date. Some may take longer based on inventory, designer or custom work. Please call us for more information.</li></ul><h4>Wedding Bands</h4><ul><li>Most wedding bands will ship within 3 weeks of the purchase date. Some may take longer based on inventory, designer or custom work. Please call us for more information.</li></ul><h4>Fashion Jewelry</h4><ul><li>Most fashion jewelry will ship within 48 hours of the purchase date. Some may take longer based on inventory, designer or custom work. Please call us for more information.</li></ul><h4>Domestic Shipping</h4><p>All orders are shipped FREE Delivery.</p><ul><li>All orders under $500: 2-day</li><li>All orders over $500: Overnight</li></ul><h4>International Shipping</h4><p>Additional charges may apply. Please call 1-866-740-RING for more information.</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_MjKywc": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Custom Design FAQs",
+            "target_id": "custom-design-faq"
+          }
+        },
+        "content_richtext_QciR8x": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "custom-design-faq",
+            "content": "",
+            "content_html": "<div class=\"accordion\">\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">What types of engagement rings are available at Wedding Day Diamonds?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p>Wedding Day Diamonds offers a variety of engagement rings, including solitaire, halo, hidden accent, side stone, vintage-inspired, nature-inspired, three-stone, luxury and modern styles. Our collection showcases meaningful and sophisticated designs, perfect for celebrating your unique bond.</p>\n</div></div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">How can I choose the perfect engagement ring?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p>Choosing the perfect engagement ring involves considering your partner's style and preferences. At Wedding Day Diamonds, you can explore a range of designs and receive personalized service to help you find a ring that reflects your love story.</p>\n</div></div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">What makes Wedding Day Diamonds' engagement rings unique?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p>The engagement rings at Wedding Day Diamonds are distinguished by their elegance and elevated craftsmanship. Each ring is thoughtfully designed to symbolize your unique bond and commitment, making it a cherished piece to commemorate your forever journey.</p>\n</div></div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\"> Do you offer customization options for engagement rings?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p>Yes, Wedding Day Diamonds offers customization options. You can work with our team to create a unique engagement ring that matches your vision, whether it's adjusting the setting, choosing different diamonds and gemstones, or personalizing the band.</p>\n</div></div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">What is a solitaire engagement ring?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p>A solitaire engagement ring features a single, prominent gemstone, usually a diamond. It's a classic and refined choice, highlighting the stone's beauty and symbolizing your love's simplicity and purity.</p>\n</div></div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\"> What is a halo engagement ring?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p>A halo engagement ring has a center stone, like a diamond, surrounded by a circle of smaller diamonds or other gemstones, enhancing the central gem’s sparkle and size. This style adds a touch of glamour and is popular for its eye-catching brilliance.</p>\n</div></div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">What should I consider when selecting an engagement ring design?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p> </p>\n\n<p>Consider factors like your partner's style, the metal type, and the ring's design details. Think about whether they prefer classic, modern, or intricate designs. Wedding Day Diamonds' experts can guide you through these choices.</p>\n\n<p> </p>\n</div></div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">What defines vintage jewelry?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p>Vintage jewelry refers to pieces that are at least 20-30 years old, often characterized by unique styles and craftsmanship from a specific era. Unlike antique jewelry, which is over 100 years old, vintage items are typically from the 20th century.</p>\n</div></div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">What services does Wedding Day Diamonds offer to help in choosing an engagement ring?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p>Our team at Wedding Day Diamonds provides personalized service, expert guidance, and our collection features a wide selection of rings. You can explore different styles and understand the best diamond and gemstone options. This will help you make an informed decision for your special moment.</p>\n</div></div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">Can I find wedding bands to match my engagement ring at Wedding Day Diamonds?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\"><div>\n<p>Yes, Wedding Day Diamonds offers a selection of wedding bands that complement their engagement rings. You can find matching sets or mix and match to create a unique combination that reflects your style.</p>\n</div></div></div>\n</div>\n</div>"
+          }
+        },
+        "nav_link_ryBfJJ": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Repairs",
+            "target_id": "Repairs"
+          }
+        },
+        "content_richtext_QW9Qpj": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Repairs",
+            "content": "<p>All cleaning and repair work is FREE under our NO FINE PRINT WARRANTY. If you purchased a piece of jewelry before 2007, please call 1-866-740-RING.</p>",
+            "content_html": ""
+          }
+        },
+        "content_richtext_eUQdhb": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Repairs",
+            "content": "<h3>Repair Services</h3><ul><li>Ring sizing</li><li>Rhodium plating</li><li>Soldering</li><li>Diamond setting</li><li>Engraving</li><li>Ring removal</li><li>Stone tightening</li><li>Custom work</li><li>Refurbishing and polishing</li><li>Chain repair</li><li>Plus more</li></ul>",
+            "content_html": ""
+          }
+        },
+        "content_richtext_wCe74t": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Repairs",
+            "content": "<p>FAQs</p>",
+            "content_html": "<div class=\"accordion\">\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">How long do repairs take?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">Most repairs take one week to complete. Your repair will go into a queue based on the day you drop it off at one of our stores. If you need something done quickly, please give our stores a call or submit an appointment request above. </div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">Do I need to have my jewelry inspected?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">Our NO FINE PRINT WARRANTY does NOT require any inspections. However, it is recommended to get your jewelry cleaned and inspected about every 6 months. If there is something that needs to be done, we will let you know and make arrangements to have it repaired.</div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">What is a clean and check?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">A clean and check is the process of inspecting your jewelry. Stop in anytime and ask for a clean and check! It’s FREE! A representative will take a look at your jewelry under a microscope, check for any loose stones or other damage that may need to be addressed. If everything looks great, we will professionally clean and steam it for you while you wait. If there are repairs needed, we will let you know and help you get it taken care of.</div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">My white gold ring is turning yellow; what do I do?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">All white gold has a plating called rhodium on it. It is rhodium that creates the white metal color on your ring. Over time, this plating can wear off. When this occurs, simply bring in your ring to get re-rhodium plated and polished. We recommend doing this no more than once a year in order to keep the integrity of your ring for as long as possible.</div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\"> Do you take appointments for repair work?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">We do our best to accommodate clients that need repair work done in a short amount of time. We know that some clients live out of town and need work done on the spot. If you need an appointment, please call one of our stores submit an appointment request above and we will do our best to make it as convenient as possible for you.</div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\"> My diamond fell out; what do I do?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">If your diamond fell out and you have possession of it, bring it in to one of our stores as soon as possible. We will take a look at your jewelry and help you get it reset and/or repaired. If your diamond fell out and you cannot find it, please call a store to make an appointment with the store manager. Most jewelry that is missing diamonds must be taken in by a manager and sent to our corporate office.</div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\"> I need my ring cut off; what do I do?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">Please call 1-866-740-RING for assistance. (If it is an emergency, please contact your local hospital.)</div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\"> My ring has scratches in it; can you polish it for me?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">All precious metals scratch over time and we will definitely help you polish your ring and remove as many scratches as we can. However, we recommend this service no more than once a year in order to keep the integrity of your ring for as long as possible.</div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\"> Is it true that alternative metal rings cannot be repaired?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">In most cases, repair work on alternative metal rings is not possible. Due to the nature of alternative metals, most cannot be polished, soldered or re-sized. If your alternative metal ring is damaged or you need a different size, please call our stores. </div></div>\n</div>\n</div>"
+          }
+        },
+        "nav_link_Jpjqa3": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Ring Cleaning",
+            "target_id": "Ring-Cleaning"
+          }
+        },
+        "content_richtext_ThL7TQ": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Ring-Cleaning",
+            "content": "<p>We offer free inspections + ring cleaning for anyone who stops into our stores. Your jewelry is meant to be worn so its inevitable that over time, it will collect a little dust and dirt.<br/><br/>Stop in anytime (no appointment necessary) and we will take a closer look at your jewelry, make sure everything is how it should be and then give it a quick bath in our ultrasonic cleaner. Finishing it off with a high pressure steam will make your jewelry sparkle and shine!</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_NnHkNp": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Engraving",
+            "target_id": "Engraving"
+          }
+        },
+        "content_richtext_hNXW4f": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Engraving",
+            "content": "<p>For a minimal fee, we can engrave just about any piece of jewelry. Using state-of-the-art laser technology, our master jewelers will engrave your special message and create a lasting memory. Options for engraving depends on the space available and metal type of the jewelry.</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_HaAA7x": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Payment Options",
+            "target_id": "Payment-Options"
+          }
+        },
+        "content_richtext_ThJkQL": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Payment-Options",
+            "content": "<p>Layaway</p><p>No matter where you started your layaway purchase, feel free to stop into ANY Wedding Day Diamonds to make a payment. We accept all major credit cards, cash, cashier’s checks and personal checks.*</p><p>*Jewelry paid for with a personal check will not be available for pick up until 10 days from the date of deposit.</p><p>For more information on our layaway program,<a href=\"/pages/financing\" title=\"Financing\">click here</a></p><p>Financing</p><p>For more information about our financing options, <a href=\"/pages/financing\" title=\"Financing\">click here</a></p><p>Phone Payments</p><p>We do not accept over the phone payments at this time. However, we are able to send a payment text link through Kenect.</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_HHMXRh": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Referral Program",
+            "target_id": "Referral-Program"
+          }
+        },
+        "content_richtext_RkYGM9": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Referral-Program",
+            "content": "<p>Refer a friend to Wedding Day Diamonds to receive a $100 gift card towards your next<br/>purchase PLUS your friend will receive $100 off their purchase of $1000 or more.</p>",
+            "content_html": "<div class=\"faq\"><div class=\"accordion\">\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">How Do I Refer a Friend?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">Request a referral card from your Client Advocate or a Store Representative. Within six months of your purchase, fill out your personalized referral card and give the completed card to your friend to present at the time of their purchase.</div></div>\n</div>\n<div class=\"accordion-item\">\n<div class=\"accordion-header\"><button type=\"button\" aria-expanded=\"false\" class=\"accordion-button collapsed\">How Do I Redeem a Referral Discount?</button></div>\n<div class=\"accordion-collapse collapse\"><div class=\"accordion-body\">Present your personalized referral card, given to you by an existing client of Wedding Day Diamonds, at the time of purchase. Purchase must equal $1000 or more before tax. Limit one discount per client referred to Wedding Day Diamonds. Eligible for new clients only. Cannot be redeemed for cash. Wedding Day Diamonds is not responsible for lost or stolen referral cards.</div></div>\n</div>\n</div></div>"
+          }
+        },
+        "nav_link_EcfQhx": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Military Discount",
+            "target_id": "Military-Discount"
+          }
+        },
+        "content_richtext_8xLrwh": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Military-Discount",
+            "content": "<h3>Military and Health Care Appreciation Discount</h3>",
+            "content_html": ""
+          }
+        },
+        "content_richtext_MEnPCz": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Military-Discount",
+            "content": "<p>In appreciation of their service, we’re pleased to offer 10% off engagement rings and 5% off loose diamonds for active duty, reservists and veterans of the U.S. Armed Forces. We are also extending this discount to all health care workers. Please see store for details.</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_MJtjyp": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Help",
+            "target_id": "Help"
+          }
+        },
+        "content_richtext_39eKPi": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Help",
+            "content": "<h3>How can we help you?</h3>",
+            "content_html": ""
+          }
+        },
+        "content_richtext_YzK8iG": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Help",
+            "content": "<p>If there are any questions that we haven't answered, contact us <a href=\"https://weddingdaydiamonds.com/contact-us\">here </a>or call 1-866-740-RING.</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_89nCz7": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Shipping",
+            "target_id": "Shipping"
+          }
+        },
+        "content_richtext_PqCxqQ": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "Shipping",
+            "content": "<h3><strong>DOMESTIC SHIPPING</strong></h3><p>All orders under $500: FREE 2-day</p><p>All orders over $500: FREE Overnight</p><h3><strong>INTERNATIONAL SHIPPING</strong></h3><p>Additional charges may apply. Please call 1-866-740-RING for more information.</p>",
+            "content_html": ""
+          }
+        }
+      },
+      "block_order": [
+        "section_heading_eAjyjX",
+        "nav_link_g6xkza",
+        "content_richtext_NzFbHx",
+        "nav_link_iDq3L6",
+        "content_richtext_HUmrUn",
+        "nav_link_ic6KKf",
+        "content_richtext_KtaWD3",
+        "nav_link_qFQdFj",
+        "content_richtext_XdLPrc",
+        "nav_link_t3AfVN",
+        "content_image_DYtCUk",
+        "content_richtext_NcKeBB",
+        "nav_link_JrkQ4W",
+        "content_richtext_9YAQAY",
+        "content_richtext_ea6aDf",
+        "nav_link_miihNV",
+        "content_richtext_Y4VXgb",
+        "content_richtext_h9aVMV",
+        "nav_link_MjKywc",
+        "content_richtext_QciR8x",
+        "nav_link_ryBfJJ",
+        "content_richtext_QW9Qpj",
+        "content_richtext_eUQdhb",
+        "content_richtext_wCe74t",
+        "nav_link_Jpjqa3",
+        "content_richtext_ThL7TQ",
+        "nav_link_NnHkNp",
+        "content_richtext_hNXW4f",
+        "nav_link_HaAA7x",
+        "content_richtext_ThJkQL",
+        "nav_link_HHMXRh",
+        "content_richtext_RkYGM9",
+        "nav_link_EcfQhx",
+        "content_richtext_8xLrwh",
+        "content_richtext_MEnPCz",
+        "nav_link_MJtjyp",
+        "content_richtext_39eKPi",
+        "content_richtext_YzK8iG",
+        "nav_link_89nCz7",
+        "content_richtext_PqCxqQ"
+      ],
+      "name": "Corrected Flexible Tabs",
+      "settings": {
+        "nav_bg_color": "#ffffff",
+        "nav_heading_color": "#005580",
+        "link_color": "#333333",
+        "active_link_color": "#005580",
+        "main_heading": ""
+      }
+    },
+    "section_frnWNU": {
+      "type": "section",
+      "blocks": {
+        "text_RrBtwh": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Contact US</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "1.5rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_RrBtwh"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "custom_class": "",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 60,
+        "padding-block-end": 0
+      }
+    },
+    "contact_us_mLBxB4": {
+      "type": "contact-us",
+      "name": "New Contact Form",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "top_banner_t89cLV",
+    "perfect_ring_promise_XqCbxR",
+    "tabify_education_Qya9YR",
+    "section_frnWNU",
+    "contact_us_mLBxB4"
+  ]
+}

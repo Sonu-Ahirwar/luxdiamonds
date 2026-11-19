@@ -1,0 +1,335 @@
+<style>
+    #new-arrival-{{ section.id }} {
+      position: relative;
+      padding:0px 15px;
+      margin-bottom:50px;
+    }
+    .new-arrival-banner-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1615px;
+      margin: 0 auto;
+    }
+    {% comment %} .new-arrival-banner-wrapper::after{
+      content:"";
+      position:absolute;
+      top:0px;
+      right:0px;
+      width:100%;
+      max-width:745px;
+      height:100%;
+      background: linear-gradient(270deg, #D2BAB9 50%, rgba(234, 201, 200, 0) 100%);
+      z-index: 0;
+    } {% endcomment %}
+    .new-arrival-banner--image{
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      width: 100%;
+      height: 450px;
+      margin: 0px auto;
+    }
+    .new-arrival-banner--image.mobile{
+      display:none;
+    }
+    .new-arrival-banner-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .new-arrival-banner-image.mobile {
+        display: none;
+    }
+    .new-arrival-banner-content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fff;
+        max-width: 622px;
+        padding: 20px;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    /* Text positions */
+    .new-arrival-content-left { left: 0%; text-align: center; }
+    .new-arrival-content-center { left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .new-arrival-content-right { right: 0%; text-align: center; }
+
+    .new-arrival-banner-content h2 {
+        font-family: "Lora", serif;
+        font-weight: 200;
+        font-size: 40px;
+        line-height: 1.25;
+        letter-spacing: 15%;
+        margin:0px;
+    }
+    .new-arrival-banner-content p {
+        font-family: 'AvenirLTStd';
+        font-size: 14px;
+        line-height: 30px;
+        letter-spacing: 19%;
+        margin: 0px 0px 40px;
+    }
+    .content_inner_wrap_btn {
+        padding: 8px 18px;
+        border: 2px solid #395754;
+        border-radius:8px;
+        text-decoration: none;
+        color: #395754;
+        font-size: 12px;
+        line-height: 16.5px;
+        font-weight: 400;
+        letter-spacing: 2.75px;
+        transition: all .3s ease;
+        text-transform: uppercase;
+        position: absolute;
+        top: 55%;
+        right: 11%;
+        width: 20%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .content_inner_wrap_btn:hover {
+        background: #395754;
+        color: #fff;
+    }
+    .new_arrival_banner_slider.swiper {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .new_arrival_banner_slider.swiper.swiper-initialized {
+      visibility: visible;
+      opacity: 1;
+    }
+    .new_arrival_banner_slider.swiper {
+      padding-bottom: 20px;
+    }
+    .new_arrival_banner_slider .swiper-pagination.swiper-pagination-progressbar.swiper-pagination-horizontal {
+      top: unset;
+      bottom: 0px;
+      width: 100%;
+      max-width: 353px;
+      height:3px;
+      margin: 0 auto;
+      right: 0;
+      background-color:#72878566;
+    }
+    .new_arrival_banner_slider .swiper-pagination-progressbar-fill {
+      background: #395754;
+    }
+    @media screen and (max-width:1560px){
+      .new-arrival-banner-wrapper {
+        max-width: 1285px;
+      }
+      .new-arrival-banner--image{
+        {% comment %} background-size: cover; {% endcomment %}
+        width: 80%;
+        height: 380px;
+      }
+      .new-arrival-banner-wrapper::after {
+        max-width: 510px;
+      }
+      .new-arrival-banner-content {
+        max-width: 480px;
+      }
+    }
+    @media screen and (max-width:1199px){
+      .new-arrival-banner--image {
+        height: 290px;
+      }
+      #new-arrival-{{ section.id }} {
+      margin-bottom:30px;
+      }
+
+      .new-arrival-banner-content {
+        max-width: 360px;
+      }
+      .new-arrival-banner-wrapper::after {
+        max-width: 380px;
+      }
+      .new-arrival-banner-content h2 {
+          font-size: 26px;
+          letter-spacing: 10%;
+      }
+      .new-arrival-banner-content p {
+        font-size: 11px;
+        line-height: 26px;
+        letter-spacing: 10%;
+        margin: 0px 0px 20px;
+      }
+      .new-arrival-banner-content a {
+        padding: 8px 30px;
+        letter-spacing: 1px;
+      }
+      .content_inner_wrap_btn {
+        padding: 6px 10px;
+        font-size: 11px;
+        letter-spacing: 1.75px;
+      }
+    }
+    @media screen and (max-width:991px){
+      #new-arrival-{{ section.id }} {
+        padding:0px 12px;
+      }
+      .new-arrival-banner--image {
+        height: 270px;
+      }
+      .content_inner_wrap_btn {
+        right: 10%;
+        width: 22%;
+      }
+      
+    }
+    @media screen and (max-width: 767px) {
+      #new-arrival-{{ section.id }} {
+        padding:0px;
+        margin: 0;
+      }
+      .new-arrival-banner--image{
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        aspect-ratio: 75 / 104;
+        height: 550px;
+      }
+      .new-arrival-banner-wrapper::after{
+        display:none;
+      }
+      .new-arrival-banner-content {
+        max-width: 100%;
+        padding: 20px 0px;
+        justify-content: space-between;
+      }
+      .new-arrival-banner-content h2 {
+        font-size: 34px;
+        letter-spacing: 15%;
+      }
+      .new-arrival-banner-content p {
+        font-size: 14px;
+      }
+      .new-arrival-banner-content a {
+        padding: 8px 38px;
+        letter-spacing: 2.75px;
+      }
+      .content_inner_wrap_btn {
+        right: 50%;
+        width: max-content;
+        transform: translate(50%, -90%);
+        padding: 6px 38px;
+        top: 92%;
+        {% comment %} display:none; {% endcomment %}
+      }
+      .new-arrival-banner--image.mobile {
+        display: block;
+      }
+      .new-arrival-banner--image.desktop {
+        display: none;
+      }
+      .new_arrival_banner_slider .swiper-pagination.swiper-pagination-progressbar.swiper-pagination-horizontal {
+        max-width: 235px;
+      }
+      .new-arrival-banner-wrapper{
+        margin-bottom:40px;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      .new-arrival-banner--image {
+        height: 480px;
+      }
+    }
+
+</style>
+
+<div class="new-arrival-banner" id="new-arrival-{{ section.id }}">
+  <div class="new-arrival-banner-wrapper">
+    <div class="swiper new_arrival_banner_slider">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.button_link }}">
+              <div class="new-arrival-banner--image desktop" style="background-image:url({{ block.settings.desktop_image | img_url: 'master' }});"></div>
+              <div class="new-arrival-banner--image mobile" style="background-image:url({{ block.settings.mobile_image | img_url: 'master' }});"></div>
+              {% if block.settings.button_label != blank %}
+                  <div class="content_inner_wrap_btn">
+                    {{ block.settings.button_label }}
+                  </div>
+                {% endif %}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.new_arrival_banner_slider', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      speed: 2000,
+      loop: true,
+      autoplay: true,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'progressbar',
+      },
+      mousewheel: {
+          forceToAxis: true,
+          releaseOnEdges: true
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "New Arrival Banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "blocks": [
+    {
+      "type": "new_collection_item",
+      "name": "New Collection Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Arrival Banner"
+    }
+  ]
+}
+{% endschema %}

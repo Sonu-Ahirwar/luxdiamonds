@@ -1,0 +1,1102 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "new_home_hero_banner_RUTcKJ": {
+      "type": "new-home-hero-banner",
+      "blocks": {
+        "banner_bqXf3W": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Frame_26.png",
+            "image_mobile": "shopify://shop_images/Holiday_Homepage_First_Banner_-_Mobile_1.jpg",
+            "button_text": "SHOP HOLIDAY",
+            "button_url": "shopify://collections/holiday"
+          }
+        },
+        "banner_3bHTKx": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/Frame_27.png",
+            "image_mobile": "shopify://shop_images/Holiday_Homepage_Second_Banner_-_Mobile_1.jpg",
+            "button_text": "SHOP ENGAGEMENT RINGS",
+            "button_url": "/apps/engagement-rings"
+          }
+        }
+      },
+      "block_order": [
+        "banner_bqXf3W",
+        "banner_3bHTKx"
+      ],
+      "name": "New Home Hero Banner",
+      "settings": {}
+    },
+    "shop_by_style_slider_zTE4Ye": {
+      "type": "shop-by-style-slider",
+      "blocks": {
+        "collection_item_JfUNE3": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1532.png",
+            "title": "Solitaire",
+            "imageUrl": "/apps/engagement-rings?filter.p.m.custom.style=Solitaire"
+          }
+        },
+        "collection_item_79yktB": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1537.png",
+            "title": "Modern",
+            "imageUrl": "/apps/engagement-rings?filter.p.m.custom.style=Modern"
+          }
+        },
+        "collection_item_taAkL9": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1536.png",
+            "title": "GEMSTONE",
+            "imageUrl": "/collections/new-arrivals/Sapphire"
+          }
+        },
+        "collection_item_mRUWiN": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1533.png",
+            "title": "Hidden Accent",
+            "imageUrl": "/apps/engagement-rings?filter.p.m.custom.style=Hidden+Accent"
+          }
+        },
+        "collection_item_QwJkQm": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1534.png",
+            "title": "Nature Inspired",
+            "imageUrl": "/apps/engagement-rings?filter.p.m.custom.style=Nature"
+          }
+        },
+        "collection_item_HDbEBz": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1535.png",
+            "title": "THREE STONE",
+            "imageUrl": "/apps/engagement-rings?filter.p.m.custom.style=Three+Stone"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_JfUNE3",
+        "collection_item_79yktB",
+        "collection_item_taAkL9",
+        "collection_item_mRUWiN",
+        "collection_item_QwJkQm",
+        "collection_item_HDbEBz"
+      ],
+      "name": "Shop By Style Slider",
+      "settings": {
+        "title": "SHOP BY STYLE",
+        "shop_all_text": "Shop all",
+        "shop_all_url": "shopify://collections/engagement-rings"
+      }
+    },
+    "new_arrival_banner_8gx9E8": {
+      "type": "new-arrival-banner",
+      "blocks": {
+        "new_collection_item_aVxXJ8": {
+          "type": "new_collection_item",
+          "settings": {
+            "desktop_image": "shopify://shop_images/New_Arrivals_Banner_Holiday_-_Desktop.png",
+            "mobile_image": "shopify://shop_images/New_Arrivals_Banner_Holiday_-_Mobile.png",
+            "button_label": "SHOP NEW ARRIVALS",
+            "button_link": "shopify://collections/new-arrivals"
+          }
+        },
+        "new_collection_item_k8rECw": {
+          "type": "new_collection_item",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Studs_Banner_Desktop_Homepage_1_1f0a077f-b5af-4f08-b4c9-1dc03f3e5208.png",
+            "mobile_image": "shopify://shop_images/Studs_Banner_Desktop_Homepage_1.png",
+            "button_label": "SHOP DIAMOND STUDS",
+            "button_link": "/collections/earrings?filter.p.m.custom.style=Stud"
+          }
+        }
+      },
+      "block_order": [
+        "new_collection_item_aVxXJ8",
+        "new_collection_item_k8rECw"
+      ],
+      "custom_css": [
+        ".new-arrival-banner-wrapper::after {height: 0;}",
+        "@media screen and (max-width: 1560px) {.new-arrival-banner--image {width: 100%; }}",
+        "@media screen and (max-width: 1560px) {.new-arrival-banner-wrapper::after {display: none !important; }}"
+      ],
+      "name": "New Arrival Banner",
+      "settings": {}
+    },
+    "confidence_features_hfH4Ap": {
+      "type": "confidence-features",
+      "blocks": {
+        "feature_d8MJ6y": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/feature1.webp",
+            "subtitle": "<p>No Fine Print FREE&nbsp;<br/>Lifetime Warranty&nbsp;</p>"
+          }
+        },
+        "feature_8KNea6": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/feature2.webp",
+            "subtitle": "<p>60 Day Returns &&nbsp;365&nbsp;<br/>Day Exchange Policy</p>"
+          }
+        },
+        "feature_t3dEzw": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/feature3.webp",
+            "subtitle": "<p>Perfect Ring&nbsp;<br/>Promise</p>"
+          }
+        },
+        "feature_zQRLTb": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/feature4.webp",
+            "subtitle": "<p>Over 5,000&nbsp;<br/>Google Reviews</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_d8MJ6y",
+        "feature_8KNea6",
+        "feature_t3dEzw",
+        "feature_zQRLTb"
+      ],
+      "name": "Shop With Confidence",
+      "settings": {
+        "main_heading": "<span>Shop With</span> Confidence",
+        "button_text": "LEARN MORE",
+        "button_link": "/pages/our-difference"
+      }
+    },
+    "icon_with_text_e4rhgA": {
+      "type": "icon-with-text",
+      "blocks": {
+        "image_block_Lypr8Q": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/oval_315d6bce-d9af-4ca7-b89d-af820d4498ed.webp",
+            "image_width": 60,
+            "heading": "Oval",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Oval"
+          }
+        },
+        "image_block_pBHQyD": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/round_60fb3157-61f7-46dc-9ad5-acb1fe2c6ec2.webp",
+            "image_width": 56,
+            "heading": "ROUND",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Round"
+          }
+        },
+        "image_block_dNnJJV": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/marquise_6f224c7c-94f8-47d3-93cf-4ce0bbd2ab6f.webp",
+            "image_width": 60,
+            "heading": "Marquise",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Marquise"
+          }
+        },
+        "image_block_PJgaGj": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/longcushion.webp",
+            "image_width": 60,
+            "heading": "Long  Cushion",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Elongated+Cushion"
+          }
+        },
+        "image_block_DVPEVa": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/emerald_fd58e3db-877d-4f86-adba-1c2526bd8491.webp",
+            "image_width": 60,
+            "heading": "Emerald",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Emerald"
+          }
+        },
+        "image_block_PmXGtU": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/pear_0e9ae891-b895-4489-a17b-c34b4dedb070.webp",
+            "image_width": 60,
+            "heading": "Pear",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Pear"
+          }
+        },
+        "image_block_7zcyGE": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/radiant_23029dc9-9544-4d15-9224-2d9e1e3fcf37.webp",
+            "image_width": 60,
+            "heading": "Radiant",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Radiant"
+          }
+        },
+        "image_block_cqfdRt": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/princess_23821b19-40a1-4df6-a71d-6d1a80586eea.webp",
+            "image_width": 60,
+            "heading": "Princess",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Princess"
+          }
+        },
+        "image_block_gMzWgM": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/asscher.webp",
+            "image_width": 60,
+            "heading": "Asscher",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Asscher"
+          }
+        },
+        "image_block_c86MFC": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/cushion_b967a5e9-9a41-43b7-909f-9cb75ea76bc7.webp",
+            "image_width": 60,
+            "heading": "Cushion",
+            "url": "/apps/engagement-rings?filter.p.m.custom.shape=Cushion"
+          }
+        }
+      },
+      "block_order": [
+        "image_block_Lypr8Q",
+        "image_block_pBHQyD",
+        "image_block_dNnJJV",
+        "image_block_PJgaGj",
+        "image_block_DVPEVa",
+        "image_block_PmXGtU",
+        "image_block_7zcyGE",
+        "image_block_cqfdRt",
+        "image_block_gMzWgM",
+        "image_block_c86MFC"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".custom-image-swiper {margin-bottom: 0;}"
+      ],
+      "name": "Custom Icon With Text",
+      "settings": {
+        "section_heading": "Shop by Shape",
+        "color_scheme": "scheme-6",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "section_Bp9zBd": {
+      "type": "section",
+      "blocks": {
+        "image_FBCRGF": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/a.png",
+            "btn_text": "SHOP WEDDING BANDS",
+            "link": "shopify://collections/womens-wedding-bands",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "custom",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "image_8XCxpe": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/SHOP_STUD_EARRINGS_c0832eda-b405-4847-a2a9-5b776df57356.png",
+            "btn_text": "SHOP STUDS EARRINGS",
+            "link": "/collections/earrings/Stud",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "custom",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "image_FBCRGF",
+        "image_8XCxpe"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 767px) {.mobile-column {flex-flow: column nowrap; align-items: var(--horizontal-alignment); justify-content: var(--vertical-alignment-mobile); }}"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "custom_class": "Dwb_Lgdj_home_section",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 80,
+        "padding-block-end": 30
+      }
+    },
+    "category_banner_section_4iFzUP": {
+      "type": "category-banner-section",
+      "blocks": {
+        "category_item_BfXE3c": {
+          "type": "category_item",
+          "settings": {
+            "cat_image": "shopify://shop_images/DIAMOND_EARRINGS.png",
+            "cat_title": "Diamond Earrings",
+            "cat_link": "shopify://collections/earrings"
+          }
+        },
+        "category_item_DPJcJr": {
+          "type": "category_item",
+          "settings": {
+            "cat_image": "shopify://shop_images/div.img-box.png",
+            "cat_title": "Diamond Necklaces",
+            "cat_link": "shopify://collections/necklaces"
+          }
+        },
+        "category_item_AAEtya": {
+          "type": "category_item",
+          "settings": {
+            "cat_image": "shopify://shop_images/picture.png",
+            "cat_title": "Tennis Bracelets",
+            "cat_link": "/collections/bracelets/Tennis"
+          }
+        },
+        "category_item_3CweGF": {
+          "type": "category_item",
+          "settings": {
+            "cat_image": "shopify://shop_images/MENS_WEDDING_BANDS.png",
+            "cat_title": "Mens Wedding Bands",
+            "cat_link": "/collections/mens-wedding-bands"
+          }
+        }
+      },
+      "block_order": [
+        "category_item_BfXE3c",
+        "category_item_DPJcJr",
+        "category_item_AAEtya",
+        "category_item_3CweGF"
+      ],
+      "name": "Category Banner Section",
+      "settings": {
+        "category_banner_title": "FINE JEWELRY"
+      }
+    },
+    "1777267452230ea0f2": {
+      "type": "_blocks",
+      "custom_css": [],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": true,
+        "overlay_color": "#fbfafa",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 60
+      }
+    },
+    "home_shape_by_shape_JDP4kz": {
+      "type": "home-shape-by-shape",
+      "blocks": {
+        "shape_aVaAbR": {
+          "type": "shape",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1547.png",
+            "title": "OVAL",
+            "image_url": "/apps/engagement-rings?filter.p.m.custom.shape=Oval"
+          }
+        },
+        "shape_mhwEpF": {
+          "type": "shape",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1548.png",
+            "title": "MARQUISE",
+            "image_url": "/apps/engagement-rings?filter.p.m.custom.shape=Marquise"
+          }
+        },
+        "shape_XHWR7c": {
+          "type": "shape",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1549.png",
+            "title": "EMERALD",
+            "image_url": "/apps/engagement-rings?filter.p.m.custom.shape=Emerald"
+          }
+        }
+      },
+      "block_order": [
+        "shape_aVaAbR",
+        "shape_mhwEpF",
+        "shape_XHWR7c"
+      ],
+      "name": "Home Shape By Shape",
+      "settings": {
+        "title": "SHOP BY SHAPE",
+        "footer_button_text": "SHOP ALL",
+        "footer_button_url": "/apps/engagement-rings"
+      }
+    },
+    "social_sider_qAj4cW": {
+      "type": "social-sider",
+      "blocks": {
+        "media_G8DaHz": {
+          "type": "media",
+          "settings": {
+            "type": "video",
+            "image": "shopify://shop_images/div.sbi-owl-item_ed85ea95-7b1e-41b1-8b1b-50547899389f.png",
+            "video_url": "#"
+          }
+        },
+        "media_3yagHm": {
+          "type": "media",
+          "settings": {
+            "type": "video",
+            "image": "shopify://shop_images/div.sbi-owl-item_750c0554-567b-44b7-9573-03dbcfffe0c4.png",
+            "video_url": "https://www.instagram.com/p/DVTiEGzDlQ5/"
+          }
+        },
+        "media_tPbALa": {
+          "type": "media",
+          "settings": {
+            "type": "video",
+            "image": "shopify://shop_images/div.sbi-owl-item_ee04bd49-2283-4dee-b85a-8e2dbd704779.png",
+            "video_url": "https://www.instagram.com/p/DVQ-oYSjvUB/"
+          }
+        },
+        "media_3KdWyd": {
+          "type": "media",
+          "settings": {
+            "type": "image",
+            "image": "shopify://shop_images/div.sbi-owl-item_6b8766d6-d7c4-47b6-942e-163f481463cf.png",
+            "video_url": ""
+          }
+        },
+        "media_XErUHE": {
+          "type": "media",
+          "settings": {
+            "type": "video",
+            "image": "shopify://shop_images/div.sbi-owl-item.png",
+            "video_url": "https://www.instagram.com/reel/DVMMp2vjqoH/"
+          }
+        },
+        "media_WFAFfB": {
+          "type": "media",
+          "settings": {
+            "type": "video",
+            "image": "shopify://shop_images/527542022_18515489647061840_1030743162512477328_nlow.webp",
+            "video_url": "https://www.instagram.com/reel/DQ4P3knDvvx/"
+          }
+        },
+        "media_dBaBdt": {
+          "type": "media",
+          "settings": {
+            "type": "image",
+            "image": "shopify://shop_images/527265820_18515125054061840_2262068702757554428_nlow.webp",
+            "video_url": ""
+          }
+        },
+        "media_6nfryi": {
+          "type": "media",
+          "settings": {
+            "type": "video",
+            "image": "shopify://shop_images/525468242_18514769470061840_3486293018071944165_nlow.webp",
+            "video_url": ""
+          }
+        },
+        "media_8gnxq4": {
+          "type": "media",
+          "settings": {
+            "type": "image",
+            "image": "shopify://shop_images/526036820_18514946677061840_6621897193139958790_nlow.webp",
+            "video_url": ""
+          }
+        },
+        "media_GL4Dwj": {
+          "type": "media",
+          "settings": {
+            "type": "video",
+            "image": "shopify://shop_images/583994997_18537251755061840_6163410508027012188_nlow.webp",
+            "video_url": ""
+          }
+        },
+        "media_4HLk7L": {
+          "type": "media",
+          "settings": {
+            "type": "image",
+            "image": "shopify://shop_images/583791001_18537557296061840_5306880637412144996_nlow.webp",
+            "video_url": "https://www.instagram.com/p/DRHtphiDrO5/"
+          }
+        },
+        "media_RpTqG9": {
+          "type": "media",
+          "settings": {
+            "type": "video",
+            "image": "shopify://shop_images/576387313_18536269036061840_8879998506422349940_nlow.webp",
+            "video_url": "https://www.instagram.com/reel/DQ9fPPlDh69/"
+          }
+        },
+        "media_NpKdwH": {
+          "type": "media",
+          "settings": {
+            "type": "image",
+            "image": "shopify://shop_images/576563255_18535863337061840_3038312710971567574_nlow.webp",
+            "video_url": "https://www.instagram.com/p/DQ65Cj3joZD/"
+          }
+        }
+      },
+      "block_order": [
+        "media_G8DaHz",
+        "media_3yagHm",
+        "media_tPbALa",
+        "media_3KdWyd",
+        "media_XErUHE",
+        "media_WFAFfB",
+        "media_dBaBdt",
+        "media_6nfryi",
+        "media_8gnxq4",
+        "media_GL4Dwj",
+        "media_4HLk7L",
+        "media_RpTqG9",
+        "media_NpKdwH"
+      ],
+      "disabled": true,
+      "name": "Social Slider",
+      "settings": {
+        "title": "SOCIAL",
+        "instagram_link": "https://www.instagram.com/weddingdaydiamonds/"
+      }
+    },
+    "process_slider_eLwRMe": {
+      "type": "process-slider",
+      "blocks": {
+        "testimonial_LYyVpT": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "stars": 5,
+            "review": "",
+            "author": ""
+          }
+        },
+        "testimonial_FFwUYb": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review": "Natalie C. has been awesome to work with! Not only did she help my fiance pick out the most stunning engagement ring, but also helped us pick out perfect bands for our wedding day. Neither of us knew a lot about this stuff going in, and she was not only accommodating but she also made the process fun. I’d recommend anyone looking for rings or jewelry to make an appointment with her.",
+            "author": "Katie N."
+          }
+        },
+        "testimonial_b7w6W4": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review": "If you are looking for an engagement ring store, WEDDING DAY DIAMONDS is definitely the best place! Hilary was so helpful and fun to work with. My best friend and I went into this store to try on engagement rings for fun getting an idea of what we liked in case my now fiancé asked what I liked. Fast forward, she then worked with my fiancé to get me the perfect ring! I highly suggest you make the trip to visit her at the Woodbury store. You will not be disappointed!",
+            "author": "Jen Scheumann"
+          }
+        },
+        "testimonial_nnaiH3": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review": "Kelsey was fantastic! She really took the time to listen to what we wanted and provide options. If we liked something that was out of our budget, she researched comparables and sent pictures to us so we didn't need to go back to the store. Never felt pressure to purchase something. We will be back!",
+            "author": "Lacey Jensen"
+          }
+        },
+        "testimonial_q8rTba": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review": "From engagement rings to wedding bands and all the ring cleaning in between, my fiancé and I have loved having Sara with us every step of the way. Not only Sara, but all of the Wedding Day Diamonds staff are always so friendly and welcoming, always ready for a nice conversation (no awkwardness there!). Thank you for helping us with all of our diamond needs!",
+            "author": "Gena Nelson"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_LYyVpT",
+        "testimonial_FFwUYb",
+        "testimonial_b7w6W4",
+        "testimonial_nnaiH3",
+        "testimonial_q8rTba"
+      ],
+      "disabled": true,
+      "name": "Testimonial Slider",
+      "settings": {
+        "top_title": "TRUSTED WITH OVER 100,000 PROPOSALS",
+        "sub_title": "SINCE 1978",
+        "autoplay_delay": 5000
+      }
+    },
+    "section_dFj9LF": {
+      "type": "section",
+      "blocks": {
+        "image_ADYMFx": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Div_justify-content-end_1.png",
+            "mobile_image": "shopify://shop_images/left_data1.webp",
+            "btn_text": "",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "custom",
+            "custom_width": 49,
+            "width_mobile": "custom",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_gUU3Ry": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 51,
+            "width_mobile": "custom",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-3",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_7xAXMb": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h4>MN Owned,</h4><h4>MN Grown.</h4>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_U6tJLr": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Your Love, Our Legacy for Over 45 Years.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 30,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_HVfCfp": {
+              "type": "button",
+              "settings": {
+                "label": "Our Difference",
+                "link": "shopify://pages/our-difference",
+                "open_in_new_tab": false,
+                "style_class": "button-secondary",
+                "width": "custom",
+                "custom_width": 52,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_7xAXMb",
+            "text_U6tJLr",
+            "button_HVfCfp"
+          ]
+        }
+      },
+      "block_order": [
+        "image_ADYMFx",
+        "group_gUU3Ry"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".button-secondary {border-radius: 8px;}"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "custom_class": "image_text_grown",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-3",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "home_custom_design_banner_PAi3PW": {
+      "type": "home-custom-design-banner",
+      "name": "Home Design Custom Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Custom_Homepage_Banner_-_Desktop.png",
+        "mobile_image": "shopify://shop_images/Custom_Homepage_Banner_-_Mobile.png",
+        "title": "",
+        "subtitle": "",
+        "button_label": "GET STARTED",
+        "button_link": "shopify://collections/custom-design",
+        "text_position": "left"
+      }
+    },
+    "new_home_inspired_8Y7LBb": {
+      "type": "new-home-inspired",
+      "blocks": {
+        "inspired_item_VwNd7G": {
+          "type": "inspired_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1554.png",
+            "title": "Cailin & Carl  |  Rachel Glemis Photography"
+          }
+        },
+        "inspired_item_tEkVxE": {
+          "type": "inspired_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1555.png",
+            "title": "Nathan & Jessica  |  Julie Greer Photography"
+          }
+        },
+        "inspired_item_RJcKGd": {
+          "type": "inspired_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1556_1.png",
+            "title": "Owen & Morgan  |  Beyond The Pines Photography"
+          }
+        },
+        "inspired_item_qGMr87": {
+          "type": "inspired_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1588.png",
+            "title": "Cailin & Carl  |  Rachel Glemis Photography"
+          }
+        },
+        "inspired_item_mqBqgE": {
+          "type": "inspired_item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1556.png",
+            "title": "Josh & Emma  |  Nicholas Crandall Photo"
+          }
+        }
+      },
+      "block_order": [
+        "inspired_item_VwNd7G",
+        "inspired_item_tEkVxE",
+        "inspired_item_RJcKGd",
+        "inspired_item_qGMr87",
+        "inspired_item_mqBqgE"
+      ],
+      "name": "New Home Inspired",
+      "settings": {
+        "title": "INSPIRED BY YOU",
+        "content": "A tribute to the individuals who inspire everything we do."
+      }
+    },
+    "1793619575a94fbcad": {
+      "type": "_blocks",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "home_sell_gold_silver_r3UHLF": {
+      "type": "home-sell-gold-silver",
+      "name": "Sell Gold & Silver",
+      "settings": {
+        "left_title": "<p>Sell your <strong>GOLD</strong> & SILVER</p>",
+        "center_content": "<p><em>All 9 Locations | No appointments Necessary</em></p>",
+        "button_text": "FIND A LOCATION",
+        "button_url": "shopify://pages/showroom"
+      }
+    },
+    "section_7PaCX4": {
+      "type": "section",
+      "blocks": {
+        "text_PrctjJ": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h4>Engagement Rings & Fine Jewelry Stores Across Minnesota</h4>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_HXmQ4n": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>At Wedding Day Diamonds, we specialize in stunning engagement rings, custom wedding bands, and timeless fine jewelry. With nine convenient locations across Minnesota—including Burnsville, Richfield, Minnetonka, Eden Prairie, Maple Grove, St. Cloud, Woodbury, Roseville, and Rochester—we're your local destination for expert craftsmanship and exceptional service. Whether you're visiting us in-store or shopping online, our jewelry experts are here to help you create the ring of your dreams.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_PrctjJ",
+        "text_HXmQ4n"
+      ],
+      "custom_css": [
+        ".border-style.custom-section-content.color-scheme-1 {width: 60%; max-width: 860px;}",
+        "rte-formatter.spacing-style.paragraph p {font-size: 15px; letter-spacing: 2px; font-weight: 400;}"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "last_footer_richText",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 80,
+        "padding-block-end": 40
+      }
+    }
+  },
+  "order": [
+    "new_home_hero_banner_RUTcKJ",
+    "shop_by_style_slider_zTE4Ye",
+    "new_arrival_banner_8gx9E8",
+    "confidence_features_hfH4Ap",
+    "icon_with_text_e4rhgA",
+    "section_Bp9zBd",
+    "category_banner_section_4iFzUP",
+    "1777267452230ea0f2",
+    "home_shape_by_shape_JDP4kz",
+    "social_sider_qAj4cW",
+    "process_slider_eLwRMe",
+    "section_dFj9LF",
+    "home_custom_design_banner_PAi3PW",
+    "new_home_inspired_8Y7LBb",
+    "1793619575a94fbcad",
+    "home_sell_gold_silver_r3UHLF",
+    "section_7PaCX4"
+  ]
+}

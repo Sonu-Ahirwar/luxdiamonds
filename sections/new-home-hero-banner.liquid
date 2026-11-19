@@ -1,0 +1,331 @@
+
+{% liquid
+  assign section_id = 'NewHomeHero-' | append: section.id
+%}
+
+<div
+  id="{{ section_id }}"
+  class="new-home-hero"
+  aria-label="Featured collections"
+>
+  <div class="new-home-hero__grid">
+
+    {% for block in section.blocks %}
+      {% liquid
+        assign banner_image = block.settings.image
+        assign banner_image_mobile = block.settings.image_mobile
+        assign button_text = block.settings.button_text
+        assign button_url = block.settings.button_url
+        assign image_alt = banner_image.alt | default: button_text
+      %}
+
+      <div
+        class="new-home-hero__item"
+        {{ block.shopify_attributes }}
+      >
+
+        {% if banner_image != blank %}
+
+          <img
+            class="new-home-hero__image desktop"
+            src="{{ banner_image | image_url: width: 1200 }}"
+            srcset="
+              {{ banner_image | image_url: width: 480 }} 480w,
+              {{ banner_image | image_url: width: 750 }} 750w,
+              {{ banner_image | image_url: width: 1000 }} 1000w,
+              {{ banner_image | image_url: width: 1500 }} 1500w,
+              {{ banner_image | image_url: width: 2000 }} 2000w
+            "
+            sizes="(max-width: 749px) 100vw, 50vw"
+            alt="{{ image_alt | escape }}"
+            width="{{ banner_image.width }}"
+            height="{{ banner_image.height }}"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            {% if forloop.first %}
+              fetchpriority="high"
+            {% endif %}
+          >
+
+          <img
+            class="new-home-hero__image mobile"
+            src="{{ banner_image_mobile | image_url: width: 800 }}"
+            srcset="
+              {{ banner_image | image_url: width: 480 }} 480w,
+              {{ banner_image | image_url: width: 750 }} 750w,
+              {{ banner_image | image_url: width: 1000 }} 1000w,
+              {{ banner_image | image_url: width: 1500 }} 1500w,
+              {{ banner_image | image_url: width: 2000 }} 2000w
+            "
+            sizes="(max-width: 749px) 100vw, 50vw"
+            alt="{{ image_alt | escape }}"
+            width="{{ banner_image.width }}"
+            height="{{ banner_image.height }}"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            {% if forloop.first %}
+              fetchpriority="high"
+            {% endif %}
+          >
+
+        {% else %}
+
+          <div class="new-home-hero__placeholder">
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+
+        {% endif %}
+
+        {% if button_text != blank and button_url != blank %}
+          <a
+            href="{{ button_url }}"
+            class="new-home-hero__button"
+            aria-label="{{ button_text | escape }}"
+          >
+            {{ button_text | escape }}
+          </a>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+<style>
+  #{{ section_id }} {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  #{{ section_id }} .new-home-hero__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 0;
+  }
+
+  #{{ section_id }} .new-home-hero__item {
+    position: relative;
+    width: 100%;
+    height:calc(100vh - 214px);
+    height:calc(100dvh - 214px);
+    overflow: hidden;
+    background: #d5c0ac;
+  }
+
+  #{{ section_id }} .new-home-hero__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.7s ease;
+  }
+
+  #{{ section_id }} .new-home-hero__image.mobile{
+    display:none;
+  }
+
+  #{{ section_id }} .new-home-hero__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #{{ section_id }} .new-home-hero__placeholder svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Button */
+
+  #{{ section_id }} .new-home-hero__button {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 6%;
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 60%;
+    max-width: 382px;
+    min-height: 53px;
+    padding: 18px 10px;
+
+    border: 2px solid #fff;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 2.75px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition:
+      background 0.35s ease,
+      color 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  #{{ section_id }} .new-home-hero__button:hover {
+    background: #ffffff;
+    color: #222222;
+    border-color: #ffffff;
+  }
+
+  @media screen and (max-width:1680px){
+    #{{ section_id }} .new-home-hero__button {
+        max-width: 340px;
+        min-height: 45px;
+        padding: 12px 10px;
+        border-radius: 6px;
+        font-size: 15px;
+        letter-spacing: 2px;
+    }
+ }
+ @media screen and (max-width:1439px){
+  #{{ section_id }} .new-home-hero__item {
+    height:calc(100vh - 196px);
+    height:calc(100dvh - 196px);
+  }
+ }
+  @media screen and (max-width:1300px){
+    #{{ section_id }} .new-home-hero__button {
+        width: 90%;
+    }
+    #{{ section_id }} .new-home-hero__item {
+      height:calc(100vh - 180px);
+      height:calc(100dvh - 180px);
+    }
+  }
+  @media screen and (max-width:1199px){
+    #{{ section_id }} .new-home-hero__item {
+      height:calc(100vh - 172px);
+      height:calc(100dvh - 172px);
+    }
+  }
+  @media screen and (max-width:1024px){
+    #{{ section_id }} .new-home-hero__button {
+        max-width: 240px;
+        min-height: auto;
+        padding: 10px 10px;
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+  }
+  @media screen and (max-width:991px){
+    #{{ section_id }} .new-home-hero__item {
+      height:calc(100vh - 78px);
+      height:calc(100dvh - 78px);
+    }
+  }
+  /* Mobile */
+
+  @media screen and (max-width: 749px) {
+
+    #{{ section_id }} .new-home-hero__grid {
+      grid-template-columns: 1fr;
+    }
+
+    #{{ section_id }} .new-home-hero__item {
+      height:calc(50vh - 39px);
+      height:calc(50dvh - 39px);
+      width: 100%;
+    }
+
+    #{{ section_id }} .new-home-hero__image {
+      object-position: center center;
+    }
+    #{{ section_id }} .new-home-hero__image.mobile{
+      display:block;
+    }
+    #{{ section_id }} .new-home-hero__image.desktop{
+      display:none;
+    }
+
+    #{{ section_id }} .new-home-hero__button {
+      width: 80%;
+      max-width: 240px;
+      min-height: auto;
+      bottom: 7%;
+
+      padding: 10px 10px;
+      border-radius: 6px;
+
+      font-size: 12px;
+      letter-spacing: 1.2px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #{{ section_id }} .new-home-hero__image,
+    #{{ section_id }} .new-home-hero__button {
+      transition: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "New Home Hero Banner",
+  "max_blocks": 2,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Hero Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Banner Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Banner Image for Mobile"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Home Hero Banner",
+      "blocks": [
+        {
+          "type": "banner"
+        },
+        {
+          "type": "banner"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

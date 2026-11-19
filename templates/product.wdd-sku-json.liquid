@@ -1,0 +1,31 @@
+{%- layout none -%}
+{%- liquid
+  assign prod = product
+
+  assign use_prod = prod
+  assign parent_handle_val = prod.metafields.custom.parent_handle.value | default: ''
+  if parent_handle_val != ''
+    assign parent_prod = all_products[parent_handle_val]
+    if parent_prod != blank
+      assign use_prod = parent_prod
+    endif
+  endif
+
+  assign fields = 'all_sku_plp,all_sku_plp_1,all_sku_plp_2' | split: ','
+  assign mf_items = '' | split: ','
+
+  for f in fields
+    assign m = use_prod.metafields.custom[f]
+    if m != blank and m.value != blank
+      assign mf_items = mf_items | concat: m.value
+    endif
+  endfor
+
+  if mf_items == blank
+    assign all_s = use_prod.metafields.custom.all_skus
+    if all_s != blank and all_s.value != blank
+      assign mf_items = all_s.value
+    endif
+  endif
+-%}
+{{ mf_items | json }}

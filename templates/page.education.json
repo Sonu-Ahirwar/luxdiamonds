@@ -1,0 +1,760 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "section_gmtXiN": {
+      "type": "section",
+      "blocks": {
+        "group_y4BnDE": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "image_UCEmcE": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/EducationPages_Final-02.jpg",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_UCEmcE"
+          ]
+        },
+        "group_bfLH7e": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "image_8wwYeD": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/EducationPages_Final-03.jpg",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_8wwYeD"
+          ]
+        },
+        "group_FnCbLe": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "image_GbgijP": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/EducationPages_Final-04.jpg",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_GbgijP"
+          ]
+        },
+        "group_QXGVwY": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "image_kxjejK": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/EducationPages_Final-05.jpg",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_kxjejK"
+          ]
+        }
+      },
+      "block_order": [
+        "group_y4BnDE",
+        "group_bfLH7e",
+        "group_FnCbLe",
+        "group_QXGVwY"
+      ],
+      "disabled": true,
+      "name": "t:names.custom_section",
+      "settings": {
+        "custom_class": "",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "education_page_nFt6fL": {
+      "type": "education-page",
+      "name": "Education: In The Know",
+      "settings": {
+        "banner_image_1": "shopify://shop_images/EducationPages_Final-02.jpg",
+        "banner_image_1_alt": "Image 1",
+        "banner_image_2": "shopify://shop_images/EducationPages_Final-03.jpg",
+        "banner_image_2_alt": "Image 2",
+        "banner_image_3": "shopify://shop_images/EducationPages_Final-04.jpg",
+        "banner_image_3_alt": "Image 3",
+        "banner_image_4": "shopify://shop_images/EducationPages_Final-05.jpg",
+        "banner_image_4_alt": "Image 4",
+        "heading": "",
+        "subheading": ""
+      }
+    },
+    "perfect_ring_promise_dHf4xi": {
+      "type": "perfect-ring-promise",
+      "name": "Perfect Ring Banner",
+      "settings": {
+        "title": "IN THE KNOW",
+        "title_h1": true,
+        "text": "Knowing the facts before you buy a piece of jewelry is essential.<br>\nWe've made it easy to get up to speed on everything you need to know!",
+        "title_color": "#395754",
+        "text_color": "#395754",
+        "title_size": 26,
+        "text_size": 17,
+        "bg_color": "#f9f7f5",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "tabify_education_AxqxWU": {
+      "type": "tabify-education",
+      "blocks": {
+        "section_heading_fdCRYK": {
+          "type": "section_heading",
+          "settings": {
+            "heading_text": "ECO4 DIAMONDS",
+            "target_id": "ECO4-DIAMONDS"
+          }
+        },
+        "content_richtext_TYVriE": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "ECO4-DIAMONDS",
+            "content": "<h5>In the Know: ECO 4 Lab Grown Diamonds</h5><p>So, what exactly are lab-grown diamonds? They're diamonds, plain and simple. The only thing that makes lab-grown diamonds different from Earth-mined diamonds is where they come from. Apart from their origin story, lab-grown diamonds are indistinguishable from traditional, mined diamonds.</p><p>Even though they look the same, that origin story matters. Environmentally, in the world of gemstones, you can't do better than a lab-grown diamond. Here's why:</p><p>Traditional, mined diamonds are deep within the earth, and that means you have to move a whole lot of earth to get to them. Try, thousands and thousands of acres. That's a lot of natural habitat destroyed.</p><p>In fact, on average, 98 square feet of Earth is moved for every carat of diamond retrieved.</p><p>Lab grown diamonds, which are every bit as hard and long lasting, are made in a laboratory, and therefore require less than one square foot per carat of diamond.</p>",
+            "content_html": ""
+          }
+        },
+        "content_image_DPLVHz": {
+          "type": "content_image",
+          "settings": {
+            "parent_id": "ECO4-DIAMONDS",
+            "image": "shopify://shop_images/ECO4-01.jpg"
+          }
+        },
+        "content_richtext_Tagikh": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "ECO4-DIAMONDS",
+            "content": "<p>Let's talk water: Mining is a thirst operation. To retrieve one carat of diamond from the earth requires 127 gallons of water.</p><p>Labs have all kinds of ways to reduce water waste, meaning from start to finish, producing a one-carat lab-grown diamond requires only 18 gallons of water.</p>",
+            "content_html": ""
+          }
+        },
+        "content_image_H4qj9g": {
+          "type": "content_image",
+          "settings": {
+            "parent_id": "ECO4-DIAMONDS",
+            "image": "shopify://shop_images/ECO4-02.jpg"
+          }
+        },
+        "content_richtext_rj6P9r": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "ECO4-DIAMONDS",
+            "content": "<p>For some perspective, beef requires 106 gallons of water just to produce one ounce! Mangoes and Asparagus... they take over 20 gallons of water per ounce, and none of those things last forever the way a diamond does.</p><p>Mining is also a dirty business. In fact, 2011 ounces of air pollution are produced just to retrieve one traditional diamond.</p>",
+            "content_html": ""
+          }
+        },
+        "content_image_qqEU36": {
+          "type": "content_image",
+          "settings": {
+            "parent_id": "ECO4-DIAMONDS",
+            "image": "shopify://shop_images/ECO4-03.jpg"
+          }
+        },
+        "content_richtext_473Rff": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "ECO4-DIAMONDS",
+            "content": "<p>Lab grown diamonds, however, produce negligible air pollution-.001 ounces per carat. (Yes, sticking with food, that is less air pollution than it takes to produce a single steak. It's also less than it takes to eat mangoes, unless you are lucky enough to live with a mango tree, and therefore eliminate transit.)</p><p>Did we mention lab-grown diamonds can be produced anywhere that there's a lab?</p><p>If saving resources and natural habitats and reducing pollution isn't a convincing enough reason to go for lab-grown diamonds, how about your wallet?</p><p>With lab-grown diamonds, what is saved in production costs is passed directly to you, the buyer, meaning lab grown diamonds cost 30-40% less than traditional diamonds, even though in every meaningful way, they're the exact same thing!</p><p>Oh, and if all of this isn't exciting enough, because lab-grown diamonds are grown in sterile, controlled environments, they often have higher clarity scores than traditional, mined diamonds.</p><p>From tennis bracelets and solitaires to diamond studs and engagement rings, our incomparably beautiful lab-grown diamonds will have you looking and feeling radiant.</p><p>And just like every other piece sold by Wedding Day Diamonds, our lab-grown beauties are covered by our industry-leading lifetime warranty. Now that's a win-win. We are so proud to be the Twin Cities' leader in lab-grown diamonds.</p>",
+            "content_html": ""
+          }
+        },
+        "section_heading_iM8q4f": {
+          "type": "section_heading",
+          "settings": {
+            "heading_text": "DIAMOND EDUCATION",
+            "target_id": ""
+          }
+        },
+        "nav_link_VLTkdb": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "THE 4 C'S",
+            "target_id": "the-4-cs"
+          }
+        },
+        "content_image_LACCnV": {
+          "type": "content_image",
+          "settings": {
+            "parent_id": "the-4-cs",
+            "image": "shopify://shop_images/EducationPages_Final-05_add2a7ea-edbc-4a50-9522-d3156906da9b.jpg"
+          }
+        },
+        "content_richtext_QaXhHP": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "the-4-cs",
+            "content": "<h2>CUT</h2><h4>A diamond's cut will determine its sparkle</h4><p>The higher a diamond's cut grade, the greater the stone's brilliance. You'll be able to see the difference in sparkle and fire when you compare an Excellent cut to a lower cut grade.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-04_1dc2d69c-3d73-486f-bd3f-3e6e5fb0695d.jpg"
+          }
+        },
+        "content_richtext_itwV4p": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "the-4-cs",
+            "content": "<h2>Color</h2><h3>A diamond's color refers to lack of color</h3><p>Color measures the \"whiteness\" of a diamond. For an exceptionally white diamond, choose a color grade of D, E or F, and we suggest a white metal setting to maximize its brilliance. If you are looking for the best value, consider a diamond with a near-colorless grade G, H, I or J.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-03_cd4e9b3d-cba9-49b2-9937-1770682183f7.jpg"
+          }
+        },
+        "content_richtext_9bGnia": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "the-4-cs",
+            "content": "<h2>CLARITY</h2><h3>Every diamond is different</h3><p>All diamonds have natural characteristics or tiny imperfections. The actual clarity grade of a diamond is only as important as you want it to be. We recommended that you choose a diamond based on what you see, and buy with your eyes, not with your ears.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-02_9f13a430-37dd-4a7b-9a85-8d56a709e3fe.jpg"
+          }
+        },
+        "content_richtext_pTkHtt": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "the-4-cs",
+            "content": "<h2>CARAT</h2><h3>A diamond's weight is measured in carats</h3><p>Carat weight is the total weight of a diamond regardless of how it's distributed. From the top, a poorly cut diamond may appear smaller than a diamond of equal weight. Diamond value is determined by all the 4Cs, not by carat weight alone.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-01.jpg"
+          }
+        },
+        "nav_link_9Xtcd4": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "DIAMOND SHAPES",
+            "target_id": "diamond-shapes"
+          }
+        },
+        "content_richtext_fJqhQd": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "diamond-shapes",
+            "content": "",
+            "content_html": "<ul class=\"shape-options\">\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-01.png\" alt=\"round\"><span>Round</span>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-02.png\" alt=\"round\"><span>OVAL</span>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-03.png\" alt=\"round\"><span>Pear</span>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-04.png\" alt=\"round\"><span>Cushion</span>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-05.png\" alt=\"round\"><span>Emerald</span>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-06.png\" alt=\"round\"><span>Radiant</span>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-07.png\" alt=\"round\"><span>MARQUISE </span>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-08.png\" alt=\"round\"><span>PRINCESS</span>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-09.png\" alt=\"round\"><span>ELONGATED <br> CUSHION</span>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/Asscher.png\" alt=\"round\"><span>ASSCHER</span>\n</li>\n</ul>\n\n<div class=\"csContent\">\n<h5 class=\"mb-4\">A beautiful reflection of your unique style</h5>\n<p>Choosing a diamond shape is really about personal preference. Whether your taste leans toward traditional, modern, classic or sophisticated, we'll help you find the perfect shape and we'll make sure it sparkles with you in mind.</p>\n<ul class=\"shape-options-detail image_shape\">\n<li>\n<img class=\"img\" src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-01.png\" alt=\"round\"><div class=\"text\">\n<h4>ROUND</h4>\n<p>The round brilliant cut diamond is by far the most popular shape. Over the past 100 years, diamond cutters have figured out exactly how to cut a round brilliant cut diamond to optimize the most sparkle possible.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-02.png\" alt=\"round\"><div class=\"text\">\n<h4>OVAL</h4>\n<p>Oval cut diamonds are similar in faceting style to a round brilliant but with a vintage flair. The oval warrants itself to \"Old Hollywood\" and heirloom styles that look great in a halo setting or a ring with a lot of engraved detail. The shape can vary in length and width but its up to you to choose what you like the best.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-03.png\" alt=\"round\"><div class=\"text\">\n<h4>PEAR</h4>\n<p>Also called a teardrop, the pear shaped diamond offers a beautiful and elegant appearance to any engagement ring. Traditionally worn with the point going towards the fingertip, the pear shape diamond is a style that will not go un-noticed on your fiancé's hand. It is similar to the oval cut in that is can vary in length and width so choose the one that you think is most beautiful.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-04.png\" alt=\"round\"><div class=\"text\">\n<h4>CUSHION</h4>\n<p>Cushion cut diamonds are very trend setting cuts now and have become very popular due to their larger facets and round corners. They have a unique brilliance that women love and can be either square or rectangular.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-05.png\" alt=\"round\"><div class=\"text\">\n<h4>EMERALD</h4>\n<p>Not only is the Emerald cut traditionally rectangular, its faceting style could not get more different compared to a round brilliant cut diamond. Unlike other cuts, the step faceting on an emerald cut allows you to \"see through\" the diamond from the top down. Being able to see through the diamond means any small characteristics are more visible. Most people that prefer Emerald Cut diamonds choose a higher clarity grade so as not to see those imperfections.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-06.png\" alt=\"round\"><div class=\"text\">\n<h4>RADIANT</h4>\n<p>A signature of radiant cut diamonds are its trimmed corners. This offers a cool, retro style to the shape. A radiant cut diamond can be found either square or rectangular.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-08.png\" alt=\"MARQUISE\"><div class=\"text\">\n<h4>MARQUISE</h4>\n<p>Marquise cut diamonds were once one of the most popular shapes for newly engaged women. And although we cannot say that's true today, it has its advantages. In today's market, you can get a much larger marquise cut diamond compared to other fancy shapes for the same amount of money, simply because they are not as popular as they used to be.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-07.png\" alt=\"PRINCESS\"><div class=\"text\">\n<h4>PRINCESS</h4>\n<p>Princess cut definitely holds the title of \"most popular\" among fancy shapes. Besides a round brilliant cut diamond, princess cut is most favored for its traditional square shape and sharp corners. Its modern design and clean lines offer a contemporary feel to any engagement ring.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/EducationPages_Final-09.png\" alt=\"round\"><div class=\"text\">\n<h4>ELONGATED CUSHION</h4>\n<p>Elongated cushion cut diamonds are a captivating and unique choice for those seeking a blend of vintage charm and modern elegance. With their distinct rectangular shape, these diamonds combine the soft, rounded edges of a traditional cushion cut with a longer profile. Whether adorning an engagement ring or gracing a pendant, elongated cushion cut diamonds make a statement that is both classic and contemporary, perfect for those who appreciate the fusion of tradition and innovation in their jewelry choices.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/shape/Asscher.png\" alt=\"round\"><div class=\"text\">\n<h4>ASSCHER</h4>\n<p>The Asscher cut diamond is almost identical to an emerald cut diamond except for one minor detail. They are square. They have the same step faceting and unique \"glassy\" appearance. You may have thought Princess cut was the only way to go if you wanted a square shaped diamond but check out an Asscher cut before you make your final decision.</p>\n</div>\n</li>\n</ul>\n</div>"
+          }
+        },
+        "nav_link_hEV6qh": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "DIAMOND SETTINGS",
+            "target_id": "diamond-settings"
+          }
+        },
+        "content_richtext_EDqxcz": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "diamond-settings",
+            "content": "<p>There are many ways to set a diamond. Some settings can make a diamond appear larger while others suggest a vintage-inspired style. Choosing a setting is a personal choice, and the options run from traditional to sophisticated and more.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-05_d7c41e2c-cfd9-402a-8399-16160e5426dd.jpg"
+          }
+        },
+        "content_richtext_3NDbiN": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "diamond-settings",
+            "content": "<h2>PRONG</h2><p>The prong setting is the most popular and classic way of setting diamonds. It allows the most amount of light to travel through the diamond and is most commonly set with four or six prongs which is the most secure way to set a diamond. In a prong setting, your center diamond traditionally sits above the rest of the ring.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-04_905de22d-aa3f-426a-b645-40ba9e11ecd3.jpg"
+          }
+        },
+        "content_richtext_QjqYcN": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "diamond-settings",
+            "content": "<h2>CHANNEL</h2><p>The channel setting is a sleek and smooth design where a row of diamonds is placed between a metal pathway. The metal channel hugs the diamonds allowing for a very secure setting. Not only will a channel setting allow a breathtaking and continuous line of diamonds, it will not catch on anything because it does not have any prongs that could get in the way.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-03_1d997b64-67c9-4329-858c-322358d04595.jpg"
+          }
+        },
+        "content_richtext_eTj6Hh": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "diamond-settings",
+            "content": "<h2>PAVE</h2><p>Pave settings have many small diamonds that are set close together in between tiny little prongs, giving the appearance of a solid diamond surface. Micro pave refers to even smaller diamonds and smaller prongs becoming more intricate and delicate.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-02_aab779bc-176c-4a6a-b22b-b71805391dfd.jpg"
+          }
+        },
+        "content_richtext_b4iWDh": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "diamond-settings",
+            "content": "<h2>BEZEL</h2><p>The bezel setting is one of the most secure ways to set a diamond and offers a contemporary and simple look. A bezel setting is when the center diamond is completely surrounded by a rim of metal. You can also find half bezels allowing more light to enter from the side.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-01_964f3fd7-e562-4fc4-ac88-cd787222b481.jpg"
+          }
+        },
+        "content_richtext_qwPgbg": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "diamond-settings",
+            "content": "<h2>BAR</h2><p>The bar setting is very similar to channel setting. It consists of a long thin bar shared between two diamonds. Unlike a channel setting, where there are multiple diamonds in a row, the bar setting is in between each individual diamond.</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_mKAfcw": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "CERTIFICATIONS",
+            "target_id": "certifications"
+          }
+        },
+        "content_richtext_4GEEz4": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "certifications",
+            "content": "<p>Even though the diamond might be of high quality on paper, its brilliance could be far less than a diamond with lower qualities. So keep in mind that diamond certificates are simply a guide to determine the VALUE of the diamond, not the BEAUTY. And some are more reliable than others. These certificates can be important in understanding the true rarity of the diamond, but always remember to buy with your eyes! It's your opinion that matters most.</p>",
+            "content_html": "<div class=\"csContent\"><ul class=\"shape-options-detail\">\n<li>\n<img class=\"img\" src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/CERTIFICATIONS/EducationPages_Final-04.jpg\" alt=\"round\"><div class=\"text\">\n<h2 class=\"certificateTitle\">GIA</h2>\n<h3 class=\"decription\">GIA is the world's most respected gemological laboratory, entrusted with grading and identifying more gems than any other lab. If your diamond has a GIA certificate, you can be certain that what you paid for is what you got. At Wedding Day, most of our diamonds come with a GIA certificate and we always use GIA standard grading when determining the rarity of our diamonds.</h3>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/CERTIFICATIONS/EducationPages_Final-03.jpg\" alt=\"round\"><div class=\"text\">\n<h2 class=\"certificateTitle\">AGS</h2>\n<h3 class=\"decription\">In 1996, the American Gem Society opened a diamond grading lab to ensure consistent, consumer-oriented diamond grading reports. Wedding Day Diamonds is a member of the AGS and we fully support and recognize AGS practices. They are very comparable to GIA standards.</h3>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/CERTIFICATIONS/EducationPages_Final-02.jpg\" alt=\"round\"><div class=\"text\">\n<h2 class=\"certificateTitle\">IGI</h2>\n<h3 class=\"decription\">The International Gemological Institute (IGI) Diamond Report is a certification stating the authenticity of a diamond and it provides a reliable and accurate report based on an internationally recognized system. IGI creates certifications that are detailed and easy to understand so anyone can appreciate the unique qualities of their diamond.</h3>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/CERTIFICATIONS/EducationPages_Final-01.jpg\" alt=\"round\"><div class=\"text\">\n<h2 class=\"certificateTitle\">EGL</h2>\n<h3 class=\"decription\">The European Gemological Laboratories (EGL) are by far the least favored certification lab in the industry. Although they claim to be most reliable, we've compared their work to a GIA certification and there is an undeniable difference in the quality of the reports.<br><br>WARNING: If you fall in love with a diamond that comes with an EGL certification, just remember that the true grading is most likely 2-6 grades lower than it actually is. We want you to have 100% confidence in your diamond quality and we do that by selling you a diamond based on GIA standard grading: nothing less.</h3>\n</div>\n</li>\n</ul></div>"
+          }
+        },
+        "section_heading_mtcTCB": {
+          "type": "section_heading",
+          "settings": {
+            "heading_text": "JEWELRY EDUCATION",
+            "target_id": ""
+          }
+        },
+        "nav_link_kfkgMy": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "METAL TYPES",
+            "target_id": "metal-types"
+          }
+        },
+        "content_richtext_yngdkQ": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "metal-types",
+            "content": "",
+            "content_html": "<div class=\"csContent\"><ul class=\"shape-options-detail\">\n<h2 class=\"metalTypeTitle mb-4\">Precious Metals</h2>\n<li>\n<img class=\"img\" src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/METAL-TYPES/EducationPages_Final-06.jpg\" alt=\"round\"><div class=\"text\">\n<h3>GOLD</h3>\n<h4 class=\"decription\">Gold is the world's most popular precious metal and is naturally yellow in color. Gold may be mixed with different alloys to create white or rose gold. White gold jewelry is plated in rhodium and rose gold is mixed with copper. All gold will scratch over time, but can easily be refurbished and/or rhodium plated when needed.</h4>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/METAL-TYPES/EducationPages_Final-05.jpg\" alt=\"round\"><div class=\"text\">\n<h3>PLATINUM</h3>\n<p>Platinum jewelry is rare. It will last a lifetime and is completely hypoallergenic. Platinum is a white metal that's also 90-95% pure. Although platinum scratches and bends over time, it will not tarnish or require rhodium plating. Scratches on platinum can easily be polished back to its original state.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/METAL-TYPES/EducationPages_Final-04.jpg\" alt=\"round\"><div class=\"text\">\n<h3>PALLADIUM</h3>\n<p>Palladium is 90-95% pure, hypoallergenic and has a similar finish to platinum. However, palladium is not as rare as platinum, and therefore less expensive. Although we may recommend palladium for prong or channel set rings, and solitaires, we do not recom mend palladium for most pave settings.</p>\n</div>\n</li>\n<h5 class=\"metalTypeTitle mb-4 mt-5\">Alternative Metals</h5>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/METAL-TYPES/EducationPages_Final-03.jpg\" alt=\"round\"><div class=\"text\">\n<h3>TUNGSTEN CARBIDE</h3>\n<p>Tungsten carbide is by far the most popular alternative metal for men's wedding bands. It comes in three different colors; dark grey, white and black, and is much heavier than a precious metal ring. It is hypoallergenic and very scratch resistant, but it cannot be resized. It has a very affordable price point, and costs an average of 50% less than a precious metal wedding band.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/METAL-TYPES/EducationPages_Final-02.jpg\" alt=\"round\"><div class=\"text\">\n<h3>COBALT</h3>\n<p>Cobalt is a natural hypoallergenic metal. It's the whitest alternative metal available today and looks similar to Platinum. It won't tarnish and is extremely hard and scratch resistant. Cobalt is extremely durable with a long lasting finish. It cannot be resized. but men love it almost as much as tungsten carbide.</p>\n</div>\n</li>\n<li>\n<img src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/METAL-TYPES/EducationPages_Final-01.jpg\" alt=\"round\"><div class=\"text\">\n<h3>TITANIUM</h3>\n<p>Titanium is very lightweight and comfortable to wear. It's stronger than gold or platinum, and 3 times stronger than steel. It's found mostly in men's wedding bands and fashion jewelry. It cannot be re-sized and will probably scratch over time.<br><br>Does your alternative metal ring not fit anymore?</p>\n</div>\n</li>\n</ul></div>"
+          }
+        },
+        "nav_link_knQ4Yy": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "RING STYLES",
+            "target_id": "ring-styles"
+          }
+        },
+        "content_richtext_Ai8JYe": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "ring-styles",
+            "content": "<h5>What's your Bridal Style? What's Your Ring style?</h5><p>Have you been planning or thinking about your dream wedding since you were very young? Do you peek at bridal magazines in the checkout lane or magazine stand? Perhaps you haven't done any of these things and are still trying to figure out what style is yours. Well, we've created some basic categories to help you find the perfect ring based on the wedding you've dreamed of and the style you love.</p>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-04_1.jpg"
+          }
+        },
+        "content_richtext_WaPzFp": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "ring-styles",
+            "content": "<h2>VINTAGE</h2><p>Are you drawn to the glamour of old Hollywood? Or the charm of an antique store? Chances are a vintage inspired ring might be perfect for you. Often designed with intricate details and engraving, there is no style as romantic. Your antique inspired ring from Wedding Day would perfectly accent a wedding full of muted colors, pearls, and lace.</p><p>Common Vintage Characteristics</p><ul><li>Halos</li><li>Pave Diamonds</li><li>Engraved Detail</li></ul>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-03_1.jpg"
+          }
+        },
+        "content_richtext_zJiemx": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "ring-styles",
+            "content": "<h2>MODERN</h2><p>If sleek and contemporary designs catch your eye, a modern wedding set is what you seek. Clean lines and unique designs set these rings apart and are sure to make you stand apart. With designers that are on the cutting edge of style, Wedding Day has a ring that will never fade in with the crowd.</p><p>Common Modern Characteristics</p><ul><li>Asymmetrical</li><li>Swirl</li><li>Bezel</li><li>Channel</li></ul>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-02_a399b831-bdf0-438c-9d70-12f652dde380.jpg"
+          }
+        },
+        "content_richtext_FBdP9h": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "ring-styles",
+            "content": "<h2>CLASSIC</h2><p>If you're a classic bride, chances are you've been dreaming of the perfect ring for a while. You love tradition and can't wait to get married in the church you grew up in. Sophisticated yet simple, a ring that will never go out of style- that's what you've always wanted to say 'Yes!' to. From classic solitaires to three stone engagement rings, Wedding Day has the classic ring for you.</p><p>Common Classic Characteristics</p><ul><li>Solitaire</li><li>3 Stone</li><li>Atia 81</li></ul>",
+            "content_html": "",
+            "image": "shopify://shop_images/EducationPages_Final-01_fecc363f-ab92-4eb4-b665-31c9841e39fb.jpg"
+          }
+        },
+        "content_richtext_4VkyAV": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "ring-styles",
+            "content": "<h2>NON-TRADITIONAL</h2><p>You're happy just having found the right person, and a lavish party sounds exhausting. Maybe you want to have a quiet ceremony on a beach somewhere, go to the courthouse, or elope in Vegas. You're fairly relaxed and all those traditional rings are boring. Chances are, we can still find you a ring that expresses the commitment your making. Check out these non-traditional options for an engagement ring.</p>",
+            "content_html": ""
+          }
+        },
+        "nav_link_U7mPtq": {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Easy Repairs & Exchanges",
+            "target_id": "easy-repairs"
+          }
+        },
+        "content_richtext_wUDrR8": {
+          "type": "content_richtext",
+          "settings": {
+            "parent_id": "easy-repairs",
+            "content": "",
+            "content_html": "<div class=\"csContent\"><ul class=\"shape-options-detail\"><li>\n<img class=\"img\" src=\"https://dl2vs6wk2ewna.cloudfront.net/wdd/images/Education/METAL-TYPES/EducationPages_Final-01.jpg\" alt=\"round\"><div class=\"text\">\n<h4>TITANIUM</h4>\n<p>Titanium is very lightweight and comfortable to wear. It's stronger than gold or platinum, and 3 times stronger than steel. It's found mostly in men's wedding bands and fashion jewelry. It cannot be re-sized and will probably scratch over time.</p>\n<p>Does your alternative metal ring not fit anymore?</p>\n</div>\n</li></ul></div>"
+          }
+        }
+      },
+      "block_order": [
+        "section_heading_fdCRYK",
+        "content_richtext_TYVriE",
+        "content_image_DPLVHz",
+        "content_richtext_Tagikh",
+        "content_image_H4qj9g",
+        "content_richtext_rj6P9r",
+        "content_image_qqEU36",
+        "content_richtext_473Rff",
+        "section_heading_iM8q4f",
+        "nav_link_VLTkdb",
+        "content_image_LACCnV",
+        "content_richtext_QaXhHP",
+        "content_richtext_itwV4p",
+        "content_richtext_9bGnia",
+        "content_richtext_pTkHtt",
+        "nav_link_9Xtcd4",
+        "content_richtext_fJqhQd",
+        "nav_link_hEV6qh",
+        "content_richtext_EDqxcz",
+        "content_richtext_3NDbiN",
+        "content_richtext_QjqYcN",
+        "content_richtext_eTj6Hh",
+        "content_richtext_b4iWDh",
+        "content_richtext_qwPgbg",
+        "nav_link_mKAfcw",
+        "content_richtext_4GEEz4",
+        "section_heading_mtcTCB",
+        "nav_link_kfkgMy",
+        "content_richtext_yngdkQ",
+        "nav_link_knQ4Yy",
+        "content_richtext_Ai8JYe",
+        "content_richtext_WaPzFp",
+        "content_richtext_zJiemx",
+        "content_richtext_FBdP9h",
+        "content_richtext_4VkyAV",
+        "nav_link_U7mPtq",
+        "content_richtext_wUDrR8"
+      ],
+      "name": "Corrected Flexible Tabs",
+      "settings": {
+        "nav_bg_color": "#f2f2f2",
+        "nav_heading_color": "#005580",
+        "link_color": "#333333",
+        "active_link_color": "#005580",
+        "main_heading": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_gmtXiN",
+    "education_page_nFt6fL",
+    "perfect_ring_promise_dHf4xi",
+    "tabify_education_AxqxWU"
+  ]
+}

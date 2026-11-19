@@ -1,0 +1,171 @@
+<li
+  data-skip-node-update="true"
+  class="facets__inputs-list-item{% if hidden_class %} {{ hidden_class }}{% endif %}"
+  {% if hidden_class %}
+    ref="showMoreItems[]"
+  {% endif %}
+>
+  {% if value.active %}
+    {% assign has_active_values = true %}
+  {% endif %}
+  {% if is_image %}
+    <fieldset
+      class="variant-option variant-option--buttons variant-option--images"
+      aria-label="{{ value.label }}"
+      on:keydown="#facet-inputs-component-{{ filter.param_name | escape | replace: '.', '-' }}/handleKeyDown"
+    >
+      <div class="facets__image-wrapper">
+        {% if value.image %}
+          {{ value.image | image_url: width: 300 | image_tag: alt: value.alt }}
+        {% endif %}
+        {% if is_disabled %}
+          <svg
+            aria-hidden="true"
+            width="100%"
+            height="100%"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+          >
+            <line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke" />
+          </svg>
+        {% endif %}
+      </div>
+      <input
+        tabindex="0"
+        type="checkbox"
+        name="{{ value.param_name }}"
+        value="{{ value.value }}"
+        aria-label="{{ value.label }}"
+        id="{{ input_id }}"
+        {% if value.active %}
+          checked
+        {% endif %}
+        {% if is_disabled %}
+          disabled
+        {% endif %}
+        {% if autofocus %}
+          autofocus
+        {% endif %}
+        ref="facetInputs[]"
+      >
+      <label
+        class="facets__image-label"
+        for="{{ input_id }}"
+        tabindex="-1"
+      >
+        {{- value.label }}
+      </label>
+    </fieldset>
+  {% elsif is_swatch %}
+    <fieldset
+      class="variant-option variant-option--buttons variant-option--swatches {% if is_disabled %}variant-option--swatches-disabled{% endif %}"
+      aria-label="{{ value.label }}"
+      on:keydown="#facet-inputs-component-{{ filter.param_name | escape | replace: '.', '-' }}/handleKeyDown"
+    >
+      <label
+        class="variant-option__button-label variant-option__button-label--has-swatch swatch-rounded"
+        on:pointerenter="/prefetchPage"
+        on:pointerleave="/cancelPrefetchPage"
+      >
+        <div
+          class="variant-option__swatch-wrapper"
+        >
+          <input
+            tabindex="0"
+            type="checkbox"
+            name="{{ value.param_name }}"
+            value="{{ value.value }}"
+            aria-label="{{ value.label }}"
+            id="{{ input_id }}"
+            {% if value.active %}
+              checked
+            {% endif %}
+            {% if is_disabled %}
+              disabled
+            {% endif %}
+            {% if autofocus %}
+              autofocus
+            {% endif %}
+            ref="facetInputs[]"
+          >
+          {% render 'swatch', swatch: value.swatch, mode: 'filter' %}
+          {% if is_disabled %}
+            <svg
+              aria-hidden="true"
+              width="100%"
+              height="100%"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke" />
+            </svg>
+          {% endif %}
+        </div>
+        <label
+          class="{% if show_swatch_label %}facets__swatch-label{% else %}hidden{% endif %}"
+          for="{{ input_id }}"
+          tabindex="-1"
+        >
+          {{- value.label }}
+        </label>
+      </label>
+    </fieldset>
+  {% else %}
+    {% if should_use_pills %}
+      <div
+        class="facets__pill-wrapper"
+        on:keydown="#facet-inputs-component-{{ filter.param_name | escape | replace: '.', '-' }}/handleKeyDown"
+      >
+        <input
+          type="checkbox"
+          name="{{ value.param_name }}"
+          value="{{ value.value }}"
+          id="{{ input_id }}"
+          class="facets__pill-input"
+          data-label="{{ value.label }}"
+          {% if value.active %}
+            checked
+          {% endif %}
+          {% if is_disabled %}
+            disabled
+          {% endif %}
+          {% if autofocus %}
+            autofocus
+          {% endif %}
+          ref="facetInputs[]"
+          tabindex="-1"
+        >
+        <label
+          class="facets__pill-label"
+          for="{{ input_id }}"
+          tabindex="0"
+        >
+          {{- value.label }}
+          {% if is_disabled %}
+            <svg
+              aria-hidden="true"
+              width="100%"
+              height="100%"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke" />
+            </svg>
+          {% endif %}
+        </label>
+      </div>
+    {% else %}
+      {% render 'checkbox',
+        name: value.param_name,
+        value: value.value,
+        label: value.label,
+        checked: value.active,
+        id: input_id,
+        disabled: is_disabled,
+        inputRef: 'facetInputs[]',
+        events: 'on:pointerenter="/prefetchPage" on:pointerleave="/cancelPrefetchPage"',
+        autofocus: autofocus
+      %}
+    {% endif %}
+  {% endif %}
+</li>

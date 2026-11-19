@@ -1,0 +1,51 @@
+<style>
+    nav.custom-breadcrumb {
+        width: 100%;
+        max-width: 1430px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0px 15px;
+    }
+    .custom-header-collection {
+        width: 100%;
+        max-width: 670px;
+        padding: 0px 15px;
+        margin: 30px auto 0px;
+        text-align: center;
+    }
+    .custom-header-collection  h1{
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    @media screen and (max-width:749px){
+        .custom-header-collection h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+{% comment %} <nav class="custom-breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a>
+    {% if collection %}
+
+        {% assign first_product = collection.products.first %}
+        {% assign parent_collection_handle = first_product.type | handleize %}
+        {% assign parent_collection = collections[parent_collection_handle] %}
+
+        {% if parent_collection != blank and parent_collection.handle != collection.handle %}
+            <span>|</span>
+            <a href="{{ parent_collection.url }}">
+            {{ parent_collection.title }}
+            </a>
+        {% endif %}
+        <span>|</span>
+        <span>{{ collection.title }}</span>
+    {% endif %}
+</nav> {% endcomment %}
+
+<div class="custom-header-collection">
+    <h1>{{ collection.title }}</h1>
+    <div class="custom-header-desc">{{ collection.description }}</div>
+</div>

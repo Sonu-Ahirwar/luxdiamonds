@@ -1,0 +1,325 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "custom_common_hero_JrT6Ty": {
+      "type": "custom-common-hero",
+      "custom_css": [
+        ".custom-common-hero__content h2 {font-size: 25px; font-weight: 600;}",
+        "#custom-common-hero-template--21859381805277__custom_common_hero_JrT6Ty .custom-common-hero__description p {font-size: 16px;}",
+        "@media (min-width: 768px) {.custom-common-hero__content {max-width: 50%; text-align: left; margin: unset; }}"
+      ],
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "Lgdjg_page_hero",
+        "image": "shopify://shop_images/fasgion-bg.png",
+        "section_width": "full-width",
+        "title": "<h1>How To Create A Timeless <br/>Fashion Jewelry Collection</h1>",
+        "subtitle": "",
+        "description": "<p>Following the latest fashion jewelry trends is always incredibly fun, but there’s nothing worse than having a jewelry box full of once-trendy pieces that don’t speak to you anymore, and feeling like you have nothing to wear.</p><p>While wearing trendy jewelry every now and then is a great way to liven up your outfits, the truth is that if you want your jewelry collection to stand the test of time, you should invest in classic pieces which never go out of style.</p>",
+        "hero_btn": "",
+        "hero_btn_url": "",
+        "bg_color": "#f4f4f4",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    },
+    "section_8UDchb": {
+      "type": "section",
+      "blocks": {
+        "text_cnW4x9": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>To help you with that, we’ve gathered a list full of must-have fashion jewelry pieces which are worth the investment because they’re timeless accessories, so you know you can never go wrong with them. Dive in!</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 30,
+            "padding-block-end": 30,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_cnW4x9"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "lab_grow_page_section2",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "multiple_text_with_image_eyYULt": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_6NaVYP": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/earring.jpg",
+            "image_position": "right",
+            "title": "Diamond stud earrings",
+            "title_url": "https://daywdd.myshopify.com/collections/earrings",
+            "description": "<p>Diamond studs are the jewelry equivalent of a little black dress - chic, timeless, and perfect for every occasion. Not only do these beautiful earrings instantly make any outfit look incredibly elegant, but they also light up your face and eyes, making diamond studs some of the most flattering accessories there are.</p><p>Their minimalist design allows for numerous variations, so you can choose between a range of different precious metals, diamond sizes and cuts, and even unique designs - such as <a href=\"https://daywdd.myshopify.com/collections/earrings\" title=\"https://daywdd.myshopify.com/collections/earrings\">diamond halos, clusters, heart-shaped</a> studs, and much more.</p>",
+            "content_width": 50
+          }
+        },
+        "item_4GdjVN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/brace.jpg",
+            "image_position": "left",
+            "title": "Tennis bracelets",
+            "title_url": "https://daywdd.myshopify.com/collections/bracelets",
+            "description": "<p>Arguably the most iconic bracelet design in the entire world, the tennis bracelet is one of the most versatile pieces to have in your jewelry collection. You can wear tennis bracelets with everything from jeans to gowns, and they can be paired with every single piece in your jewelry box.</p><p>That’s what makes <a href=\"https://daywdd.myshopify.com/collections/bracelets\" title=\"https://daywdd.myshopify.com/collections/bracelets\">tennis bracelets</a> truly must-have pieces: their versatility. You can wear them by themselves, as the statement piece of a stack, or paired with your favorite watch. The possibilities are endless!</p>",
+            "content_width": 50
+          }
+        },
+        "item_f3BcGq": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/rings.jpg",
+            "image_position": "right",
+            "title": "Stackable rings",
+            "title_url": "shopify://collections/fashion-rings",
+            "description": "<p>Whether you love minimalist jewelry or you’re all about statement pieces, stackable rings are for you. That’s because these delicate rings look great whether you prefer to wear one at a time or you decide to create a bold stack.</p><p>The best thing about stackable rings is that you have endless design options to choose from - not to mention, infinite combination possibilities. Stackable bands allow you to use your creativity as you mix and match different metal shades, designs, and ring widths. The sky’s the limit!</p>",
+            "content_width": 50
+          }
+        },
+        "item_MByMT9": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/hoops.jpg",
+            "image_position": "left",
+            "title": "Diamond hoops and huggies",
+            "title_url": "shopify://collections/earrings",
+            "description": "<p>Hoop earrings, and their daintier version, huggies, instantly elevate any outfit. You can wear a pair of diamond huggies for a delicate everyday look, stack diamond hoops and huggies for the ultimate fashion statement, or pair diamond hoops with plain huggies for a stylish high-low effect.<br/><br/>No matter how you prefer to style them, you can never go wrong with these earrings. Hoops and huggies are perfect accessories to wear both as everyday pieces or to dress up on special occasions, so you’ll definitely be reaching for them all the time!<br/><br/></p>",
+            "content_width": 50
+          }
+        },
+        "item_n87LnF": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/necklace.jpg",
+            "image_position": "right",
+            "title": "Initial pendant necklaces",
+            "title_url": "shopify://collections/necklaces",
+            "description": "<p>Pendants are the perfect way for you to express yourself through your jewelry. They’re personal pieces which you get to keep close to your heart - and that’s exactly what makes initial necklaces so timeless: they’re meaningful.<br/><br/>Whether you opt for your own initial or that of a loved one, initial necklaces never go out of style because personal jewelry is always in. So, go ahead and tell your story with your own unique initial necklaces that carry special meaning.<br/><br/></p>",
+            "content_width": 50
+          }
+        },
+        "item_wHT8MN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/chain.jpg",
+            "image_position": "left",
+            "title": "Chain bracelets",
+            "title_url": "shopify://collections/bracelets",
+            "description": "<p>From delicate chains to bold links, these bracelets are the perfect staple pieces to have in your jewelry box. If you’re looking for bracelets which you can wear every day for an effortlessly stylish look, then chain bracelets are just what you need.<br/><br/>Yellow gold chains are particularly in vogue this season, but white and rose gold are just as stunning choices. Better yet, create a unique stack by mixing and matching chain links of different widths in all three shades of gold. Now, that’s a fashion statement that will have you turning heads everywhere.<br/><br/></p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_6NaVYP",
+        "item_4GdjVN",
+        "item_f3BcGq",
+        "item_MByMT9",
+        "item_n87LnF",
+        "item_wHT8MN"
+      ],
+      "custom_css": [
+        "h3.multi-text-image__title {border-bottom: 2px solid; display: inline-block; margin-bottom: 10px;}"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 25,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "page_width": 1340,
+        "show_footer_info": false,
+        "share_label": " Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/7wbdoos8ln",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding Day - Engagement Rings: https://marketing.smartagesolutions.com/7wbdoos8ln"
+      }
+    },
+    "multiple_text_with_image_cbgbMD": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_NCFKGQ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/minnesota1.jpg",
+            "image_position": "left",
+            "title": "Where to buy fashion jewelry in Minnesota?",
+            "title_url": "",
+            "description": "<p>Now that you know all the jewelry pieces you need to add to your collection, it’s time to shop for your favorite designs! So, stop by Wedding Day Diamonds, and explore our curated selection.<br/><br/>Here, you’ll find ultra-stylish and elegant fashion jewelry to suit every taste and personality - we have something for everyone. Choose between stunning pieces by renowned designers, as well as exclusive rings, bracelets, earrings, and necklaces you can only find at Wedding Day Diamonds.<br/><br/></p>",
+            "content_width": 40
+          }
+        }
+      },
+      "block_order": [
+        "item_NCFKGQ"
+      ],
+      "custom_css": [
+        ".multi-text-image__image img {width: 350px; height: auto; display: block; object-fit: cover; border-radius: 50%; margin-bottom: 20px;}",
+        ".multi-text-image__image--inner {height: auto;}"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "page_width": 1320,
+        "show_footer_info": true,
+        "share_label": " Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/7wbdoos8ln",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding Day - Engagement Rings: https://marketing.smartagesolutions.com/7wbdoos8ln"
+      }
+    },
+    "multiple_text_with_image_BxDyjz": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_axD36B": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/earring-bg.png",
+            "image_position": "left",
+            "title": "",
+            "title_url": "",
+            "description": "<p>Visit us today at our eight locations in Minnesota <a href=\"/pages/showroom\" title=\"Showroom\">Find our nearest store here</a>, or call us at 1-866-740-RING. And don’t forget to follow us on <a href=\"https://www.instagram.com/weddingdaydiamonds/\" target=\"_blank\">Instagram </a>and <a href=\"https://www.facebook.com/WeddingDayDiamondsMN/\" target=\"_blank\">Facebook </a>for our latest news and stunning jewelry inspiration!</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_axD36B"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "page_width": 1320,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_common_hero_JrT6Ty",
+    "section_8UDchb",
+    "multiple_text_with_image_eyYULt",
+    "multiple_text_with_image_cbgbMD",
+    "multiple_text_with_image_BxDyjz"
+  ]
+}

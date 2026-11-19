@@ -1,0 +1,570 @@
+{% comment %}
+  {% stylesheet %}
+
+  .custom-image-swiper__item .custom_icon img{
+    width:auto;
+  }
+  .custom-image-swiper__item h6 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 1px;
+      font-weight: 200;
+  }
+  .custom-image-swiper__item:hover a{
+    -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+
+  }
+  .custom-image-swiper__item a{
+    transition: all .3s ease 0s;
+    display: block;
+  }
+  .custom-image-swiper__item:hover h6{
+    font-weight: 500;
+  }
+  .custom-image-swiper h4.custom-image-swiper__heading {
+      text-align: center;
+      margin: 0;
+      padding-bottom: 37.5px;
+      color: #395754;
+  }
+  .custom-image-swiper__item .custom_icon {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+  }
+  .custom-image-swiper{
+    /* margin-top: 58.82px; */
+      margin-bottom: 20px;
+      margin-top: 70px;
+  }
+  .custom-image-swiper__wrapper.desktop-view {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+  }
+  .custom-image-swiper__item {
+      width: calc(10% - 15px * 9 / 10);
+      text-align: center;
+  }
+  {% endstylesheet %}
+
+  <!-- Swiper CDN -->
+
+
+  <section class="custom-image-swiper spacing-style color-{{ section.settings.color_scheme }}" id="section-{{ section.id }}"
+   style="{% render 'spacing-style', settings: section.settings %}" >
+
+   <div class="section section--page-width">
+    {% if section.settings.section_heading != blank %}
+      <h4 class="custom-image-swiper__heading">{{ section.settings.section_heading }}</h4>
+    {% endif %}
+
+    <!-- Desktop Grid -->
+    <div class="custom-image-swiper__wrapper desktop-view">
+      {% for block in section.blocks %}
+        <div
+          class="custom-image-swiper__item"
+
+        >
+        <a href="{{ block.settings.url }}">
+          <div class="custom_icon ">
+          {% if block.settings.image != blank %}
+             <img
+                src="{{ block.settings.image | image_url: width: block.settings.image_width }}px"
+                alt="{{ block.settings.heading | escape }}"
+                width="{{ block.settings.image_width }}px"
+                height="auto"
+              >
+          {% endif %}
+        </div>
+          {% if block.settings.heading != blank %}
+            <h6>{{ block.settings.heading }}</h6>
+          {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    </div>
+  </section>
+  {% schema %}
+  {
+    "name": "Custom Icon With Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_heading",
+        "label": "Section Heading",
+        "default": "Our Gallery"
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:settings.color_scheme",
+        "default": "scheme-1"
+      },
+      {
+        "type": "range",
+        "id": "padding-block-start",
+        "label": "t:settings.top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-block-end",
+        "label": "t:settings.bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image_block",
+        "name": "Image Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "range",
+            "id": "image_width",
+            "label": "Image Width (%)",
+            "min": 20,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "default": 30
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Block Heading",
+            "default": "Image Title"
+          },
+          {
+            "type": "url",
+            "id":"url",
+            "label":"URL"
+          }
+        ]
+      }
+    ],
+    "max_blocks": 10,
+    "presets": [
+      {
+        "name": "Custom Icon With Text",
+        "category": "Image"
+      }
+    ]
+  }
+  {% endschema %}
+{% endcomment %}
+
+{% style %}
+  .custom-image-swiper{
+    padding-top: {{ section.settings.padding-block-start }}px;
+    padding-bottom: {{ section.settings.padding-block-end }}px;
+  }
+  .custom-image-swiper__item .custom_icon img{
+    width:auto;
+  }
+  .custom-image-swiper__item h6 {
+    margin: 0;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+  .custom-image-swiper__item:hover a{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  .custom-image-swiper__item a{
+    transition: all .3s ease 0s;
+    display: block;
+  }
+  .custom-image-swiper__item:hover h6{
+    font-weight: 500;
+  }
+  .custom-image-swiper h4.custom-image-swiper__heading {
+    text-align: center;
+    margin: 0;
+    padding-bottom: 48px;
+    color: #395754;
+    font-weight: 400;
+    letter-spacing: .2em;
+  }
+  .custom-image-swiper__item .custom_icon {
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .custom-image-swiper{
+    margin-bottom: 50px;
+    margin-top: 40px;
+  }
+
+  /* Desktop Grid */
+  .custom-image-swiper__wrapper.desktop-view {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .custom-image-swiper__item {
+    width: calc(10% - 15px * 9 / 10);
+    text-align: center;
+  }
+
+  /* Mobile Slider */
+  .custom-image-swiper__mobile-slider {
+    display: none;
+    overflow: hidden;
+    position: relative;
+  }
+  .custom-image-swiper__mobile-track {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+  .custom-image-swiper__mobile-slide {
+    min-width: 33.33%;
+    box-sizing: border-box;
+    padding: 0 8px;
+    text-align: center;
+  }
+  .custom-image-swiper__mobile-slide a {
+    display: block;
+    text-decoration: none;
+  }
+  .custom-image-swiper__mobile-slide .custom_icon {
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .custom-image-swiper__mobile-slide img {
+    width: 60px;
+    max-width: 100%;
+    height: 60px;
+    object-fit: contain;
+  }
+  .custom-image-swiper__mobile-slide h6 {
+    margin: 0;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: 200;
+  }
+  .custom-image-swiper__mobile-slide:hover h6 {
+    font-weight: 500;
+  }
+
+  /* Navigation Arrows */
+  .custom-slider-arrow {
+    position: absolute;
+    top: 55%;
+    transform: translateY(-55%);
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    color: #bfbfbf;
+    border: none;
+    border-radius: 50%;
+    font-size: 0px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .custom-slider-arrow.prev { left: 10px; }
+  .custom-slider-arrow.next { right: 10px; }
+
+  .custom-slider-arrow::after{
+    content: "";
+    background: transparent;
+    border-left: 2px solid #bfbfbf;
+    border-top: 2px solid #bfbfbf;
+    color: transparent;
+    display: inline-block;
+    height: 16px;
+    position: absolute;
+    text-decoration: none;
+    text-indent: -9999px;
+    transition: all .25s ease-in-out;
+    width: 16px;
+  }
+  .custom-slider-arrow.next:after {
+    right: 10px;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+  .custom-slider-arrow.prev:after {
+    left: 10px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  /* Responsive */
+  @media (min-width: 992px) and (max-width: 1200px) {
+    .custom-image-swiper h4.custom-image-swiper__heading {
+      font-size: 24px;
+    }
+  }
+  @media screen and (max-width:1199px){
+    .custom-image-swiper__item {
+      width: calc(100% / 10);
+    }
+    .custom-image-swiper__wrapper.desktop-view {
+      gap: 0px;
+    }
+  }
+  @media (max-width: 991px) {
+    .custom-image-swiper__wrapper.desktop-view {
+      display: none;
+    }
+    .custom-image-swiper__mobile-slider {
+      display: block;
+    }
+    .custom-slider-arrow {
+      display: flex !important;
+    }
+    .custom-image-swiper h4.custom-image-swiper__heading {
+      font-size: 20px;
+    }
+  }
+{% endstyle %}
+
+<section
+  class="custom-image-swiper spacing-style color-{{ section.settings.color_scheme }}"
+  id="section-{{ section.id }}"
+>
+  <div class="section section--page-width">
+    {% if section.settings.section_heading != blank %}
+      <h4 class="custom-image-swiper__heading">{{ section.settings.section_heading }}</h4>
+    {% endif %}
+
+    <!-- Desktop Grid View -->
+    <div class="custom-image-swiper__wrapper desktop-view">
+      {% for block in section.blocks %}
+        <div class="custom-image-swiper__item">
+          <a href="{{ block.settings.url }}">
+            <div class="custom_icon">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 400 }}"
+                  alt="{{ block.settings.heading | escape }}"
+                  width=""
+                  height=""
+                >
+              {% endif %}
+            </div>
+            {% if block.settings.heading != blank %}
+              <h6>{{ block.settings.heading }}</h6>
+            {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Mobile Slider View -->
+    <div class="custom-image-swiper__mobile-slider">
+      <button class="custom-slider-arrow prev" aria-label="Previous">❮</button>
+      <button class="custom-slider-arrow next" aria-label="Next">❯</button>
+
+      <div class="custom-image-swiper__mobile-track" id="mobileTrack-{{ section.id }}">
+        {% for block in section.blocks %}
+          <div class="custom-image-swiper__mobile-slide">
+            <a href="{{ block.settings.url }}">
+              <div class="custom_icon">
+                {% if block.settings.image != blank %}
+                  <img
+                    src="{{ block.settings.image | image_url: width: block.settings.image_width }}px"
+                    alt="{{ block.settings.heading | escape }}"
+                    width="{{ block.settings.image_width }}px"
+                    height="auto"
+                  >
+                {% endif %}
+              </div>
+              {% if block.settings.heading != blank %}
+                <h6>{{ block.settings.heading }}</h6>
+              {% endif %}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const initSlider = (container) => {
+      if (!container || container.dataset.sliderInitialized === 'true') return;
+
+      const track = container.querySelector('.custom-image-swiper__mobile-track');
+      const arrows = container.querySelectorAll('.custom-slider-arrow');
+
+      if (!track || !arrows.length) return;
+
+      const slides = track.children;
+      const totalSlides = slides.length;
+
+      // 👉 Responsive slides-to-show
+      const slidesToShow = window.innerWidth < 768 ? 3 : 4;
+
+      if (totalSlides <= slidesToShow) {
+        arrows.forEach((btn) => (btn.style.display = 'none'));
+        return;
+      }
+
+      let currentIndex = 0;
+      const slideWidth = 100 / slidesToShow;
+
+      Array.from(slides).forEach((slide) => {
+        slide.style.minWidth = `${slideWidth}%`;
+        slide.style.flexShrink = '0';
+      });
+
+      const goToSlide = (index) => {
+        currentIndex = index;
+        const offset = currentIndex * slideWidth;
+        track.style.transform = `translateX(-${offset}%)`;
+      };
+
+      arrows.forEach((btn) => {
+        btn.onclick = () => {
+          if (btn.classList.contains('prev')) {
+            currentIndex = currentIndex > 0 ? currentIndex - 1 : totalSlides - slidesToShow;
+          } else {
+            currentIndex = currentIndex < totalSlides - slidesToShow ? currentIndex + 1 : 0;
+          }
+          goToSlide(currentIndex);
+        };
+      });
+
+      // Swipe Support
+      let startX = 0;
+      track.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), { passive: true });
+
+      track.addEventListener(
+        'touchend',
+        (e) => {
+          const diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+              currentIndex = currentIndex < totalSlides - slidesToShow ? currentIndex + 1 : 0;
+            } else {
+              currentIndex = currentIndex > 0 ? currentIndex - 1 : totalSlides - slidesToShow;
+            }
+            goToSlide(currentIndex);
+          }
+        },
+        { passive: true }
+      );
+
+      container.dataset.sliderInitialized = 'true';
+    };
+
+    // Initialize sliders
+    document.querySelectorAll('.custom-image-swiper__mobile-slider').forEach(initSlider);
+
+    // Re-init on Shopify editor changes
+    document.addEventListener('shopify:section:load', (e) => {
+      const container = e.target.querySelector('.custom-image-swiper__mobile-slider');
+      if (container) initSlider(container);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom Icon With Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Our Gallery"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_block",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "Image Width (px)",
+          "min": 40,
+          "max": 140,
+          "step": 2,
+          "unit": "px",
+          "default": 80
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Block Heading",
+          "default": "Image Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Custom Icon With Text",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

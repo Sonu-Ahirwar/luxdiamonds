@@ -1,0 +1,458 @@
+{% liquid
+  assign desktop_bg = section.settings.bg_image
+  assign mobile_bg = section.settings.mobile_bg_image | default: section.settings.bg_image
+%}
+
+<section
+  class="confidence-section"
+  id="confidence-{{ section.id }}"
+>
+  <div
+    class="confidence-container"
+    style="
+      --confidence-desktop-bg: {% if desktop_bg != blank %}url('{{ desktop_bg | image_url: width: 2400 }}'){% else %}none{% endif %};
+      --confidence-mobile-bg: {% if mobile_bg != blank %}url('{{ mobile_bg | image_url: width: 1200 }}'){% else %}none{% endif %};
+    "
+  >
+    <!-- Main Heading -->
+    <div class="confidence-header">
+      <h2 class="confidence-heading">
+        {{ section.settings.main_heading }}
+      </h2>
+    </div>
+
+    <!-- Features -->
+    <div class="confidence-grid">
+      <div class="wdd_row">
+        {% for block in section.blocks %}
+          <div
+            class="feature-item"
+            {{ block.shopify_attributes }}
+          >
+            <!-- Feature Icon -->
+            <div class="feature-icon">
+              {% if block.settings.icon_svg != blank %}
+                {{ block.settings.icon_svg }}
+
+              {% elsif block.settings.icon_image != blank %}
+                <img
+                  src="{{ block.settings.icon_image | image_url: width: 120 }}"
+                  alt="{{ block.settings.title | escape }}"
+                  loading="lazy"
+                  width="60"
+                  height="60"
+                >
+              {% endif %}
+            </div>
+
+            <!-- Feature Text -->
+            <div class="feature-text">
+              {{ block.settings.subtitle }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Learn More -->
+    <div class="confidence-right">
+      <a
+        href="{{ section.settings.button_link | default: '/pages/our-promise' }}"
+        class="learn-more-btn"
+      >
+        {{ section.settings.button_text | default: 'LEARN MORE' }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ======================================
+     MAIN SECTION
+  ====================================== */
+
+  #confidence-{{ section.id }} {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+  }
+
+  #confidence-{{ section.id }} .confidence-container {
+    width: 100%;
+    padding: 60px 48px 25px;
+    background: linear-gradient(90deg, #0F2B27 0%, #3A5754 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ======================================
+     HEADING
+  ====================================== */
+
+  #confidence-{{ section.id }} .confidence-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  #confidence-{{ section.id }} .confidence-heading {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+  #confidence-{{ section.id }} .confidence-heading span{
+    font-weight: 300;
+  }
+
+  /* ======================================
+     FEATURES LAYOUT
+  ====================================== */
+  #confidence-{{ section.id }} .confidence-grid {
+    width: 100%;
+  }
+
+  #confidence-{{ section.id }} .wdd_row {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+    justify-content: center;
+    gap: 18px;
+  }
+  #confidence-{{ section.id }} .feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    min-width: 0;
+  }
+
+  /* ======================================
+     FEATURE ICONS
+  ====================================== */
+
+  #confidence-{{ section.id }} .feature-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+  }
+
+  #confidence-{{ section.id }} .feature-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 60px;
+    max-height: 60px;
+    fill: none;
+    stroke: currentColor;
+  }
+  #confidence-{{ section.id }} .feature-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  /* ======================================
+     FEATURE TEXT
+  ====================================== */
+  #confidence-{{ section.id }} .feature-text {
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 4px;
+    text-align: center;
+  }
+  #confidence-{{ section.id }} .feature-text p {
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+  }
+  #confidence-{{ section.id }} .feature-text strong {
+    font-weight: 500;
+  }
+  /* ======================================
+     LEARN MORE BUTTON
+  ====================================== */
+  #confidence-{{ section.id }} .confidence-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 40px;
+  }
+  #confidence-{{ section.id }} .learn-more-btn {
+    display: inline-block;
+    color: #F8F7F6;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    padding: 0 0 3px;
+    margin: 0;
+    transition: opacity .3s ease;
+  }
+  #confidence-{{ section.id }} .learn-more-btn:hover {
+    opacity: .65;
+    background: transparent;
+  }
+
+  @media screen and (max-width: 1199px) {
+    #confidence-{{ section.id }} .confidence-container{
+      padding: 50px 20px 20px;
+    }
+    #confidence-{{ section.id }} .confidence-heading {
+      font-size: 28px;
+      letter-spacing: 3px;
+    }
+    #confidence-{{ section.id }} .feature-text {
+      font-size: 15px;
+      letter-spacing: 3px;
+    }
+    #confidence-{{ section.id }} .feature-icon {
+      width: 50px;
+      height: 50px;
+    }
+    #confidence-{{ section.id }} .learn-more-btn {
+      font-size: 12px;
+    }
+  }
+
+  /* ======================================
+     TABLET
+  ====================================== */
+
+  @media screen and (max-width: 1024px) and (min-width: 750px) {
+    #confidence-{{ section.id }} .confidence-container {
+      padding: 40px 15px 15px;
+    }
+    #confidence-{{ section.id }} .wdd_row {
+      gap: 15px;
+    }
+    #confidence-{{ section.id }} .feature-text {
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+  }
+
+  /* ======================================
+     MOBILE DESIGN
+  ====================================== */
+
+  @media screen and (max-width: 749px) {
+
+    #confidence-{{ section.id }} .confidence-container {
+      padding: 40px 20px;
+      background: linear-gradient(90deg, #0F2B27 0%, #3A5754 100%);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      justify-content: flex-start;
+    }
+    /* Mobile heading */
+    #confidence-{{ section.id }} .confidence-header {
+      margin-bottom: 40px;
+    }
+    #confidence-{{ section.id }} .confidence-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 33px;
+      letter-spacing: 3.4px;
+    }
+    #confidence-{{ section.id }} .confidence-heading span {
+      font-size: 17px;
+      font-weight: 300;
+      letter-spacing: 3.4px;
+    }
+    /* Mobile feature layout */
+    #confidence-{{ section.id }} .wdd_row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 310px;
+      margin: 0 auto;
+      gap: 25px;
+    }
+
+    #confidence-{{ section.id }} .feature-item {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 22px;
+      text-align: left;
+      margin: 0;
+    }
+    /* Mobile icons */
+    #confidence-{{ section.id }} .feature-icon {
+      flex: 0 0 50px;
+      width: 50px;
+      height: 50px;
+      margin: 0;
+    }
+    #confidence-{{ section.id }} .feature-icon svg {
+      max-width: 50px;
+      max-height: 50px;
+    }
+    /* Mobile text */
+
+    #confidence-{{ section.id }} .feature-text {
+      flex: 1;
+      width: auto;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.35;
+      letter-spacing: 2.5px;
+      text-align: left;
+      text-transform: uppercase;
+    }
+    #confidence-{{ section.id }} .feature-text p {
+      margin: 0;
+      padding: 0;
+      font-size: inherit;
+      line-height: inherit;
+    }
+    /* Mobile Learn More */
+    #confidence-{{ section.id }} .confidence-right {
+      justify-content: center;
+      margin-top: auto;
+      padding-top: 48px;
+    }
+    #confidence-{{ section.id }} .learn-more-btn {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      padding-bottom: 6px;
+      border-bottom-width: 1px;
+    }
+
+  }
+
+  /* Reduced motion */
+
+  @media (prefers-reduced-motion: reduce) {
+
+    #confidence-{{ section.id }} .learn-more-btn {
+      transition: none;
+    }
+
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Shop With Confidence",
+  "class": "confidence-section-wrapper",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "textarea",
+      "id": "main_heading",
+      "label": "Main Heading"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG Code",
+          "info": "Paste full SVG code (white line icons recommended)."
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image (optional)",
+          "info": "Upload an icon image if not using SVG."
+        },
+        {
+          "type": "richtext",
+          "id": "subtitle",
+          "label": "Feature Text",
+          "default": "<p>FREE LIFETIME WARRANTY</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop With Confidence",
+      "settings": {
+        "button_link": "/pages/our-promise"
+      },
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,95 @@
+<div class="custom-mega-menu">
+    <div class="custom-mega-menu__inner">
+        <!-- Left column items -->
+        <div class="custom-mega-menu__left">
+            <div class="custom-mega-menu__left--inner">
+                {% for child in parent_link.links %}
+
+                {% if forloop.index <= 5 and child.links != blank %}
+
+                    {% assign parent_title_down = parent_link.title | downcase %}
+
+                    {% unless parent_title_down contains 'engagement rings' and forloop.index == 5 %}
+                        <div class="mega-group {{ child.title }}">
+                    {% endunless %}
+
+                    <a href="{{ child.url }}" class="mega-menu__link mega-menu__link--parent">
+                    {{ child.title }}
+                    </a>
+                    <ul>
+                    {% for grandchild in child.links %}
+                        <li>
+                            <a href="{{ grandchild.url }}" class="mega-menu__link">
+                                
+                                {%- liquid
+                                    assign label_lower = grandchild.title | downcase | replace: " ", "_"
+                                    assign image_filter_lable = blank
+                                    assign link_title_down = child.title | downcase
+
+                                    case link_title_down
+                                    when 'type'
+                                        assign image_filter_lable = shop.metafields.custom.filter_type_images_data.value[label_lower]
+                                    when 'style'
+                                        assign image_filter_lable = shop.metafields.custom.filter_style_images_data.value[label_lower]
+                                    when 'shape'
+                                        assign image_filter_lable = shop.metafields.custom.filter_shape_images_data.value[label_lower]
+                                    when 'for her'
+                                        assign image_filter_lable = shop.metafields.custom.filter_shape_images_data.value[label_lower]
+                                    when 'metal'
+                                        assign label_lower = grandchild.title | downcase | split: ' ' | first
+                                        assign image_filter_lable = shop.metafields.custom.filter_metal_images_data.value[label_lower]
+                                    when 'gemstone'
+                                        assign image_filter_lable = shop.metafields.custom.filter_gemstone_images_data.value[label_lower]
+                                    endcase
+
+                                    if image_filter_lable != blank
+                                    echo image_filter_lable | image_url: width: 300 | image_tag: sizes: "(max-width: 600px) 140px, 160px",class: "mega-menu__collection-image", size_attribute: "160x160", height: 300, alt: grandchild.object.title | escape 
+
+                                    endif
+                                -%}
+                                {%- comment -%} Social icons fallback {%- endcomment -%}
+                                {% case grandchild.title %}
+                                    {% when 'Instagram' %}
+                                    <img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/insta.webp?v=1764512271" class="menu_img_fluid" alt="Instagram" width="" height="">
+                                    {% when 'Facebook' %}
+                                    <img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/facebook.webp?v=1764512271" class="menu_img_fluid" alt="Facebook" width="" height="">
+                                    {% when 'Pinterest' %}
+                                    <img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/pinterest.webp?v=1764512271" class="menu_img_fluid" alt="Pinterest" width="" height="">
+                                    {% when 'Tik Tok' %}
+                                    <img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/tiktok.webp?v=1764512271" class="menu_img_fluid" alt="TikTok" width="" height="">
+                                {% endcase %}
+                                <span class="grandchild_link_title">{{ grandchild.title }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                    {% unless parent_title_down contains 'engagement rings' and forloop.index == 4 %}
+                        </div>
+                    {% endunless %}
+
+                {% endif %}
+            {% endfor %}
+            </div>
+
+        </div>
+        <!-- Right column item image -->
+        <div class="custom-mega-menu__right">
+            {% assign last_child = parent_link.links.last %}
+
+            {% if last_child.object.featured_image %}
+                <a href="{{ last_child.url }}" class="custom-mega-menu-image__link">
+                {{
+                    last_child.object.featured_image
+                    | image_url: width: 800
+                    | image_tag: loading: 'lazy'
+                }}
+                </a>
+            {% elsif last_child.title == 'Earrings Stud' %}
+                <a href="{{ last_child.url }}" class="custom-mega-menu-image__link">
+                    <img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/Fine_Jewelry_Dropdown_957ce849-2e27-4d21-ac56-1eb4620701ec.jpg?v=1794196678" width="" height="" alt="{{ last_child.title }}" loading="lazy">
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

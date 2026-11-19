@@ -1,0 +1,301 @@
+<div class="shop-by-collection-section section--page-width" id="shop-by-collection-{{ section.id }}">
+  <div class="section-header">
+    <h3 class="section-title">
+      {{ section.settings.title | default: 'SHOP BY COLLECTION' }}
+    </h3>
+    <a href="{{ section.settings.all_collections_url | default: '/collections' }}" class="shop-all-btn">
+      {{ section.settings.shop_all_text | default: 'VIEW ALL' }}
+    </a>
+  </div>
+
+  <div class="collection-slider-container">
+    <div class="collection-slider-track" id="slider-track-{{ section.id }}">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks limit: 20 -%}
+          {% assign collection = block.settings %}
+          <div class="collection-slide">
+            <a href="{{ collection.imageUrl }}" class="collection-card">
+              <div class="card-image">
+                {%- if collection.image -%}
+                  <img
+                    src="{{ collection.image | img_url: '600x' }}"
+                    alt="{{ collection.title | escape }}"
+                    loading="lazy"
+                    class="img_custom"
+                    height=""
+                    width=""
+                  >
+                {%- else -%}
+                  <div class="placeholder-bg"></div>
+                {%- endif -%}
+              </div>
+              <h4 class="card-title">{{ collection.title }}</h4>
+            </a>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..6) -%}
+          <div class="collection-slide">
+            <a href="#" class="collection-card">
+              <div class="card-image">
+                <div class="placeholder-bg"></div>
+              </div>
+              <h4 class="card-title">Sample Collection {{ i }}</h4>
+            </a>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+    <div class="slider-dots" id="dots-{{ section.id }}"></div>
+  </div>
+</div>
+
+<style>
+.shop-by-collection-section {
+    max-width: 1424px;
+    margin: 0 auto;
+    padding: 50px 0px;
+}
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .section-title {
+    display: flex;
+    font-size: 27px;
+    font-weight: 300;
+    justify-content: space-between;
+    letter-spacing: .2em;
+    margin: 0;
+    color: #395754;
+  }
+  .shop-all-btn:hover{
+    font-weight: 500;
+  }
+  .shop-all-btn {
+    color: #395754;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  a.collection-card:hover h4.card-title {
+    font-weight: 500;
+  }
+
+  .collection-slider-container {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 30px;
+    {% comment %} border-radius: 8px; {% endcomment %}
+  }
+
+  .collection-slider-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 16px;
+  }
+
+  .collection-slide {
+    min-width: calc(20% - 14.5px);
+    box-sizing: border-box;
+  }
+
+  .collection-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card-image {
+    width: 100%;
+    overflow: hidden;
+    background: #f8f8f8;
+    position: relative;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .placeholder-bg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #eee 25%, #f8f8f8 50%, #eee 75%);
+    background-size: 200% 200%;
+    animation: placeholderShimmer 1.5s infinite;
+  }
+
+  @keyframes placeholderShimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  .card-title {
+    padding: 12px 8px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    color: #395754;
+    text-transform: uppercase;
+  }
+
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .dot.active {
+    background: #395754;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .collection-slide { min-width: 33.33%; }
+  }
+  @media (max-width: 768px) {
+    .collection-slide { min-width: 50%; }
+  }
+
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const track = document.getElementById('slider-track-{{ section.id }}');
+    const dotsContainer = document.getElementById('dots-{{ section.id }}');
+    const slides = Array.from(track.children);
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+
+    function getSlidesPerView() {
+      if (window.innerWidth <= 480) return 1;
+      if (window.innerWidth <= 768) return 2;
+      if (window.innerWidth <= 1024) return 3;
+      return 5;
+    }
+
+    let slidesPerView = getSlidesPerView();
+    const maxIndex = Math.max(0, totalSlides - slidesPerView);
+
+    function createDots() {
+      dotsContainer.innerHTML = '';
+      const dotCount = Math.ceil(totalSlides / slidesPerView);
+      for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateSlider() {
+      const offset = currentIndex * (100 / slidesPerView);
+      track.style.transform = `translateX(-${offset}%)`;
+      document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+      updateSlider();
+    }
+
+    window.addEventListener('resize', () => {
+      slidesPerView = getSlidesPerView();
+      const newMaxIndex = Math.max(0, totalSlides - slidesPerView);
+      if (currentIndex > newMaxIndex) currentIndex = newMaxIndex;
+      createDots();
+      updateSlider();
+    });
+
+    createDots();
+    updateSlider();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Cus Collection Slider",
+  "tag": "section",
+  "class": "shop-by-collection-slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "SHOP BY COLLECTION"
+    },
+    {
+      "type": "text",
+      "id": "shop_all_text",
+      "label": "View All Button Text",
+      "default": "VIEW ALL"
+    },
+    {
+      "type": "url",
+      "id": "all_collections_url",
+      "label": "All Collections Link",
+      "default": "/collections"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "imageUrl",
+          "label": "Image URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+
+  "max_blocks": 12,
+
+  "presets": [
+    {
+      "name": "Cus Collection Slider"
+    }
+  ]
+}
+{% endschema %}

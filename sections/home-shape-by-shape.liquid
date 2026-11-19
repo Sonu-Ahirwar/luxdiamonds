@@ -1,0 +1,455 @@
+
+{% liquid
+  assign section_id = 'home-shape-by-shape-' | append: section.id
+%}
+
+<section
+  id="{{ section_id }}"
+  class="home-shape-by-shape"
+>
+  <div class="shape-by-shape__container">
+
+    <!-- Section Heading -->
+    <div class="shape-by-shape__header">
+      <h2 class="shape-by-shape__title">
+        {{ section.settings.title | escape }}
+      </h2>
+    </div>
+
+    <!-- Collection Images -->
+    <div class="shape-by-shape__grid">
+
+      {% for block in section.blocks %}
+
+        <div
+          class="shape-by-shape__item"
+          {{ block.shopify_attributes }}
+        >
+
+          {% if block.settings.image_url != blank %}
+            <a
+              href="{{ block.settings.image_url }}"
+              class="shape-by-shape__link"
+              aria-label="{{ block.settings.image.alt | default: section.settings.title | escape }}"
+            >
+          {% else %}
+            <div class="shape-by-shape__link">
+          {% endif %}
+
+              <div class="shape-by-shape__image-wrapper">
+
+                {% if block.settings.image != blank %}
+
+                  <img
+                    src="{{ block.settings.image | image_url: width: 1000 }}"
+                    srcset="
+                      {{ block.settings.image | image_url: width: 400 }} 400w,
+                      {{ block.settings.image | image_url: width: 600 }} 600w,
+                      {{ block.settings.image | image_url: width: 800 }} 800w,
+                      {{ block.settings.image | image_url: width: 1000 }} 1000w,
+                      {{ block.settings.image | image_url: width: 1400 }} 1400w
+                    "
+                    sizes="(max-width: 749px) 92vw, 33vw"
+                    alt="{{ block.settings.image.alt | default: section.settings.title | escape }}"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    loading="lazy"
+                    class="shape-by-shape__image"
+                  >
+
+                {% else %}
+
+                  {{ 'collection-1' | placeholder_svg_tag: 'shape-by-shape__placeholder' }}
+
+                {% endif %}
+                {% if block.settings.title != blank %}
+                    <div class="shape-by-shape__overlay">
+                    <h3 class="shape-by-shape__card-title">
+                        {{ block.settings.title | escape }}
+                    </h3>
+                    </div>
+                {% endif %}
+
+              </div>
+
+          {% if block.settings.image_url != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+    <!-- Footer Button -->
+    {% if section.settings.footer_button_text != blank %}
+      <div class="shape-by-shape__footer">
+
+        {% if section.settings.footer_button_url != blank %}
+
+          <a
+            href="{{ section.settings.footer_button_url }}"
+            class="shape-by-shape__footer-link"
+          >
+            {{ section.settings.footer_button_text | escape }}
+          </a>
+
+        {% else %}
+
+          <span class="shape-by-shape__footer-link">
+            {{ section.settings.footer_button_text | escape }}
+          </span>
+
+        {% endif %}
+
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+
+  /* =====================================
+     MAIN SECTION
+  ===================================== */
+
+  #{{ section_id }} {
+    width: 100%;
+    display: block;
+    background: #ffffff;
+    overflow: hidden;
+  }
+
+  #{{ section_id }} *,
+  #{{ section_id }} *::before,
+  #{{ section_id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #{{ section_id }} .shape-by-shape__container {
+    width: 100%;
+    max-width: 1252px;
+    margin: 0 auto;
+    padding: 35px 0 25px;
+  }
+
+  @media screen and (min-width: 1540px) {
+    #{{ section_id }} .shape-by-shape__container {
+      max-width: 90%;
+    }
+  }
+
+  /* =====================================
+     SECTION HEADING
+  ===================================== */
+
+  #{{ section_id }} .shape-by-shape__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  #{{ section_id }} .shape-by-shape__title {
+    margin: 0;
+    padding: 0;
+
+    color: #395754;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* =====================================
+     DESKTOP GRID
+  ===================================== */
+
+  #{{ section_id }} .shape-by-shape__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+  }
+
+  #{{ section_id }} .shape-by-shape__item {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* =====================================
+     COLLECTION IMAGE
+  ===================================== */
+
+  #{{ section_id }} .shape-by-shape__link {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  #{{ section_id }} .shape-by-shape__image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #e9d3bf;
+  }
+
+  #{{ section_id }} .shape-by-shape__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+  }
+
+  #{{ section_id }} .shape-by-shape__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Hover */
+
+  @media (hover: hover) {
+
+    #{{ section_id }} .shape-by-shape__link:hover
+    .shape-by-shape__image {
+      transform: scale(1.035);
+    }
+
+  }
+
+  #{{ section_id }} .shape-by-shape__overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 5px;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.30),
+        transparent
+    );
+    }
+
+    #{{ section_id }} .shape-by-shape__card-title {
+    position: relative;
+    margin: 0;
+    padding-bottom: 5px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    }
+
+    #{{ section_id }} .shape-by-shape__card-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ffffff;
+    }
+
+  /* =====================================
+     FOOTER BUTTON
+  ===================================== */
+
+  #{{ section_id }} .shape-by-shape__footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  #{{ section_id }} .shape-by-shape__footer-link {
+    display: inline-block;
+    color: #395754;
+
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+    text-decoration: none;
+
+    transition: opacity 0.3s ease;
+  }
+
+  #{{ section_id }} .shape-by-shape__footer-link:hover {
+    opacity: 0.65;
+  }
+
+  /* =====================================
+     TABLET
+  ===================================== */
+
+  @media screen and (max-width: 1024px) and (min-width: 750px) {
+
+    #{{ section_id }} .shape-by-shape__container {
+      padding: 40px 20px 25px;
+    }
+
+    #{{ section_id }} .shape-by-shape__grid {
+      gap: 10px;
+    }
+
+    #{{ section_id }} .shape-by-shape__title {
+      font-size: 17px;
+    }
+
+  }
+
+  /* =====================================
+     MOBILE
+  ===================================== */
+
+  @media screen and (max-width: 749px) {
+
+    #{{ section_id }} .shape-by-shape__container {
+      width: 100%;
+      max-width: 100%;
+      padding: 30px 30px 25px;
+    }
+    /* Heading */
+    #{{ section_id }} .shape-by-shape__header {
+      margin-bottom: 14px;
+    }
+    #{{ section_id }} .shape-by-shape__title {
+      font-size: 27px;
+      font-weight: 400;
+      letter-spacing: 5.4px;
+      line-height: 1.2;
+    }
+    /* Vertical image layout */
+    #{{ section_id }} .shape-by-shape__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    #{{ section_id }} .shape-by-shape__item {
+      width: 100%;
+    }
+    /* Wider mobile images */
+    #{{ section_id }} .shape-by-shape__image-wrapper {
+      width: 100%;
+      aspect-ratio: 1.25 / 1;
+    }
+    #{{ section_id }} .shape-by-shape__image {
+      object-fit: cover;
+      object-position: center;
+    }
+    #{{ section_id }} .shape-by-shape__card-title {
+        font-size: 13px;
+        letter-spacing: 3px;
+    }
+    /* Footer */
+    #{{ section_id }} .shape-by-shape__footer {
+      margin-top: 10px;
+    }
+    #{{ section_id }} .shape-by-shape__footer-link {
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+  }
+
+  /* Reduced motion */
+
+  @media (prefers-reduced-motion: reduce) {
+
+    #{{ section_id }} .shape-by-shape__image {
+      transition: none;
+    }
+
+  }
+
+</style>
+
+{% schema %}
+{
+  "name": "Home Shape By Shape",
+  "tag": "section",
+  "class": "home-shape-by-shape-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "SHOP BY SHAPE"
+    },
+    {
+      "type": "text",
+      "id": "footer_button_text",
+      "label": "Footer Button Text",
+      "default": "SHOP ALL"
+    },
+    {
+      "type": "url",
+      "id": "footer_button_url",
+      "label": "Footer Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "shape",
+      "name": "Shape Collection",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Collection Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Collection Title",
+            "default": "OVAL"
+        },
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "Collection URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Home Shape By Shape",
+      "blocks": [
+        {
+          "type": "shape"
+        },
+        {
+          "type": "shape"
+        },
+        {
+          "type": "shape"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

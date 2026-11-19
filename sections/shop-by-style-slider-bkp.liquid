@@ -1,0 +1,293 @@
+{% style %}
+    .shop_by_style_slider__container {
+        width:100%;
+        max-width: 1252px;
+        margin: 0 auto;
+        padding: 80px 0px;
+    }
+    @media screen and (min-width:1540px){
+        .page_temp--index .shop_by_style_slider__container {
+            /* max-width: 1615px; */
+            max-width: 90%;
+        }
+    }
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .section-title {
+        display: flex;
+        font-size: 27px;
+        font-weight: 300;
+        justify-content: space-between;
+        letter-spacing: .2em;
+        margin: 0;
+        color: #395754;
+    }
+    .shop-all-btn {
+        color: #395754;
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition:all 0.6s;
+    }
+    .shop-all-btn:hover{
+        font-weight: 500;
+    }
+    .collection-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        text-align: center;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-image {
+        width: 100%;
+        overflow: hidden;
+        background: #f8f8f8;
+        position: relative;
+    }
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+    .placeholder-bg {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #eee 25%, #f8f8f8 50%, #eee 75%);
+        background-size: 200% 200%;
+        animation: placeholderShimmer 1.5s infinite;
+    }
+    @keyframes placeholderShimmer {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+    }
+    .card-title {
+        padding: 12px 8px;
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 1.2px;
+        color: #395754;
+        text-transform: uppercase;
+    }
+    a.collection-card:hover h4.card-title {
+        font-weight: 500;
+    }
+    .shop_by_style_slider__wrapper .slick-track{
+        margin:0px -8px;
+    }
+    .shop_by_style_slider__wrapper .slick-slide {
+        margin: 0px 8px;
+    }
+    .shop_by_style_slider__wrapper .slick-dots {
+        bottom: -45px;
+        width: calc(100% - 16px);
+        margin: 0 auto;
+        left: 0px;
+        right: 0px;
+    }
+    .shop_by_style_slider__wrapper .slick-dots li.slick-active button:before {
+        color: #305854;
+    }
+    @media screen and (max-width:1400px){
+        .shop_by_style_slider__container {
+            max-width: 85%;
+            padding: 80px 0px;
+        }
+    }
+    @media screen and (max-width:1025px){
+        .card-image {
+            width: 100% !important;
+        }
+        .card-title {
+            padding: 8px 0px;
+            width: 100% !important;
+            text-align: center;
+        }
+    }
+    @media screen and (max-width:991px){
+        .shop_by_style_slider__container {
+            max-width: 100%;
+            padding: 80px 2px;
+        }
+        .section-header {
+            margin: 0px 10px;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: 20px;
+        }
+        .shop-all-btn {
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .shop_by_style_slider__wrapper .slick-track {
+            margin: 0px;
+        }
+        .card-title {
+            padding: 8px 0px 20px;
+        }
+        
+    }
+    @media screen and (max-width:749px){
+        .card-title {
+            font-weight: 300;
+        }
+    }
+{% endstyle %}
+
+<div class="shop_by_style_slider">
+    <div class="shop_by_style_slider__container">
+        <div class="section-header">
+            <h3 class="section-title">
+            {{ section.settings.title | default: 'SHOP BY COLLECTION' }}
+            </h3>
+            <a href="{{ section.settings.all_collections_url | default: '/collections' }}" class="shop-all-btn">
+            {{ section.settings.shop_all_text | default: 'VIEW ALL' }}
+            </a>
+        </div>
+
+        <div class="shop_by_style_slider__wrapper">
+            <div class="slider multiple-items">
+                {%- if section.blocks.size > 0 -%}
+                    {%- for block in section.blocks limit: 20 -%}
+                        {% assign collection = block.settings %}
+                        <div class="sbss_slides">
+                            <a href="{{ collection.imageUrl }}" class="collection-card">
+                                <div class="card-image">
+                                    {%- if collection.image -%}
+                                    <img
+                                        src="{{ collection.image | img_url: 'master' }}"
+                                        alt="{{ collection.title | escape }}"
+                                        loading="lazy"
+                                        class="img_custom"
+                                        height=""
+                                        width=""
+                                    >
+                                    {%- else -%}
+                                    <div class="placeholder-bg"></div>
+                                    {%- endif -%}
+                                </div>
+                                <h4 class="card-title">{{ collection.title }}</h4>
+                            </a>
+                        </div>
+                    {%- endfor -%}
+                {%- else -%}
+                    {%- for i in (1..10) -%}
+                        <div class="sbss_slides">
+                            <a href="#" class="collection-card">
+                            <div class="card-image">
+                                <div class="placeholder-bg"></div>
+                            </div>
+                            <h4 class="card-title">Sample Collection {{ i }}</h4>
+                            </a>
+                        </div>
+                    {%- endfor -%}
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% comment %} <script>
+    $('.multiple-items').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 5,
+        slidesToScroll: 4,
+        arrows: false,
+        responsive: [
+            {
+            breakpoint: 1025,
+            settings: {
+                rows: 2,
+                slidesPerRow: 2,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                infinite: false,
+                dots: true
+            }
+            },
+            {
+            breakpoint: 600,
+            settings: {
+                rows: 2,
+                slidesPerRow: 2,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                infinite: false,
+            }
+            }
+        ]
+    });
+</script> {% endcomment %}
+
+{% schema %}
+{
+  "name": "Shop By Style Slider Bkp",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "SHOP BY COLLECTION"
+    },
+    {
+      "type": "text",
+      "id": "shop_all_text",
+      "label": "View All Button Text",
+      "default": "VIEW ALL"
+    },
+    {
+      "type": "url",
+      "id": "all_collections_url",
+      "label": "All Collections Link",
+      "default": "/collections"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "imageUrl",
+          "label": "Image URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+
+  "max_blocks": 12,
+
+  "presets": [
+    {
+      "name": "Shop By Style Slider Bkp"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,194 @@
+{% style %}
+    .imgtxt-grid {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+        padding-inline:80px;
+    }
+    .imgtxt-grid__container {
+        max-width: {{ section.settings.page_width }}px;
+        margin: 0 auto;
+    }
+    .imgtxt-grid__grid {
+        display: grid;
+        grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+        gap: 24px;
+    }
+    .imgtxt-grid__card {
+        text-align: center;
+    }
+    .imgtxt-grid__image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .imgtxt-grid__button {
+        background: #395754;
+        border-radius: 5px;
+        color: #fff;
+        font-family: 'Avenir-med';
+        height: 55px;
+        font-size:16px;
+        letter-spacing: 4px;
+        line-height: 55px;
+        margin-top: 40px;
+        padding: 0;
+        text-transform: uppercase;
+        display: block;
+        width: 100%;
+    }
+    .imgtxt-grid__button:hover {
+        background: {{ section.settings.btn_hover_bg }};
+        color: {{ section.settings.btn_hover_text }};
+    }
+    @media only screen and (max-width: 1750px) and (min-width: 1200px) {
+        .imgtxt-grid__button {
+            font-size:14px;
+        }
+    }
+    @media screen and (max-width: 1200px) {
+        .imgtxt-grid {
+            padding-inline:165px;
+        }
+        .imgtxt-grid__grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 64px;
+        }
+    }
+    @media screen and (max-width: 1025px) {
+        .imgtxt-grid {
+            padding-inline:42px;
+        }
+        .imgtxt-grid__grid {
+            gap: 44px;
+        }
+    }
+    @media screen and (max-width: 749px) {
+        .imgtxt-grid {
+            padding-inline:26px;
+        }
+        .imgtxt-grid__grid {
+            grid-template-columns: 1fr;
+            gap: 68px;
+        }
+    }
+
+{% endstyle %}
+
+<div class="imgtxt-grid {{ section.settings.custom_class }}">
+  <div class="imgtxt-grid__container">
+
+    <div class="imgtxt-grid__grid">
+
+      {% for block in section.blocks %}
+        <div class="imgtxt-grid__card" {{ block.shopify_attributes }}>
+
+          {% if block.settings.image != blank %}
+            <div class="imgtxt-grid__image">
+              <img
+                src="{{ block.settings.image | image_url: width: 900 }}"
+                alt="{{ block.settings.image.alt | escape }}"
+                loading="lazy" width="" height=""
+              >
+            </div>
+          {% endif %}
+
+          {% if block.settings.button_label != blank %}
+            <a
+              href="{{ block.settings.button_link }}"
+              class="imgtxt-grid__button"
+            >
+              {{ block.settings.button_label }}
+            </a>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Image Text Grid",
+  "disabled_on": { 
+    "groups": ["header", "footer"] 
+    },
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (Desktop)",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 900,
+      "max": 2000,
+      "step": 20,
+      "default": 1320
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Image Card",
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Text",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Custom Image Text Grid"
+    }
+  ]
+}
+{% endschema %}

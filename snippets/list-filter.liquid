@@ -1,0 +1,1062 @@
+{%- doc -%}
+  Renders a list or swatch filter.
+
+  @param {object} filter - The filter to render
+  @param {string} filter_style - The filter style ('horizontal' | 'vertical')
+  @param {number} active_value_count - The number of active values
+  @param {number} sectionId - The section ID
+  @param {boolean} [autofocus] - Whether to autofocus the filter
+  @param {boolean} [should_render_clear] - Whether to render the clear button
+  @param {boolean} [show_swatch_label] - Whether to show the swatch label
+  @param {boolean} [in_drawer] - Whether the filter is in a drawer
+{%- enddoc -%}
+
+{% liquid
+  assign is_swatch = false
+  assign swatch_index = filter.values | find_index: 'swatch'
+
+  if swatch_index != null
+    assign is_swatch = true
+  endif
+
+  assign is_image = false
+  if filter.presentation == 'image'
+    assign is_image = true
+  endif
+%}
+{% assign filter_name = filter.param_name | escape | replace: '.', '-' %}
+{% assign shop_by = false %}
+{% assign show_special_filter = false %}
+{% if collection.handle == 'special' and filter.label != 'Type' %}
+  {% assign show_special_filter = true %}
+{% elsif collection.handle == 'womens-wedding-bands' and filter.label == 'Type' %}
+  {% assign show_special_filter = true %}
+{% endif %}
+{% unless show_special_filter %}
+  <accordion-custom
+    class="facets__item"
+    {% if filter_style == 'horizontal' %}
+      data-disable-animation-on-desktop="true"
+      data-close-with-escape="true"
+    {% endif %}
+    {% if collection.handle == 'special' and filter.label == 'Type' %}
+      open
+      data-open-by-default
+    {% endif %}
+    {% assign f_label_first = 'filter-p-m-custom-' | append: f_label_first %}
+
+    {% if filter_order != blank and filter_name == f_label_first %}
+      open
+      data-open-by-default
+    {% endif %}
+    {% if filter_order == blank and filter_name == 'filter-p-m-custom-style' and filter_style == 'horizontal'  %}
+      open
+      data-open-by-default
+      {% assign shop_by = true %}
+    {% endif %}
+    data-filter-param-name="{{ filter.param_name | escape | replace: '.', '-' }}"
+  >
+    {% if filter_order == blank %}
+      {% if shop_by == true %}
+        <span class="filter_shop_title facets__label"> Shop by </span>
+      {% endif %}
+    {% endif %}
+    <details
+      id="Facet-Details-{{ sectionId }}-{{ filter.param_name | escape | replace: '.', '-' }}"
+      class="facets__panel"
+      {% comment %}
+        {% if filter_style == 'horizontal' %}
+          data-auto-close-details="desktop"
+        {% endif %}
+      {% endcomment %}
+    >
+      <summary class="facets__summary {% if collection.handle == 'special' and filter.label == 'Type' %}hidden{% endif %}">
+        <span class="facets__label">{{ filter.label }}</span>
+
+        <div class="facets__status-wrapper">
+          {% if is_swatch %}
+            <facet-status-component
+              class="facets__status facets__status--swatches"
+              facet-type="swatches"
+            >
+              <span
+                class="facets__swatch-wrapper{% if active_value_count > 3 %} bubble facets__bubble{% endif %}"
+                ref="facetStatus"
+              >
+                {%- liquid
+                  if active_value_count > 3
+                    echo active_value_count
+                  elsif active_value_count > 0 and active_value_count <= 3
+                    for value in filter.active_values
+                      render 'swatch', swatch: value.swatch, mode: 'filter'
+                    endfor
+                  endif
+                -%}
+              </span>
+            </facet-status-component>
+          {% else %}
+            <facet-status-component
+              class="facets__status"
+              facet-type="list"
+              data-filter-style="{{ filter_style }}"
+            >
+              <span
+                {% if filter_style == 'horizontal' %}
+                  {% if active_value_count > 1 %}
+                    class="bubble facets__bubble"
+                  {% endif %}
+                {% else %}
+                  {% if active_value_count > 0 %}
+                    class="bubble facets__bubble"
+                  {% endif %}
+                {% endif %}
+                hide-when-empty
+                ref="facetStatus"
+              >
+                {%- liquid
+                  if filter_style == 'horizontal' and active_value_count == 1
+                    echo filter.active_values[0].label
+                  elsif active_value_count > 0
+                    echo active_value_count
+                  endif
+                -%}
+              </span>
+            </facet-status-component>
+          {% endif %}
+          {% comment %} <span class="svg-wrapper icon-caret icon-animated">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span> {% endcomment %}
+          <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+        </div>
+      </summary>
+      <floating-panel-component
+        {% unless filter_style == 'vertical' %}
+          data-close-on-resize
+        {% endunless %}
+        class="facets__inputs facets__panel-content details-content{% if filter_style == 'horizontal' %} color-{{ settings.popover_color_scheme }}{% endif %}"
+        id="facet-inputs-{{ filter.param_name | escape | replace: '.', '-' }}"
+      >
+        <facet-inputs-component
+          on:change="/updateFilters"
+          id="facet-inputs-component-{{ filter.param_name | escape | replace: '.', '-' }}"
+        >
+          {% liquid
+            assign has_active_values = false
+            assign inital_visible_values = 10
+            if is_swatch
+              assign inital_visible_values = 22
+            endif
+            if is_image
+              assign inital_visible_values = 6
+            endif
+            assign max_visible_values = inital_visible_values | plus: 1
+            assign render_show_more = false
+            assign should_render_for_swatch = is_swatch
+            if is_swatch and show_swatch_label
+              assign should_render_for_swatch = false
+            endif
+            if filter.values.size > max_visible_values and should_render_for_swatch == false
+              assign render_show_more = false
+            endif
+          %}
+          {% liquid
+            if render_show_more
+              if filter_style == 'horizontal'
+                echo '<show-more-component class="show-more" data-expanded="false" data-disable-on-desktop="true" data-skip-node-update="true">'
+              else
+                echo '<show-more-component class="show-more" data-expanded="false" data-skip-node-update="true">'
+              endif
+            endif
+            assign should_use_pills = true
+
+            for value in filter.values
+              if value.label.size > 3
+                assign should_use_pills = false
+                break
+              endif
+            endfor
+
+            if filter.type == 'boolean'
+              assign should_use_pills = false
+            endif
+          %}
+
+          <div
+            class="facets__inputs-wrapper{% if is_swatch or is_image or should_use_pills %} facets__inputs-wrapper--row{% endif %}"
+            ref="showMoreContent"
+          >
+            {% if collection and collection.handle == 'special' %}
+              <ul class="filter_tabs valentineIcon nav nav-tabs nav-fill" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    type="button"
+                    disabled
+                    role="tab"
+                    class="nav-link disabled"
+                  >
+                    SHOP
+                  </button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected="true"
+                    class="nav-link active"
+                  >
+                    <span class="d-flex align-items-center">
+                      <img
+                        src="https://dl2vs6wk2ewna.cloudfront.net/wdd/images/holiday.webp"
+                        alt="holiday"
+                        style="max-width: 100px;"
+                      >
+                    </span>
+                  </button>
+                </li>
+              </ul>
+            {% endif %}
+
+            {% liquid
+              if is_swatch
+                assign swatch_columns = filter.values.size
+
+                if swatch_columns > 4
+                  assign swatch_columns = 4
+
+                  # Balance the number of columns based on the number of values, i.e. try to avoid one or two items in
+                  # the last row if the number of values is (almost) divisible by 3.
+                  assign mod4 = filter.values.size | modulo: 4
+                  assign mod3 = filter.values.size | modulo: 3
+                  if mod4 != 0 and mod4 != 3
+                    if mod3 == 0 or mod3 == 2
+                      assign swatch_columns = 3
+                    endif
+                  endif
+                endif
+              endif
+
+              if is_image
+                assign image_columns = 3
+                if filter.values.size < 3
+                  assign image_columns = filter.values.size
+                endif
+              endif
+            %}
+           {% assign visible_count = 0 %}
+
+            {% comment %} SSS {% endcomment %}
+            {% assign order_list = section.settings.filter_value_orders | split: '|' %}
+            {% assign matched_order = blank %}
+            {% assign filter_key = filter.label | handle %}
+            {% assign excluded_labels = '' %}
+
+            {% for item in order_list %}
+              {% assign parts = item | strip | split: '=' %}
+              {% assign order_key = parts[0] | strip | handle %}
+              {% if order_key == filter_key %}
+                {% assign matched_order = parts[1] | split: ',' %}
+              {% endif %}
+            {% endfor %}
+
+             {% if matched_order != blank %}
+              {% for custom_value in matched_order %}
+                {% for value in filter.values %}
+                  {% assign value_label_h = value.label | handleize %}
+                    {% assign custom_value_h = custom_value | handleize %}
+                  {% unless excluded_labels contains value.label %}
+                    {% if value_label_h == custom_value_h %}
+                      {% assign visible_count = visible_count | plus: 1 %}
+                    {% endif %}
+                  {% endunless %}
+                {% endfor %}
+              {% endfor %}
+            {% else %}
+              {% for value in filter.values %}
+                {% unless excluded_labels contains value.label %}
+                  {% assign visible_count = visible_count | plus: 1 %}
+                {% endunless %}
+              {% endfor %}
+            {% endif %}
+            {% unless collection.title == 'Custom Jewelry' or collection.handle == 'new-arrivals' %}
+
+              <div class="slider_buttons btn_{{visible_count}} {% if visible_count <= 9 %} hide_btn_slider{% endif %}">
+                {% if visible_count >= 10 %}
+                  <button
+                    class="facets__slider-arrow facets__slider-arrow--left"
+                    type="button"
+                    aria-label="Previous"
+                    onclick="scrollFacetSlider('{{ sectionId }}-{{ filter.param_name | escape | replace: '.', '-' }}', -1)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="20px"
+                      viewBox="0 -960 960 960"
+                      width="20px"
+                      fill="currentColor"
+                    >
+                      <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
+                    </svg>
+                  </button>
+                  <button
+                    class="facets__slider-arrow facets__slider-arrow--right"
+                    type="button"
+                    aria-label="Next"
+                    onclick="scrollFacetSlider('{{ sectionId }}-{{ filter.param_name | escape | replace: '.', '-' }}', 1)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="20px"
+                      viewBox="0 -960 960 960"
+                      width="20px"
+                      fill="currentColor"
+                    >
+                      <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
+                    </svg>
+                  </button>
+                {% endif %}
+              </div>
+              <div
+                class="facets__slider-wrapper"
+                data-filter-id="{{ sectionId }}-{{ filter.param_name | escape | replace: '.', '-' }}"
+              >
+                <div class="facets__slider-container">
+            {% endunless %}
+
+            
+           
+            <ul
+              id="filters-list-{{ sectionId }}-{{ filter.param_name | escape | replace: '.', '-' }}"
+              class="facets__inputs-list {% if visible_count <= 10 %} align--center {% else %} filter_slider_custom{% endif %} {%  unless collection.title == "Custom Jewelry" or collection.handle == "new-arrivals" %}facets__inputs-list--slider{% endunless %}{% if should_use_pills %} facets__inputs-list--grid{% endif %} list-unstyled{% if is_swatch %} facets__inputs-list--swatches{% if show_swatch_label %} facets__inputs-list--swatches-grid{% endif %}{% endif %}{% if is_image %} facets__inputs-list--images{% endif %}"
+              {% if is_swatch %}
+                style="--swatch-columns: {{ swatch_columns }};"
+              {% endif %}
+              {% if is_image %}
+                style="--image-columns: {{ image_columns }};"
+              {% endif %}
+              name="{{ filter.label }}"
+            >
+              {% unless filter.label == 'Type' and template == 'collection.fine-jewelry' or template == 'collection.bracelets' or template == 'collection.earrings' or template == 'collection.necklaces' or template == 'collection.fashion-rings' %}
+              {% if matched_order != blank %}
+                {% for custom_value in matched_order %}
+                  {% for value in filter.values %}
+                    {% assign value_label_h = value.label | handleize %}
+                    {% assign custom_value_h = custom_value | handleize %}
+                    {% if value.label == 'Rose' or value.label == 'White' or value.label == 'Yellow' %}
+                      {% assign value_label_h = value.label | append: ' Gold' | handleize %}
+                    {% endif %}
+                    {% comment %} {{value_label_h }}==={{ custom_value_h }}****<br> {% endcomment %}
+                    {% if value_label_h == custom_value_h %}
+                      {% unless excluded_labels contains value.label %}
+                        {% liquid
+                          assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-' | append: forloop.index | replace: '.', '-' | append: '-' | append: filter_style | append: '-' | append: in_drawer
+                          assign is_disabled = false
+                          if value.count == 0 and value.active == false
+                            assign is_disabled = true
+                          endif
+                          assign hidden_class = null
+                          if forloop.index > inital_visible_values and render_show_more and forloop.index < visible_count
+                            assign hidden_class = 'hidden'
+                            if filter_style == 'horizontal'
+                              assign hidden_class = 'mobile:hidden'
+                            endif
+                          endif
+                        %}
+                         
+                        {% render 'filter_data', value: value, hidden_class: hidden_class, input_id: input_id %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              {% else %}
+                {%- for value in filter.values -%}
+                  {% comment %}
+                    {% unless value.label == 'Elongated Cushion' or value.label == 'Asscher' or value.label == 'Stackable' or value.label == 'Circle' or value.label == 'Crosses' or value.label == 'Drop' or value.label == 'Fashion' or value.label == 'Heart' or value.label == 'Hoops' or value.label == 'Paperclip' or value.label == 'Plain Metal' or value.label == 'Stud' or value.label == 'Tennis' or value.label == 'Emerald' or value.label == 'Lab Grown Diamond' or value.label == 'Ruby' or value.label == 'Sapphire' %}
+                    {% assign visible_count = visible_count | plus: 1 %}
+                  {% endcomment %}
+                  {% unless excluded_labels contains value.label %}
+                    {% liquid
+                      assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-' | append: forloop.index | replace: '.', '-' | append: '-' | append: filter_style | append: '-' | append: in_drawer
+                      assign is_disabled = false
+                      if value.count == 0 and value.active == false
+                        assign is_disabled = true
+                      endif
+                      assign hidden_class = null
+                       if forloop.index > inital_visible_values and render_show_more and forloop.index < visible_count
+                        assign hidden_class = 'hidden'
+                        if filter_style == 'horizontal'
+                          assign hidden_class = 'mobile:hidden'
+                        endif
+                      endif
+                    %}
+                    {% render 'filter_data', value: value, hidden_class: hidden_class, input_id: input_id %}
+                  {% endunless %}                  
+                {%- endfor -%}
+              {% endif %}
+              {% endunless %}
+              {%  if filter.label == 'Type' and template == 'collection.bracelets' or template == 'collection.fine-jewelry' or template == 'collection.earrings' or template == 'collection.necklaces' or template == 'collection.fashion-rings' %}
+              <li data-skip-node-update="true" class="facets__inputs-list-item ">
+                <a class="checkbox new_category_fashion " href="/collections/earrings" >                  
+                  <label class="checkbox__label" for="Filter-filter-p-m-custom-type-1-horizontal-" role="checkbox">
+                    <span class="checkbox__label-text new_category {% if template == 'collection.earrings' %}active{% endif %}">Earrings </span>
+                  <img src="{{ 'earrings.png' | file_url }}" width="60" height="60" alt="Filter Image" loading="lazy">
+                  </label>
+                </a>
+              </li>
+              <li data-skip-node-update="true" class="facets__inputs-list-item " >
+                <a class="checkbox new_category_fashion" href="/collections/necklaces" >                  
+                  <label class="checkbox__label" for="Filter-filter-p-m-custom-type-1-horizontal-" role="checkbox">
+                    <span class="checkbox__label-text new_category {% if template == 'collection.necklaces' %}active{% endif %}">Necklaces </span>
+                  <img src="{{ 'necklaces.png' | file_url }}" width="60" height="60" alt="Filter Image" loading="lazy">
+                  </label>
+                </a>
+              </li>
+              <li data-skip-node-update="true" class="facets__inputs-list-item ">
+                <a class="checkbox new_category_fashion" href="/collections/bracelets" >                  
+                  <label class="checkbox__label" for="Filter-filter-p-m-custom-type-1-horizontal-" role="checkbox">
+                    <span class="checkbox__label-text new_category {% if template == 'collection.bracelets' %}active{% endif %}">Bracelets </span>
+                  <img src="{{ 'bracelets.png' | file_url }}" width="60" height="60" alt="Filter Image" loading="lazy">
+                  </label>
+                </a>
+              </li>
+              <li data-skip-node-update="true" class="facets__inputs-list-item " >
+                <a class="checkbox new_category_fashion" href="/collections/fashion-rings" >                  
+                  <label class="checkbox__label" for="Filter-filter-p-m-custom-type-1-horizontal-" role="checkbox">
+                    <span class="checkbox__label-text new_category {% if template == 'collection.fashion-rings' %}active{% endif %}">Fashion Rings </span>
+                  <img src="{{ 'rings.png' | file_url }}" width="60" height="60" alt="Filter Image" loading="lazy">
+                  </label>
+                </a>
+              </li>
+          {% endif %}   
+          </ul>
+            {% unless collection.title == 'Custom Jewelry' or collection.handle == 'new-arrivals' %}
+              </div>
+
+              </div>
+            {% endunless %}
+          </div>
+
+          {% if render_show_more  %}
+            <button
+              class="show-more__button button-unstyled button-unstyled--with-icon{% if filter_style == 'horizontal' %} desktop:hidden{% endif %}"
+              ref="showMoreButton"
+              on:click="/toggle"
+              aria-expanded="false"
+              aria-controls="filters-list-{{ sectionId }}-{{ filter.param_name | escape | replace: '.', '-' }}"
+            >
+              <span class="svg-wrapper icon-plus">
+                {{- 'icon-plus.svg' | inline_asset_content -}}
+              </span>
+              <span class="show-more__label show-more__label--more">
+                {{- 'actions.show_more' | t -}}
+              </span>
+              <span class="show-more__label show-more__label--less">
+                {{- 'actions.show_less' | t -}}
+              </span>
+            </button>
+            {% echo '</show-more-component>' %}
+          {% endif %}
+
+          {% comment %}
+            {% if should_render_clear %}
+              <facet-clear-component>
+                <div
+                  class="facets__clear {% if has_active_values %}facets__clear--active{% endif %}"
+                  ref="clearButton"
+                >
+                  <button
+                    type="button"
+                    on:click="/clearFilter"
+                    on:keydown="/clearFilter"
+                    class="clear-filter button button-secondary"
+                  >
+                    {{- 'actions.clear' | t -}}
+                  </button>
+                </div>
+              </facet-clear-component>
+            {% endif %}
+          {% endcomment %}
+        </facet-inputs-component>
+      </floating-panel-component>
+    </details>
+  </accordion-custom>
+{% endunless %}
+{% stylesheet %}
+  .facets input:checked + label {
+    font-weight: 500;
+  }
+
+  .facets .checkbox .icon-checkmark {
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .facets .checkbox:not(:has(.checkbox__input:disabled)):hover .icon-checkmark {
+    border-color: rgb(var(--color-foreground-rgb) / var(--opacity-40-60));
+    background-color: rgb(var(--color-foreground-rgb) / var(--opacity-5));
+  }
+
+  .facets .checkbox:has(.checkbox__input:checked):not(:has(.checkbox__input:disabled)):hover .icon-checkmark {
+    background-color: rgb(var(--color-foreground-rgb) / var(--opacity-85));
+  }
+
+  .facets .checkbox:not(:has(.checkbox__input:disabled)):hover .checkbox__label-text {
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-90));
+  }
+
+  .facets .checkbox .checkbox__label-text {
+    transition: color 0.2s ease, font-weight 0.2s ease;
+  }
+
+  /* Pill style */
+  .facets__pill-label {
+    --pill-label-padding-inline: var(--padding-xs);
+    --pill-label-border-radius: var(--style-border-radius-md);
+    --pill-label-border-width: var(--variant-picker-button-border-width);
+    --pill-label-height: var(--button-size-md);
+    --pill-label-focus-outline-color: var(--color-foreground);
+    --pill-label-color: var(--color-foreground);
+    --pill-label-color-rgb: var(--color-foreground-rgb);
+    --pill-label-background-color: var(--color-background);
+    --pill-label-background-color-rgb: var(--color-background-rgb);
+    --pill-label-border-opacity: var(--facets-low-opacity);
+
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 var(--pill-label-border-width) rgb(var(--pill-label-color-rgb) / var(--opacity-10-25));
+    border-radius: var(--pill-label-border-radius);
+    height: var(--pill-label-height);
+    width: 100%;
+    padding-inline: var(--pill-label-padding-inline);
+    color: rgb(var(--pill-label-color-rgb));
+    background-color: rgb(var(--pill-label-background-color-rgb));
+    cursor: pointer;
+    transition: color var(--animation-speed) var(--animation-easing),
+      background-color var(--animation-speed) var(--animation-easing);
+    outline-color: var(--pill-label-focus-outline-color);
+
+    &:hover {
+      --pill-label-border-opacity: 100%;
+    }
+  }
+
+  .facets__pill-input {
+    &:checked + .facets__pill-label {
+      --pill-label-color-rgb: var(--color-background-rgb);
+      --pill-label-background-color-rgb: var(--color-foreground-rgb);
+      --pill-label-border-opacity: 0;
+
+      font-weight: 500;
+    }
+
+    &:disabled + .facets__pill-label {
+      opacity: var(--disabled-opacity);
+      cursor: not-allowed;
+
+      &:hover {
+        --pill-label-border-opacity: var(--facets-low-opacity);
+      }
+    }
+  }
+
+  .facets__status-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .facets--drawer .facets__status-wrapper {
+    @media screen and (max-width: 749px) {
+      gap: var(--gap-3xs);
+    }
+  }
+
+  .facets--vertical .facets__status-wrapper {
+    gap: var(--gap-xs);
+  }
+
+  .facets--horizontal .facets__status-wrapper {
+    gap: 0;
+  }
+
+  .facets__pill-input:disabled + .facets__pill-label svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--style-border-radius-md);
+  }
+
+  .facets__pill-label svg line {
+    stroke-width: 1.5px;
+    stroke: rgb(var(--color-foreground-rgb) / var(--facets-low-opacity));
+  }
+
+  .facets__pill-wrapper {
+    position: relative;
+  }
+
+  .facets__pill-input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Swatches */
+  .facets__status--swatches {
+    display: none;
+  }
+
+  .facets__swatch-wrapper {
+    display: flex;
+  }
+
+  .facets__inputs-list--swatches .variant-option__button-label {
+    --color-variant-text: var(--color-foreground);
+  }
+
+  .facets__inputs-list--swatches {
+    --variant-picker-swatch-width: 32px;
+    --variant-picker-swatch-height: 32px;
+
+    @media screen and (min-width: 750px) {
+      --variant-picker-swatch-width: 26px;
+      --variant-picker-swatch-height: 26px;
+    }
+  }
+
+  .facets--vertical .facets__inputs-wrapper .facets__inputs-list--swatches-grid {
+    gap: var(--gap-sm);
+  }
+
+  .facets--vertical .facets__inputs-list--swatches .facets__inputs-list-item {
+    display: flex;
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid {
+    --columns: 2;
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid .variant-option--swatches {
+    cursor: pointer;
+    overflow: visible;
+
+    &.variant-option--swatches-disabled,
+    &:has(input:disabled) {
+      cursor: not-allowed;
+    }
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid label {
+    cursor: pointer;
+    word-break: break-word;
+    white-space: normal;
+
+    .variant-option--swatches-disabled &,
+    .variant-option--swatches:has(input:disabled) & {
+      cursor: not-allowed;
+    }
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid .variant-option__button-label--has-swatch {
+    align-items: center;
+    overflow: visible;
+    justify-content: flex-start;
+    display: flex;
+    width: 100%;
+    flex-basis: unset;
+    gap: var(--gap-sm);
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid .variant-option__button-label:has(:checked) {
+    color: rgb(var(--color-foreground-rgb));
+    background-color: rgb(var(--color-background-rgb));
+    font-weight: 500;
+    transition: font-weight 0.2s ease;
+  }
+
+  .facets .variant-option--swatches {
+    --options-border-radius: var(--variant-picker-swatch-radius);
+
+    width: auto;
+  }
+
+  .facets--horizontal .facets__status--swatches {
+    @media screen and (min-width: 750px) {
+      display: flex;
+    }
+  }
+
+  .facets--horizontal .sorting-filter .facets__status {
+    @media screen and (min-width: 750px) {
+      display: none;
+    }
+  }
+
+  .facets__status--swatches .swatch {
+    width: calc(var(--variant-picker-swatch-width) / 1.5);
+    height: calc(var(--variant-picker-swatch-height) / 1.5);
+  }
+
+  .facets__status--swatches .swatch + .swatch {
+    margin-left: calc(var(--variant-picker-swatch-width) / -3);
+    outline: 1px solid rgb(var(--color-background-rgb));
+  }
+
+  .variant-option--images {
+    position: relative;
+  }
+
+  .variant-option--images {
+    --image-facet-border-width: var(--variant-picker-button-border-width);
+    --image-facet-border-opacity: var(--facets-low-opacity);
+    --image-facet-border-radius: var(--style-border-radius-xs);
+
+    border-radius: var(--image-facet-border-radius);
+    box-shadow: inset 0 0 0 var(--image-facet-border-width)
+      rgb(var(--color-foreground-rgb) / var(--image-facet-border-opacity));
+
+    &:hover:not(:has(input:disabled)),
+    &:has(input:checked) {
+      --image-facet-border-opacity: 100%;
+    }
+
+    &:has(input:checked) {
+      font-weight: 500;
+      transition: font-weight 0.2s ease;
+    }
+
+    &:has(input:checked):hover {
+      --image-facet-border-width: calc(var(--variant-picker-button-border-width) + 0.5px);
+    }
+
+    &:has(input:focus-visible) {
+      outline: var(--focus-outline-width) solid currentcolor;
+      outline-offset: var(--focus-outline-offset);
+    }
+
+    &:has(input:disabled),
+    &:has(input:disabled):hover {
+      --image-facet-border-opacity: 0;
+
+      opacity: var(--disabled-opacity);
+      cursor: not-allowed;
+
+      img {
+        opacity: var(--disabled-opacity);
+      }
+
+      input,
+      label,
+      .facets__image-label {
+        cursor: not-allowed;
+      }
+
+      .facets__image-wrapper {
+        border: var(--style-border-width) solid rgb(var(--color-foreground-rgb) / var(--opacity-30));
+        border-radius: var(--image-facet-border-radius);
+      }
+    }
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--images {
+    display: grid;
+    grid-template-columns: repeat(var(--image-columns), 125px);
+    gap: var(--gap-sm);
+  }
+
+  .facets--drawer .facets__inputs-wrapper .facets__inputs-list--images {
+    grid-template-columns: repeat(3, 1fr);
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .facets--vertical .facets__inputs-wrapper .facets__inputs-list--images {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .facets--drawer .facets__inputs-list--images {
+    padding-top: var(--padding-xs);
+  }
+
+  .facets__image-wrapper {
+    aspect-ratio: 1/1;
+    width: 100%;
+    padding: var(--padding-xs);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .facets__image-wrapper img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: calc(var(--border-radius) / 2);
+  }
+
+  /* Position disabled-svg */
+  .variant-option--images svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    stroke-width: var(--border-width);
+    stroke: rgb(var(--color-foreground-rgb) / var(--opacity-5));
+  }
+
+  /* Position label text and handle overflow */
+  .facets__inputs-list-item,
+  .variant-option--images {
+    min-width: 0;
+  }
+
+  .facets__image-label {
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-block-end: var(--padding-xs);
+    cursor: pointer;
+
+    .variant-option--images:has(input:disabled) & {
+      cursor: not-allowed;
+    }
+  }
+
+  .facets__inputs-list--swatches .variant-option__button-label:hover:not(:has(input:disabled)) {
+    font-weight: 500;
+  }
+
+  .variant-option--images:not(:has(input:disabled)) .facets__image-label:hover {
+    font-weight: 500;
+  }
+
+  /* Facet Slider Styles */
+  .facets__slider-wrapper {
+    display: flex !important;
+    align-items: center;
+    position: relative;
+    gap: var(--gap-xs);
+    width: 100%;
+  }
+
+  .facets__slider-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    min-width: 0;
+    width: 100%;
+  }
+
+
+  .facets__inputs-list--slider .facets__inputs-list-item {
+    flex: 0 0 auto !important;
+    min-width: fit-content;
+    width: auto;
+  }
+
+  /* Override grid/column layouts when slider is active */
+  .facets__inputs-list--slider.facets__inputs-list--grid {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .facets__inputs-list--slider.facets__inputs-list--swatches:not(.facets__inputs-list--swatches-grid) {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-wrap: nowrap !important;
+  }
+
+  /* Override row wrapper styles for slider */
+  .facets__inputs-wrapper--row .facets__slider-wrapper .facets__inputs-list--slider {
+    flex-wrap: nowrap !important;
+    flex-direction: row !important;
+  }
+
+  .facets__slider-arrow {
+    background: none;
+    border: none;
+    position: absolute;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    cursor: pointer;
+    /* padding: var(--padding-xs); */
+    color: var(--color-foreground);
+    opacity: 0.6;
+    transition: opacity var(--animation-speed) var(--animation-easing);
+    /* flex-shrink: 0; */
+    z-index: 1;
+    /* min-width: 32px;
+    height: 32px; */
+
+  }
+
+  .facets__slider-arrow:hover:not(:disabled) {
+    opacity: 1;
+  }
+
+  .facets__slider-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .facets__slider-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .facets__inputs-list--slider {
+      gap: var(--gap-sm);
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+.facets__inputs-list--slider .facets__inputs-list-item {
+        flex: 0 0 50%!important;
+        min-width: fit-content;
+        width: auto;
+        max-width: 50% !important;
+    } 
+  }
+  /* Hide slider arrows when content doesn't overflow - handled by JS */
+  .facets__slider-arrow[style*="display: none"] {
+    display: none !important;
+  }
+
+  /* Ensure slider works with existing row layouts */
+  .facets__inputs-wrapper--row .facets__slider-wrapper {
+    width: 100%;
+  }
+{% endstylesheet %}
+{% comment %}
+  <script>
+  $(document).ready(function () {
+    $('.facets__inputs-list--slider').each(function () {
+      if (!$(this).hasClass('slick-initialized')) {
+        $(this).slick({
+          slidesToShow: 8,
+          slidesToScroll: 1,
+          infinite: false,
+          arrows: true,
+          dots: false,
+          swipeToSlide: true,
+          adaptiveHeight: false,
+          prevArrow:
+            '<button class="slick-prev" aria-label="Previous" type="button">‹</button>',
+          nextArrow:
+            '<button class="slick-next" aria-label="Next" type="button">›</button>',
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 5
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 4
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+          ]
+        });
+      }
+    });
+  });
+  </script>
+{% endcomment %}
+
+<script>
+  (function () {
+    const SLIDES_TO_SHOW = 9;
+
+    function setSlideWidths(slider) {
+      const parent = slider.closest('.facets__slider-wrapper') || slider.parentElement;
+
+      const containerWidth = parent.getBoundingClientRect().width;
+      if (!containerWidth || containerWidth < 100) return;
+
+      const firstItem = slider.children[0];
+      if (!firstItem) return;
+
+      const style = window.getComputedStyle(firstItem);
+      const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+
+      const totalGap = margin * (SLIDES_TO_SHOW - 1);
+      const itemWidth = (containerWidth - totalGap) / SLIDES_TO_SHOW;
+
+      [...slider.children].forEach((li) => {
+        li.style.flex = `0 0 ${itemWidth}px`;
+        li.style.maxWidth = `${itemWidth}px`;
+      });
+
+      // 🔥 IMPORTANT PART
+      slider.dataset.index = 0;
+      slider.dataset.step = itemWidth + margin;
+      slider.dataset.startOffset = firstItem.offsetLeft; // 👈 FIX
+    }
+
+    function initSliders() {
+      document.querySelectorAll('.facets__inputs-list--slider').forEach((slider) => {
+        setSlideWidths(slider);
+      });
+    }
+
+    // Arrow scroll (1 item per click)
+   window.scrollFacetSlider = function (filterId, direction) {
+  const slider = document.querySelector(`#filters-list-${filterId}`);
+  if (!slider) return;
+
+  const firstItem = slider.children[0];
+  if (!firstItem) return;
+
+  const style = window.getComputedStyle(firstItem);
+  const margin = parseFloat(style.marginRight) || 0;
+
+  const step = firstItem.offsetWidth + margin;
+
+  slider.scrollBy({
+    left: step * direction,
+    behavior: 'smooth',
+  });
+};
+
+
+    // Init on load
+    window.addEventListener('load', initSliders);
+
+    // Recalculate on resize
+    window.addEventListener('resize', initSliders);
+
+    // 🔥 VERY IMPORTANT: when tab opens
+    document.addEventListener('click', (e) => {
+      const tab = e.target.closest('[data-tab]');
+      if (tab) {
+        setTimeout(initSliders, 50);
+      }
+    });
+  })();
+</script>
+

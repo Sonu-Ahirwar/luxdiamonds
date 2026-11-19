@@ -1,0 +1,17 @@
+{{ 'overflow-list.css' | asset_url | preload_tag: as: 'style' }}
+{{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'sh-custom.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'custom-design.css' | asset_url | stylesheet_tag: preload: true }}
+
+{% if template contains 'collection' or template contains 'search' %}
+    {{ 'collection-custom.css' | asset_url | stylesheet_tag: preload: true }}
+{% endif %}
+{% if template == 'product' %}
+    {{ 'product-custom.css' | asset_url | stylesheet_tag: preload: true }}
+{% endif %}
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css"
+    />
+  {{ 'sa-custom.css' | asset_url | stylesheet_tag: preload: true }}

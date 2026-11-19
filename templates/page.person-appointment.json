@@ -1,0 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "perfect_ring_promise_gRXD8b": {
+      "type": "perfect-ring-promise",
+      "name": "Perfect Ring Banner",
+      "settings": {
+        "title": "Schedule an in person appointment",
+        "text": "Schedule a visit and see for yourself why Wedding Day Diamonds is Minnesota's favorite engagement ring store.",
+        "title_color": "#395754",
+        "text_color": "#395754",
+        "title_size": 26,
+        "text_size": 16,
+        "bg_color": "#f9f7f5",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "person-appointment": {
+      "type": "person_appointment",
+      "settings": {}
+    }
+  },
+  "order": [
+    "perfect_ring_promise_gRXD8b",
+    "person-appointment"
+  ]
+}

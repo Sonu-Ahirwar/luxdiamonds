@@ -1,0 +1,324 @@
+{% comment %}
+  Tierra – Recycled Metals Banner (exact replica of the provided screenshot)
+{% endcomment %}
+
+{%- liquid
+  assign bg_color          = section.settings.bg_color | default: '#A3B5B2'
+  assign logo_image        = section.settings.logo_image
+  assign logo_image_two    = section.settings.logo_image_two
+  assign logo_image_three  = section.settings.logo_image_three
+  assign heading_text      = section.settings.heading_text 
+  assign heading_size      = section.settings.heading_size | default: '48'
+  assign subheading_text   = section.settings.subheading_text
+  assign subheading_size   = section.settings.subheading_size | default: '16'
+  assign icon_text         = section.settings.icon_text | default: 'RECYCLED METALS'
+  assign icon_size         = section.settings.icon_size | default: '14'
+  assign usa_text          = section.settings.usa_text | default: 'MADE IN | USA'
+  assign usa_size          = section.settings.usa_size | default: '14'
+  assign btn_text          = section.settings.btn_text
+  assign btn_text_size     = section.settings.btn_text_size | default: '14'
+  assign btn_bg            = section.settings.btn_bg | default: 'transparent'
+  assign btn_border_color  = section.settings.btn_border_color | default: '#FFFFFF'
+  assign btn_text_color    = section.settings.btn_text_color | default: '#FFFFFF'
+  assign btn_hover_bg      = section.settings.btn_hover_bg | default: 'rgba(255,255,255,0.15)'
+  assign section_padding   = section.settings.section_padding | default: '80px 40px'
+  assign section_margin   = section.settings.section_margin | default: '100px 0px'
+-%}
+
+<div class="tierra-banner" style="
+  background-color: {{ bg_color }};
+  padding: {{ section_padding }};
+  margin: {{ section_margin }};
+  color: #FFFFFF;
+  position: relative;
+  font-family: inherit;
+">
+  <div class="tierra-banner__inner" style="
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 15px;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    width: 82%;
+  ">
+    <!-- Logo + Heading + Sub‑heading -->
+    <div class="tierra-banner__left">
+      {% if logo_image %}
+        <img src="{{ logo_image | img_url: '300x' }}" alt="{{ heading_text | escape }}" style="width:238px; height: 58px; margin-bottom: 12px;">
+      {% endif %}
+      <h1 class="tierra-banner__title" style="
+        margin: 0;
+        font-size: {{ heading_size }}px;
+        font-weight: 300;
+        letter-spacing: 0.05em;
+        line-height: 1;
+      ">
+        {{ heading_text }}
+      </h1>
+      <p class="tierra-banner__subtitle" style="
+        margin: 8px 0 0;
+        font-size: {{ subheading_size }}px;
+        font-weight: 300;
+        letter-spacing: 0.03em;
+        opacity: 0.9;
+      ">
+        {{ subheading_text }}
+      </p>
+    </div>
+
+    <!-- Center icons -->
+    <div class="tierra-banner__center" style="
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+    ">
+      <div class="tierra-banner__icon" style="
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: {{ icon_size }}px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      ">
+        {% if logo_image_two %}
+            <img src="{{ logo_image_two | img_url: '300x' }}" alt="{{ heading_text | escape }}" style="width:176px; height: 48px; margin-bottom: 12px;">
+        {% endif %}
+      </div>
+
+      <div class="tierra-banner__usa" style="
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: {{ usa_size }}px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      ">
+        {% if logo_image_three %}
+            <img src="{{ logo_image_three | img_url: '300x' }}" alt="{{ heading_text | escape }}" style="width:227px; height: 47px; margin-bottom: 12px;">
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="tierra-banner__right">
+      <a href="{{ section.settings.btn_url }}"
+         class="tierra-banner__btn"
+         style="
+           display: inline-block;
+           padding: 13px 30px;
+           font-size: {{ btn_text_size }}px;
+           font-weight: 500;
+           text-transform: uppercase;
+           letter-spacing: 0.12em;
+           color: {{ btn_text_color }};
+           background: {{ btn_bg }};
+           border: 1.5px solid {{ btn_border_color }};
+           border-radius: 8px;
+           text-decoration: none;
+           transition: background 0.3s, color 0.3s;
+           text-align: center;
+            width: 85%;
+            float: right;
+         "
+         onmouseover="this.style.background='{{ btn_hover_bg }}';"
+         onmouseout="this.style.background='{{ btn_bg }}';">
+        {{ btn_text }}
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tierra-banner__btn:hover {
+    background: {{ btn_hover_bg }} !important;
+  }
+
+  .tierra-banner__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tierra-banner__center {
+    width: 41.66666667%;
+}
+
+.tierra-banner__right {
+    width: 25%;
+}
+
+  @media (max-width: 768px) {
+    .tierra-banner__inner {
+      flex-direction: column;
+      text-align: center;
+      gap: 30px !important;
+    }
+    a.tierra-banner__btn {
+    padding: 10px !important;
+    width: 100% !important;
+}
+    .tierra-banner__center { width: 100%; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Tierra Banner",
+  "tag": "section",
+  "class": "tierra-banner-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background colour",
+      "default": "#A3B5B2"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image_two",
+      "label": "Logo image (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image_three",
+      "label": "Logo image (optional)"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Main heading",
+      "default": "Tierra"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading font size (px)",
+      "min": 30,
+      "max": 80,
+      "step": 1,
+      "default": 48
+    },
+    {
+      "type": "text",
+      "id": "subheading_text",
+      "label": "Sub‑heading",
+      "default": "Recycled Gold. Lab Grown Diamonds. Love of Earth."
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Sub‑heading font size (px)",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "icon_text",
+      "label": "Recycled icon text",
+      "default": "RECYCLED METALS"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Recycled icon font size (px)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "text",
+      "id": "usa_text",
+      "label": "Made in USA text",
+      "default": "MADE IN | USA"
+    },
+    {
+      "type": "range",
+      "id": "usa_size",
+      "label": "Made in USA font size (px)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button text",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "range",
+      "id": "btn_text_size",
+      "label": "Button font size (px)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Button background colour",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "btn_border_color",
+      "label": "Button border colour",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button text colour",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_bg",
+      "label": "Button hover background",
+      "default": "rgba(255,255,255,0.15)"
+    },
+    {
+      "type": "text",
+      "id": "section_padding",
+      "label": "Section padding (top/bottom left/right)",
+      "default": "80px 40px",
+      "info": "e.g. 80px 40px"
+    },
+    {
+      "type": "text",
+      "id": "section_margin",
+      "label": "Section padding (top/bottom left/right)",
+      "default": "100px 0px",
+      "info": "e.g. 100px 0px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tierra Banner"
+    }
+  ]
+}
+{% endschema %}

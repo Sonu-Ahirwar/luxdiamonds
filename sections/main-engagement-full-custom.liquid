@@ -1,0 +1,519 @@
+{{ 'wdd-engagement-full-custom.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wdd-engagement-full-custom.js' | asset_url }}" defer></script>
+<script src="{{ 'wdd-engagement-wishlist.js' | asset_url }}" defer></script>
+
+{%- comment -%} Grey Screen Prevention — runs BEFORE any JS loads {%- endcomment -%}
+<script>
+// Shopify Service Worker unregister — grey screen permanent fix
+// SW triggers AbortError on this page due to heavy SKU loading
+// Unregistering SW only affects this page's navigation transitions
+// SEO completely unaffected — SW only handles client-side navigation
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    registrations.forEach(function(reg) {
+      // Only unregister if it's Shopify's SW (not custom app SWs)
+      if (reg.scope && reg.scope.includes(location.origin)) {
+        reg.unregister();
+      }
+    });
+  }).catch(function() {});
+}
+</script>
+<script>
+(function() {
+  var KEY = 'wdd_load_guard';
+  var RELOAD_KEY = 'wdd_reload_count';
+  var MAX_RELOADS = 3;
+  var TIMEOUT_MS = 12000; // 12s — agar itne mein page ready nahi hua to crash tha
+
+  try {
+    // Step 1: Pichli baar crash hua tha? (flag stale hai)
+    var prev = sessionStorage.getItem(KEY);
+    if (prev) {
+      var prevTime = Number(prev);
+      var age = Date.now() - prevTime;
+      var reloads = Number(sessionStorage.getItem(RELOAD_KEY) || 0);
+
+      // Flag stale hai (pichla load complete nahi hua) aur reload limit nahi aayi
+      if (age > 0 && age < 3600000 && reloads < MAX_RELOADS) {
+        sessionStorage.setItem(RELOAD_KEY, String(reloads + 1));
+        sessionStorage.removeItem(KEY);
+        // Grey screen aane se PEHLE reload — user ko kuch nahi dikhta
+        location.reload();
+        return;
+      } else if (reloads >= MAX_RELOADS) {
+        // Zyada reload ho gaye — clear karo aur normal load hone do
+        sessionStorage.removeItem(KEY);
+        sessionStorage.removeItem(RELOAD_KEY);
+      }
+    }
+
+    // Step 2: Is load ka flag set karo — "main load ho raha hun"
+    sessionStorage.setItem(KEY, String(Date.now()));
+
+    // Step 3: Watchdog timer — agar 12s mein success signal nahi aaya
+    // to page hang hua hai, quietly reload karo
+    var watchdog = setTimeout(function() {
+      try {
+        var rCount = Number(sessionStorage.getItem(RELOAD_KEY) || 0);
+        if (rCount < MAX_RELOADS) {
+          sessionStorage.setItem(RELOAD_KEY, String(rCount + 1));
+          sessionStorage.removeItem(KEY);
+          location.reload();
+        }
+      } catch(_) {}
+    }, TIMEOUT_MS);
+
+    // Step 4: Success signal — JS se wdd_load_success() call karenge
+    window.wdd_load_success = function() {
+      clearTimeout(watchdog);
+      sessionStorage.removeItem(KEY);
+      sessionStorage.removeItem(RELOAD_KEY);
+    };
+
+    // Step 5: BFCache disable karo — Chrome BFCache + Shopify SW = AbortError grey screen
+    // unload listener hone se browser BFCache use nahi karta
+    // Ye JS execute hone se PEHLE run hota hai — guaranteed fix
+    window.addEventListener('unload', function() {});
+
+    // Step 6: pageshow pe bhi success signal — back navigation ke baad bhi watchdog clear ho
+    window.addEventListener('pageshow', function() {
+      clearTimeout(watchdog);
+      try {
+        sessionStorage.removeItem(KEY);
+        sessionStorage.removeItem(RELOAD_KEY);
+      } catch(_) {}
+    });
+
+  } catch(e) {
+    // sessionStorage unavailable (private mode etc) — silently ignore
+  }
+})();
+</script>
+
+{%- liquid
+  assign collection_handle = collection.handle | default: section.settings.collection_handle
+  assign collection_title = collection.title | default: section.settings.heading
+-%}
+
+<section
+  class="wdd-full-plp color-{{ section.settings.color_scheme }} product-grid-container"
+  data-wdd-full-plp
+  data-collection-handle="{{ collection_handle | escape }}"
+  data-products-per-page="{{ section.settings.products_per_page | default: 28 }}"
+  data-banner-after="{{ section.settings.insert_after_position }}"
+  data-sku-view="wdd-sku-en-json"
+  data-money-format="{{ shop.money_format | escape }}"
+  style="--padding-block-start: {{ section.settings.padding_top }}px; --padding-block-end: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="wdd-full-plp__header collection-wrapper">
+    <h1 class="wdd-full-plp__title">{{ collection_title | escape }}</h1>
+    {% if section.settings.description != blank %}
+      <div class="wdd-full-plp__description rte">{{ section.settings.description }}</div>
+    {% elsif collection.description != blank %}
+      <div class="wdd-full-plp__description rte">{{ collection.description }}</div>
+    {% endif %}
+  </div>
+
+  {%- liquid
+  assign wdd_style_icon_map = shop.metafields.custom.filter_style_images_data.value
+  assign wdd_style_icon_solitaire = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_solitaire = wdd_style_icon_map.solitaire
+  endif
+  assign wdd_style_icon_hidden_accent = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_hidden_accent = wdd_style_icon_map.hidden_accent
+  endif
+  assign wdd_style_icon_nature = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_nature = wdd_style_icon_map.nature
+  endif
+  assign wdd_style_icon_celtic = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_celtic = wdd_style_icon_map.celtic
+  endif
+  assign wdd_style_icon_halo = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_halo = wdd_style_icon_map.halo
+  endif
+  assign wdd_style_icon_three_stone = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_three_stone = wdd_style_icon_map.three_stone
+  endif
+  assign wdd_style_icon_side_stone = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_side_stone = wdd_style_icon_map.side_stone
+  endif
+  assign wdd_style_icon_vintage = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_vintage = wdd_style_icon_map.vintage
+  endif
+  assign wdd_style_icon_modern = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_modern = wdd_style_icon_map.modern
+  endif
+  assign wdd_style_icon_luxury = blank
+  if wdd_style_icon_map != blank
+    assign wdd_style_icon_luxury = wdd_style_icon_map.luxury
+  endif
+-%}
+  <script type="application/json" data-wdd-collection-filters-json>
+    {
+      "shape": ["Oval", "Round", "Marquise", "Elongated Cushion", "Emerald", "Pear", "Radiant", "Princess", "Asscher", "Cushion"],
+      "metal": ["Yellow Gold", "White Gold", "Rose Gold", "Platinum"],
+      "style": ["Solitaire", "Hidden Accent", "Nature", "Celtic", "Halo", "Three Stone", "Vintage", "Modern", "Luxury", "Side Stone"],
+      "style_images": {
+        "solitaire": {% if wdd_style_icon_solitaire != blank %}{{ wdd_style_icon_solitaire | file_url | json }}{% else %}""{% endif %},
+        "hidden-accent": {% if wdd_style_icon_hidden_accent != blank %}{{ wdd_style_icon_hidden_accent | file_url | json }}{% else %}""{% endif %},
+        "nature": {% if wdd_style_icon_nature != blank %}{{ wdd_style_icon_nature | file_url | json }}{% else %}""{% endif %},
+        "celtic": {% if wdd_style_icon_celtic != blank %}{{ wdd_style_icon_celtic | file_url | json }}{% else %}""{% endif %},
+        "halo": {% if wdd_style_icon_halo != blank %}{{ wdd_style_icon_halo | file_url | json }}{% else %}""{% endif %},
+        "three-stone": {% if wdd_style_icon_three_stone != blank %}{{ wdd_style_icon_three_stone | file_url | json }}{% else %}""{% endif %},
+        "side-stone": {% if wdd_style_icon_side_stone != blank %}{{ wdd_style_icon_side_stone | file_url | json }}{% else %}""{% endif %},
+        "vintage": {% if wdd_style_icon_vintage != blank %}{{ wdd_style_icon_vintage | file_url | json }}{% else %}""{% endif %},
+        "modern": {% if wdd_style_icon_modern != blank %}{{ wdd_style_icon_modern | file_url | json }}{% else %}""{% endif %},
+        "luxury": {% if wdd_style_icon_luxury != blank %}{{ wdd_style_icon_luxury | file_url | json }}{% else %}""{% endif %}
+      },
+      "quick_ship": ["Quick Ship"]
+    }
+  </script>
+
+  <div class="wdd-full-plp__layout  collection-wrapper">
+
+<button class="wdd-filter-toggle">
+  SORT & FILTER
+</button>
+
+<div class="wdd-main-filter">
+  <aside class="wdd-full-plp__filters" data-wdd-filters>
+    <div class="wdd-filter-head">
+
+    <strong> SORT & FILTER</strong>
+      <div class="wdd-filter-actions">
+        {% comment %} <button type="button" data-wdd-clear hidden>Clear all</button> {% endcomment %}
+    
+        <button type="button" class="wdd-filter-close">
+          ✕
+        </button>
+      </div>
+    </div>
+    
+    <span class="filter_shop_title facets__label wdd-filter-group-title">
+      <summary class="facets__summary_custom">
+        Shop by
+      </summary>
+    </span>
+    
+    <details class="wdd-filter-group" open>
+      <summary class="facets__summary_custom">Style
+        <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+      </summary>
+      <div class="wdd-filter-options wdd-filter-options--visual wdd-filter-options--style" data-filter-options="style">
+      </div>
+    </details>
+    
+    <details class="wdd-filter-group">
+      <summary class="facets__summary_custom">Shape
+        <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+      </summary>
+      <div class="wdd-filter-options wdd-filter-options--visual" data-filter-options="shape"></div>
+    </details>
+    
+    <details class="wdd-filter-group">
+      <summary class="facets__summary_custom">Metal
+        <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+      </summary>
+      <div class="wdd-filter-options wdd-filter-options--visual" data-filter-options="metal"></div>
+    </details>
+    
+    <details class="wdd-filter-group">
+      <summary class="facets__summary_custom">Carat
+        <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+      </summary>
+      <div class="wdd-filter-options" data-filter-options="carat"></div>
+    </details>
+    
+  <details class="wdd-filter-group">
+  <summary class="facets__summary_custom">Price
+    <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+  </summary>
+
+  <div class="wdd-price-filter wdd-price-filter--range">
+
+    <!-- TOOLTIPS -->
+    <div class="wdd-price-values">
+      <span data-price-min-label></span>
+      <span data-price-max-label></span>
+    </div>
+
+    <!-- RANGE SLIDER -->
+    <div class="wdd-dual-range" aria-label="Price range">
+     
+  <div class="wdd-dual-range__track"></div>
+
+  <!-- ADD THIS -->
+  <div class="wdd-dual-range__range"></div>
+
+      <input
+        class="wdd-dual-range_input wdd-dual-range_input--min"
+        type="range"
+        data-price-min
+        aria-label="Minimum price"
+      >
+
+      <input
+        class="wdd-dual-range_input wdd-dual-range_input--max"
+        type="range"
+        data-price-max
+        aria-label="Maximum price"
+      >
+    </div>
+
+  </div>
+</details>
+    
+    <details class="wdd-filter-group">
+      <summary class="facets__summary_custom">Collection
+          <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+      </summary>
+      <div class="wdd-filter-options" data-filter-options="collection"></div>
+    </details>
+  </aside>
+{% render 'facets-actions' %}
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const filterBtn = document.querySelector('.wdd-filter-toggle');
+  const filterWrap = document.querySelector('.wdd-main-filter');
+  const closeBtn = document.querySelector('.wdd-filter-close');
+
+  const filterGroups = document.querySelectorAll('.wdd-filter-group');
+
+  // =========================
+  // Filter Popup Toggle
+  // =========================
+
+  if (filterBtn && filterWrap) {
+    filterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      filterWrap.classList.toggle('active');
+    });
+  }
+
+  if (closeBtn && filterWrap) {
+    closeBtn.addEventListener('click', () => {
+      filterWrap.classList.remove('active');
+    });
+  }
+
+  // Close outside click
+  document.addEventListener('click', (e) => {
+    if (
+      filterWrap &&
+      filterWrap.classList.contains('active') &&
+      !filterWrap.contains(e.target) &&
+      !filterBtn.contains(e.target)
+    ) {
+      filterWrap.classList.remove('active');
+    }
+  });
+
+  // =========================
+  // Desktop + Mobile Accordion
+  // =========================
+
+  function setupAccordion() {
+
+    // Remove all open first
+    filterGroups.forEach((group) => {
+      group.removeAttribute('open');
+    });
+
+    // =========================
+    // DESKTOP
+    // =========================
+
+    if (window.innerWidth > 991) {
+
+      // First tab open by default
+      if (filterGroups[0]) {
+        filterGroups[0].setAttribute('open', '');
+      }
+
+      filterGroups.forEach((group) => {
+
+        const summary = group.querySelector('summary');
+
+        if (!summary) return;
+
+        summary.onclick = (e) => {
+
+          e.preventDefault();
+
+          const isOpen = group.hasAttribute('open');
+
+          // Close all
+          filterGroups.forEach((other) => {
+            other.removeAttribute('open');
+          });
+
+          // Open clicked
+          if (!isOpen) {
+            group.setAttribute('open', '');
+          }
+
+        };
+
+      });
+
+    }
+
+    // =========================
+    // MOBILE
+    // =========================
+   else {
+
+  // Open first accordion only initially
+  if (![...filterGroups].some(group => group.hasAttribute('open'))) {
+    filterGroups[0]?.setAttribute('open', '');
+  }
+
+  filterGroups.forEach((group) => {
+
+    const summary = group.querySelector('summary');
+
+    if (!summary) return;
+
+    summary.onclick = (e) => {
+
+      e.preventDefault();
+
+      const isOpen = group.hasAttribute('open');
+
+      // CLOSE CURRENT
+      if (isOpen) {
+
+  console.log('isOpen:', isOpen);
+
+  setTimeout(() => {
+    group.removeAttribute('open');
+  }, 0);
+
+} else {
+
+  console.log('isOpen else:', isOpen);
+
+  // CLOSE OTHERS
+  filterGroups.forEach((other) => {
+    other.removeAttribute('open');
+  });
+
+  // OPEN CURRENT
+  group.setAttribute('open', '');
+
+}
+    };
+
+  });
+
+}
+
+  }
+
+  setupAccordion();
+
+  window.addEventListener('resize', setupAccordion);
+
+});
+</script>
+</div>
+
+
+
+
+      
+    <div class="wdd-full-plp__main">
+      <div class="wdd-full-plp__toolbar">
+        {% comment %} <button type="button" class="wdd-filter-toggle" data-wdd-filter-toggle>Filters</button> {% endcomment %}
+        <div class="ship-toggle">
+        <div class="wdd-count" data-wdd-count></div> 
+        <div class="Quick-ship">
+        <div class="ship-toggle-quick" data-filter-options="quick_ship"></div>
+        </div> 
+        </div>
+
+        <label class="wdd-sort">
+          <select data-wdd-sort>
+            <option value="manual">Featured</option>
+            <option value="title-ascending">Alphabetically, A-Z</option>
+            <option value="title-descending">Alphabetically, Z-A</option>
+            <option value="price-ascending">Price, low to high</option>
+            <option value="price-descending">Price, high to low</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="wdd-active-filters" data-wdd-active-filters></div>
+      <template data-wdd-grid-banner-template>
+        {% liquid
+          assign fallback_banner_file = 'plp_ads_2.643f045fac284ebd8d14.webp'
+          assign banner_url = section.settings.insert_image_url | default: '/pages/ring-promise'
+        %}
+        {% if section.settings.insert_image != blank %}
+          {% if banner_url != blank %}<a href="{{ banner_url }}">{% endif %}
+          <picture>
+            {% if section.settings.insert_image_mobile != blank %}
+              <source media="(max-width: 749px)" srcset="{{ section.settings.insert_image_mobile | image_url: width: 900 }}">
+            {% endif %}
+            <img src="{{ section.settings.insert_image | image_url: width: 1200 }}" alt="{{ section.settings.insert_image_alt | escape }}" loading="lazy">
+            <img src="{{ section.settings.insert_image_mobile | image_url: width: 1200 }}" alt="{{ section.settings.insert_image_mobile | escape }}" loading="lazy">
+          </picture>
+          {% if banner_url != blank %}</a>{% endif %}
+        {% else %}
+          <a href="{{ banner_url }}">
+            <img src="{{ fallback_banner_file | file_url }}" alt="{{ section.settings.insert_image_alt | default: 'Collection banner' | escape }}" loading="lazy">
+          </a>
+        {% endif %}
+      </template>
+      <div class="wdd-grid" data-wdd-grid aria-live="polite"></div>
+      <div class="wdd-status" data-wdd-status></div>
+      <button type="button" class="wdd-load-more" data-wdd-load-more hidden>Load more</button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Engagement custom PLP",
+  "settings": [
+    { "type": "text", "id": "collection_handle", "label": "Fallback collection handle", "default": "engagement-rings" },
+    { "type": "text", "id": "heading", "label": "Fallback heading", "default": "Engagement Rings" },
+    { "type": "richtext", "id": "description", "label": "Custom description" },
+    { "type": "range", "id": "products_per_page", "label": "Products per load", "min": 4, "max": 56, "step": 4, "default": 28 },
+    { "type": "image_picker", "id": "insert_image", "label": "Grid banner image" },
+    { "type": "image_picker", "id": "insert_image_mobile", "label": "Grid banner mobile image" },
+    { "type": "text", "id": "insert_image_alt", "label": "Grid banner alt text", "default": "Collection banner" },
+    { "type": "url", "id": "insert_image_url", "label": "Grid banner URL" },
+    { "type": "range", "id": "insert_after_position", "label": "Show banner after product number", "min": 1, "max": 40, "step": 1, "default": 10 },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 4, "default": 36 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "default": 36 }
+  ],
+  "presets": [{ "name": "Engagement full custom PLP" }]
+}
+{% endschema %}

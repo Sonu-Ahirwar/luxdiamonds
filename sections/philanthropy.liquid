@@ -1,0 +1,207 @@
+{% style %}
+    .philanthropy {
+        background: {{ section.settings.bg_color }};
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+        margin-bottom: 48px;
+    }
+    .philanthropy__inner {
+        max-width: {{ section.settings.page_width }}px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .philanthropy__title {
+        font-size: 24px;
+        line-height:28.8px;
+        color:#fff;
+        letter-spacing: 5px;
+        margin-bottom: 30px;
+    }
+
+    .philanthropy__desc p{
+        font-size: 20px;
+        line-height:1.5;
+        font-family: 'Avenir-med';
+        color:#fff;
+        margin-bottom: 50px;
+    }
+    .philanthropy__grid {
+        display: grid;
+        grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+        gap: 40px;
+        align-items: center;
+    }
+    .philanthropy__logo img {
+        width:100%;
+        max-width: 164px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    @media screen and (max-width:1199px){
+        .philanthropy {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+        .philanthropy__logo img {
+            max-width: 134px;
+        }
+    }
+    @media screen and (max-width: 991px) {
+        .philanthropy {
+            padding-inline:36px;
+        }
+        .philanthropy__title {
+            font-size: 22px;
+            line-height: 26.8px;
+        }
+        
+    }
+    @media screen and (max-width: 749px) {
+        .philanthropy__grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .philanthropy {
+            padding-inline:15px;
+        }
+        .philanthropy__title {
+            font-size: 21px;
+            line-height: 25.8px;
+        }
+        .philanthropy__desc p{
+            font-size: 18px;
+        }
+        .philanthropy__logo img {
+            max-width: 100%;
+        }
+        .philanthropy__logo {
+            padding-inline: 20px;
+        }
+    }
+{% endstyle %}
+
+<div class="philanthropy {{ section.settings.custom_class }}">
+    <div class="philanthropy__inner">
+
+        {% if section.settings.title != blank %}
+        <h2 class="philanthropy__title">
+            {{ section.settings.title }}
+        </h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+        <div class="philanthropy__desc">
+            {{ section.settings.description }}
+        </div>
+        {% endif %}
+
+        <div class="philanthropy__grid">
+
+        {% for block in section.blocks %}
+            <div class="philanthropy__logo" {{ block.shopify_attributes }}>
+
+            {% if block.settings.logo != blank %}
+                <img
+                src="{{ block.settings.logo | img_url: 'master' }}"
+                alt="{{ block.settings.logo.alt | escape }}"
+                loading="lazy" width="" height=""
+                >
+            {% endif %}
+
+            </div>
+        {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Philanthropy",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#3f5f57"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (Desktop)",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 900,
+      "max": 1800,
+      "step": 20,
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        }
+
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Philanthropy"
+    }
+  ]
+}
+{% endschema %}

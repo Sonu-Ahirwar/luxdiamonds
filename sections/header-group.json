@@ -1,0 +1,138 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "header_announcements_TEXda3": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_RrKAGx": {
+          "type": "_announcement",
+          "settings": {
+            "text": "WE BUY GOLD & SILVER AT ALL 9 LOCATIONS - NO APPOINTMENT NECESSARY",
+            "link": "#",
+            "font": "var(--font-heading--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "announcement_RrKAGx"
+      ],
+      "disabled": true,
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "speed": 5,
+        "section_width": "page-width",
+        "color_scheme": "scheme-4",
+        "divider_width": 0,
+        "padding-block-start": 15,
+        "padding-block-end": 15
+      }
+    },
+    "custom_announcement_eEL87t": {
+      "type": "custom-announcement",
+      "disabled": true,
+      "custom_css": [],
+      "name": "Custom Announcement",
+      "settings": {
+        "left_text": "Shop Holiday Gifts - Now through December 31st",
+        "left_link": "shopify://collections/holiday",
+        "right_text": "Free Shipping on All Orders",
+        "right_link": "shopify://pages/sell-gold-silver-jewelry",
+        "new_tab": false,
+        "bg_color": "#2f4942",
+        "bg_color_last": "#728785",
+        "text_color": "#ffffff",
+        "divider_color": "#ffffff",
+        "padding": 10
+      }
+    },
+    "header_section": {
+      "type": "header",
+      "blocks": {
+        "header-logo": {
+          "type": "_header-logo",
+          "static": true,
+          "settings": {
+            "hide_logo_on_home_page": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "header-menu": {
+          "type": "_header-menu",
+          "static": true,
+          "settings": {
+            "menu": "new-main-menu",
+            "color_scheme": "scheme-2",
+            "type_font_primary_size": "var(--font-size--body-sm)",
+            "menu_font_style": "inverse",
+            "type_font_primary_link": "primary",
+            "type_case_primary_link": "uppercase",
+            "menu_style": "text",
+            "featured_products_aspect_ratio": "4 / 5",
+            "featured_collections_aspect_ratio": "16 / 9",
+            "image_border_radius": 0,
+            "navigation_bar": false,
+            "color_scheme_navigation_bar": "",
+            "drawer_accordion": false,
+            "drawer_accordion_expand_first": false,
+            "drawer_dividers": false
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "logo_position": "center",
+        "menu_position": "left",
+        "menu_row": "top",
+        "show_search": true,
+        "search_position": "right",
+        "search_row": "top",
+        "show_country": false,
+        "country_selector_style": true,
+        "show_language": true,
+        "localization_font": "body",
+        "localization_font_size": "0.875rem",
+        "localization_position": "right",
+        "localization_row": "top",
+        "section_width": "page-width",
+        "section_height": "standard",
+        "enable_sticky_header": "never",
+        "divider_width": 0,
+        "divider_size": "page-width",
+        "border_width": 0,
+        "color_scheme_top": "scheme-5",
+        "color_scheme_bottom": "",
+        "color_scheme_transparent": "scheme-1",
+        "enable_transparent_header_home": false,
+        "home_color_scheme": "default",
+        "enable_transparent_header_product": false,
+        "product_color_scheme": "default",
+        "enable_transparent_header_collection": false,
+        "collection_color_scheme": "default"
+      }
+    }
+  },
+  "order": [
+    "header_announcements_TEXda3",
+    "custom_announcement_eEL87t",
+    "header_section"
+  ]
+}

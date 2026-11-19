@@ -1,0 +1,231 @@
+<form class="contact-us-form custom_form appointment-form" id="repairAppointmentForm">
+  <div class="col-grid">
+    <div class="form-grid">
+      <div class="left_col">
+        <div class="form-field">
+          <label class="form-label" for="repairFirstName">First Name <span>*</span></label>
+          <input type="text" placeholder="FIRST NAME" name="firstName" id="repairFirstName">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="repairLastName">Last Name <span>*</span></label>
+          <input type="text" placeholder="LAST NAME" name="lastName" id="repairLastName">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="repairEmail">EMAIL <span>*</span></label>
+          <input type="email" placeholder="EMAIL" name="email" id="repairEmail">
+        </div>
+
+        <div class="form-field ph_no">
+          <label class="form-label" for="repairPhone">PHONE NUMBER <span>*</span></label>
+          <input type="tel" placeholder="PHONE NUMBER" name="phone" id="repairPhone">
+        </div>
+
+
+         <div class="form-field repair">
+          <label class="form-label" for="repairtype">Type of repair <span>*</span></label>
+          <select name="repair" id="repairtype">
+            <option value="">TYPE OF REPAIR</option>
+            <option value="Ring sizing">Ring sizing</option>
+            <option value="Engraving">Engraving</option>
+            <option value="Refurbishing and polishing">Refurbishing and polishing</option>
+            <option value="Rhodium plating">Rhodium plating</option>
+            <option value="Ring removal">Ring removal</option>
+            <option value="Chain repair">Chain repair</option>
+            <option value="Soldering">Soldering</option>
+            <option value="Stone tightening">Stone tightening</option>
+            <option value="Diamond setting">Diamond setting</option>
+            <option value="Custom work">Custom work</option>
+            <option value="Other">Other</option>
+          </select>
+        </div> 
+
+        <div class="form-field location">
+          <label class="form-label" for="repairLocation">Choose a Location <span>*</span></label>
+          <select name="location" id="repairLocation">
+            <option value="">Choose Location</option>
+            <option value="Burnsville">Burnsville</option>
+            <option value="Richfield">Richfield</option>
+            <option value="Minnetonka">Minnetonka</option>
+            <option value="Eden Prairie">Eden Prairie</option>
+            <option value="Maple Grove">Maple Grove</option>
+            <option value="St. Cloud">St. Cloud</option>
+            <option value="Woodbury">Woodbury</option>
+            <option value="Roseville">Roseville</option>
+            <option value="Rochester">Rochester</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="right_col">
+        <div class="form-field date">
+          <label class="form-label" for="repairDate">Choose a Date <span>*</span></label>
+          <input type="date" placeholder="Choose a date" name="date" id="repairDate">
+        </div>
+
+        <div class="form-field time">
+          <label class="form-label" for="repairTime">Choose a Time <span>*</span></label>
+          <select name="time" id="repairTime">
+            <option value="">Choose a Time</option>
+            <option value="11:00 am">11:00 am</option>
+            <option value="12:00 pm">12:00 pm</option>
+            <option value="1:00 pm">1:00 pm</option>
+            <option value="2:00 pm">2:00 pm</option>
+          </select>
+        </div>
+
+        <textarea placeholder="ADDITIONAL NOTES" name="additionalDetails"></textarea>
+
+        <div class="form-message" id="repairAppointmentFormMessage" style="display:none;"></div>
+
+        <button type="submit" class="submit-btn cutom_btn" id="repairAppointmentSubmitBtn">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<style>
+  .form-message {
+    margin: 12px 0;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .form-message.success {
+    background: #e8f7ee;
+    color: #1f7a3d;
+    border: 1px solid #b7e4c7;
+  }
+
+  .form-message.error {
+    background: #fdecec;
+    color: #b42318;
+    border: 1px solid #f5c2c0;
+  }
+
+  .submit-btn[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+</style>
+
+<script>
+  flatpickr("#repairDate", {
+    dateFormat: "d-m-Y",   // 👈 add it here
+    disable: [
+        function(date) {
+            return date.getDay() === 0; // disable Sunday
+        }
+    ]
+});
+(function () {
+  function initRepairAppointmentForm(scope) {
+    const form = (scope || document).querySelector("#repairAppointmentForm");
+    if (!form || form.dataset.bound === "true") return;
+
+    form.dataset.bound = "true";
+
+    const submitBtn = form.querySelector("#repairAppointmentSubmitBtn");
+    const messageBox = form.querySelector("#repairAppointmentFormMessage");
+
+    function showMessage(text, type) {
+      if (!messageBox) return;
+      messageBox.style.display = "block";
+      messageBox.textContent = text;
+      messageBox.className = "form-message " + type;
+    }
+
+    function clearMessage() {
+      if (!messageBox) return;
+      messageBox.style.display = "none";
+      messageBox.textContent = "";
+      messageBox.className = "form-message";
+    }
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      clearMessage();
+
+      if (submitBtn && submitBtn.disabled) return false;
+
+      const fd = new FormData(form);
+
+      const payload = {
+        appointmentType: "repair_appointment",
+        firstName: fd.get("firstName"),
+        lastName: fd.get("lastName"),
+        email: fd.get("email"),
+        phone: fd.get("phone"),
+        location: fd.get("location"),
+        repair: fd.get("repair"),
+        date: fd.get("date"),
+        time: fd.get("time"),
+        additionalDetails: fd.get("additionalDetails") || ""
+      };
+
+      if (
+        !payload.firstName ||
+        !payload.lastName ||
+        !payload.email ||
+        !payload.phone ||
+        !payload.location ||
+        !payload.repair ||
+        !payload.date ||
+        !payload.time
+      ) {
+        showMessage("Please fill all required fields.", "error");
+        return false;
+      }
+
+      try {
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting...";
+        }
+
+        const response = await fetch("/apps/custom-forms/repair-appointment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showMessage("Your repair appointment request has been submitted successfully.", "success");
+          form.reset();
+        } else {
+          showMessage(result.message || "Something went wrong. Please try again.", "error");
+        }
+      } catch (error) {
+        console.error("Repair appointment submit error:", error);
+        showMessage("Unable to submit the form right now. Please try again later.", "error");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit";
+        }
+      }
+
+      return false;
+    }
+
+    form.addEventListener("submit", handleSubmit, true);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initRepairAppointmentForm(document);
+  });
+
+  document.addEventListener("shopify:section:load", function (event) {
+    initRepairAppointmentForm(event.target);
+  });
+})();
+</script>

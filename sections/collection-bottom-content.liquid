@@ -1,0 +1,252 @@
+<style>
+    .collection-stack-page {
+        width: 100%;
+        max-width: 1460px;
+        margin: 0 auto;
+        padding: 30px 30px 60px;
+    }
+    .collection-stack-page h2 {
+        color: #305854;
+        font-size: 30px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+        letter-spacing: 0;
+        text-transform: capitalize;
+        margin-bottom: 14px;
+    }
+    .collection-stack-page p {
+        color: #7a7a7a;
+        font-size: 16px;
+        letter-spacing: .5px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        font-weight: 200;
+    }
+    .stack-intro {
+        margin-bottom: 35px;
+    }
+    .stack-intro p, .stack-build p {
+        max-width: 95%;
+    }
+    .stack-build {
+        margin-bottom: 35px;
+    }
+    .stack-build-description {
+        margin-bottom: 20px;
+    }
+    .stack-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-top: 20px;
+    }
+    .stack-table thead th {
+        background: #305854;
+        color: #fff;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        padding: 12px 15px;
+    }
+    .stack-table tbody td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #dfe4e3;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #7a7a7a;
+      vertical-align: middle;
+    }
+    .stack-table tbody td:first-child {
+      width: 25%;
+      color: #305854;
+      font-weight: 700;
+    }
+    .stack-showrooms {
+      margin-bottom: 35px;
+    }
+    .showrooms-description {
+      margin-bottom: 20px;
+    }
+    .showroom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 70px;
+      row-gap: 18px;
+    }
+    .showroom-item {
+      position: relative;
+      padding-left: 16px;
+      min-height: 54px;
+    }
+    .showroom-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: #305854;
+    }
+    .showroom-name {
+      display: block;
+      margin-bottom: 5px;
+      color: #305854;
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .showroom-address {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #7a7a7a;
+    }
+    .stack-faq {
+      margin-top: 10px;
+    }
+    .faq-list {
+      width: 100%;
+      border-top: 1px solid #dfe4e3;
+    }
+    .faq-item {
+      border-bottom: 1px solid #dfe4e3;
+    }
+    .faq-item summary {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 22px 0;
+      cursor: pointer;
+      list-style: none;
+      color: #305854;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-item summary::marker {
+      display: none;
+      content: "";
+    }
+    .faq-icon {
+      position: relative;
+      flex: 0 0 14px;
+      width: 14px;
+      height: 14px;
+      margin-left: 20px;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 1px;
+      background: #305854;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s ease;
+    }
+    .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+    .faq-item[open] .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    .faq-content {
+      padding: 0 35px 0px 0;
+    }
+    .faq-content p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #7a7a7a;
+    }
+    /* =========================
+       RESPONSIVE
+    ========================= */
+    @media (max-width: 991px) {
+        .showroom-grid {
+            column-gap: 30px;
+        }
+    }
+    @media (max-width: 700px) {
+        .collection-stack-page {
+            padding: 25px 20px 45px;
+        }
+        .collection-stack-page h2 {
+            font-size: 22px;
+        }
+        .stack-table {
+            display: block;
+            overflow-x: auto;
+        }
+        .stack-table thead th,
+        .stack-table tbody td {
+            white-space: nowrap;
+        }
+        .showroom-grid {
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 25px;
+        }
+    }
+    @media (max-width: 480px) {
+        .collection-stack-page {
+            padding: 25px 15px 40px;
+        }
+        .collection-stack-page p {
+            font-size: 14px;
+        }
+        .stack-build,
+        .stack-showrooms {
+            margin-bottom: 30px;
+        }
+        .showroom-grid {
+            grid-template-columns: 1fr 1fr;
+            row-gap: 12px;
+        }
+        .stack-table thead th,
+        .stack-table tbody td {
+            padding: 10px 15px;
+            font-size: 13px;
+        }
+        .faq-item summary {
+            padding: 12px 0;
+            font-size: 14px;
+        }
+        .faq-content {
+            padding-right: 15px;
+        }
+        .showroom-address br{
+            display:none;
+        }
+    }
+  </style>
+
+{% assign collection_content = collection.metafields.custom.collection_bottom_content.value %}
+
+{% if collection_content != blank %}
+  <div class="collection-content-wrapper">
+    {{ collection_content }}
+  </div>
+{% endif %}
+
+
+
+
+{% schema %}
+{
+  "name": "Collection Bottom Content",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Collection Bottom Content"
+    }
+  ]
+}
+{% endschema %}

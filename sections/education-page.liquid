@@ -1,0 +1,250 @@
+<!-- sections/education-page.liquid -->
+<section class="mainPage education-page" aria-label="{{ section.settings.heading }}">
+  <style>
+    {% comment %} .education-page { padding: 40px 0; background:#fff; } {% endcomment %}
+    .eduBanner { display:flex; gap:12px; margin-bottom:24px; }
+    .eduBanner .col { flex:1; overflow:hidden; }
+    .eduBanner .col.small { flex:0.6; }
+    .eduBanner img{ width:100%; height:100%; object-fit:cover; display:block;}
+    .page-header { text-align:center; margin-bottom:30px; }
+    .page-title{ font-size:28px; letter-spacing:1px; margin:6px 0; }
+    .page-subtitle{ font-size:16px; color:#666; max-width:900px; margin:0 auto; }
+    .education-wrap{ display:flex; gap:24px; align-items:flex-start; }
+    .services-sidebar-block{ flex:0 0 300px; }
+    .services-main-block-box{ flex:1; }
+    .services-sidebar-inner h2{ font-size:14px; margin:0 0 8px; text-transform:uppercase; }
+    .services-sidebar-inner .nav-link{ display:block; padding:8px 6px; color:#111; cursor:pointer; border-left:3px solid transparent; }
+    .services-sidebar-inner .nav-link.active{ font-weight:600; border-left-color:#222; }
+    .customerservicecontent{ background:#fff; padding:10px 6px; }
+    .shape-options{ list-style:none; padding:0; display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-start; margin-bottom:18px; }
+    .shape-options li{ text-align:center; width:75px; font-size:12px; }
+    .shape-options li img{ max-width:100%; height:auto; display:block; margin:0 auto 6px; }
+    @media(max-width:900px){ .education-wrap{ flex-direction:column; } .services-sidebar-block{ width:100%; } }
+  </style>
+
+  <div class="gx-2 eduBanner row" role="region" aria-label="banner images">
+    <div class="col"><img src="{{ section.settings.banner_image_1 | img_url: '2048x' }}" alt="{{ section.settings.banner_image_1_alt }}"></div>
+    <div class="col small"><img src="{{ section.settings.banner_image_2 | img_url: '2048x' }}" alt="{{ section.settings.banner_image_2_alt }}"></div>
+    <div class="col"><img src="{{ section.settings.banner_image_3 | img_url: '2048x' }}" alt="{{ section.settings.banner_image_3_alt }}"></div>
+    <div class="col small"><img src="{{ section.settings.banner_image_4 | img_url: '2048x' }}" alt="{{ section.settings.banner_image_4_alt }}"></div>
+  </div>
+
+  <div class="page-header">
+   {% if section.settings.heading  != blank %} <h1 class="page-title">{{ section.settings.heading }}</h1>{% endif %}
+    {% if section.settings.subheading  != blank %}<h2 class="page-subtitle">{{ section.settings.subheading }}</h2>{% endif %}
+  </div>
+
+  <div class="p-0 container-fluid">
+    <div class="customer-service-page">
+      <div class="customer-service__wrapper">
+        <div class="m-0 row">
+          <!-- Sidebar -->
+          <aside class="services-sidebar-block" role="navigation" aria-label="Education menu">
+            <div class="services-sidebar-inner">
+              {% if section.blocks.size > 0 %}
+                {% for block in section.blocks %}
+                  <div class="nav-item">
+                    <a class="nav-link {% if forloop.first %}active{% endif %}" href="#block-{{ block.id }}" data-block-id="{{ block.id }}">{{ block.settings.title }}</a>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </aside>
+
+          <!-- Main content -->
+          <div class="p-0 services-main-block-box">
+            <div class="customer-service-wrappers">
+              {% if section.blocks.size > 0 %}
+                {% for block in section.blocks %}
+                  <div id="block-{{ block.id }}" class="customerservicecontainer" role="region" aria-labelledby="block-title-{{ block.id }}">
+                    <article class="customerservicecontent">
+                      <header class="customer-service-page-heading">
+                        <h2 id="block-title-{{ block.id }}">{{ block.settings.title }}</h2>
+                      </header>
+                      <div class="csContent">
+                        {% if block.settings.image != blank %}
+                          <div class="text-center">
+                            <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image_alt }}" style="max-height:200px;">
+                          </div>
+                        {% endif %}
+                        <div class="content-text">
+                          {{ block.settings.content }}
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                {% endfor %}
+              {% else %}
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSON-LD structured data for page & image gallery -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": {{ section.settings.heading | json }},
+    "description": {{ section.settings.subheading | json }},
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {% for block in section.blocks %}
+          {
+            "@type": "ListItem",
+            "position": {{ forloop.index }},
+            "name": {{ block.settings.title | json }},
+            "description": {{ block.settings.content | strip_html | truncate:200 | json }},
+            "image": {{ block.settings.image | img_url: '1200x' | json }}
+          }{% if forloop.last == false %},{% endif %}
+        {% endfor %}
+      ]
+    },
+    "image": [
+      {% assign imgs = "" %}
+      {{ section.settings.banner_image_1 | img_url: '1200x' | json }}{% if section.settings.banner_image_2 != blank %},{{ section.settings.banner_image_2 | img_url: '1200x' | json }}{% endif %}{% if section.settings.banner_image_3 != blank %},{{ section.settings.banner_image_3 | img_url: '1200x' | json }}{% endif %}{% if section.settings.banner_image_4 != blank %},{{ section.settings.banner_image_4 | img_url: '1200x' | json }}{% endif %}
+    ]
+  }
+  </script>
+
+  {% schema %}
+{
+  "name": "Education — In The Know",
+  "class": "education-page",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image_1",
+      "label": "Banner image 1"
+    },
+    {
+      "type": "text",
+      "id": "banner_image_1_alt",
+      "label": "Banner image 1 alt",
+      "default": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_2",
+      "label": "Banner image 2"
+    },
+    {
+      "type": "text",
+      "id": "banner_image_2_alt",
+      "label": "Banner image 2 alt",
+      "default": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_3",
+      "label": "Banner image 3"
+    },
+    {
+      "type": "text",
+      "id": "banner_image_3_alt",
+      "label": "Banner image 3 alt",
+      "default": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_4",
+      "label": "Banner image 4"
+    },
+    {
+      "type": "text",
+      "id": "banner_image_4_alt",
+      "label": "Banner image 4 alt",
+      "default": "Image 4"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "IN THE KNOW"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtitle",
+      "default": "Knowing the facts before you buy a piece of jewelry is essential. We've made it easy to get up to speed on everything you need to know!"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "education_item",
+      "name": "Education item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "DIAMOND SHAPES"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Item image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Item image alt",
+          "default": "shape image"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Add educational content here — e.g., 'Round, Oval, Pear...'</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Education: In The Know",
+      "category": "Pages",
+      "blocks": [
+        {
+          "type": "education_item",
+          "settings": {
+            "title": "DIAMOND SHAPE",
+            "content": "<p>Choosing a diamond shape is about personal preference...</p>"
+          }
+        },
+        {
+          "type": "education_item",
+          "settings": {
+            "title": "THE 4 C'S",
+            "content": "<p>Cut, Color, Clarity, Carat — learn the basics.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+</section>
+
+<!-- Optional: tiny JS to toggle active sidebar link on click (theme scripts can be used instead) -->
+<script>
+  (function(){
+    document.querySelectorAll('.services-sidebar-inner .nav-link').forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        document.querySelectorAll('.services-sidebar-inner .nav-link').forEach(n=>n.classList.remove('active'));
+        a.classList.add('active');
+        var id = a.getAttribute('href') || ('#block-' + a.dataset.blockId);
+        var target = document.querySelector(id);
+        if(target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth' });
+      });
+    });
+  })();
+</script>

@@ -1,0 +1,484 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "custom_common_hero_b8JqPg": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "",
+        "image": "shopify://shop_images/necklaceBanner.png",
+        "section_width": "full-width",
+        "title": "<h1>The Essential Guide To Necklaces And Pendants</h1>",
+        "subtitle": "",
+        "description": "<p>Necklaces are the perfect accessories to dress up any outfit. After all, a beautiful necklace is all it takes to make even the simplest everyday outfit look super elegant and stylish.</p><p>That’s why having a few versatile necklaces in your jewelry box is not only a great way of upping your accessory game, but it’s also an easy way of boosting your wardrobe. So, let’s take a look at some must-have necklaces designs to add to your jewelry collection and how to style these amazing accessories.</p>",
+        "bg_color": "#f9f7f5",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    },
+    "section_E7DhdU": {
+      "type": "section",
+      "blocks": {
+        "image_AbYUKi": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/necklace.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "custom",
+            "custom_width": 48,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_p7xR9z": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Timeless necklace designs everyone needs</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_hVziPL": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>You might be wondering what necklaces are in style today, but the truth is that it’s much better for you to invest in timeless staples because these pieces never go out of style. So, let’s take a look at some must-have necklaces that you’ll wear forever and will always look super stylish!</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "image_AbYUKi",
+        "text_p7xR9z",
+        "text_hVziPL"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "Npg_page_section2",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 15,
+        "section_width": "full-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-3feae916-c923-4c26-9039-b8d6473236bc",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 60
+      }
+    },
+    "multiple_text_with_image_QEWhpQ": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_waUGjV": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/necklace-style-1.jpg",
+            "image_position": "left",
+            "title": "Tennis necklaces",
+            "title_url": "",
+            "description": "<p>Diamond tennis necklaces are some of the most versatile pieces you can have in your jewelry box.</p><p>Not only can you wear them with any style of clothing on any occasion, but they can also be mixed and matched with every jewelry piece in your collection. Not to mention, <a href=\"/collections/necklaces\" title=\"Necklaces\">Tennis Necklaces</a> are also among the most elegant and sophisticated jewelry pieces there are.</p>",
+            "content_width": 50
+          }
+        },
+        "item_mBLEXd": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/necklace-style-2.jpg",
+            "image_position": "right",
+            "title": "Station necklaces",
+            "title_url": "",
+            "description": "<p><a href=\"/collections/necklaces\" title=\"Necklaces\">Station Necklaces</a> are just as versatile as plain chain necklaces, but their unexpected design makes them a step-up in the style department - especially when you layer them with a couple of other necklaces.</p><p>Designs range from diamond station necklaces to styles featuring gold beads, pearls, and colorful gemstones. Diamond station necklaces are particularly great accessories because they add an understated touch of elegance to your outfits.</p>",
+            "content_width": 50
+          }
+        },
+        "item_gHGYtV": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/necklace-style-3.jpg",
+            "image_position": "left",
+            "title": "Bar necklaces",
+            "title_url": "",
+            "description": "<p>As the name suggests, these necklaces feature a precious metal bar attached to the chain - but there’s much more to these necklaces than that!</p><p>Designs can vary from plain horizontal bars to diamond-encrusted curved bars and even double-bar necklaces, so you have a huge amount of options to choose from. <a href=\"/collections/necklaces\" title=\"Necklaces\">Bar Necklaces</a> are an easy way to dress up everything from a plain t-shirt to a cocktail dress.</p>",
+            "content_width": 50
+          }
+        },
+        "item_NWaejb": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/necklace-style-4.jpg",
+            "image_position": "right",
+            "title": "Diamond necklaces",
+            "title_url": "",
+            "description": "<p>From dainty diamond pendants to lavish tennis necklaces, these pieces are the perfect way to make any outfit look super chic and stylish. You can wear diamond necklaces day and night to add that elegant glow to your every outfit.</p><p>The best part is that <a href=\"/collections/necklaces\" title=\"Necklaces\">Diamond Necklaces</a> are no longer reserved for special occasions - they’ve become such a staple that they can be easily incorporated into everyday outfits, no matter how understated they are.</p>",
+            "content_width": 50
+          }
+        },
+        "item_wGFdXT": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/necklace-style-5.jpg",
+            "image_position": "left",
+            "title": "Gold necklaces",
+            "title_url": "",
+            "description": "<p>Not only do <a href=\"/collections/necklaces\" title=\"Necklaces\">Gold Necklaces</a> ooze luxury and sophistication, but they also make any outfit look infinitely more stylish in seconds.</p><p>The greatest thing about gold necklaces is that designs range from delicate and minimalist to ornate and oversized, making your options endless. If you’re all about understated elegance, invest in a delicate gold chain. But, if you love statement jewelry, then layer gold necklaces of different styles and lengths for a super trendy look.</p>",
+            "content_width": 50
+          }
+        },
+        "item_pRCdU3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/necklace-style-6.jpg",
+            "image_position": "right",
+            "title": "Chain necklace",
+            "title_url": "",
+            "description": "<p>Arguably one of the most popular and timeless necklace designs, <a href=\"/pages/necklaces-and-pendants-guide\" title=\"Necklaces and Pendants Guide\">Chain Necklaces</a> are must-haves in any collection. The greatest thing about chains is that you can either wear your necklace by itself or personalize it with a pendant.</p><p>And, the best part about them is that you can opt for designs that carry special meaning, such as initial pendants and medallions. That’s a great way for you to make jewelry even more personal and always carry special keepsakes close to your heart.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_waUGjV",
+        "item_mBLEXd",
+        "item_gHGYtV",
+        "item_NWaejb",
+        "item_wGFdXT",
+        "item_pRCdU3"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "page_width": 1320,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    },
+    "section_aFHRNP": {
+      "type": "section",
+      "blocks": {
+        "image_V3QLq6": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/pendant.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_NntzdD": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Must-have pendants</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_Jmktqj": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Speaking of pendants, having a few different pendant designs in your collection is a great way to personalize your necklaces and make it seem like you’re wearing a brand-new accessory every day. Here are some great pendants to have in your jewelry collection.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "image_V3QLq6",
+        "text_NntzdD",
+        "text_Jmktqj"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "Npg_page_section2",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 15,
+        "section_width": "full-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-3feae916-c923-4c26-9039-b8d6473236bc",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 60
+      }
+    },
+    "multiple_text_with_image_rAd8Gk": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_JCQWFV": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/pendant-1.jpg",
+            "image_position": "left",
+            "title": "Religious pendants",
+            "title_url": "",
+            "description": "<p><a href=\"/collections/necklaces\" title=\"Necklaces\">Religious Pendants</a>, such as crosses and medals, are a great way for you to incorporate your faith into your everyday life. As a symbol of protection and devotion, religious necklaces are more than mere accessories - they carry great meaning.</p>",
+            "content_width": 50
+          }
+        },
+        "item_FX6bBN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/pendant-2.jpg",
+            "image_position": "right",
+            "title": "Meaningful designs",
+            "title_url": "",
+            "description": "<p>If you’re not a particular religious or spiritual person, you can still incorporate meaningful pieces into your jewelry collection by opting for designs that carry some sort of significance, such as <a href=\"/collections/necklaces\" title=\"Necklaces\">Heart Pendants</a>, <a href=\"/collections/necklaces\" title=\"Necklaces\">Initials</a>, pendants that outline your home state, and even <a href=\"/collections/necklaces\" title=\"Necklaces\">Journey Necklaces</a>. No matter which design you choose, you can be sure you’ll be wearing your special pendant for years to come.</p>",
+            "content_width": 50
+          }
+        },
+        "item_MAdfp8": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/pendant-3.jpg",
+            "image_position": "left",
+            "title": "Diamond pendants",
+            "title_url": "",
+            "description": "<p>If you’re after an eye-catching design that you can wear with everything, then diamond pendants are just what you need in your collection. Whether you prefer <a href=\"/collections/necklaces\" title=\"Necklaces\">Halos</a>, <a href=\"/collections/necklaces\" title=\"Necklaces\">Solitaires</a>, or <a href=\"/collections/necklaces\" title=\"Necklaces\">Three-stone diamond pendants</a>, you can easily find the perfect design for you to style with every piece in your closet and pair with any accessory in your jewelry collection.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_JCQWFV",
+        "item_FX6bBN",
+        "item_MAdfp8"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 80,
+        "padding_bottom": 50,
+        "page_width": 1320,
+        "show_footer_info": true,
+        "share_label": "Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/7wbdoos8ln",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding Day - Engagement Rings: https://marketing.smartagesolutions.com/7wbdoos8ln"
+      }
+    },
+    "custom_common_hero_B8rhaw": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "LabGrown_HeroBottom_section NeckPand_Herobottom_section",
+        "image": "shopify://shop_images/pendantBan.jpg",
+        "section_width": "full-width",
+        "title": "<h2>Where to buy necklaces in Minnesota?</h2>",
+        "subtitle": "",
+        "description": "<p>Now that you know what necklaces you need in your jewelry collection, it’s time to shop for your favorite designs! So, stop by Wedding Day Diamonds, and explore our necklace selection.</p><p>Whether you’re after a dainty gold chain, a lavish tennis necklace, or an elegant diamond pendant, the necklace of your dreams is waiting for you here.</p><p>Visit one of our <a href=\"/pages/showroom\" target=\"_blank\" title=\"Showroom\">nine locations in Minnesota</a>, or call us at 1-866-740-RING. And don’t forget to follow us on <a href=\"https://www.instagram.com/weddingdaydiamonds/\" target=\"_blank\">Instagram</a> and <a href=\"https://www.facebook.com/WeddingDayDiamondsMN/\" target=\"_blank\">Facebook</a> for our latest news and stunning jewelry inspiration!</p>",
+        "bg_color": "rgba(0,0,0,0)",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "title_size": 30,
+        "page_width": 1400
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_common_hero_b8JqPg",
+    "section_E7DhdU",
+    "multiple_text_with_image_QEWhpQ",
+    "section_aFHRNP",
+    "multiple_text_with_image_rAd8Gk",
+    "custom_common_hero_B8rhaw"
+  ]
+}

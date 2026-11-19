@@ -1,0 +1,416 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "multiple_text_with_image_Y7hBpx": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_xUaV44": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/bg_8160d559-29b5-42f1-866b-8f42cbfae614.png",
+            "image_position": "right",
+            "title": "Propose With The Ring Of Her Dreams",
+            "title_url": "",
+            "description": "<h2>The Ultimate Guide For Choosing The Perfect Engagement Ring</h2><h2></h2><p>If you’re planning on popping the question soon, it’s time to start looking for the perfect ring to symbolize your promise of eternal love and commitment.</p><p>But with endless options to choose from and without much knowledge about engagement rings, we know that ring shopping can be a daunting task. Don’t worry, though!</p>",
+            "content_width": 60
+          }
+        }
+      },
+      "block_order": [
+        "item_xUaV44"
+      ],
+      "custom_css": [
+        ".multi-text-image {background-color: #f9f7f5;}",
+        ".LabGrownImgTxt_section2 .multi-text-image__title {font-size: 30px; font-family: \"Lora\", serif;}",
+        ".LabGrownImgTxt_section2 h2 {font-size: 20px;}",
+        "@media (max-width: 991px) {.multi-text-image.LabGrownImgTxt_section2 {padding: 15px; } .multi-text-image__grid.grid_image_position--right .multi-text-image__image {order: 1 !important; } .LabGrownImgTxt_section2 .multi-text-image__title {font-size: 22px; }}"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "page_width": 1320,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    },
+    "section_yJgXnH": {
+      "type": "section",
+      "blocks": {
+        "text_VkdiwX": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>To help you find the engagement ring of her dreams, we’ve put together this handy guide full<br/>of expert tips that will make ring shopping incredibly easy.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 30,
+            "padding-block-end": 30,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_VkdiwX"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "lab_grow_page_section2",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    },
+    "multiple_text_with_image_eyYULt": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_6NaVYP": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/halo.jpg",
+            "image_position": "right",
+            "title": "Halo",
+            "title_url": "",
+            "description": "<p>As the name suggests, this style features a halo of diamonds surrounding the center stone. With all those diamonds reflecting light off each other, this design gives the center diamond the impression of being larger. All that sparkle makes halo engagement rings ultra-glamorous - a perfect choice if she loves some glitz and glam.</p>",
+            "content_width": 50
+          }
+        },
+        "item_4GdjVN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/solitaire.jpg",
+            "image_position": "left",
+            "title": "Solitaire",
+            "title_url": "",
+            "description": "<p>Solitaire engagement rings are timeless. Their minimalism draws everyone’s eyes to the dazzling center stone and highlights the diamond’s staggering beauty. True classics, solitaires are forever elegant, making them a great choice for women who love to sport timeless jewelry pieces, such as diamond studs and tennis bracelets.</p>",
+            "content_width": 50
+          }
+        },
+        "item_f3BcGq": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Side-stone.jpg",
+            "image_position": "right",
+            "title": "Side-stone",
+            "title_url": "",
+            "description": "<p>Side-stone engagement rings feature diamond-accented bands, which complement the center stone and give the ring a glamorous look. Designs vary from the classic straight shank to sparkly twisted bands and split-shank. This alluring style is perfect for women who love bold jewelry pieces with a unique touch.</p>",
+            "content_width": 50
+          }
+        },
+        "item_MByMT9": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Vintage.jpg",
+            "image_position": "left",
+            "title": "Vintage",
+            "title_url": "",
+            "description": "<p>Vintage-inspired designs can vary widely, but they tend to feature milgrain details, scroll patterns, and other elements reminiscent of a bygone era that give these rings a beautiful antique look. If your future wife is a hopeless romantic who loves her jewelry to have a whimsical and fairytale-like feel to it, then this is the perfect style for her.</p>",
+            "content_width": 50
+          }
+        },
+        "item_4n97PQ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Three-stone.jpg",
+            "image_position": "right",
+            "title": "Three-stone",
+            "title_url": "",
+            "description": "<p>Each of the three diamonds that make up a three-stone engagement ring symbolizes a couple’s past, present, and future. Needless to say, this is an incredibly romantic ring - not to mention, sparkly! If your soulmate wears her heart on her sleeve and would love for her engagement ring to show that, then look no further than a three-stone ring.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_6NaVYP",
+        "item_4GdjVN",
+        "item_f3BcGq",
+        "item_MByMT9",
+        "item_4n97PQ"
+      ],
+      "custom_css": [],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "First, pick an engagement ring style",
+        "section_description": "<p>With such a wide range of engagement ring styles, a good strategy is to start by narrowing down your options. To make sure you choose a ring that truly captures her personality, think about whether your fiancée-to-be would prefer a traditional design, a modern silhouette, or a ring with a vintage flair to it.</p><p>Here’s a breakdown of the most popular engagement ring settings, and what each one looks like.</p>",
+        "heading_size": 25,
+        "padding_top": 0,
+        "padding_bottom": 50,
+        "page_width": 1340,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    },
+    "multiple_text_with_image_miLxz3": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_jmPbaJ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/white.jpg",
+            "image_position": "right",
+            "title": "White gold",
+            "title_url": "",
+            "description": "<p>Arguably the most common precious metal for engagement rings, white gold is incredibly resistant. Also, this shade of gold has cool undertones, which create a stunning frosty look when paired with diamonds.<br/><br/></p>",
+            "content_width": 50
+          }
+        },
+        "item_yNzJFb": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/yellow.jpg",
+            "image_position": "left",
+            "title": "Yellow gold",
+            "title_url": "",
+            "description": "<p>One of the world’s most iconic precious metals, yellow gold’s amber hues beautifully complement warm skin tones and showcase glamour and confidence. A bold choice, yellow gold instantly adds a dramatic flair to any engagement ring.</p>",
+            "content_width": 50
+          }
+        },
+        "item_KET3dw": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/rose.jpg",
+            "image_position": "right",
+            "title": "Rose gold",
+            "title_url": "",
+            "description": "<p>A rose gold engagement ring is definitely a unique option. This metal’s beautiful warm blush gives an extra-romantic touch to any ring. Rose gold works particularly well with vintage engagement rings, as it adds to the whimsical allure of the style.</p>",
+            "content_width": 50
+          }
+        },
+        "item_HbBwdJ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/twotone.jpg",
+            "image_position": "left",
+            "title": "Two-tone gold",
+            "title_url": "",
+            "description": "<p>Engagement rings which mix two shades of gold aren’t something you see every day. This design feature adds a unique twist and a modern feel to any ring. Not to mention, the two different shades of gold can also represent your souls coming together in marriage. Perfect for hopeless romantics!</p>",
+            "content_width": 50
+          }
+        },
+        "item_6q7pNU": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/platinum.jpg",
+            "image_position": "right",
+            "title": "Platinum",
+            "title_url": "",
+            "description": "<p>Just like white gold, platinum’s cool hues make any engagement ring look timeless. Its icy metallic shade also works well with any style. As a naturally hypoallergenic metal, platinum is the ideal choice for those with sensitive skin.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_jmPbaJ",
+        "item_yNzJFb",
+        "item_KET3dw",
+        "item_HbBwdJ",
+        "item_6q7pNU"
+      ],
+      "custom_css": [],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "Now, think about the precious metals",
+        "section_description": "<p>Choosing the right metal for an engagement ring is just as important as picking out the style of the ring or the cut of the diamond.</p><p>Although the main determining factor when choosing the right precious metal for your loved one’s ring is her own personal taste, the most popular metal choices are platinum and gold. Each option has particular traits that make it appealing. Let’s take a look at them.</p>",
+        "heading_size": 25,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "page_width": 1320,
+        "show_footer_info": false,
+        "share_label": "Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/7wbdoos8ln",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding Day - Engagement Rings: https://marketing.smartagesolutions.com/7wbdoos8ln"
+      }
+    },
+    "multiple_text_with_image_KFaGDC": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_g7rVai": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/shape.jpg",
+            "image_position": "left",
+            "title": "Last but not least, find the perfect diamond shape",
+            "title_url": "",
+            "description": "<p>Diamonds come in a variety of beautiful shapes, each radiating in its own unique way. Whichever shape you choose, you can be sure your loved one will love her gorgeous diamond! Here are some of the most popular diamond cuts:</p><p>Round, Oval, Princess, Cushion, Pear, Emerald, and Marquise</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_g7rVai"
+      ],
+      "custom_css": [
+        "#multi-text-image-template--21860606476509__multiple_text_with_image_KFaGDC.multi-text-image {background: #f8f9fa;}",
+        "@media screen and (max-width: 749px) {.multi-text-image__grid.grid-row-1 .multi-text-image__image--inner {margin-bottom: 20px; }}",
+        ".multi-text-image__image img {width: 350px; margin: 0 auto; height: auto; display: block; object-fit: cover; border-radius: 50%; margin-bottom: 20px;}",
+        ".multi-text-image__image--inner {height: auto;}"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "page_width": 1320,
+        "show_footer_info": true,
+        "share_label": "Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/7wbdoos8ln",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding Day - Engagement Rings: https://marketing.smartagesolutions.com/7wbdoos8ln"
+      }
+    },
+    "multiple_text_with_image_BdGmjb": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_eXreTF": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/minnesota.png",
+            "image_position": "right",
+            "title": "Where to buy engagement rings in Minnesota?",
+            "title_url": "",
+            "description": "<p>We know all this information might be a bit overwhelming, and that’s why our experts at Wedding Day Diamonds are ready to help you through a stress-free ring shopping experience.</p><p>With over 40 years of experience and eight locations around Minnesota, we offer a wide selection of the highest-quality engagement rings crafted by renowned designers, as well as unique designs you can only find at Wedding Day Diamonds.</p><p>Every engagement ring in our selection is customizable and comes with the best guarantee in the country.</p><p>Visit us today at our location closest to you. <a href=\"/pages/showroom\" target=\"_blank\" title=\"Showroom\">Find our nearest store here</a>, or call us at 1-866-740-RING. And don’t forget to follow us on <a href=\"https://www.instagram.com/weddingdaydiamonds/\" target=\"_blank\">Instagram</a> and <a href=\"https://www.facebook.com/WeddingDayDiamondsMN/\" target=\"_blank\">Facebook</a> for our latest news and stunning jewelry inspiration!</p>",
+            "content_width": 70
+          }
+        }
+      },
+      "block_order": [
+        "item_eXreTF"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 749px) {.multi-text-image__grid.grid-row-1 .multi-text-image__image--inner {margin-top: 20px; } .multi-text-image__grid.grid_image_position--right .multi-text-image__image {order: 1; }}"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "page_width": 1320,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "multiple_text_with_image_Y7hBpx",
+    "section_yJgXnH",
+    "multiple_text_with_image_eyYULt",
+    "multiple_text_with_image_miLxz3",
+    "multiple_text_with_image_KFaGDC",
+    "multiple_text_with_image_BdGmjb"
+  ]
+}

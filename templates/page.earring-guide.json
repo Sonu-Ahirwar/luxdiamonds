@@ -1,0 +1,331 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "custom_common_hero_JrT6Ty": {
+      "type": "custom-common-hero",
+      "custom_css": [
+        ".custom-common-hero__content h2 {font-size: 25px; font-weight: 600;}",
+        "#custom-common-hero-template--21859381805277__custom_common_hero_JrT6Ty .custom-common-hero__description p {font-size: 16px;}"
+      ],
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "Lgdjg_page_hero",
+        "image": "shopify://shop_images/earring-top-bg.png",
+        "title": "<h2>Build A Timeless Earring Collection With These Stunning Pieces</h2>",
+        "subtitle": "",
+        "description": "<p>Earrings are the most flattering pieces in your entire jewelry collection. That’s because they frame your face and bring out your eyes, further highlighting your beauty. No wonder earrings are such accessories!</p><p>Not only that, but a nice pair of earrings is all it takes to make any outfit look incredibly stylish and sophisticated. So, to help you build a timeless earring collection, we’ve put together this expert guide with everything you need to know about these stunning jewelry pieces. Dive in!</p>",
+        "bg_color": "#f4f4f4",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    },
+    "multiple_text_with_image_kG6dzy": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_fbjKMK": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/earr-7.jpg",
+            "image_position": "left",
+            "title": "Must-have earring styles",
+            "description": "<p>Although we often get asked about what earrings are in fashion, instead of focusing on passing trends, we like to advise people to invest in<br/>earrings which never go out of style.</p><p>That way, you’ll always manage to look both timeless and at the height of fashion at the same time. Amazing, right?</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_fbjKMK"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "page_width": 1320,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    },
+    "section_yJgXnH": {
+      "type": "section",
+      "blocks": {
+        "text_VkdiwX": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>So, here are some must-have earring styles which you’ll be reaching for year after year.</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 30,
+            "padding-block-end": 30,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_VkdiwX"
+      ],
+      "custom_css": [],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-4",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": true,
+        "overlay_color": "#728080",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 30,
+        "padding-block-end": 30
+      }
+    },
+    "multiple_text_with_image_eyYULt": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_6NaVYP": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/earr-6.jpg",
+            "image_position": "right",
+            "title": "Hoops",
+            "description": "<p>Hoop earrings are staples in any jewelry collection, and for good reason. They can instantly elevate any outfit, and their minimalistic design allows for a variety of styles, such as dainty, chunky, diamond-encrusted, or double hoops, to name a few.</p><p>Not to mention, they look great either worn on their own or as part of a stylish stack. Needless to say, having a few different styles of hoop earrings in your collection is always a great idea.</p>",
+            "content_width": 50
+          }
+        },
+        "item_4GdjVN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/earr-5.jpg",
+            "image_position": "left",
+            "title": "Drop earrings",
+            "description": "<p>From short and minimalist drop earrings to long statement designs, these pieces are super eye-catching. Their elongated silhouette draws attention to your face, making sure all eyes are on you.</p><p>For an even prettier effect, opt for diamond drop earrings. These gorgeous designs beautifully reflect the light, bringing extra sparkle to your eyes. Diamond drop earrings are all you need to look effortlessly glamorous on any occasion.</p>",
+            "content_width": 50
+          }
+        },
+        "item_f3BcGq": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/earr-4.jpg",
+            "image_position": "right",
+            "title": "Diamond studs",
+            "description": "<p>When it comes to timeless earrings, diamond studs take the cake. These stunning earrings are incredibly beautiful and versatile, making them the perfect fit for any occasion.</p><p>Their glamorous-yet-minimalistic design is all you need to top off everything from casual outfits to full-glam looks. Be it at the office or at a fancy dinner party, diamond studs instantly add a touch of sophistication to any outfit - they’re the epitome of effortless elegance, after all.</p>",
+            "content_width": 50
+          }
+        },
+        "item_MByMT9": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/earr-3.jpg",
+            "image_position": "left",
+            "title": "Diamond earrings",
+            "description": "<p>No matter which earring design you prefer, one thing’s for sure: diamonds make everything better. Do you love hoops? Then opt for diamond hoops instead of plain ones. Are you more of a drop earring kind of girl? No problem! Diamond drops are just what you need.</p><p>Diamond earrings are perfect for every occasion, and they always make a statement. From the most show-stopping designs to the most minimalist ones, diamond earrings have the power to transform entire looks. Not only are they pieces which pack a punch, but also accessories that you’ll treasure for a lifetime.</p>",
+            "content_width": 50
+          }
+        },
+        "item_n87LnF": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/earr-2.jpg",
+            "image_position": "right",
+            "title": "Gold earrings",
+            "description": "<p>Whether you prefer white, yellow, or rose gold, having a few pairs of gold earrings in your jewelry box is a must. After all, they’re incredibly elegant, super versatile, and never go out of style.</p><p>Between yellow gold hoops, white gold dangles, rose gold studs, and even two-tone gold designs, your options are endless. For an ultra-stylish look, mix and match gold earrings of different colors to create a unique stack.</p>",
+            "content_width": 50
+          }
+        },
+        "item_wHT8MN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/earr-1.jpg",
+            "image_position": "left",
+            "title": "Pearls",
+            "description": "<p>There's much more to pearl earrings than the classic studs you’ve probably just pictured. Sure, the classic pearl stud is a great staple to have in your jewelry box, but you can put a spin on the classic by opting for more unique designs.</p><p>Some stunning options include pearl drops, colorful pearl earrings, pearl huggies, and pearl studs with diamond accents. No matter which design you prefer, there’s no denying that a nice pair of pearl earrings is a great piece to have in your jewelry collection.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_6NaVYP",
+        "item_4GdjVN",
+        "item_f3BcGq",
+        "item_MByMT9",
+        "item_n87LnF",
+        "item_wHT8MN"
+      ],
+      "custom_css": [
+        "h3.multi-text-image__title {border-bottom: 2px solid; display: inline-block;}"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 25,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "page_width": 1340,
+        "show_footer_info": true,
+        "share_label": " Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/7wbdoos8ln",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding Day - Engagement Rings: https://marketing.smartagesolutions.com/7wbdoos8ln"
+      }
+    },
+    "custom_common_hero_iqfFBa": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "LabGrown_HeroBottom_section",
+        "image": "shopify://shop_images/lower-bg.jpg",
+        "title": "<h1>Where to buy earrings in Minnesota?</h1>",
+        "subtitle": "",
+        "description": "<p>From classic diamond stud earrings to trendy gold hoops, the best earring selection in Minnesota is waiting for you at Wedding Day Diamonds.</p><p>Whether you’re after minimalist huggies, statement drop earrings, or the most amazing diamond studs you’ve ever seen, we’ve got you covered! Our expert staff is here to answer any questions you might have, and help you find the perfect earrings for you.</p>",
+        "bg_color": "#d4e3f9",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    },
+    "multiple_text_with_image_cbgbMD": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_NCFKGQ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/round-earr.jpg",
+            "image_position": "left",
+            "title": "",
+            "description": "<p>Visit us today at our nine locations in Minnesota. <a href=\"/pages/showroom\" target=\"_blank\" title=\"Showroom\">Find our nearest store</a>here, or call us at 1-866-740-RING. And don’t forget to follow us on <a href=\"https://www.instagram.com/weddingdaydiamonds/\" target=\"_blank\">Instagram </a>and <a href=\"https://www.facebook.com/WeddingDayDiamondsMN/\" target=\"_blank\">Facebook </a>for our latest news and stunning jewelry inspiration!</p>",
+            "content_width": 40
+          }
+        }
+      },
+      "block_order": [
+        "item_NCFKGQ"
+      ],
+      "custom_css": [
+        ".multi-text-image__image img {width: 350px; height: auto; display: block; object-fit: cover; border-radius: 50%; margin-bottom: 20px;}",
+        ".multi-text-image__image--inner {height: auto;}"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "page_width": 1320,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_common_hero_JrT6Ty",
+    "multiple_text_with_image_kG6dzy",
+    "section_yJgXnH",
+    "multiple_text_with_image_eyYULt",
+    "custom_common_hero_iqfFBa",
+    "multiple_text_with_image_cbgbMD"
+  ]
+}

@@ -1,0 +1,449 @@
+{% comment %}
+  Locations + Showroom Section
+  - Left: list of location blocks (clickable heading, address, phone, email, button)
+  - Right: large image or content (image picker + overlay optional)
+{% endcomment %}
+
+<section class="locations-showroom-section" style="padding: {{ section.settings.section_padding }};">
+  <style>
+        .testimonial-slider {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .testimonial-slide {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .testimonial-slide p {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-slide h4 {
+      font-weight: 600;
+    }
+
+    .locations-wrapper{
+      display: flex;
+      gap: {{ section.settings.grid_gap }};
+      align-items: start;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .testimonial-section .page-width {
+        padding: 55px 100px;
+    }
+    .testimonial-section{
+      padding: 0;
+        width: 82%;
+        margin: 40px auto 0;
+    }
+
+
+    @media (min-width: 1900px) {
+      .locations-wrapper {
+          margin: 40px auto auto;
+          max-width: 1320px;
+      }
+    }
+    @media (min-width: 992px) and (max-width: 1439px) {
+        .testimonial-section .page-width {
+            margin-bottom: 0;
+            margin-top: 0;
+            padding: 60px 50px;
+        }
+        .testimonial-section .page-width{
+          padding: 60px 50px;
+        }
+    }
+    @media (min-width: 991px) and (max-width: 1279px) {
+        .testimonial-section .page-width {
+            padding: 40px 25px;
+        }
+    }
+   
+        /* LEFT LIST */
+        .locations-list{
+          background: {{ section.settings.left_bg }};
+          padding: {{ section.settings.left_padding }};
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .location-item {
+          padding: 26px 18px;
+          border-bottom: 1px solid rgba(0,0,0,0.03);
+          flex: 0 0 33.33%;
+      }
+        .location-title{
+          font-size: 18px; letter-spacing: 2px; text-transform: uppercase;
+          color: {{ section.settings.title_color }}; margin-bottom: 12px; display:flex; align-items:center; gap:10px;
+        }
+        .location-title a{ color: inherit; text-decoration:none; }
+
+        .location-meta{ font-size:13px; color: {{ section.settings.meta_color }}; line-height:1.6; }
+        .location-meta .meta-line{ display:flex; gap:10px; align-items:center; margin-bottom:6px; }
+
+        .book-btn{ display:inline-block; margin-top:10px; padding:8px 14px; text-decoration:none; border-radius:4px; background: {{ section.settings.button_bg }}; color: {{ section.settings.button_text }}; font-size:13px; }
+
+        /* right image */
+        .locations-hero{ position: relative; overflow: hidden; width: 100%;}
+        .locations-hero img{ width:100%; height: auto; display:block; }
+
+        .showroom-hours {
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 65px 0;
+        color: #fff;
+    }
+
+    .wrapperHours ui {
+        list-style: none;
+    }
+
+    .wrapperHours ul {
+        list-style: none;
+        margin: 0 auto;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+
+    .showroom-hours ul li {
+        letter-spacing: 4px;
+        margin-bottom: 8px;
+        text-align: left;
+        text-transform: uppercase;
+    }
+
+    .showroom-hours ul li span {
+        display: inline-block;
+        width: 220px;
+    }
+
+
+
+        /* small icons style */
+        .icon{ width:16px; height:16px; display:inline-block; vertical-align:middle; }
+ @media only screen and (max-width: 1024px) {
+        locations-showroom-section {
+            padding: 10px 0 0 0;
+        }
+        .locations-list{
+        padding: 40px;
+      }
+    }
+        /* responsive */
+        @media screen and (max-width: 991px){
+          .testimonial-section{
+            width: 100%;
+          }
+          .locations-wrapper{ grid-template-columns: 1fr; }
+          .locations-hero{  flex: 0 0 100%; }
+          .location-item {
+              padding: 0;
+              border-bottom: 0;
+              flex: 0 0 50%;
+              max-width: 47%;
+              margin-bottom: 35px;
+          }
+          .locations-list {
+              padding: 40px;
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+          }
+        }
+         @media screen and (max-width: 600px){
+          .locations-list{
+          padding: 20px;
+        }
+          .visit-showroom-box {
+            width: 100%;
+            padding: 20px;
+        }
+          .visit-showroom-box h1{
+          font-size: 22px;
+        }
+        .testimonial-section .page-width {
+        padding: 15px;
+      }
+      .showroom-hours{
+        padding: 35px 10px;
+      }
+      .locations-hero h3{
+      font-size: 22px;
+      }
+    .locations-list {
+        padding: 35px 30px 0;
+    }
+    .showroom-hours ul li span {
+        width: 110px;
+    }
+    .wrapperHours ul {
+        padding: 0;
+    }
+    .showroom-hours ul li {
+        font-size: 12px;
+    }
+   
+          .visit-showroom-img.img_one {
+              flex: 0 0 35%;
+          }
+         }
+
+        /* active state when heading clicked */
+        .location-item.active{ background: rgba(0,0,0,0.02); }
+
+        @media (max-width: 550px){
+         .location-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+}
+  </style>
+
+  <div class="locations-wrapper">
+    <div class="locations-list">
+      {% for block in section.blocks %}
+        {% if block.type == 'location' %}
+          <div class="location-item" id="location-{{ block.id }}">
+            <div class="location-title">
+              {% if block.settings.heading_link != blank %}
+                <a href="{{ block.settings.heading_link }}">{{ block.settings.heading }}</a>
+              {% else %}
+                <span>{{ block.settings.heading }}</span>
+              {% endif %}
+            </div>
+
+            <div class="location-meta">
+              {% if block.settings.address != blank %}
+                <div class="meta-line">
+                  <!-- location svg -->
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
+                      <path d="M12 21s-6-5.686-6-10a6 6 0 1112 0c0 4.314-6 10-6 10z" stroke-width="1.2"/>
+                    </svg>
+                  </span>
+                  <span>{{ block.settings.address | newline_to_br }}</span>
+                </div>
+              {% endif %}
+
+              {% if block.settings.phone != blank %}
+                <div class="meta-line">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.09 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12.98.33 1.94.63 2.85a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.23-1.23a2 2 0 0 1 2.11-.45c.91.3 1.87.51 2.85.63A2 2 0 0 1 22 16.92z" stroke-width="1.2"/>
+                    </svg>
+                  </span>
+                  <a href="tel:{{ block.settings.phone | remove: ' ' }}">{{ block.settings.phone }}</a>
+                </div>
+              {% endif %}
+
+              {% if block.settings.email != blank %}
+                <div class="meta-line">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
+                      <path d="M4 4h16v16H4z" stroke-width="1.2"/><path d="M22 6l-10 7L2 6" stroke-width="1.2"/>
+                    </svg>
+                  </span>
+                  <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+                </div>
+              {% endif %}
+
+              {% if block.settings.button_link != blank %}
+                <a class="book-btn" href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="locations-hero">
+      <div
+        class="showroom-hours text-center shwHours"
+        style="background-image: url(&quot;https://dl2vs6wk2ewna.cloudfront.net/wdd/images/FindaShowroom_Final-05.jpg&quot;);"
+      >
+        <div class="mb-5">
+          <h3 class="mb-4 text-uppercase fontAvenir">Showroom Hours</h3>
+          <div class="wrapperHours">
+            <ul>
+              <li class="fontAvenir"><span>MONDAY</span> 11:00 AM - 7:00 PM</li>
+              <li class="fontAvenir"><span>TUESDAY</span> 11:00 AM - 7:00 PM</li>
+              <li class="fontAvenir"><span>WEDNESDAY</span> 11:00 AM - 7:00 PM</li>
+              <li class="fontAvenir"><span>THURSDAY</span> 11:00 AM - 7:00 PM</li>
+              <li class="fontAvenir"><span>FRIDAY</span> 11:00 AM - 7:00 PM</li>
+              <li class="fontAvenir"><span>SATURDAY</span> 10:00 AM - 6:00 PM</li>
+              <li class="fontAvenir"><span>SUNDAY</span> CLOSED</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {% comment %} <section class="testimonial-section" id="section-{{ section.id }}">
+        <div class="page-width">
+          <!-- TOP TITLE -->
+          <h2 class="testimonial-top-title">
+            {{ section.settings.top_title }}
+            <span>{{ section.settings.sub_title }}</span>
+          </h2>
+
+          {% comment %} <div class="jdgm-carousel-wrapper"> 
+            <h2 class="jdgm-carousel-title">Featured reviews</h2> 
+            <a href="/reviews" class="jdgm-all-reviews-rating-wrapper"> 
+              <div data-score="" class="jdgm-all-reviews-rating"></div> from <span class="jdgm-all-reviews-count"></span> reviews 
+            </a>
+          </div> {% endcomment %}
+          <!-- SLIDER -->
+          <div class="testimonial-slider" id="testimonial-slider-{{ section.id }}">
+            {% assign index = 0 %}
+            {% for block in section.blocks %}
+              {% if block.type == 'testimonial' %}
+                {% assign index = index | plus: 1 %}
+                <div class="testimonial-slide" data-index="{{ index }}">
+                  <!-- STARS -->
+                  <div class="testimonial-stars">
+                    {% for i in (1..block.settings.stars) %}
+                      <svg
+                        stroke="currentColor"
+                        fill="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 14 16"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path>
+                      </svg>
+                    {% endfor %}
+                  </div>
+
+                  <!-- REVIEW -->
+                  <p class="testimonial-text">
+                    {{ block.settings.review }}
+                  </p>
+
+                  <!-- AUTHOR -->
+                  <p class="testimonial-author">
+                    {{ block.settings.author }}
+                  </p>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </section> {% endcomment %}
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const items = document.querySelectorAll('#shopify-section-{{ section.id }} .location-item');
+      items.forEach((it) => {
+        it.addEventListener('click', function (e) {
+          // toggle active class
+          items.forEach((i) => i.classList.remove('active'));
+          this.classList.add('active');
+          // if the heading contains a link, follow it
+          const link = this.querySelector('.location-title a');
+          if (link) {
+            window.location.href = link.href;
+          }
+        });
+      });
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Locations + Showroom",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "Right Hero Image" },
+    { "type": "text", "id": "hero_alt", "label": "Hero Image Alt", "default": "Showroom" },
+    { "type": "color", "id": "left_bg", "label": "Left Column Background", "default": "#fbf9f8" },
+    { "type": "color", "id": "title_color", "label": "Location Title Color", "default": "#1b1b1b" },
+    { "type": "color", "id": "meta_color", "label": "Meta Text Color", "default": "#6b6b6b" },
+    { "type": "color", "id": "button_bg", "label": "Button Background", "default": "#274d47" },
+    { "type": "color", "id": "button_text", "label": "Button Text Color", "default": "#ffffff" },
+    { "type": "text", "id": "section_padding", "label": "Section Padding", "default": "40px 0" },
+    { "type": "text", "id": "left_padding", "label": "Left Column Padding", "default": "40px 30px" },
+    { "type": "text", "id": "grid_gap", "label": "Grid Gap", "default": "30px" },
+    {
+      "type": "text",
+      "id": "top_title",
+      "label": "Top Title",
+      "default": "TRUSTED WITH OVER 100,000 PROPOSALS"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle",
+      "default": "SINCE 1978"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Autoplay Delay (ms)",
+      "min": 2000,
+      "max": 9000,
+      "step": 100,
+      "default": 5000
+    }
+  ],
+  "blocks": [
+    {
+      "type": "location",
+      "name": "Location",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Location Title", "default": "Burnsville" },
+        { "type": "text", "id": "heading_link", "label": "Heading Link (optional)" },
+        { "type": "textarea", "id": "address", "label": "Address" },
+        { "type": "text", "id": "phone", "label": "Phone" },
+        { "type": "text", "id": "email", "label": "Email" },
+        { "type": "text", "id": "button_label", "label": "Button Label", "default": "Book an Appointment" },
+        { "type": "url", "id": "button_link", "label": "Button Link" }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "range", "id": "stars", "label": "Stars", "min": 1, "max": 5, "default": 5 },
+        { "type": "textarea", "id": "review", "label": "Review Text" },
+        { "type": "text", "id": "author", "label": "Author Name" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Locations + Showroom" }]
+}
+{% endschema %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    if (!window.jQuery) return;
+
+    const $slider = jQuery("#testimonial-slider-{{ section.id }}");
+
+    if (!$slider.length) return;
+
+    $slider.slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: {{ section.settings.autoplay_delay }},
+      infinite: true,
+      adaptiveHeight: true
+    });
+
+  });
+</script>

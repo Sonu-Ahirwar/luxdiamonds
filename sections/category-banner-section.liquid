@@ -1,0 +1,146 @@
+<style>
+.page_temp--index .category-banner-wrapper .category-banner-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 100%;
+}
+
+.page_temp--index .category-banner-wrapper .category-item {
+    width: calc(25% - 18px);
+}
+
+.page_temp--index .category-banner-grid .category-item {
+    position: relative;
+    overflow: hidden;
+}
+
+a.category_item_atag {
+    overflow: hidden;
+}
+
+.page_temp--index .category-banner-grid .category-item .category-title {
+    font-size: 14px;
+    padding: 5px 0;
+    border-bottom: 1px solid;
+    bottom: 17px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    font-weight: 400;
+    position: absolute;
+    letter-spacing: .2em;
+    color: #fff;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+{% comment %} .page_temp--index .category-banner-wrapper .category-item a {
+    width: 375px;
+    height: 375px;
+} {% endcomment %}
+
+.page_temp--index .category-banner-wrapper .category-item a img {
+    width: 100%;
+    height: 100%;
+    transition: transform .5s ease, -webkit-transform .5s ease;
+}
+
+section.category-banner-wrapper {
+    padding-bottom: 60px;
+}
+
+.page_temp--index .category-banner-wrapper .category-item:hover img {
+    transform: scale(1.2);
+    transition: transform .5s ease, -webkit-transform .5s ease;
+}
+
+
+@media (max-width: 991px){
+  .page_temp--index .category-banner-wrapper .category-item {
+      width: calc(50% - 18px);
+  }
+}
+
+@media (max-width: 425px){
+.page_temp--index .category-banner-grid .category-item .category-title {
+    font-size: 12px;
+}
+}
+</style>
+
+{% schema %}
+{
+  "name": "Category Banner Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Category Items Settings"
+    },
+    {
+      "type": "text",
+      "id": "category_banner_title",
+      "label": "Category Banner Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_item",
+      "name": "Category Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "cat_image",
+          "label": "Upload Image"
+        },
+        {
+          "type": "text",
+          "id": "cat_title",
+          "label": "Category Title",
+          "default": "Category Title"
+        },
+        {
+          "type": "url",
+          "id": "cat_link",
+          "label": "Category URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Category Banner Section"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="category-banner-wrapper">
+<div class="section section--page-width">
+  <div class="resource-list resource-list--grid">
+    {% if section.settings.category_banner_title != blank %}
+      <div class="cbs_title">
+        <h2>{{ section.settings.category_banner_title }}</h2>
+      </div>
+    {% endif %}
+    <div class="category-banner-grid">
+      {% for block in section.blocks %}
+        <div class="category-item" style="text-align:center; cursor:pointer;">
+          <a href="{{ block.settings.cat_link }}" class="category_item_atag">
+            {% if block.settings.cat_image %}
+              <img 
+                src="{{ block.settings.cat_image | image_url: width: 800 }}" 
+                alt="{{ block.settings.cat_title }}" 
+                style="width:100%;" width="" height=""
+              >
+            {% endif %}
+            <div class="category-title">
+              {{ block.settings.cat_title }}
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+</section>

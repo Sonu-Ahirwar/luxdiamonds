@@ -1,0 +1,193 @@
+{% stylesheet %}
+    .campaign-product-grid{
+        padding:0px 0px 60px;
+    }
+    .campaign-product-grid__container{
+        max-width:1400px;
+        margin:0 auto;
+        padding:0 20px;
+    }
+    .campaign-product-grid__grid{
+        display:grid;
+        grid-template-columns:repeat(5,1fr);
+        gap:15px;
+    }
+    .campaign-product-card{
+        text-decoration:none;
+        color:inherit;
+    }
+    .campaign-product-card__image{
+        position:relative;
+        overflow:hidden;
+        aspect-ratio:1/1;
+    }
+    .campaign-product-card__image::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: #00000008;
+        pointer-events: none;
+        z-index: 1;
+        border-radius: inherit;
+    }
+    .campaign-product-card__image img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+        transition:opacity .35s ease, transform .35s ease;
+    }
+    .campaign-product-card__image .hover-image{
+        position:absolute;
+        inset:0;
+        opacity:0;
+    }
+    .campaign-product-card:hover .main-image{
+        opacity:0;
+    }
+    .campaign-product-card:hover .hover-image{
+        opacity:1;
+    }
+    .campaign-product-card:hover img{
+        transform:scale(1.03);
+    }
+    .campaign-product-card__title{
+        margin:15px 0 6px;
+        font-size:15px;
+        line-height: 1.4;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color:#395754;
+        text-align: center;
+    }
+    .campaign-product-card__price{
+        font-size:18px;
+        color: #305854;
+        font-weight: 600;
+        text-align: center;
+    }
+    @media(max-width:1199px){
+        .campaign-product-grid__grid{
+            grid-template-columns:repeat(4,1fr);
+        }
+    }
+    @media(max-width:991px){
+        .campaign-product-grid__grid{
+            grid-template-columns:repeat(3,1fr);
+        }
+    }
+    @media(max-width:749px){
+        .campaign-product-grid__grid{
+            grid-template-columns:repeat(2,1fr);
+        }
+    }
+    @media(max-width:480px){
+        .campaign-product-grid__grid{
+            grid-template-columns:1fr;
+        }
+    }
+{% endstylesheet %}
+
+<section class="campaign-product-grid">
+    <div class="campaign-product-grid__container">
+
+        <div class="campaign-product-grid__grid">
+
+            {% for block in section.blocks %}
+
+                <a
+                    href="{{ block.settings.product_url }}"
+                    class="campaign-product-card"
+                    {{ block.shopify_attributes }}
+                >
+
+                    <div class="campaign-product-card__image">
+
+                        {% if block.settings.main_image != blank %}
+                            {{
+                                block.settings.main_image
+                                | image_url: width: 800
+                                | image_tag:
+                                class: 'main-image',
+                                loading: 'lazy',
+                                alt: block.settings.product_title
+                            }}
+                        {% endif %}
+
+                        {% if block.settings.hover_image != blank %}
+                            {{
+                                block.settings.hover_image
+                                | image_url: width: 800
+                                | image_tag:
+                                class: 'hover-image',
+                                loading: 'lazy',
+                                alt: block.settings.product_title
+                            }}
+                        {% endif %}
+
+                    </div>
+
+                    <h3 class="campaign-product-card__title">
+                        {{ block.settings.product_title }}
+                    </h3>
+
+                    <div class="campaign-product-card__price">
+                        {{ block.settings.product_price }}
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Campaign Product Grid",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_image",
+          "label": "Hover Image"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product Title"
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Product Price"
+        },
+        {
+          "type": "url",
+          "id": "product_url",
+          "label": "Product URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Campaign Product Grid"
+    }
+  ]
+}
+{% endschema %}

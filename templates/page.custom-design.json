@@ -1,0 +1,90 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "perfect_ring_promise_gRXD8b": {
+      "type": "perfect-ring-promise",
+      "custom_css": [
+        ".perfect-ring-section p {width: 33rem;}",
+        "@media(max-width: 767px){.perfect-ring-section p {width: 90%;}}"
+      ],
+      "name": "Perfect Ring Banner",
+      "settings": {
+        "title": "Start your free custom design",
+        "title_h1": true,
+        "text": "Submit the details of your dream ring below and a custom design expert will get back to you as soon as possible. Remember, it's FREE to design so have fun and let us do the hard work!",
+        "title_color": "#395754",
+        "text_color": "#395754",
+        "title_size": 26,
+        "text_size": 15,
+        "bg_color": "#f9f7f5",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "book_an_appointment": {
+      "type": "custom-design",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "perfect_ring_promise_gRXD8b",
+    "book_an_appointment"
+  ]
+}

@@ -1,0 +1,46 @@
+<div class="CustomWishlist_Page">
+
+  <div class="CustomWishlist_section">
+    <div class="CstWishlist_titleRow">
+      <h1 class="CstWishlist_title">{{ page.title }}</h1>
+      <button type="button" id="wishlist-share-open" class="wishlist_share_btn" style="display:none;">
+        Share Wishlist
+      </button>
+    </div>
+
+    <div id="wishlist-loading" style="display:none;">Loading...</div>
+    <div id="wishlist-empty" style="display:none;">No wishlist data found.</div>
+
+    <div id="wishlist-grid"></div>
+  </div>
+
+  <!-- Share wishlist modal -->
+  <div id="wishlist-share-modal" class="wishlist_share_modal" style="display:none;" aria-hidden="true">
+    <div class="wishlist_share_modal__overlay" id="wishlist-share-overlay"></div>
+    <div class="wishlist_share_modal__box" role="dialog" aria-modal="true" aria-labelledby="wishlist-share-title">
+      <button type="button" class="wishlist_share_modal__close" id="wishlist-share-close" aria-label="Close">&times;</button>
+      <h3 id="wishlist-share-title">Share your wishlist</h3>
+      <p class="wishlist_share_modal__desc">Enter your friend's email address and we'll send them a link to this wishlist.</p>
+
+      <form id="wishlist-share-form">
+        <input
+          type="email"
+          id="wishlist-share-email"
+          class="wishlist_share_modal__input"
+          placeholder="friend@example.com"
+          required
+        >
+        <button type="submit" class="wishlist_share_modal__submit" id="wishlist-share-submit">
+          Send
+        </button>
+      </form>
+
+      <div id="wishlist-share-message" class="wishlist_share_modal__message" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.__CUSTOMER_ID__ = {% if customer %}{{ customer.id | json }}{% else %}null{% endif %};
+</script>
+<script src="{{ 'wishlist-page.js' | asset_url }}" defer></script>

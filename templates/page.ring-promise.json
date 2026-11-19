@@ -1,0 +1,409 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "perfect_ring_promise_kmptn3": {
+      "type": "perfect-ring-promise",
+      "name": "Perfect Ring Banner",
+      "settings": {
+        "banner_image": "shopify://shop_images/PerfectRingPromise_Final-13.jpg",
+        "title": "THE PERFECT RING PROMISE",
+        "title_h1": true,
+        "text": "If at any time during the first year of ownership, you decide that your engagement ring isn't perfect, we will do whatever it takes to make it perfect, up to and including a total remake.",
+        "title_color": "#ffffff",
+        "text_color": "#ffffff",
+        "title_size": 28,
+        "text_size": 16,
+        "bg_color": "#395755",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "promise_split_section_TgXqcd": {
+      "type": "promise-split-section",
+      "blocks": {
+        "feature_TNkRQD": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/PerfectRingPromise_Final-07.png",
+            "text": "<p>If you don’t completely love your custom engagement ring, you may return it within 60 days, no questions asked. Within 365 days, you may exchange your ring and apply its full value toward another engagement ring. <strong>This policy does not apply to engagement rings with natural gemstone center stones.</strong></p>"
+          }
+        },
+        "feature_9b68KK": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/PerfectRingPromise_Final-04.png",
+            "text": "<p>We're able to make this promise because we have an industry leading lifetime warranty, unequaled quality control, and most important, an absolute commitment to our clients. If tragedy strikes, we will repair, replace, or remake your custom engagement ring free-of-charge.</p>"
+          }
+        },
+        "feature_xNdLWG": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/PerfectRingPromise_Final-06_10048991-a789-4bb7-86db-33fc2fbedc82.png",
+            "text": "<p>With our Perfect Ring Promise, you and your engagement ring are protected in every way.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_TNkRQD",
+        "feature_9b68KK",
+        "feature_xNdLWG"
+      ],
+      "name": "Promise Split Section",
+      "settings": {
+        "custom_class": "",
+        "image": "shopify://shop_images/PerfectRingPromise_Final-12.jpg",
+        "title": "How can we promise this?",
+        "image_position": "left",
+        "full_width": true,
+        "content_bg": "#f6f4f5",
+        "text_color": "#395754",
+        "heading_size": 28,
+        "page_width": 1320,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "perfect_promise_section_DNDwXp": {
+      "type": "perfect-promise-section",
+      "name": "Perfect Promise Section",
+      "settings": {
+        "custom_class": "",
+        "bg_image": "shopify://shop_images/PerfectRingPromise_Final-08_adb2d58f-a2fe-487e-af21-4aa1334ea587.jpg",
+        "icon": "shopify://shop_images/PerfectRingPromise_Final-03.png",
+        "title": "<h2>Not close or almost perfect. <br/>Perfect, period.</h2>",
+        "description": "<p>At Wedding Day, we're all about engagement rings.<br/>It's what we do. We know how important your engagement ring is, and always will be. We want every bride's ring to be perfect.</p>",
+        "button_label": "Contact Us",
+        "button_link": "shopify://pages/contact-us",
+        "page_width": 1300,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_DxFnjk": {
+      "type": "section",
+      "blocks": {
+        "group_BNqg9R": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#adb9b7",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 60,
+            "padding-block-end": 60,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "group_bEJcQD": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-end",
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 0,
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 50
+              },
+              "blocks": {
+                "icon_DaanVp": {
+                  "type": "icon",
+                  "name": "t:names.icon",
+                  "settings": {
+                    "icon": "price_tag",
+                    "image_upload": "shopify://shop_images/PerfectRingPromise_Final-02.png",
+                    "width": 120,
+                    "link": "",
+                    "open_in_new_tab": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_DaanVp"
+              ]
+            },
+            "group_fcYcUa": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_3yckbH": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<h2>Wedding Day Diamonds, Created Just For You.</h2>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_3yckbH"
+              ]
+            }
+          },
+          "block_order": [
+            "group_bEJcQD",
+            "group_fcYcUa"
+          ]
+        }
+      },
+      "block_order": [
+        "group_BNqg9R"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "custom_class": "RingPromisePage_sec4",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 50,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-2",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": true,
+        "overlay_color": "#adb9b7",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "custom_img_txt_grid_gx3p9U": {
+      "type": "custom-ImgTxt-grid",
+      "blocks": {
+        "card_KmKGH3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/PerfectRingPromise_Final-02.jpg",
+            "button_label": "Shop Engagment Rings",
+            "button_link": "shopify://collections/engagement-rings"
+          }
+        },
+        "card_zxQUyx": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/PerfectRingPromise_Final-03.jpg",
+            "button_label": "Start your custom ring",
+            "button_link": "shopify://pages/custom-design"
+          }
+        },
+        "card_ATgghW": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/book-an-appoitment.webp",
+            "button_label": "Book an Appointment",
+            "button_link": "shopify://pages/book-an-appointment"
+          }
+        },
+        "card_yhy9T9": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/PerfectRingPromise_Final-05.jpg",
+            "button_label": "Locations",
+            "button_link": "shopify://pages/showroom"
+          }
+        }
+      },
+      "block_order": [
+        "card_KmKGH3",
+        "card_zxQUyx",
+        "card_ATgghW",
+        "card_yhy9T9"
+      ],
+      "name": "Custom Image Text Grid",
+      "settings": {
+        "custom_class": "",
+        "columns": 4,
+        "page_width": 1360,
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "perfect_ring_promise_kmptn3",
+    "promise_split_section_TgXqcd",
+    "perfect_promise_section_DNDwXp",
+    "section_DxFnjk",
+    "custom_img_txt_grid_gx3p9U"
+  ]
+}

@@ -1,0 +1,330 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "custom_common_hero_JrT6Ty": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "Lgdjg_page_hero",
+        "image": "shopify://shop_images/labgrown_bg.png",
+        "section_width": "full-width",
+        "title": "<h1>The Essential Guide To Lab-Grown Diamonds</h1>",
+        "subtitle": "",
+        "description": "<p>Lab-grown diamonds are more popular than ever, and it’s easy to see why. After all, lab-grown diamonds are just as stunning as mined diamonds, but they have the added benefit of being conflict-free, ethical, eco-friendly, and more accessible. What’s not to love about them, right?</p>",
+        "bg_color": "#f4f4f4",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    },
+    "section_yJgXnH": {
+      "type": "section",
+      "blocks": {
+        "text_VkdiwX": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>We know that the concept of creating diamonds in a lab can be confusing and you might have a lot of questions about it, but don’t worry. We’ve put together this handy guide to help you understand everything about lab-grown diamonds and why they’ve been conquering hearts all over the world.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 30,
+            "padding-block-end": 30,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_VkdiwX"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "lab_grow_page_section2",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    },
+    "multiple_text_with_image_eyYULt": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_6NaVYP": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-1.jpg",
+            "image_position": "right",
+            "title": "What is a lab-grown diamond?",
+            "title_url": "",
+            "description": "<p>As their name suggests, lab-grown diamonds are diamonds which are created in a laboratory instead of being mined.</p><p>Essentially, scientists are able to replicate in a lab the natural process that results in the creation of diamonds. While mined diamonds take millions of years to be created, scientists can create diamonds in a lab in a fraction of that time. It actually just takes about two months for them to grow. Impressive, right?</p><p>But the best thing about lab-grown diamonds is that they’re as much more sustainable, ethical, and accessible than their mined counterpart. Lab-grown diamonds are the epitome of ecological and accessible luxury.</p>",
+            "content_width": 50
+          }
+        },
+        "item_4GdjVN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-2.jpg",
+            "image_position": "left",
+            "title": "Are lab-grown diamonds real?",
+            "title_url": "",
+            "description": "<p>As their name suggests, lab-grown diamonds are diamonds which are created in a laboratory instead of being mined.</p><p>Essentially, scientists are able to replicate in a lab the natural process that results in the creation of diamonds. While mined diamonds take millions of years to be created, scientists can create diamonds in a lab in a fraction of that time. It actually just takes about two months for them to grow. Impressive, right?</p><p>But the best thing about lab-grown diamonds is that they’re as much more sustainable, ethical, and accessible than their mined counterpart. Lab-grown diamonds are the epitome of ecological and accessible luxury.</p>",
+            "content_width": 50
+          }
+        },
+        "item_f3BcGq": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-3.jpg",
+            "image_position": "right",
+            "title": "How are lab-grown diamonds made?",
+            "title_url": "",
+            "description": "<p>The process of growing diamonds in a lab involves cutting-edge equipment, carbon, huge amounts of pressure, and extremely high temperatures, all in a controlled environment.</p><p>Labs use two different methods to grow diamonds: High Pressure-High Temperature (HPHT) and Chemical Vapor Deposition (CVD). They’re both incredibly complex, but here’s the gist: a so-called \"diamond seed\" is placed inside a sealed chamber where that carbon seed is pressurized and heated until its little particles break down and crystallize into a fully formed diamond.</p><p>That might seem like a weird process, but that’s exactly what happens in nature, too. The difference is that nature takes millions of years to grow diamonds, while we can do it in a matter of months. It’s pretty amazing!</p>",
+            "content_width": 50
+          }
+        },
+        "item_MByMT9": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-4.jpg",
+            "image_position": "left",
+            "title": "Can you tell the difference between lab-grown diamonds and mined diamonds?",
+            "title_url": "",
+            "description": "<p>Both lab-grown and mined diamonds have the same identical chemical composition and structure, and you can’t tell them apart without using professional equipment.</p><p>Distinguishing between the two requires a trained gemologist and specific equipment designed to identify lab-grown diamonds.</p><p>That’s what’s so great about it: both diamonds have an equal play of light and luster, hardness, refraction, and density. It’s easy to see why they’re so hard to resist.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_6NaVYP",
+        "item_4GdjVN",
+        "item_f3BcGq",
+        "item_MByMT9"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 25,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "page_width": 1340,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    },
+    "multiple_text_with_image_miLxz3": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_jmPbaJ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-5.jpg",
+            "image_position": "left",
+            "title": "Lab-grown diamond engagement rings",
+            "title_url": "",
+            "description": "<p>Whether you're after a halo engagement ring, a timeless solitaire, a sweet vintage design, or an eye-catching three-stone ring, the great news is that you can easily make your choice more sustainable and ethical by opting for a lab-grown diamond engagement ring.</p>",
+            "content_width": 50
+          }
+        },
+        "item_yNzJFb": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-6.jpg",
+            "image_position": "right",
+            "title": "Lab-grown diamond wedding bands",
+            "title_url": "",
+            "description": "<p>Say “I do” with these beautiful rings. And after a few years of marriage, add a beautiful diamond anniversary band to your stack - all that stunning shimmer will be simply irresistible.</p>",
+            "content_width": 50
+          }
+        },
+        "item_pYmXRC": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-7.jpg",
+            "image_position": "left",
+            "title": "Lab-grown diamond earrings",
+            "title_url": "",
+            "description": "<p>You can mix and match dazzling lab-grown diamond stud earrings with dainty diamond huggies to create a beautiful (and eco-friendly) earring stack, go all-out with a pair of statement diamond dangles, or go for a minimalist look with small drop earrings - your styling options are endless.</p>",
+            "content_width": 50
+          }
+        },
+        "item_KET3dw": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-8.jpg",
+            "image_position": "right",
+            "title": "Lab-grown diamond bracelets",
+            "title_url": "",
+            "description": "<p>Whether you’re after the perfect lab-grown diamond tennis bracelet, a beautiful cuff to add to your collection, or an eye-catching bangle, the truth is that you can never go wrong with a glistening diamond bracelet wrapped around your wrist.</p>",
+            "content_width": 50
+          }
+        },
+        "item_HbBwdJ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-9.jpg",
+            "image_position": "left",
+            "title": "Lab-grown diamond necklaces",
+            "title_url": "",
+            "description": "<p>From stylish bar necklaces and shimmering diamond pendants to iconic tennis necklaces and bold diamond station chains, you’ll have no shortage of stunning necklaces to choose from.</p>",
+            "content_width": 50
+          }
+        },
+        "item_6q7pNU": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/lab-Grown-diamond-jewelry-guide-10.jpg",
+            "image_position": "right",
+            "title": "Lab-grown diamond rings",
+            "title_url": "",
+            "description": "<p>Between rose gold eternity rings, white gold stackable bands, multi-row diamond statement rings, and designs which combine diamonds and colorful precious gemstones, you’ll never run out of stylish diamond rings in your collection.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_jmPbaJ",
+        "item_yNzJFb",
+        "item_pYmXRC",
+        "item_KET3dw",
+        "item_HbBwdJ",
+        "item_6q7pNU"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "LabGrownImgTxt_section2",
+        "section_heading": "Lab-grown diamond jewelry",
+        "section_description": "<p>Just like with mined diamonds, there are endless possibilities when it comes to jewelry featuring lab-grown diamonds. Let’s take a look at some types of jewelry showcasing beautiful and conflict-free diamonds:</p>",
+        "heading_size": 25,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "page_width": 1320,
+        "show_footer_info": true,
+        "share_label": "Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/7wbdoos8ln",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding Day - Engagement Rings: https://marketing.smartagesolutions.com/7wbdoos8ln"
+      }
+    },
+    "custom_common_hero_iqfFBa": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "LabGrown_HeroBottom_section",
+        "image": "shopify://shop_images/lab-grown-downbanner.jpg",
+        "section_width": "full-width",
+        "title": "<h2>Where to buy lab-grown diamonds in Minnesota?</h2>",
+        "subtitle": "",
+        "description": "<p>Wedding Day Diamonds is your go-to jewelry store for the best lab-grown diamonds in Minnesota. Here, you’ll find everything from timeless diamond studs to trendy diamond station necklaces and stunning lab-grown diamond engagement rings.</p><p>Visit one of our <a href=\"/pages/showroom\" target=\"_blank\" title=\"Showroom\">nine locations in Minnesota</a>, or call us at 1-866-740-RING. And don’t forget to follow us on <a href=\"https://www.instagram.com/weddingdaydiamonds/\" target=\"_blank\">Instagram</a> and <a href=\"https://www.facebook.com/WeddingDayDiamondsMN/\" target=\"_blank\">Facebook</a> for our latest news and stunning jewelry inspiration!</p>",
+        "bg_color": "#d4e3f9",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_common_hero_JrT6Ty",
+    "section_yJgXnH",
+    "multiple_text_with_image_eyYULt",
+    "multiple_text_with_image_miLxz3",
+    "custom_common_hero_iqfFBa"
+  ]
+}

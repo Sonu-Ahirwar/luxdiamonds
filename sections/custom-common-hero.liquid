@@ -1,0 +1,277 @@
+{% style %}
+{% if section.settings.section_width  == 'full-width' %}
+    #custom-common-hero-{{ section.id }}.custom-common-hero {
+        background-color: {{ section.settings.bg_color }};
+        background-image: url({{ section.settings.image | image_url: width: 2000 }});
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-size: auto;
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  {% else %}
+     #custom-common-hero-{{ section.id }}.custom-common-hero {
+        background-color: {{ section.settings.bg_color }};
+    }
+     #custom-common-hero-{{ section.id }}.custom-common-hero .custom-common-hero__inner{
+        background-image: url({{ section.settings.image | image_url: width: 2000 }});
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-size: auto;
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  {% endif %}
+    #custom-common-hero-{{ section.id }}.LabGrown_HeroBottom_section{
+        background-size: cover;
+    }
+
+    #custom-common-hero-{{ section.id }} .custom-common-hero__inner {
+        width:100%;
+        max-width: {{ section.settings.page_width }}px;
+        margin: 0 auto;
+    }
+    #custom-common-hero-{{ section.id }} .custom-common-hero__content {
+        width:100%;
+        max-width: 760px;
+        padding: 30px 0px;
+    }
+    #custom-common-hero-{{ section.id }} .custom-common-hero__content h1,
+    #custom-common-hero-{{ section.id }} .custom-common-hero__content h2 {
+        font-size: {{ section.settings.title_size }}px;
+        line-height: 1.2;
+        font-family: "Lora",sans-serif;
+        font-weight:500;
+        color: #395754;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
+    .custom-common-hero__subtitle {
+        font-size: 20px;
+        line-height: 1.2;
+        font-family: "Open Sans",sans-serif;
+        font-weight:500;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
+    .custom-common-hero__description p{
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: 1px;
+        color:#728080;
+    }
+    .custom-common-hero__description p a{
+      color:#395754;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 1340px) {
+        .custom-common-hero  {
+            padding-inline:15px;
+        }
+    }
+    @media screen and (max-width: 1199px) {
+        .custom-common-hero__content {
+            max-width: 550px;
+        }
+    }
+    @media screen and (max-width:991px){
+        .custom-common-hero__inner {
+            max-width: 720px;
+        }
+        #custom-common-hero-{{ section.id }} .custom-common-hero__content h1,
+        #custom-common-hero-{{ section.id }} .custom-common-hero__content h2 {
+            font-size: 22px;
+            letter-spacing: 2px;
+        }
+        .custom-common-hero__subtitle {
+            font-size: 16px;
+        }
+        .custom-common-hero__description p{
+            font-size: 14px;
+            line-height: 23px;
+        }
+    }
+@media screen and (max-width: 767px) {
+    #custom-common-hero-{{ section.id }}.custom-common-hero {
+            background-image: unset;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+      }
+      #custom-common-hero-template--22384573513949__custom_common_hero_JrT6Ty .custom-common-hero__content {
+        width: 100%;
+        max-width: 540px;
+        padding: 30px 0px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    @media screen and (max-width: 749px) {
+      
+        .custom-common-hero__content {
+            max-width: 100%;
+            text-align: center;
+        }
+        #custom-common-hero-template--22384573513949__custom_common_hero_JrT6Ty .custom-common-hero__content{
+          padding: 10px 0px;
+        }
+        #custom-common-hero-{{ section.id }}.custom-common-hero {
+            background-image: unset;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        #custom-common-hero-{{ section.id }}.LabGrown_HeroBottom_section{
+            background-image: url({{ section.settings.image | image_url: width: 2000 }});
+            background-size: cover;
+            background-position: 50%;
+            margin-bottom: 30px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .LabGrown_HeroBottom_section.NeckPand_Herobottom_section {
+            background-position: 0 50%;
+        }
+    }
+{% endstyle %}
+
+<div class="custom-common-hero {{ section.settings.custom_class }}" id="custom-common-hero-{{ section.id }}">
+  <div class="custom-common-hero__inner">
+    <div class="custom-common-hero__content">
+      {% if section.settings.title != blank %}
+        {{ section.settings.title }}
+      {% endif %}
+
+      {% if section.settings.subtitle != blank %}
+        <div class="custom-common-hero__subtitle">
+          {{ section.settings.subtitle }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="custom-common-hero__description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+      {% if section.settings.hero_btn != blank %}
+        <a class="custom-common-hero__btn" href="{{ section.settings.hero_btn_url }}">
+          {{ section.settings.hero_btn }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Common Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "hero_btn",
+      "label": "Button Title"
+    },
+    {
+      "type": "url",
+      "id": "hero_btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f4f4f4"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 100
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 100
+    },
+
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Font Size",
+      "min": 24,
+      "max": 80,
+      "step": 1,
+      "default": 44
+    },
+
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 900,
+      "max": 1800,
+      "step": 10,
+      "default": 1400
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "Custom Common Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,2260 @@
+/* css write by sonu 12/03/2026 */
+
+/* common css */
+.lab_grow_page_section2 .spacing-style.text-block{
+    border-bottom: 1px dashed #ddd;
+    border-top: 1px dashed #ddd;
+    margin: 0px auto;
+    max-width: 1000px;
+}
+.lab_grow_page_section2 .spacing-style.text-block p{
+    color: #305854;
+    font-family: "Lora", serif;
+    font-weight: 200;
+    letter-spacing: 1px;
+    line-height: 28px;
+}
+.section.Npg_page_section2{
+    margin-top:40px;
+}
+.section.Npg_page_section2, .Npg_page_section2 .custom-section-content{
+    background-color:#f8f9fa !important;
+}
+.Npg_page_section2 .spacing-style.text-block h2{
+    font-size:25px;
+    color: #395754;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+.Npg_page_section2 .spacing-style.text-block p{
+    color: #728080;
+    letter-spacing: 1px;
+    line-height: 28px;
+    margin-bottom: 20px;
+    font-weight: 200;
+}
+/* css for multiple text with image section */
+.multi-text-image__header {
+    margin-bottom: 60px;
+    text-align: center;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.multi-text-image-grid_wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+.multi-text-image__content,
+.multi-text-image__image {
+    padding: 0px 12px;
+}
+.multi-text-image__section-desc p,
+.multi-text-image__desc p {
+    font-size: 16px;
+    color: #728080;
+    letter-spacing: 1px;
+    line-height: 28px;
+}
+.multi-text-image__desc p a{
+    font-weight:600;
+}
+.multi-text-image__grid {
+    display: grid;
+    align-items: center;
+}
+.multi-text-image__title {
+    font-size: 20px;
+    line-height: 1.2;
+    color: #395754;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+.LabGrownImgTxt_section2 .multi-text-image__title{
+    font-size: 16px;
+}
+.multi-text-image__image--inner{
+    height: 300px;
+    margin: 0 auto;
+    width: 80%;
+}
+.multi-text-image__image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+.multi-text-image__grid.grid-row-2 .multi-text-image__image,
+.multi-text-image__grid.grid-row-4 .multi-text-image__image{
+    order:-1;
+}
+.LabGrownImgTxt_section2 .multi-text-image__image--inner{
+    height: auto;
+    margin: 0 auto;
+    width: 100%;
+}
+.LabGrownImgTxt_section2 .multi-text-image__image img {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+.multi-text-image__grid.grid_image_position--right .multi-text-image__image{
+    order:1;
+}
+.multi-text-image__grid.grid_image_position--left .multi-text-image__image{
+    order:-1;
+}
+/* .LabGrownImgTxt_section2 .multi-text-image__grid.grid-row-1 .multi-text-image__image,
+.LabGrownImgTxt_section2 .multi-text-image__grid.grid-row-3 .multi-text-image__image,
+.LabGrownImgTxt_section2 .multi-text-image__grid.grid-row-5 .multi-text-image__image{
+    order:-1;
+}
+.LabGrownImgTxt_section2 .multi-text-image__grid.grid-row-2 .multi-text-image__image,
+.LabGrownImgTxt_section2 .multi-text-image__grid.grid-row-4 .multi-text-image__image,
+.LabGrownImgTxt_section2 .multi-text-image__grid.grid-row-6 .multi-text-image__image{
+    order:1;
+} */
+.multi-text-image__footer {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.multi-text-image__footer-inner {
+    display: inline-flex;
+    gap: 28px;
+    align-items: center;
+}
+
+.footer-info-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 16px;
+    font-weight: 500;
+}
+.footer-info-item  svg{
+    font-size:24px;
+}
+/* css for our team page */
+.our_team_banner.hero {
+    min-height:415px;
+}
+.our_team_banner .spacing-style.text-block h1{
+    color: #fff;
+    font-size: 5.2rem;
+    font-weight: 200;
+    letter-spacing: 13px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.OurTeamPage_OurMissionSec .spacing-style.text-block h2{
+    color: #395754;
+    font-family: 'Avenir-med';
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+.OurTeamPage_OurMissionSec .spacing-style.text-block p{
+    color: #395754;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.1;
+    width: 100%;
+    max-width: 775px;
+    margin: 0 auto;
+}
+.OurTeamPage_section3, .OurTeamPage_section3 .custom-section-content{
+    background-color:#395754 !important;
+}
+.OurTeamPage_section3 .spacing-style.text-block h2{
+    color: #fff;
+    font-family: 'Avenir-med';
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.OurTeamPage_HIringSec, .OurTeamPage_HIringSec .custom-section-content{
+    background-color:#f9f7f8 !important;
+}
+.OurTeamPage_HIringSec .spacing-style.text-block h2{
+    color: #395754;
+    font-family: 'Avenir-med';
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+.OurTeamPage_HIringSec .spacing-style.text-block p{
+    color: #395754;
+    font-size: 19px;
+    line-height:1.1;
+    font-weight: 500;
+    letter-spacing: -.5px;
+    width: 100%;
+    max-width: 875px;
+    margin: 0 auto 20px;
+}
+.OurTeamPage_btnSec .section-content-wrapper a{
+    background: #395755;
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Avenir-med';
+    font-size: 15px;
+    font-weight: 600;
+    padding: 7.5px 0px;
+    letter-spacing: 4px;
+    line-height: 40px;
+    min-width: 340px;
+    text-transform: uppercase;
+    transition:all 0.6s;
+}
+.OurTeamPage_btnSec .section-content-wrapper a:hover{
+    background: transparent;
+    color:#395754;
+}
+.OurTeamPage_btnSec .section-content-wrapper a:focus-visible{
+    background: transparent;
+    color:#395754;
+    border:1px solid #395754;
+}
+.OurTeamPage_section3 
+/* css for the our difference page */
+.OurDiff_PageBanner.hero{
+    min-height:300px;
+    margin-bottom:48px;
+}
+.OurDiff_PageBanner .spacing-style.text-block h1{
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 200;
+    letter-spacing: 13px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.OurDiffPage_section2, .OurDiffPage_section2 .custom-section-content{
+    background-color:#395754 !important;
+}
+.OurDiffPage_section4, .OurDiffPage_section4 .custom-section-content{
+    background-color:#adb9b7 !important;
+}
+.OurDiffPage_section2 .spacing-style.text-block h2,
+.OurDiffPage_section4 .spacing-style.text-block h2{
+    color: #fff;
+    font-family: 'Avenir-med';
+    font-size: 24px;
+    font-weight: 200;
+    letter-spacing: 5px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+.OurDiffPage_section2 .spacing-style.text-block p,
+.OurDiffPage_section4 .spacing-style.text-block p{
+    color: #fff;
+    font-size: 18px;
+    line-height:1.2;
+    font-weight: 200;
+    width: 100%;
+    max-width: 1038px;
+    margin: 0 auto;
+}
+.OurDiffPage_section3 .section-content-wrapper,
+.OurDiffPage_section5 .section-content-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.OurDiffPage_section3 .section-content-wrapper .group-block{
+    height:100%;
+    min-height: 520px;
+}
+.OurDiffPage_section3 .section-content-wrapper .group-block p{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0;
+}
+.OurDiffPage_section5 .section-content-wrapper .group-block{
+    height:100%;
+    min-height: 430px;
+}
+.OurDiffPage_section5 .section-content-wrapper .spacing-style.text-block h2{
+    font-size: 22px;
+    color: #395754;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+.OurDiffPage_section5 .section-content-wrapper .spacing-style.text-block p{
+    font-size: 14px;
+    line-height:1.5;
+    color: #395754;
+    font-family: 'Avenir-med';
+    font-weight: 600;
+    letter-spacing: 0px;
+    width: 80%;
+}
+.OurDiffPage_section5 .section-content-wrapper .group-block-content .image-block .image-block__image{
+    width:120px;
+}
+.OurDiffPage_section5 .section-content-wrapper .spacing-style.text-block h5{
+    font-size: 14px;
+    letter-spacing: 3.5px;
+    position: relative;
+    text-transform: uppercase;
+}
+.OurDiffPage_section5 .section-content-wrapper .spacing-style.text-block h5:before{
+    background-color: #fff;
+    bottom: -6px;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+/* ============================= 
+ css for the date 16/03/2026
+=================================*/
+/* css for ring promise page */
+.RingPromisePageBanner.perfect-ring-section p {
+    width: 100%;
+    max-width:830px;
+    font-family: 'Avenir-oblique';
+}
+.RingPromisePageBanner.perfect-ring-section h1 {
+    font-size: 28.8px;
+}
+
+/* .RingPromisePage_sec4, .RingPromisePage_sec4 .section-content-wrapper{
+    background-color:#adb9b7 !important;
+} */
+.RingPromisePage_sec4{
+    margin:60px 0px;
+}
+.RingPromisePage_sec4 .group-block.group-block--height-fit.group-block--width-custom.border-style:last-child {
+    border-left: 0px solid #ffffff52;
+} 
+.RingPromisePage_sec4 .spacing-style.text-block h2 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1750px) and (min-width: 1200px) {
+    .RingPromisePage_sec4 .spacing-style.text-block h2 {
+        font-size: 24px;
+        margin: 0;
+    }
+}
+.FashionRingGuidePage_sec2 .layout-panel-flex--row {
+    align-items: stretch;
+}
+.FashionRingGuidePage_sec2 .spacing-style.text-block h2{
+    font-size:20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+.FashionRingGuidePage_sec2 .spacing-style.text-block p{
+    letter-spacing: 1px;
+    line-height: 28px;
+    margin-bottom: 10px;
+}
+.FashionRingGuidePage_sec2{
+    padding:0px 36px;
+}
+.FashionRingGuidePage_sec3 .multi-text-image__image--inner {
+    height: auto;
+}
+.FashionRingGuidePage_sec3 .multi-text-image__image img {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+.FashionRingGuidePage_sec3 .multi-text-image__title {
+    font-size: 16px;
+    margin-block-end: 12px !important;
+    text-decoration: underline;
+}
+.FashionRingGuidePage_sec3 .multi-text-image-grid_wrapper {
+    gap: 96px;
+}
+.FashionRingGuidePage_sec4.custom-common-hero {
+    background-size: cover !important;
+}
+.FashionRingGuidePage_sec4 .custom-common-hero__description p {
+    font-size: 16px !important;
+}
+/* css for the ultimate guide to wedding bands page */
+.TugtwbPage_Sec2{
+    margin:48px 0px;
+}
+.TugtwbPage_Sec2 .spacing-style.text-block p{
+    letter-spacing: 1px;
+    line-height: 28px;
+}
+/* ============================= 
+ css for the date 17/03/2026
+=================================*/
+.TugtwbBannerSec .custom-common-hero__content h1,
+.LabGrown_HeroBottom_section2 .custom-common-hero__content h2{
+    font-family:"Lora",serif !important;
+    letter-spacing: 3px !important;
+}
+.TugtwbPage_Sections .multi-text-image__content{
+    padding:3rem;
+}
+.TugtwbPage_Sections .multi-text-image__image--inner{
+    padding:0px 18px;
+    height: auto;
+    width: 100%;
+}
+/* css for custom category grid section */
+.category-grid__heading {
+    font-size: 25px;
+    color: #395754;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+.category-grid__desc p{
+    font-size: 16px;
+    color: #728080;
+    letter-spacing: 1px;
+    line-height: 28px;
+    margin-bottom: 20px;;
+}
+.category-grid__desc p a {
+    color: #395754;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.category-grid__item img{
+    width:auto;
+    margin:0 auto;
+}
+.category-grid__title {
+    display: inline-block;
+    font-size: 16px;
+    color: #395754;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+/* css for ultimate bracelet guide page */
+.UltimateBraceletGuide_Banner .spacing-style.text-block h1{
+    font-size: 30px;
+    line-height:1.2;
+    font-family: 'AvenirLTStd';
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+.UltimateBraceletGuide_Banner .spacing-style.text-block p{
+    color: #728080;
+    line-height: 28px;
+    letter-spacing: 1px;
+    margin: 0px 0px 12px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-weight: 400;
+}
+.UltimateBraceletGuidePage_sec3 .section-content-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.UltimateBraceletGuidePage_sec3 .section-content-wrapper .group-block{
+    height:100%;
+    min-height: 450px;
+}
+.UltimateBraceletGuidePage_sec3 .background-image-container{
+    padding-right:44px;
+}
+.UltimateBraceletGuidePage_sec3 .section-content-wrapper .spacing-style.text-block h2{
+    font-size: 20px;
+    font-weight: 600;
+    color: #395754;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+.UltimateBraceletGuidePage_sec3 .section-content-wrapper .spacing-style.text-block p{
+    font-size: 16px;
+    line-height: 28px;
+    color: #728080;
+    letter-spacing: 1px;
+}
+.UltimateBraceletGuidePage_sec4 .multi-text-image__image--inner {
+    height: auto;
+    width: 100%;
+}
+/* css for jewelry guide page */
+.JewelryGuideBanner .spacing-style.text-block h1{
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+    margin-top: 0;
+    text-transform: capitalize;
+    color: #395754;
+}
+.JewelryGuidePage_sec2 .spacing-style.text-block p{
+    font-size:16px;
+    color: #728080;
+    letter-spacing: 1px;
+    line-height: 28px;
+    margin-bottom: 20px;
+}
+.JewelryGuidePage_sec2 .spacing-style.text-block p a{
+    font-weight: 600;
+    text-decoration: underline;
+    color: #305854;
+}
+.JewelryGuidePage_sec2{
+    padding-inline:15px;
+}
+/* css for polices page */
+.content-for-layout .shopify-policy__container {
+    max-width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top:0px;
+}
+.shopify-policy__container .shopify-policy__title{
+    background-color:#f9f8f8;
+    padding:60px 0px;
+    margin-bottom: 30px;
+}
+.shopify-policy__title h1{
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+    margin-top: 0;
+    text-transform: capitalize;
+    color: #395754;
+}
+.shopify-policy__container .shopify-policy__body {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0px 12px;
+}
+.terms-and-conditions__item {
+    margin: 40px 0px;
+}
+.shopify-policy__body p,
+.shopify-policy__body ul li{
+    font-size: 16px;
+    color: #728080;
+    letter-spacing: 1px;
+    line-height: 28px;
+    margin:0px 0px 20px;
+}
+.shopify-policy__body h2,
+.shopify-policy__body .page-title{
+    font-size: 22px;
+    color: #395754;
+    letter-spacing: 3px;
+    margin:0px 0px 12px;
+    text-transform: uppercase;
+}
+.shopify-policy__body h5{
+    font-size: 20px;
+    color: #395754;
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: capitalize;
+    margin:0px 0px 8px;
+}
+.shopify-policy__body ul{
+    padding-inline-start: 16px;
+}
+/* css for the custom design page */
+.free_custom_richText1 .spacing-style.text-block h2 {
+    font-size: 22px;
+    color: #395754;
+    letter-spacing: 3px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin:0px 0px 48px;
+}
+.free_custom_richText1 .spacing-style.text-block p {
+    font-size: 18px;
+    color: #395754;
+    font-family: 'AvenirLTStd';
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 26px;
+    margin: auto;
+    max-width: 750px;
+}
+.custom_design_multicol1 .image-block.size-style {
+    width: 100%;
+    height: 100%;
+}
+.custom_design_multicol1 .image-block.size-style img{
+    width:auto;
+    max-width: 80px;
+    height:80px;
+    margin:0 auto;
+}
+.custom_design_multicol1 .heading_image_text  {
+    font-size: 18px;
+    letter-spacing: 5px;
+    text-transform:capitalize;
+}
+.custom_design_multicol1 .section-content-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.custom_design_multicol1 .section-content-wrapper .group-block{
+    flex: unset;
+    width: auto;
+}
+.CustomDesignPage_sec4 .group-block-content.layout-panel-flex.layout-panel-flex--row.mobile-column {
+    justify-content: center;
+}
+.CustomDesignPage_sec4 .image-block {
+    width: 50px;
+    margin-right: 20px;
+}
+.CustomDesignPage_sec4  .full_width_img {
+    padding: 0px;
+}
+.CustomDesignPage_sec4 .spacing-style.text-block h2{
+    font-size: 22px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+.CustomDesignPage_sec4 .layout-panel-flex--column>.group-block--height-fit {
+    padding-top: 0px;
+}
+.CustomDesignPage_sec4 .spacing-style.text-block p{
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 200;
+    letter-spacing: 1px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    max-width:862px;
+    margin:0 auto;
+}
+.CustomDesignPage_sec5 .promise-split__inner {
+    max-width: 880px;
+    padding: 0 20px;
+    margin:0 auto;
+}
+
+.CustomDesignPage_sec5 .promise-item {
+    padding-left: 50px;
+    align-items: center;
+}
+.CustomDesignPage_sec5 .promise-item__icon img {
+    width: 60px;
+    height: 60px;
+}
+.CustomDesignPage_sec5 .promise-item__text {
+    color: #fff;
+}
+.promise-split.CustomDesignPage_sec5 {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+.CustomDesignPage_sec6 .spacing-style.text-block h2{
+    color: #395754;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-family: 'AvenirLTStd';
+    font-weight: 600;
+    letter-spacing: 5px;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+}
+.CustomDesignPage_sec6 .spacing-style.text-block p{
+    font-size: 22px;
+    font-style: italic;
+    font-family: 'AvenirLTStd';
+    font-weight: 600;
+    letter-spacing: .5px;
+    line-height: 25px;
+    margin: 35px auto 0;
+    max-width: 800px;
+    text-align: center;
+    color:#212529;
+}
+.CustomDesignPage_sec7 .section-content-wrapper .group-block{
+    min-height:330px;
+    display: flex;
+    align-items: center;
+}
+.CustomDesignPage_sec7 .custom-section-content .image-block__image{
+    width: 60px;
+    margin: 0 auto;
+}
+.CustomDesignPage_sec8 .custom-section-content .image-block__image{
+    width: 100px;
+}
+.CustomDesignPage_sec7 .spacing-style.text-block h2{
+    color: #395754;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: 'AvenirLTStd';
+    font-weight: 600;
+    letter-spacing: 5px;
+    line-height: 1.2;
+    margin:0px;
+}
+.CustomDesignPage_sec7 .spacing-style.text-block p{
+    font-size: 16px;
+    font-family: 'AvenirLTStd';
+    font-weight: 600;
+    letter-spacing: .5px;
+    line-height: 24px;
+    margin: 0 auto;
+    max-width: 540px;
+    color: #395754;
+}
+.CustomDesignPage_sec7 .spacing-style.text-block.h5 p{
+    color: #fff;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 200;
+    line-height: 1.2;
+    letter-spacing: 4px;
+}
+.CustomDesignPage_sec9.custom_top_section a.button{
+    min-width: 360px;
+}
+.CstDsn_Faq_section .custom-section-content{
+    width:100%;
+    max-width:1920px;
+}
+.CstDsn_Faq_section .custom-section-content .full_width_img,
+.CstDsn_Faq_section .custom-section-content .group-block {
+    padding: 0px;
+}
+.CstDsn_Faq_section .image-block--height-fill .image-block__image {
+    height: 482px;
+    object-fit: cover;
+}
+.CstDsn_Faq_section .section-content-wrapper{
+    align-items:stretch;
+}
+.CstDsn_Faq_section .group-block.group-block--height-fit.group-block--width-custom.border-style.spacing-style.size-style {
+    padding: 40px 60px;
+}
+.CstDsn_Faq_section .spacing-style.text-block h2{
+    color: #395754;
+    font-size: 25px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom:3rem;
+}
+.CstDsn_Faq_section .accordion {
+    padding: 0px 50px;
+    text-align: left;
+}
+.CstDsn_Faq_section .accordion--dividers accordion-custom:first-child .details {
+    border-block-start: 0px;
+}
+.CstDsn_Faq_section .accordion .details__header{
+    color:  #395754;
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 4px;
+    padding: 20px 80px 20px 60px;
+    position:relative;
+}
+.CstDsn_Faq_section .accordion summary .svg-wrapper,
+.CstDsn_Faq_section .accordion summary .svg-wrapper svg{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+.CstDsn_Faq_section accordion-custom .details-content p {
+    padding: 0px;
+    color: #212529;
+    font-size: 16px;
+    line-height: 29px;
+    font-weight: 500;
+}
+.CstDsn_Faq_section .accordion--dividers .details-content {
+    padding-block-end: 0px;
+}
+.CstDsn_Faq_section a.link{
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-left: 110px;
+    margin-top: 40px;
+    text-decoration:underline;
+}
+.CustomDesignPage_sec9 .custom-section-content,
+.CustomDesignPage_sec10 .custom-section-content{
+    width: 100%;
+    max-width: 1500px;
+    padding: 0px 15px;
+}
+.CustomDesignPage_sec9 .spacing-style.text-block h2{
+    color: #395754;
+    font-size: 25px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+}
+.CustomDesignPage_sec10 .full_width_img {
+    padding: 0px;
+}
+.CustomDesignPage_sec10 a.link{
+    color: #305854;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 18px;
+    padding: 0px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition:all 0.5s;
+}
+.CustomDesignPage_sec10 a.link:hover{
+    text-decoration:underline;
+}
+.SgSj_banner .custom-section-content{
+    width:100%;
+    max-width:100%;
+    margin:0 auto;
+}
+.SgSj_banner .full_width_img {
+    padding: 0px;
+}
+.SgSj_banner .spacing-style.text-block h1{
+    color: #fff;
+    font-size: 43px;
+    letter-spacing: 2px;
+    font-family: 'AvenirLTStd';
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: capitalize;
+}
+.SgSj_banner .spacing-style.text-block p{
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-family: 'AvenirLTStd';
+    font-weight: 200;
+    line-height: 1.5;
+    margin:0px;
+    text-align: center;
+    display: block;
+}
+.SgSj_banner a.button{
+    background: #728785;
+    border-radius: 8px;
+    color: #fff;
+    display: inline-block;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 10px 70px;
+    transition:all 0.6s;
+}
+.SgSj_banner a.button:hover {
+    background: #fff;
+    color: #395754;
+}
+.SgSj_Page_sec2{
+    margin: 48px 0px;
+}
+.SgSj_Page_sec2 .group-block.group-block--height-fit.group-block--width-custom.border-style:last-child {
+    border-left: 0px;
+}
+.SgSj_Page_sec2 .group-block.group-block--height-fit.group-block--width-custom.border-style.spacing-style.size-style {
+    padding: 0px;
+}
+.SgSj_Page_sec2 .group-block:first-child,
+.SgSj_Page_sec2 .group-block:first-child .group-block-content{
+    width:345px;
+}
+
+.SgSj_Page_sec2 .group-block:last-child{
+    width:calc(100% - 345px);
+}
+.SgSj_Page_sec2 .layout-panel-flex--row>.group-block--width-fill {
+    flex: unset;
+}
+.SgSj_Page_sec2 .group-block:first-child .spacing-style.text-block p{
+    background: #27413e;
+    color: #fff;
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;
+    letter-spacing: 2px;
+}
+.SgSj_Page_sec2 .spacing-style.text-block h3{
+    color: #fff;
+    font-size: 33px;
+    letter-spacing: 2px;
+    font-family: 'AvenirLTStd';
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: capitalize;
+    font-style: italic;
+}
+.SgSj_Page_sec2 .group-block:last-child .spacing-style.text-block ul li{
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 2px;
+    font-weight: 200;
+    line-height: 1.5;
+    margin:0px 0px 15px;
+}
+.SgSj_Page_sec3 .spacing-style.text-block h2{
+    color: #fff;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: 300;
+    line-height: 1.5;
+    text-transform: uppercase;
+    padding:0px 16px;
+} 
+.SgSj_Page_sec3 .spacing-style.text-block h2 strong{
+    font-weight: 700;
+}
+.SgSj_Page_sec4{
+    margin:60px 0px;
+}
+.SgSj_Page_sec4 .layout-panel-flex--column>.group-block--height-fit,
+.SgSj_Page_sec5 .layout-panel-flex--column>.group-block--height-fit {
+    padding-top: 0px;
+}
+.SgSj_Page_sec4 .spacing-style.text-block h2 {
+    font-family: 'AvenirLTStd';
+    font-size: 25px;
+    letter-spacing: 4px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+.SgSj_Page_sec4 .spacing-style.text-block ul{
+    -webkit-column-count: 4;
+    column-count: 4;
+    padding-left: 0px;
+}
+.SgSj_Page_sec4 .spacing-style.text-block ul li{
+    font-family: 'AvenirLTStd';
+    font-size: 18px;
+    color: #395754;
+    list-style: none;
+    margin: 0px 0px 25px;
+    padding-left: 20px;
+    position: relative;
+}
+.SgSj_Page_sec4 .spacing-style.text-block ul li:before {
+    border: 1px solid #395754;
+    border-radius: 50px;
+    content: "";
+    height: 6px;
+    left: 0;
+    position: absolute;
+    top: 40%;
+    width: 6px;
+}
+.SgSj_Page_sec5{
+    margin-bottom:60px;
+}
+.SgSj_Page_sec5 .spacing-style.text-block h2 {
+    font-family: 'AvenirLTStd';
+    font-size: 25px;
+    color: #395754;
+    letter-spacing: 4px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-weight: bold;
+}
+.SgSj_Page_sec5 .spacing-style.text-block p{
+    font-size: 16px;
+    color: #395754;
+    letter-spacing: 1px;
+    line-height:1.5;
+    width:100%;
+    max-width:966px;
+    margin:0 auto 16px;
+    display: block;
+}
+.SgSj_Page_sec5 .spacing-style.text-block ul{
+    max-width:700px;
+    margin:0 auto 16px;
+    display: block;
+    text-align:left;
+    padding-left: 0px;
+}
+.SgSj_Page_sec5 .spacing-style.text-block ul li{
+    font-size: 16px;
+    color: #395754;
+    letter-spacing: 1px;
+    line-height:1.5;
+}
+.SgSj_Page_sec5 .accordion {
+    max-width: 966px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.SgSj_Page_sec5 accordion-custom {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    color: #212529;
+}
+.SgSj_Page_sec5 .accordion .details__header{
+    font-size: 18px;
+    font-family: 'AvenirLTStd';
+    letter-spacing: 1px;
+    color: #395754;
+    text-transform: none;
+    padding:16px 20px;
+}
+.SgSj_Page_sec5 .accordion details[open]  .details__header{
+    background: #305854;
+    color: #fff;
+}
+.SgSj_Page_sec5 .accordion details[open]  .details__header .svg-wrapper{
+    display:none;
+}
+.SgSj_Page_sec5 .details__header .svg-wrapper,
+.SgSj_Page_sec5 .details__header .svg-wrapper svg{
+    width:20px;
+    height:20px;
+}
+.SgSj_Page_sec5 .accordion .details-content .spacing-style.text-block p{
+    color: #395754;
+    padding:16px 20px;
+    width:100%;
+    max-width:100%;
+    margin:0px;
+    font-weight:400;
+}
+.our_team_banner.repairs_page_banner.hero {
+    min-height:304px;
+}
+.our_team_banner.repairs_page_banner.hero .hero__image{
+    object-position: left center;
+}
+/* css for repairs page */
+.RepairsPage_sec2{
+    margin:40px 0px;
+}
+.RepairsPage_sec2 .spacing-style.text-block p{
+    color: #395754;
+    font-family: 'AvenirLTStd';
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width:100%;
+    max-width:880px;
+    margin: 20px auto 0px;
+}
+.RepairsPage_sec2 .icon-block__media {
+    height: 80px;
+    object-fit: contain;
+}
+.RepairsPage_sec3 .custom-section-content{
+    width:100%;
+    max-width:1900px;
+    margin:0 auto;
+    padding:0px 15px;
+}
+.RepairsPage_sec3 .section-content-wrapper{
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.RepairsPage_sec3 .icon-block__media{
+    margin-bottom:20px;
+}
+.RepairsPage_sec3 .spacing-style.text-block h2{
+    font-size: 20px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-family: 'AvenirLTStd';
+    font-weight: 200;
+    line-height: 1.2;
+    margin-bottom:8px;
+}
+.RepairsPage_sec3 .spacing-style.text-block p{
+    font-family: 'AvenirLTStd';
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 0px;
+    margin:0px;
+    display:block;
+    text-align:center;
+}
+.RepairsPage_sec3 .layout-panel-flex--row>.group-block--width-fill {
+    flex: auto;
+    width: auto;
+}
+.RepairsPage_sec4 .group-block .group-block-content{
+    min-height:433px;
+}
+.RepairsPage_sec4 .spacing-style.text-block p{
+    font-family: 'AvenirLTStd';
+    font-size: 18px;
+    font-weight: 200;
+    letter-spacing: 0px;
+    margin:0px;
+    text-align:center;
+}
+.RepairsPage_sec4 a.button-secondary{
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    font-size: 15px;
+    letter-spacing: 4px;
+    margin-top: 40px;
+    padding: 15px 0px;
+}
+.RepairsPageForm .spacing-style.text-block h2{
+    font-size: 24px;
+    letter-spacing: 4px;
+    color: #395754;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.RingPromisePage_sec4.RepairsPage_sec5{
+    margin:0px;
+}
+.RepairsPage_sec6{
+    margin:50px 0px 0px;
+}
+.RepairsPage_sec6 .group-block-content.layout-panel-flex.layout-panel-flex--row.mobile-column {
+    justify-content: center;
+    gap: 20px;
+}
+.RepairsPage_sec6 .spacing-style.text-block h2{
+    font-family: 'AvenirLTStd';
+    font-size: 25px;
+    letter-spacing: 4px;
+    color:#fff;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.RepairsPage_sec6 .layout-panel-flex--column>.group-block--height-fit {
+    padding-top: 0px;
+}
+.RepairsPage_sec6 .spacing-style.text-block ul {
+    -webkit-column-count: 3;
+    column-count: 3;
+    padding-left: 0;
+    width: 85%;
+    margin: 0 auto;
+}
+.RepairsPage_sec6 .spacing-style.text-block ul li {
+    font-family: AvenirLTStd;
+    font-size: 18px;
+    color: #fff;
+    list-style: none;
+    margin: 0 0 25px;
+    padding-left: 20px;
+    position: relative;
+}
+.RepairsPage_sec6 .spacing-style.text-block ul li:before {
+    border: 1px solid #fff;
+    border-radius: 50px;
+    content: "";
+    height: 6px;
+    left: 0;
+    position: absolute;
+    top: 40%;
+    width: 6px;
+}
+
+
+
+
+@media (min-width: 1440px) and (max-width: 1900px) {
+    .CustomDesignPage_sec5 .promise-split__inner {
+        max-width: 730px;
+    }
+    .CustomDesignPage_sec6 .spacing-style.text-block h2{
+        font-size:22px;
+    }
+    .CustomDesignPage_sec6 .spacing-style.text-block p{
+        font-size:18px;
+    }
+    .CstDsn_Faq_section .spacing-style.text-block h2,
+    .CstDsn_Faq_section .accordion .details__header{
+        font-size: 18px;
+        letter-spacing: 3px;
+    }
+    .CstDsn_Faq_section .accordion .details__header{
+        padding: 20px 80px 20px 40px;
+    }
+    .CustomDesignPage_sec9 .spacing-style.text-block h2{
+        font-size: 22px;
+    }
+    .CustomDesignPage_sec10 a.link{
+        font-size: 15px;
+    }
+}
+
+
+
+
+
+
+
+
+/* responsive css */
+@media screen and (max-width:1439px){
+    .free_custom_richText1 .spacing-style.text-block p {
+        font-size: 16px;
+    }
+    .CustomDesignPage_sec6 .spacing-style.text-block h2{
+        font-size:20px;
+    }
+    .CustomDesignPage_sec6 .spacing-style.text-block p{
+        font-size:16px;
+    }
+    .CstDsn_Faq_section .spacing-style.text-block h2{
+        font-size: 16px;
+        letter-spacing: 3px;
+        margin-bottom:20px;
+    }
+    .CstDsn_Faq_section .accordion .details__header{
+        font-size: 16px;
+        letter-spacing: 3px;
+        padding: 20px 60px 20px 30px;
+    }
+    .CstDsn_Faq_section .image-block--height-fill .image-block__image {
+        height: 425px;
+    }
+    .CustomDesignPage_sec9 .custom-section-content, .CustomDesignPage_sec10 .custom-section-content {
+        padding: 0px 20px;
+    }
+    .RepairsPage_sec2 .spacing-style.text-block p{
+        max-width:760px;
+    }
+}
+@media screen and (max-width:1400px){
+    .SgSj_Page_sec5 .spacing-style.text-block p,
+    .SgSj_Page_sec5 .accordion {
+        max-width:831px;
+    }
+    .RepairsPage_sec2 .spacing-style.text-block p{
+        font-size: 16px;
+    }
+    
+}
+@media screen and (max-width:1300px){
+    .RepairsPage_sec3 .icon-block__media {
+        width:30px !important;
+        margin-bottom: 12px;
+    }
+    .RepairsPage_sec3 .spacing-style.text-block h2 {
+        font-size: 15px;
+        letter-spacing: 3px;
+    }
+    .RepairsPage_sec3 .spacing-style.text-block p {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width:1199px){
+    .our_team_banner .spacing-style.text-block h1{
+        font-size: 4.1rem;
+    }
+    .OurTeamPage_HIringSec .spacing-style.text-block p{
+        font-size: 22px;
+    }
+    .OurDiffPage_section3 .section-content-wrapper .group-block {
+        min-height: 450px;
+        padding: 40px 30px;
+    }
+    .OurDiffPage_section5 .section-content-wrapper .group-block {
+        min-height: 380px;
+    }
+    .our_team_banner.hero {
+        min-height: 280px;
+    }
+    .OurTeamPage_OurMissionSec .spacing-style.text-block p {
+        max-width: 650px;
+    }
+    /* ============================= 
+    css for the date 16/03/2026
+    =================================*/
+    .FashionRingGuidePage_sec4.custom-common-hero {
+        background-position: 50% !important;
+        padding-inline: 32px !important;
+    }
+    .FashionRingGuidePage_sec3 .multi-text-image__image--inner {
+        width: 85%;
+    }
+    /* css for the ultimate guide to wedding bands */
+    .TugtwbBannerSec.custom-common-hero {
+        padding-inline: 36px;
+    }
+    .TugtwbPage_Sec2 .custom-section-content{
+        width: 95%;
+    }
+    /* ============================= 
+    css for the date 17/03/2026
+    =================================*/
+    .TugtwbPage_Sections .multi-text-image__inner {
+        padding-inline: 32px !important;
+    }
+    .UltimateBraceletGuidePage_sec3 .custom-section-content{
+        width:95%;
+    }
+    .UltimateBraceletGuidePage_sec3 .background-image-container{
+        padding-right:0px;
+    }
+    .JewelryGuideBanner .spacing-style.text-block h1{
+        font-size: 2rem;
+    }
+    .shopify-policy__container .shopify-policy__body {
+        max-width: 960px;
+    }
+    .free_custom_richText1 .spacing-style.text-block h2 {
+        font-size: 18px;
+        margin:0px 0px 20px;
+    }
+    .custom_design_multicol1 .custom-section-content{
+        width:94%;
+    }
+    .custom_design_multicol1 .heading_image_text  {
+        font-size: 16px;
+        letter-spacing: 3px;
+        line-height:23px;
+    }
+    .CustomDesignPage_sec4 .group-block.group-block--height-fit.group-block--width-fit-content{
+        padding-bottom:20px;
+    }
+    .CustomDesignPage_sec4 .spacing-style.text-block h2 {
+        font-size: 18px;
+    }
+    .CustomDesignPage_sec4 .image-block {
+        width: 40px;
+        margin-right: 15px;
+    }
+    .CustomDesignPage_sec4 .spacing-style.text-block p {
+        font-size: 14px;
+        letter-spacing: 1.2px;
+        line-height: 20px;
+        max-width: 624px;
+    }
+    .CustomDesignPage_sec5 .promise-split__grid {
+        display: flex;
+    }
+    .CustomDesignPage_sec5.promise-split {
+        padding-inline: 0px;
+    }
+    .CustomDesignPage_sec5 .promise-split__content {
+        width: 60.8%;
+    }
+    .CustomDesignPage_sec5 .promise-split__image {
+        width: 38%;
+    }
+    .CustomDesignPage_sec5 .promise-split__title {
+        font-size: 18px;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+    }
+    .CustomDesignPage_sec5 .promise-item__text {
+        font-size: 14px;
+        line-height: 20px;
+        margin-left: 0px;
+    }
+    .CustomDesignPage_sec5 .promise-split__image img {
+        height: 420px;
+    }
+    .CustomDesignPage_sec5 .promise-item {
+        margin-bottom: 10px;
+    }
+    .CustomDesignPage_sec5 .promise-item__icon img {
+        width: 50px;
+        height: 50px;
+    }
+    .CustomDesignPage_sec6 .spacing-style.text-block h2 {
+        font-size: 18px;
+        margin-bottom: 0px;
+        letter-spacing:4px;
+    }
+    .CustomDesignPage_sec6 .spacing-style.text-block p {
+        font-size: 16px;
+        line-height: 22px;
+        margin: 20px auto 0;
+    }
+    .CustomDesignPage_sec7 .section-content-wrapper .group-block{
+        min-height:280px;
+    }
+    .CustomDesignPage_sec7 .custom-section-content .image-block__image{
+        width: 50px;
+    }
+    .CustomDesignPage_sec7 .spacing-style.text-block h2{
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .CustomDesignPage_sec7 .spacing-style.text-block p{
+        font-size: 14px;
+        line-height: 20px;
+        max-width: 390px;
+    }
+    .CustomDesignPage_sec7 .spacing-style.text-block.h5 p{
+        font-size: 18px;
+    }
+    .CustomDesignPage_sec7 .custom-section-content{
+        width:92%;
+    }
+    .CustomDesignPage_sec9.custom_top_section a.button{
+        min-width: 280px;
+    }
+    .CustomDesignPage_sec9.custom_top_section .spacing-style.text-block h2{
+        font-size:18px;
+        letter-spacing: 4px;
+    }
+    .CstDsn_Faq_section .group-block.group-block--height-fit.group-block--width-custom.border-style.spacing-style.size-style {
+        padding: 50px;
+    }
+    .CstDsn_Faq_section .accordion {
+        padding: 0px;
+    }
+    .CstDsn_Faq_section .spacing-style.text-block h2 {
+        font-size: 15px;
+        letter-spacing: 2px;
+    }
+    .CstDsn_Faq_section .accordion .details__header {
+        font-size: 14px;
+        letter-spacing: 2px;
+        padding: 15px 30px 15px 0px;
+    }
+    .CstDsn_Faq_section .accordion summary .svg-wrapper, .CstDsn_Faq_section .accordion summary .svg-wrapper svg {
+        right: 0px;
+    }
+    .CstDsn_Faq_section a.link {
+        margin-left: 22px;
+        margin-top: 20px;
+    }
+    .CstDsn_Faq_section .image-block--height-fill .image-block__image {
+        height: 390px;
+    }
+    .CustomDesignPage_sec10 a.link {
+        font-size: 13px;
+        padding: 0px;
+    }
+    .SgSj_banner .spacing-style.text-block h1 {
+        font-size: 24px;
+    }
+    .SgSj_banner .spacing-style.text-block p {
+        font-size: 10px;
+    }
+    .SgSj_banner .group-block:last-child{
+        padding:10px;
+    }
+    .SgSj_Page_sec2 .custom-section-content {
+        width: 92%;
+    }
+    .SgSj_Page_sec2 .group-block:first-child, .SgSj_Page_sec2 .group-block:first-child .group-block-content {
+        width: 250px;
+    }
+    .SgSj_Page_sec2 .group-block:last-child {
+        width: calc(100% - 250px);
+    }
+    .SgSj_Page_sec4 .custom-section-content{
+        width:92%;
+    }
+    .SgSj_Page_sec4 .spacing-style.text-block ul li {
+        font-size: 16px;
+        margin: 0 0 15px;
+    }
+    .SgSj_Page_sec4 .spacing-style.text-block ul li:before {
+        height: 5px;
+        width: 5px;
+    }
+    .SgSj_Page_sec5 .spacing-style.text-block p, .SgSj_Page_sec5 .accordion {
+        max-width: 696px;
+    }
+    .our_team_banner.repairs_page_banner.hero {
+        min-height: 286px;
+    }
+    .RepairsPage_sec2 .spacing-style.text-block p{
+        max-width:760px;
+    }
+    .RepairsPage_sec4 .group-block .group-block-content {
+        min-height: 370px;
+        padding: 0px 30px;
+    }
+    .RepairsPage_sec4 .custom-section-content{
+        width:90%;
+    }
+    .RepairsPage_sec4 a.button-secondary {
+        font-size: 12px;
+        letter-spacing: 3px;
+        margin-top: 30px;
+        padding: 10px 0;
+        width: 55%;
+    }
+    .RepairsPage_sec4 .icon-block__media{
+        width:60px !important;
+    }
+    .RepairsPage_sec6 .spacing-style.text-block ul {
+        width: 95%;
+        margin: 0 auto;
+    }
+    .RepairsPage_sec6 .spacing-style.text-block ul li {
+        font-family: AvenirLTStd;
+        font-size: 16px;
+        margin: 0 0 15px;
+    }
+}
+@media screen and (max-width:991px){
+    /* .multi-text-image__grid.grid-row-1 .multi-text-image__image,
+    .multi-text-image__grid.grid-row-3 .multi-text-image__image{
+        order:-1;
+    } */
+    
+    .multi-text-image-grid_wrapper {
+        gap: 40px;
+    }
+    .multi-text-image__image--inner {
+        margin-bottom: 25px;
+    }
+    /* .LabGrownImgTxt_section2 .multi-text-image__grid.grid-row-2 .multi-text-image__image,
+    .LabGrownImgTxt_section2 .multi-text-image__grid.grid-row-4 .multi-text-image__image,
+    .LabGrownImgTxt_section2 .multi-text-image__grid.grid-row-6 .multi-text-image__image{
+        order:-1;
+    } */
+   
+    .multi-text-image__content, .multi-text-image__image {
+        padding: 0px;
+    }
+    .Npg_page_section2 .spacing-style.text-block p {
+        padding: 0px 12px;
+    }
+    .our_team_banner.hero {
+        min-height: 210px;
+    }
+    .our_team_banner .spacing-style.text-block h1{
+        font-size: 2.5rem;
+    }
+    .OurDiff_PageBanner.hero{
+        min-height:185px;
+    }
+    .OurDiff_PageBanner .spacing-style.text-block h1{
+        font-size: 2.5rem;
+    }
+    .OurDiffPage_section3 .section-content-wrapper {
+        grid-template-columns: 1fr;
+        padding: 48px 36px;
+    }
+    .OurDiffPage_section3 .section-content-wrapper .group-block {
+        min-height: 100%;
+        padding: 50px 40px;
+    }
+    .OurDiffPage_section3 .custom-section-content .image-block__image {
+        width: auto;
+        height: 60px;
+        margin: 0 auto 35px;
+    }
+    .OurDiffPage_section3 .section-content-wrapper .group-block p{
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    .OurDiffPage_section2 .custom-section-content,
+    .OurDiffPage_section4 .custom-section-content{
+        padding-inline:12px;
+    }
+    .OurDiffPage_section2 .spacing-style.text-block h2,
+    .OurDiffPage_section4 .spacing-style.text-block h2{
+        font-size: 20px;
+    }
+    .OurDiffPage_section2 .spacing-style.text-block p,
+    .OurDiffPage_section4 .spacing-style.text-block p{
+        font-size: 16px;
+    }
+    .OurDiffPage_section5 .section-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 0px;
+        padding-inline: 36px;
+    }
+    .OurDiffPage_section7 .section-content-wrapper .group-block:last-child {
+        order: -1;
+    }
+
+    /* ============================= 
+    css for the date 16/03/2026
+    =================================*/
+    /* css for ring promise page */
+    .RingPromisePageBanner.perfect-ring-section .content {
+        letter-spacing: normal;
+        margin: 0px !important;
+        padding: 50px 0px;
+    }
+    .RingPromisePageBanner.perfect-ring-section p {
+        max-width: 450px;
+        font-size: 18px !important;
+        padding: 0px;
+    }
+    .RingPromisePageBanner.perfect-ring-section h1 {
+        font-size: 32px !important;
+    }
+    .RingPromisePage_sec4 {
+        padding-inline: 48px;
+    }
+    .RingPromisePage_sec4 .icon-block{
+        min-width:120px;
+    }
+    /* css for fashion ring guide page */
+    .FashionRingGuide_banner.custom-common-hero{
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+        padding-inline: 36px !important;
+    }
+    .FashionRingGuide_banner .custom-common-hero__content {
+        max-width: 400px;
+    }
+    .FashionRingGuide_banner .custom-common-hero__content h1 {
+        font-size: 30px !important;
+    }
+    .FashionRingGuide_banner .custom-common-hero__description p {
+        font-size: 16px;
+    }
+    .FashionRingGuidePage_sec4 .custom-common-hero__content {
+        max-width: 390px;
+        padding: 0px;
+    }
+    .FashionRingGuidePage_sec4.custom-common-hero{
+        padding-top: 100px !important;
+    }
+    .FashionRingGuidePage_sec3 .multi-text-image__image--inner ,
+    .FashionRingGuidePage_sec3 .multi-text-image__grid.grid-row-1 .multi-text-image__image--inner {
+        margin-bottom: 80px;
+    }
+    /* css for the ultimate guide to wedding bands */
+    .TugtwbBannerSec.custom-common-hero.custom-common-hero {
+        padding-top: 20px !important;
+        padding-bottom: 0px !important;
+    }
+    .TugtwbBannerSec .custom-common-hero__content {
+        max-width: 390px;
+    }
+    /* ============================= 
+    css for the date 17/03/2026
+    =================================*/
+    /* css for ultimate bracelet guide page */
+    .UltimateBraceletGuide_Banner{
+        padding-inline:32px;
+    }
+    .UltimateBraceletGuide_Banner .spacing-style.text-block h1{
+        font-size: 22px;
+        letter-spacing: 2px;
+    }
+    .UltimateBraceletGuide_Banner .spacing-style.text-block p{
+        font-size: 14px;
+        line-height: 23px;
+    }
+    .UltimateBraceletGuidePage_sec4 .multi-text-image__grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    .UltimateBraceletGuidePage_sec4 .multi-text-image__grid.grid_image_position--right .multi-text-image__image {
+        order: 1;
+    }
+    .JewelryGuideBanner .spacing-style.text-block h1{
+        font-size: 1.25rem;
+    }
+    .shopify-policy__container .shopify-policy__body {
+        max-width: 960px;
+    }
+    .free_custom_richText1 .spacing-style.text-block p {
+        font-size: 14px;
+    }
+    .custom_design_multicol1 .image-block.size-style img {
+        max-width: 60px;
+        height: 60px;
+    }
+    .custom_design_multicol1 .heading__image-wrapper img {
+        width: 20px;
+    }
+    .custom_design_multicol1 .heading_image_text {
+        font-size: 14px;
+        letter-spacing: 2px;
+        line-height: 22px;
+    }
+    .CustomDesignPage_sec4 .spacing-style.text-block p {
+        max-width: 696px;
+    }
+    .CustomDesignPage_sec5 .promise-split__image img {
+        height: 520px;
+    }
+    .CustomDesignPage_sec6 .section-content-wrapper {
+        max-width: 720px;
+        margin: 0 auto;
+        padding-inline:12px;
+    }
+    .CustomDesignPage_sec6 .spacing-style.text-block p {
+        font-size: 14px;
+    }
+    .CustomDesignPage_sec7 .custom-section-content {
+        width: 720px;
+    }
+    .CustomDesignPage_sec7 .spacing-style.text-block h2 {
+        font-size: 14px;
+        line-height: 22px;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    .CustomDesignPage_sec7 .spacing-style.text-block p {
+        max-width: 270px;
+    }
+    .CustomDesignPage_sec9.custom_top_section a.button{
+        min-width: 250px;
+        max-width: 250px !important;
+    }
+    .CustomDesignPage_sec9.custom_top_section a.button:hover {
+        background: #9cadab;
+        border:1px solid #9cadab;
+        color: #fff;
+        box-shadow: none;
+    }
+    .CustomDesignPage_sec9.custom_top_section .spacing-style.text-block h2{
+        font-size:16px;
+        letter-spacing: 1px;
+    }
+    .CstDsn_Faq_section .group-block:first-child{
+        max-width:270px;
+    }
+    .CstDsn_Faq_section .accordion .details__header {
+        letter-spacing: 1px;
+    }
+    .CustomDesignPage_sec9 .spacing-style.text-block h2 {
+        font-size: 20px;
+    }
+    .SgSj_Page_sec2 .group-block:first-child, .SgSj_Page_sec2 .group-block:first-child .group-block-content,
+    .SgSj_Page_sec2 .group-block:last-child {
+        width: 100%;
+    }
+    .SgSj_Page_sec2 .section-content-wrapper.section-content-wrapper.layout-panel-flex {
+        flex-direction: column;
+    }
+    .SgSj_Page_sec2 .custom-section-content {
+        width: 90%;
+    }
+    .SgSj_Page_sec2 .group-block:first-child .spacing-style.text-block p {
+        margin: 0 auto;
+        margin-bottom: 48px;
+    }
+    .SgSj_Page_sec4 .spacing-style.text-block ul {
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+    .SgSj_Page_sec4 .spacing-style.text-block h2 {
+        font-size: 20px;
+        letter-spacing: 3px;
+        margin-bottom: 40px;
+    }
+    .SgSj_Page_sec4 .spacing-style.text-block ul li {
+        font-size: 14px;
+        margin: 0 0 15px;
+    }
+    .our_team_banner.repairs_page_banner.hero {
+        min-height: 274px;
+    }
+    .RepairsPage_sec2 .spacing-style.text-block p {
+        max-width: 480px;
+    }
+    .RepairsPage_sec4 a.button-secondary {
+        width: 70%;
+    }
+    .RepairsPageForm .spacing-style.text-block h2{
+        font-size: 20px;
+    }
+   .temp--engagement-rings-buying-guide   .multi-text-image__section-desc p,
+    .temp--engagement-rings-buying-guide   .multi-text-image__desc p {
+    font-size: 14px;
+    color: #728080;
+    letter-spacing: 1px;
+    line-height: 23px;
+}
+
+}
+@media screen and (max-width: 767px) {
+.multi-text-image__grid.grid_image_position--right .multi-text-image__image{
+        order:-1;
+    }
+    
+    .multi-text-image__grid {
+        grid-template-columns: 1fr !important;
+    }
+     .LabGrownImgTxt_section2 .multi-text-image__content{
+        text-align:center;
+    }
+}
+@media screen and (max-width:749px){
+.CustomDesignPage_sec7 .custom-section-content {
+        width: 650px;
+    }
+    .multi-text-image__header {
+        max-width: 95%;
+    }
+    .LabGrownImgTxt_section2 .multi-text-image__image--inner{
+        margin: 0 auto 20px;
+    }
+    .lab_grow_page_section2 .spacing-style.text-block p{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .multi-text-image__image--inner {
+        width: 100%;
+    }
+    .multi-text-image__grid.grid-row-1 .multi-text-image__image--inner {
+        margin-bottom: 0px;
+    }
+  
+    .our_team_banner.hero {
+        min-height: 110px;
+    }
+    .our_team_banner .spacing-style.text-block h1{
+        font-size: 2rem;
+        letter-spacing:7px;
+    }
+    .OurTeamPage_OurMissionSec .spacing-style.section-content-wrapper{
+        padding-block:48px;
+    }
+    .OurTeamPage_OurMissionSec .spacing-style.text-block p{
+        font-size: 18px;
+    }
+    .OurTeamPage_HIringSec .spacing-style.text-block p{
+        font-size: 16px;
+        line-height: 1.4;
+    }
+    .OurDiff_PageBanner .spacing-style.text-block h1{
+        font-size: 1.8rem;
+        letter-spacing: 2.2vw;
+    }
+    .OurDiffPage_section3 .section-content-wrapper .group-block {
+        padding: 30px 20px;
+    }
+    .OurDiffPage_section3 .section-content-wrapper {
+        padding-inline:12px;
+    }
+    .OurDiffPage_section5 .section-content-wrapper .spacing-style.text-block h2 {
+        font-size: 20px;
+        letter-spacing: 3px;
+    }
+    .OurDiffPage_section5 .section-content-wrapper {
+        padding-inline: 12px;
+    }
+    .OurDiffPage_section5 .section-content-wrapper .spacing-style.text-block p{
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    .OurDiffPage_section5 .section-content-wrapper .group-block {
+        padding: 30px 20px;
+    }
+    .OurDiffPage_section5 .section-content-wrapper .spacing-style.text-block h5{
+        font-size: 12px;
+        letter-spacing: 1.2px;
+    }
+    /* ============================= 
+    css for the date 16/03/2026
+    =================================*/
+    /* css for ring promise page */
+    .RingPromisePageBanner.perfect-ring-section .content {
+        padding-inline:15px;
+    }
+    .RingPromisePageBanner.perfect-ring-section h1 {
+        font-size: 16px !important;
+        margin: 0px 0px 15px;
+    }
+    .RingPromisePageBanner.perfect-ring-section p {
+        max-width: 95%;
+        font-size: 14px !important;
+    }
+    .RingPromisePage_sec4 {
+        padding-inline: 12px;
+        margin: 20px 0;
+    }
+    .RingPromisePage_sec4 .spacing-style.text-block h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+    .RingPromisePage_sec4 .icon-block,
+    .RingPromisePage_sec4 .icon-block .icon-block__media {
+        min-width: 80px;
+        width: 80px !important;
+    }
+    .RingPromisePage_sec4 .icon-block{
+        margin-bottom:15px;
+    }
+    .RingPromisePage_sec4 .group-block--width-fit-content{
+        padding-right:0px !important;
+    }
+    /* css for fashion ring guide page */
+    .FashionRingGuide_banner .custom-common-hero__content h1 {
+        font-size: 21px !important;
+        letter-spacing:3px !important;
+    }
+    .FashionRingGuide_banner.custom-common-hero {
+        padding-inline: 15px !important;
+    }
+    .FashionRingGuidePage_sec2 {
+        padding: 0 12px;
+    }
+    .FashionRingGuidePage_sec2 .group-block--height-fit.group-block--width-custom.border-style.spacing-style.size-style{
+        padding:35px 25px !important;
+    }
+    .FashionRingGuidePage_sec2 .layout-panel-flex {
+        gap: 0px;
+    }
+    .FashionRingGuidePage_sec2 .spacing-style.text-block h2{
+        margin-bottom: 12px;
+    }
+    .FashionRingGuidePage_sec4.custom-common-hero{
+        padding-top: 80px !important;
+        padding-bottom: 80px !important;
+        background-image:none !important;
+    }
+    .FashionRingGuidePage_sec4 .custom-common-hero__content h2 {
+        font-size: 21px !important;
+    }
+    .FashionRingGuidePage_sec4.custom-common-hero {
+        padding-inline: 12px !important;
+    }
+    .FashionRingGuidePage_sec4 .custom-common-hero__description p {
+        line-height: 28px;
+    }
+    .FashionRingGuidePage_sec3 .multi-text-image__image--inner ,
+    .FashionRingGuidePage_sec3 .multi-text-image__grid.grid-row-1 .multi-text-image__image--inner {
+        margin-bottom: 48px;
+    }
+    .FashionRingGuidePage_sec3 .multi-text-image__content {
+        text-align: center;
+    }
+    .FashionRingGuidePage_sec3 .multi-text-image__image--inner {
+        width: 100%;
+    }
+    /* css for the ultimate guide to wedding bands */
+    .TugtwbBannerSec.custom-common-hero.custom-common-hero {
+        background-image:none !important;
+    }
+    .TugtwbBannerSec.custom-common-hero {
+        padding-inline: 12px;
+    }
+    .TugtwbBannerSec .custom-common-hero__content h1{
+        font-size: 22px !important;
+    }
+    .TugtwbBannerSec .custom-common-hero__content {
+        max-width: 100%;
+    }
+    .TugtwbPage_Sec2 .custom-section-content{
+        padding:20px 0px;
+    }
+    /* ============================= 
+    css for the date 17/03/2026
+    =================================*/
+    .TugtwbPage_Sections .multi-text-image__inner {
+        padding-inline: 12px !important;
+    }
+    .TugtwbPage_Sections .multi-text-image__content {
+        padding: 0.5rem;
+        text-align: center;
+    }
+    .TugtwbPage_Sections .multi-text-image__image--inner {
+        padding: 0px;
+    }
+    .category-grid__title {
+        font-size: 18px;
+        display: block;
+        margin-top: -40px;
+        margin-bottom:0px;
+    }
+    /* css for ultimate bracelet guide page */
+    .UltimateBraceletGuide_Banner{
+        padding-inline:15px;
+    }
+    .UltimateBraceletGuidePage_sec3 .section-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 0px;
+    }
+    .UltimateBraceletGuidePage_sec3 .section-content-wrapper .group-block {
+        min-height: 300px;
+    }
+    .UltimateBraceletGuidePage_sec4 .multi-text-image__grid {
+        grid-template-columns: 1fr !important;
+        text-align:center;
+    }
+    .UltimateBraceletGuidePage_sec4 .multi-text-image__grid.grid_image_position--right .multi-text-image__image {
+        order: -1;
+    }
+    .shopify-policy__container .shopify-policy__title {
+        padding: 25px 0;
+    }
+    .shopify-policy__body h1 {
+        font-size: 28px;
+        letter-spacing: 4px;
+    }
+    .shopify-policy__body h2 {
+        font-size: 18px;
+    }
+    .free_custom_richText1 .spacing-style.text-block h2 {
+        font-size: 16px;
+        margin: 0 0 20px;
+    }
+    .free_custom_richText1 .spacing-style.text-block p,
+    .custom_design_multicol1 .heading_image_text {
+        font-size: 13px;
+        line-height: 17px;
+    }
+    .free_custom_richText1 .section-content-wrapper{
+        padding-top:40px !important;
+    }
+    .custom_design_multicol1 .section-content-wrapper {
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        row-gap: 20px;
+    }
+    .custom_design_multicol1 .heading__image-wrapper{
+        width: auto;
+        height: auto;
+    }
+    .custom_design_multicol1 .section-content-wrapper .group-block {
+        width: 50%;
+    }
+    .custom_design_multicol1 .section-content-wrapper  .group-block-content {
+        gap: 15px;
+    }
+    .CustomDesignPage_sec4 .group-block:first-child .group-block-content {
+        flex-direction: row;
+    }
+    .CustomDesignPage_sec4 .spacing-style.text-block h2 {
+        font-size: 16px;
+    }
+    .CustomDesignPage_sec4 .spacing-style.text-block p {
+        font-size: 13px;
+        letter-spacing: 1px;
+        line-height: 16px;
+    }
+    .CustomDesignPage_sec4{
+        padding-inline:15px;
+    }
+    .CustomDesignPage_sec5 .promise-split__grid {
+        display: block;
+    }
+    .CustomDesignPage_sec5 .promise-split__image,
+    .CustomDesignPage_sec5 .promise-split__content {
+        width: 100%;
+    }
+    .CustomDesignPage_sec5 .promise-split__image img {
+        height: auto;
+    }
+    .CustomDesignPage_sec5 .promise-split__inner {
+        padding: 80px 20px;
+    }
+    .CustomDesignPage_sec5 .promise-split__title {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    .CustomDesignPage_sec5 .promise-item {
+        padding-left: 0px;
+    }
+    .CustomDesignPage_sec5 .promise-item__text {
+        font-size: 13px;
+        line-height: 16px;
+    }
+    .CustomDesignPage_sec5 .promise-item {
+        grid-template-columns: 29.6% 70.4%;
+        margin-bottom: 20px;
+    }
+    .CustomDesignPage_sec5 .promise-item__icon img {
+        margin: 0 auto;
+    }
+    .CustomDesignPage_sec5 .promise-item__icon{
+        padding-right:20px;
+    }
+    .CustomDesignPage_sec6 .section-content-wrapper {
+        padding-block: 40px;
+    }
+    .CustomDesignPage_sec6 .spacing-style.text-block h2 {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    .CustomDesignPage_sec6 .spacing-style.text-block p {
+        font-size: 13px;
+        line-height: 17px;
+    }
+    .CustomDesignPage_sec7 .custom-section-content {
+        padding-inline: 12px;
+        width: 540px;
+    }
+    .CustomDesignPage_sec7 .section-content-wrapper .group-block {
+        min-height: 200px;
+        padding: 25px;
+    }
+    .CustomDesignPage_sec7 .spacing-style.text-block h2 {
+        font-size: 13px;
+        max-width: 100%;
+    }
+    .CustomDesignPage_sec7 .spacing-style.text-block p {
+        font-size: 13px;
+        line-height: 16px;
+        max-width: 100%;
+    }
+    .CustomDesignPage_sec7 .section-content-wrapper{
+        gap:0px;
+        flex-direction: column-reverse;
+    }
+    .CstDsn_Faq_section .group-block:first-child {
+        max-width: 100%;
+    }
+    .CstDsn_Faq_section .image-block--height-fill .image-block__image {
+        height: auto;
+    }
+    .CstDsn_Faq_section .section-content-wrapper {
+        gap: 0px;
+    }
+    .CstDsn_Faq_section .group-block.group-block--height-fit.group-block--width-custom.border-style.spacing-style.size-style {
+        padding: 25px 20px !important;
+    }
+    .CustomDesignPage_sec9 .spacing-style.text-block h2 {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    .CustomDesignPage_sec10 .section-content-wrapper.mobile-column {
+        flex-flow: row wrap;
+        gap: 10px;
+    }
+    .CustomDesignPage_sec10 .layout-panel-flex--row>.group-block--width-custom {
+        flex-basis: calc(50% - 5px);
+    }
+    .CustomDesignPage_sec10 a.link {
+        font-size: 12px;
+        padding: 0px 0px 20px;
+        letter-spacing: 1px;
+    }
+    .CustomDesignPage_sec9 .custom-section-content, .CustomDesignPage_sec10 .custom-section-content {
+        padding: 0 12px;
+    }
+    .SgSj_Page_sec2 .custom-section-content {
+        width: 95%;
+    }
+    .SgSj_Page_sec2 .spacing-style.text-block h3 {
+        font-size: 26px;
+    }
+    .temp--sell-gold-silver-jewelry .SgSj_Page_sec2 .spacing-style.text-block h3 {
+        font-size: 30px;
+    }
+    .SgSj_Page_sec4 .spacing-style.text-block ul {
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+    .SgSj_Page_sec4 .custom-section-content {
+        width: 90%;
+    }
+    .SgSj_Page_sec5  .custom-section-content{
+        padding:0px 28px;
+    }
+    .SgSj_Page_sec5 .accordion .details__header {
+        font-size: 16px;
+        padding: 15px 25px 15px 17px;
+        text-align: left;
+        position:relative;
+    }
+    .SgSj_Page_sec5 .details__header .svg-wrapper {
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%);
+    }
+    .our_team_banner.repairs_page_banner.hero {
+        min-height: 170px;
+    }
+    .our_team_banner.repairs_page_banner.hero .hero__image {
+        object-position: center;
+    }
+    .RepairsPage_sec2 {
+        padding: 0px 20px;
+    }
+    .RepairsPage_sec3 .section-content-wrapper{
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .RepairsPage_sec3 .layout-panel-flex--row>.group-block--width-fill {
+        width: 50%;
+        height: 130px;
+        padding: 0px 5px;
+    }
+    .RepairsPage_sec3 .group-block-content{
+        justify-content: flex-start;
+    }
+    .RepairsPage_sec4 .custom-section-content {
+        width: 95%;
+    }
+    .RepairsPage_sec4 .group-block .group-block-content {
+        min-height: 350px;
+    }
+    .RepairsPage_sec4 .section-content-wrapper{
+        gap:0px;
+    }
+    .RepairsPage_sec4 a.button-secondary {
+        width: 80%;
+    }
+    .RepairsPageForm .spacing-style.text-block h2 {
+        padding: 0px 40px;
+    }
+    .RepairsPage_sec6 .spacing-style.text-block ul {
+        -webkit-column-count: 1;
+        column-count: 1;
+        width: 90%;
+    }
+    .RepairsPage_sec6 .spacing-style.text-block ul li {
+        font-size: 14px;
+    }
+    .RepairsPage_sec6 .spacing-style.text-block ul li:before {
+        height: 4px;
+        width: 4px;
+    }
+}
+
+@media screen and (max-width:575px){
+     .CustomDesignPage_sec7 .custom-section-content {
+        width: 98%;
+    }
+    .SgSj_Page_sec4{
+        margin:30px 0px;
+    }
+    .SgSj_Page_sec5{
+        margin-bottom: 30px;
+    }
+
+}

@@ -1,0 +1,550 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "custom_common_hero_q4UMiD": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "TugtwbBannerSec",
+        "image": "shopify://shop_images/ultimate-band-guide.png",
+        "section_width": "full-width",
+        "title": "<h1>The Ultimate Guide To Wedding Bands</h1>",
+        "subtitle": "",
+        "description": "<p>We know that planning your wedding can be quite an overwhelming experience. After all, there’s a lot to think about. From finding the perfect venue and getting your dream dress to remembering the tiniest details that can easily pass you by, there’s a lot that goes into planning the wedding of your dreams.<br/><br/></p>",
+        "bg_color": "#f9f7f5",
+        "padding_top": 100,
+        "padding_bottom": 50,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    },
+    "section_nCGiBb": {
+      "type": "section",
+      "blocks": {
+        "text_nc64Ae": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>But one thing that deserves all the attention when you’re preparing for the big day is finding the perfect rings for you and your other half. After all, your wedding bands are the embodiment of your eternal bond and the love you two share for each other. So, to help you with that, here is our expert guide on everything you need to know about wedding bands.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_nc64Ae"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "TugtwbPage_Sec2",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-b946701a-8ff2-4abe-be08-bb66256b23c6",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": true,
+        "overlay_color": "#728080",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 30,
+        "padding-block-end": 50
+      }
+    },
+    "multiple_text_with_image_TcQhAW": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_bitQYU": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/band-guide.jpg",
+            "image_position": "left",
+            "title": "Do wedding bands have to match?",
+            "title_url": "",
+            "description": "<p>There are no set rules that say wedding bands have to match, so this really comes down to personal preference and it’s completely up to you and your partner.</p><p>While matching his and hers wedding bands are popular options, mismatched bands have been gaining popularity in recent years - and it’s easy to see why. After all, if you choose to go down that route, both of you have the freedom to choose the perfect design for you and express your own individual style and taste with your wedding ring.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_bitQYU"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "TugtwbPage_Sections",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "page_width": 1340,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    },
+    "section_wDxrqX": {
+      "type": "section",
+      "blocks": {
+        "text_KrKhEN": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>We know that the concept of creating diamonds in a lab can be confusing and you might have a lot of questions about it, but don’t worry. We’ve put together this handy guide to help you understand everything about lab-grown diamonds and why they’ve been conquering hearts all over the world.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 30,
+            "padding-block-end": 30,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_KrKhEN"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "custom_class": "lab_grow_page_section2",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    },
+    "multiple_text_with_image_GAfDJe": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_mLNep9": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/band-2.jpg",
+            "image_position": "right",
+            "title": "What is the best metal for a wedding band?",
+            "title_url": "",
+            "description": "<p>The days of the traditional yellow gold wedding band are long gone. While that design is still a great choice, nowadays, you have a virtually endless variety of wedding band styles and precious metals to choose from. So, you don’t need to opt for the traditional gold ring if that design doesn't speak to your personal style.</p><p>Besides white, yellow, and rose gold, wedding bands are also made in platinum, sterling silver, and alternative metals such as tungsten, tantalum, and titanium. It should be noted, though, that there isn’t one metal that trumps all others. So, consider your personal taste, needs, and priorities when choosing the perfect metal for your ring.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_mLNep9"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "TugtwbPage_Sections",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "page_width": 1340,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    },
+    "custom_category_grid_aQWXBM": {
+      "type": "custom-category-grid",
+      "blocks": {
+        "item_M3XYax": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/bandImage-1.jpg",
+            "title": "Diamond Wedding Bands",
+            "link": "/collections/womens-wedding-bands/Diamond",
+            "new_tab": false
+          }
+        },
+        "item_Jg6yPV": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/bandImage-2.jpg",
+            "title": "Anniversary Bands",
+            "link": "/collections/womens-wedding-bands/Diamond",
+            "new_tab": false
+          }
+        },
+        "item_ewzJHt": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/bandImage-3.jpg",
+            "title": "Eternity Bands",
+            "link": "/collections/womens-wedding-bands/Eternity",
+            "new_tab": false
+          }
+        },
+        "item_pC7irB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/bandImage-4.jpg",
+            "title": "Classic Wedding Bands",
+            "link": "shopify://collections/womens-wedding-bands",
+            "new_tab": false
+          }
+        },
+        "item_4E7raM": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/bandImage-5.jpg",
+            "title": "Stackable Wedding Bands",
+            "link": "/collections/womens-wedding-bands/Stackables",
+            "new_tab": false
+          }
+        },
+        "item_YU3KQ4": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/bandImage-6.jpg",
+            "title": "Gemstone Wedding Bands",
+            "link": "shopify://collections/womens-wedding-bands",
+            "new_tab": false
+          }
+        },
+        "item_CUcbQH": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/bandImage-7.jpg",
+            "title": "Curved Wedding Bands",
+            "link": "/collections/womens-wedding-bands/Curved",
+            "new_tab": false
+          }
+        },
+        "item_ic884p": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/bandImage-8.jpg",
+            "title": "Plain Metal Wedding Bands",
+            "link": "/collections/womens-wedding-bands/Plain",
+            "new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "item_M3XYax",
+        "item_Jg6yPV",
+        "item_ewzJHt",
+        "item_pC7irB",
+        "item_4E7raM",
+        "item_YU3KQ4",
+        "item_CUcbQH",
+        "item_ic884p"
+      ],
+      "name": "Custom Category Grid",
+      "settings": {
+        "custom_class": "",
+        "heading": "Most popular wedding bands for women",
+        "description": "<p>To help you find the best design for you, here are some of the most popular <a href=\"/collections/womens-wedding-bands\" title=\"Women's Wedding Bands\">wedding bands for women</a>.<br/><br/></p>",
+        "text_align": "center",
+        "columns": 4,
+        "gap": 24,
+        "page_width": 1320,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "multiple_text_with_image_NMwACH": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_J3zFAM": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/band-3.jpg",
+            "image_position": "left",
+            "title": "Do you wear your wedding band and engagement ring together?",
+            "title_url": "",
+            "description": "<p>Traditionally, your engagement ring and wedding band should be worn together on the fourth finger of your left hand. You can either wear them in the order you’ve received the rings or the other way around, with the wedding band going first, then the engagement ring.</p><p>Another option that’s gaining popularity is to wear your engagement ring on your right ring finger and your wedding band on the left. This option is particularly popular among brides who have rings that can't be easily stacked.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_J3zFAM"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "TugtwbPage_Sections",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "page_width": 1340,
+        "show_footer_info": false,
+        "share_label": "",
+        "share_link": "",
+        "tweet_label": "",
+        "tweet_link": ""
+      }
+    },
+    "custom_category_grid_dKUnrp": {
+      "type": "custom-category-grid",
+      "blocks": {
+        "item_w8hJ3a": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/menBand-1.jpg",
+            "title": "Classic Bands",
+            "link": "/collections/mens-wedding-bands?grid-mobile=default&filter.p.m.custom.style=Classic&filter.v.price.gte=0&filter.v.price.lte=12460&sort_by=manual",
+            "new_tab": false
+          }
+        },
+        "item_cXdjfj": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/menBan-2.jpg",
+            "title": "Men's Diamond Wedding Bands",
+            "link": "/collections/mens-wedding-bands/Diamond",
+            "new_tab": false
+          }
+        },
+        "item_gg9x3w": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/menBan-3.jpg",
+            "title": "Curved Bands",
+            "link": "/collections/mens-wedding-bands/Carved",
+            "new_tab": false
+          }
+        },
+        "item_WhPdXU": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/menBan-4.jpg",
+            "title": "Alternative Metal Bands",
+            "link": "/collections/mens-wedding-bands/Alternative",
+            "new_tab": false
+          }
+        },
+        "item_W3mJVP": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/menBan-5.jpg",
+            "title": "Contemporary Bands",
+            "link": "/collections/mens-wedding-bands",
+            "new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "item_w8hJ3a",
+        "item_cXdjfj",
+        "item_gg9x3w",
+        "item_WhPdXU",
+        "item_W3mJVP"
+      ],
+      "name": "Custom Category Grid",
+      "settings": {
+        "custom_class": "",
+        "heading": "Most popular men's wedding bands",
+        "description": "<p>To help you narrow down your options, here are some of the most popular <a href=\"/pages/the-ultimate-guide-to-wedding-bands\" title=\"The Ultimate Guide To Wedding Bands\">wedding ring designs for men.</a>.<br/><br/><br/><br/></p>",
+        "text_align": "center",
+        "columns": 3,
+        "gap": 24,
+        "page_width": 1320,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "multiple_text_with_image_M3EJ7i": {
+      "type": "multiple-text-with-image",
+      "blocks": {
+        "item_GqEAyQ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/band-4.jpg",
+            "image_position": "right",
+            "title": "Who is supposed to pay for the wedding bands?",
+            "title_url": "",
+            "description": "<p>If you choose to follow tradition, then the groom is responsible for buying both the engagement ring and the wedding bands. However, nowadays, more and more couples have been picking out their bands together and getting a romantic experience out of it.</p><p>Whether you want to choose your own wedding ring or you'd rather have your fiancé surprise you with a wedding band that he picked out for you, the choice is entirely yours. So, go with whatever option feels right for you as a couple.</p>",
+            "content_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "item_GqEAyQ"
+      ],
+      "name": "Multiple Text With Image",
+      "settings": {
+        "custom_class": "TugtwbPage_Sections",
+        "section_heading": "",
+        "section_description": "",
+        "heading_size": 40,
+        "padding_top": 0,
+        "padding_bottom": 50,
+        "page_width": 1340,
+        "show_footer_info": true,
+        "share_label": "Share",
+        "share_link": "https://www.facebook.com/sharer/sharer.php?u=https://marketing.smartagesolutions.com/rip6gm77wu",
+        "tweet_label": "Tweet",
+        "tweet_link": "https://twitter.com/intent/tweet?text=Wedding%20Day%20-%20Fashion%20Jewelry:%20https://marketing.smartagesolutions.com/rip6gm77wu"
+      }
+    },
+    "custom_common_hero_ibmG4i": {
+      "type": "custom-common-hero",
+      "name": "Custom Common Hero",
+      "settings": {
+        "custom_class": "LabGrown_HeroBottom_section LabGrown_HeroBottom_section2",
+        "image": "shopify://shop_images/band-ban-ultimate.jpg",
+        "section_width": "full-width",
+        "title": "<h2>Where to find the best wedding bands in Minnesota?</h2>",
+        "subtitle": "",
+        "description": "<p>At Wedding Day Diamonds, we offer a curated selection of wedding bands for men and women, with designs to suit a wide range of tastes and personal styles. Whether you’re after a classic gold wedding band, a shimmering eternity band, or a fashionable stackable band, we’ve got you covered!</p>",
+        "bg_color": "#f4f4f4",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "title_size": 30,
+        "page_width": 1320
+      }
+    },
+    "custom_img_txt2_94DRC8": {
+      "type": "custom-ImgTxt2",
+      "name": "Image + Rich Text",
+      "settings": {
+        "custom_class": "",
+        "image": "shopify://shop_images/RoundWeddinf.jpg",
+        "text": "<p>Visit us today at our nine locations in Minnesota. <a href=\"/pages/showroom\" target=\"_blank\" title=\"Showroom\">Find our nearest store</a> here, or call us at 1-866-740-RING. And don’t forget to follow us on <a href=\"https://www.instagram.com/weddingdaydiamonds/\" target=\"_blank\">Instagram</a> and <a href=\"https://www.facebook.com/WeddingDayDiamondsMN/\" target=\"_blank\">Facebook</a> for our latest news and stunning jewelry inspiration!</p>",
+        "image_position": "left",
+        "circle_image": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_common_hero_q4UMiD",
+    "section_nCGiBb",
+    "multiple_text_with_image_TcQhAW",
+    "section_wDxrqX",
+    "multiple_text_with_image_GAfDJe",
+    "custom_category_grid_aQWXBM",
+    "multiple_text_with_image_NMwACH",
+    "custom_category_grid_dKUnrp",
+    "multiple_text_with_image_M3EJ7i",
+    "custom_common_hero_ibmG4i",
+    "custom_img_txt2_94DRC8"
+  ]
+}

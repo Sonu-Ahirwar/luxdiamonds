@@ -1,0 +1,72 @@
+{% comment %}
+Top banner
+{% endcomment %}
+
+<section class="visit-showroom-section" style="padding: {{ section.settings.section_padding }};">
+<style>
+.contact-banner {
+    display: flex;
+    gap: 13px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.contact-banner img {
+    height: 300px;
+    width: auto;
+}
+@media (min-width: 1440px) and (max-width: 1900px) {
+    .contact-banner img {
+        height: 250px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1439px) {
+    .contact-banner img {
+        height: 200px;
+    }
+}
+@media (max-width: 991px) {
+    .contact-banner img {
+        height: 154px;
+    }
+    .contact-banner{
+    overflow: scroll;
+}
+}
+@media (max-width: 600x) {
+    .contact-banner img {
+        height: 100px;
+    }
+}
+</style>
+ 
+<div class="contact-banner">
+    {% if section.settings.image1 != blank %}
+    <img src="{{  section.settings.image1 | image_url }}" alt="Wedding day diamonds">
+    {% endif %}
+    {% if section.settings.image2 != blank %}
+    <img src="{{  section.settings.image2 | image_url }}" alt="Wedding day diamonds">
+    {% endif %}
+    {% if section.settings.image3 != blank %}
+    <img src="{{  section.settings.image3 | image_url }}" alt="Wedding day diamonds">
+    {% endif %}
+    {% if section.settings.image4 != blank %}
+    <img src="{{  section.settings.image4 | image_url }}" alt="Wedding day diamonds">
+     {% endif %}
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Visit Showroom Section",
+  "settings": [
+    { "type": "image_picker", "id": "image1", "label": "Image 1" },
+    { "type": "image_picker", "id": "image2", "label": "Image 2" },
+    { "type": "image_picker", "id": "image3", "label": "Image 3" },
+    { "type": "image_picker", "id": "image4", "label": "Image 4" }
+  ],
+  "presets": [
+    { "name": "Top Banner" }
+  ]
+}
+{% endschema %}

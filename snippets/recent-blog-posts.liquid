@@ -1,0 +1,139 @@
+<div class="recent-posts">
+    {% assign blog_handle = 'news' %}
+
+    <div  class="recent_post_head">
+        <h2>Recent Posts</h2>
+        <a href="/blogs/news">See All</a>
+    </div>
+
+    <div  class="recent_post_card_grid recent_post_card_grid_lg">
+        {% for article in blogs[blog_handle].articles limit: 3 %}
+            <div class="recent_post_card">
+
+            <a href="{{ article.url }}">
+                {% if article.image %}
+                <img src="{{ article.image | img_url: 'master' }}" alt="{{ article.title }}" width="" height="">
+                {% else %}
+                    <img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/blog_custom_img.avif?v=1775653002" alt="{{ article.title }}" width="" height="">
+                {% endif %}
+                <div class="recent_post_card_desc">
+                    <h4>{{ article.title }}</h4>
+                </div>
+            </a>
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <div  class="slider recent_post_card_grid recent_post_card_grid_sm">
+        {% for article in blogs[blog_handle].articles limit: 3 %}
+            <div class="recent_post_card">
+
+            <a href="{{ article.url }}">
+                {% if article.image %}
+                <img src="{{ article.image | img_url: 'master' }}" alt="{{ article.title }}" width="" height="">
+                {% else %}
+                    <img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/blog_custom_img.avif?v=1775653002" alt="{{ article.title }}" width="" height="">
+                {% endif %}
+
+                <div class="recent_post_card_desc">
+                    <h4>{{ article.title }}</h4>
+                </div>
+            </a>
+
+            </div>
+        {% endfor %}
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+{% stylesheet %}
+    .recent-posts {
+        margin-top: 30px;
+    }
+    .recent_post_head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .recent_post_head h2{
+        font-family: 'Lato', sans-serif;
+        font-weight:300;
+        font-size: 18px;
+        line-height: 1.4;
+        color: #262726;
+        text-transform: unset;
+    }
+    .recent_post_head a{
+        font-family: 'Lato', sans-serif;
+        font-weight:300;
+        font-size: 14px;
+        line-height: 1.4;
+        color: #262726;
+        text-transform: unset;
+    }
+    .recent_post_card_grid {
+        display: flex;
+        gap: 34px;
+        align-items: flex-start;
+    }
+    .recent_post_card_grid .recent_post_card{
+        width: calc(100% / 3 - 2 / 3 * 34px);
+        background: #fff;
+        border: 1px solid #fff;
+        margin: 6px;
+    }
+    .recent_post_card_grid.recent_post_card_grid_lg .recent_post_card{
+        margin: 0px;
+    }
+    .recent_post_card_grid .recent_post_card{
+        width: 100%;
+    }
+    .recent_post_card img{
+        height: 163px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .recent_post_card_desc{
+        padding: 24px;
+    }
+    .recent_post_card h4{
+        font-family: 'Lato', sans-serif;
+        font-weight:600;
+        font-size: 18px;
+        line-height: 1.4;
+        color: #262726;
+        text-transform: unset;
+        letter-spacing: 0px;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .recent_post_card_grid_sm{
+        display: none;
+    }
+    @media screen and (max-width:767px){
+        .recent_post_card_grid_sm{
+            display: block;
+        }
+        .recent_post_card_grid_lg{
+            display: none;
+        }
+        .recent_post_head {
+            padding: 0px 18px;
+        }
+    }
+{% endstylesheet %}
+
+<script>
+    $('.recent_post_card_grid_sm').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 1,
+        dots: true,
+        arrows:false
+        });
+  </script>

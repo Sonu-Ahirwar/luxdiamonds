@@ -1,0 +1,110 @@
+{%- doc -%}
+  Renders a checkbox input and label
+
+  @param {string} id - input id attribute
+  @param {string} name - input name attribute
+  @param {string} value - input value attribute
+  @param {string} label - label text
+  @param {boolean} checked - whether the input is checked
+  @param {string} events - event attributes for the input, e.g. 'on:click="/action"'
+  @param {boolean} disabled - whether the input is disabled
+  @param {boolean} [required] - whether the input is required
+  @param {string} [formId] - form id attribute for the input
+  @param {string} [inputRef] - input ref attribute for use with component framework
+  @param {string} [labelRef] - label ref attribute for use with component framework
+  @param {boolean} [autofocus] - whether the input should be autofocused
+{%- enddoc -%}
+<div
+  class="checkbox"
+  {{ events }}
+>
+
+
+{% assign checkbox_check = false %}
+{% if checked %}
+  {% assign checkbox_check = true %}
+{% endif %}
+  <input
+    type="checkbox"
+    name="{{ name }}"
+    value="{{ value }}"
+    id="{{ id }}"
+    class="checkbox__input"
+    data-label="{{ label }}"
+    {% if checked or current_tags contains value %}
+      checked
+    {% endif %}
+    {% if disabled %}
+      disabled
+    {% endif %}
+    {% if required %}
+      required aria-required="true"
+    {% endif %}
+    {% if formId != blank %}
+      form="{{ formId }}"
+    {% endif %}
+    {% if inputRef != blank %}
+      ref="{{ inputRef }}"
+    {% endif %}
+    {% if autofocus %}
+      autofocus
+    {% endif %}
+  >
+  <label
+    class="checkbox__label"
+    for="{{ id }}"
+    {% if labelRef != blank %}
+      ref="{{ labelRef }}"
+    {% endif %}
+    role="checkbox"
+  >
+    <span class="checkbox__label-text {% if checkbox_check == true or current_tags contains value %}active{% endif %}">{{- label | remove: 'New Arrivals ' | replace: 'Elongated Cushion', 'Long Cushion' }} {% unless collection.handle == 'new-arrivals' or collection.handle == 'custom-jewelry' %}{% if label == 'Rose' or label == 'White' or label == 'Yellow' %}Gold{% endif %}{% endunless %}</span>
+    
+  {% liquid
+  assign label_lower = label | downcase | replace: " ", "_"
+  assign image_filter_lable = blank
+
+  case name
+    when 'filter.p.m.custom.type'
+      assign image_filter_lable = shop.metafields.custom.filter_type_images_data.value[label_lower]
+    when 'filter.p.m.custom.style'
+      if collection.handle == 'womens-wedding-bands' and label_lower == 'celtic'
+      assign image_filter_lable = 'wedding-celtic.webp'
+      elsif collection.handle == 'womens-wedding-bands' and label_lower == 'nature'
+      assign image_filter_lable = 'wedding-nature.webp'
+      elsif collection.handle == 'womens-wedding-bands' and label_lower == 'modern'
+      assign image_filter_lable = 'wedding-modern.webp'
+      elsif collection.handle == 'womens-wedding-bands' and label_lower == 'vintage'
+      assign image_filter_lable = 'wedding-vintage.webp'
+      else
+        assign image_filter_lable = shop.metafields.custom.filter_style_images_data.value[label_lower]
+      endif
+    when 'filter.p.m.custom.shape'
+      if collection.handle == 'womens-wedding-bands' and label_lower == 'mixed_shape'
+      assign image_filter_lable = 'wedding-mixed-shape.webp'
+      elsif collection.handle == 'womens-wedding-bands' and label_lower == 'asscher'
+      assign image_filter_lable = 'wedding-asscher.webp'
+    else
+      assign image_filter_lable = shop.metafields.custom.filter_shape_images_data.value[label_lower]
+    endif
+    when 'filter.p.m.custom.metal'
+      assign image_filter_lable = shop.metafields.custom.filter_metal_images_data.value[label_lower]
+    when 'filter.p.m.custom.gemstone'
+      assign image_filter_lable = shop.metafields.custom.filter_gemstone_images_data.value[label_lower]
+  endcase
+%}
+
+
+{% if image_filter_lable != blank %}
+  <img
+    src="{{ image_filter_lable | file_url }}"
+    width="60"
+    height="60"
+    alt="Filter Image"
+    loading="lazy"
+  >
+{% endif %}
+
+  </label>
+</div>
+

@@ -1,0 +1,1021 @@
+<!doctype html>
+<html
+  class="no-js{% if request.design_mode %} shopify-design-mode{% endif %}"
+  lang="{{ request.locale.iso_code }}"
+>
+    <head>
+    <!-- Google Tag Manager -->
+    <meta name="google-site-verification" content="LTKibPonS6Z3uXk16HeIZbLMWwrr9YkQMmBH04rK51E">
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-PMMF8ZP');
+    </script>
+    <!-- End Google Tag Manager -->
+    {% if settings.favicon != blank %}
+      <link
+        rel="icon"
+        type="image/png"
+        href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
+      >
+    {% endif %}
+
+    {% comment %}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11359446805"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-11359446805');
+      </script>
+    {% endcomment %}
+    {% comment %}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NP6Y9VXKW"></script>
+
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2NP6Y9VXKW');
+      </script>
+    {% endcomment %}
+    <script>
+      (function () {
+        // ✅ Old → New URL Mapping
+        // "old" = purana path (bina domain ke), "new" = naya path + query
+        var REDIRECT_MAP = [
+          {
+            old: '/product-detail/EAR-DIAMOND-EMBRACE-HOOPS-1-4CTW/yellow-gold-diamond-embrace-hoops-1-4ctw-earrings-lgyfe0108',
+            new: '/products/ear-diamond-embrace-hoops-1-4ctw-lgyfe0108?new_url=yellow-gold-diamond-embrace-hoops-1-4ctw-earrings-lgyfe0108',
+          },
+          {
+            old: '/product-detail/LGEHP0178/yellow-gold-half-bezel-oval-diamond-huggie-earrings-1ctw-lgehp0178',
+            new: '/products/lgehp0178-lgehp0178?new_url=yellow-gold-half-bezel-oval-diamond-huggie-earrings-1ctw-lgehp0178',
+          },
+          {
+            old: '/product-detail/LGEHP0168/white-gold-round-diamond-huggie-earrings-2ctw-lgehp0168',
+            new: '/products/lgehp0168-lgehp0168?new_url=white-gold-round-diamond-huggie-earrings-2ctw-lgehp0168',
+          },
+          {
+            old: '/product-detail/EAR-DEMI/white-gold-demi-earrings-earrings-lgehp0104',
+            new: '/products/ear-demi-lgehp0105?new_url=white-gold-demi-earrings-earrings-lgehp0104',
+          },
+          {
+            old: '/productlist/earrings/Hoops',
+            new: '/collections/earrings?filter.p.m.custom.style=Hoops&filter.v.price.gte=0&filter.v.price.lte=5995&grid-mobile=default&sort_by=manual&grid=default',
+          },
+          // 👉 Excel se import ki gayi redirects (Pinterest)
+          {
+            old: '/product-detail/ER-JANAE/janae-engagement-rings-lgmtc1993-lg-100-ecu/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-janae-lgmtc1993-lg-100-rd?new_url=janae-engagement-rings-lgmtc1993-lg-100-ecu',
+          },
+          {
+            old: '/product-detail/ER-LUCIELLE-PEAR-3-8/lucielle-pear-3-8ctw-engagement-rings-lgmtc2033-lg-100-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-lucielle-pear-3-8-lgmtc2033-lg-100-ov?new_url=lucielle-pear-3-8ctw-engagement-rings-lgmtc2033-lg-100-mq',
+          },
+          {
+            old: '/product-detail/ER-TC-TESSA-BEZEL-SOLITAIRE/yellow-gold-tessa-bezel-solitaire-1ct-emerald-center-engagement-rings-lgmtc2461-lg-100-em/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-tessa-bezel-solitaire-lgmtc2461-lg-100-em?new_url=yellow-gold-tessa-bezel-solitaire-1ct-emerald-center-engagement-rings-lgmtc2461-lg-100-em',
+          },
+          {
+            old: '/product-detail/ER-EAST-WEST-HIDDEN/east-west-hidden-engagement-rings-lgmtc1855-lg-100-ra/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-east-west-hidden-lgmtc1857-lg-100-em?new_url=east-west-hidden-engagement-rings-lgmtc1855-lg-100-ra',
+          },
+          {
+            old: '/product-detail/ER-NUVO-BEZEL/nuvo-bezel-engagement-rings-lgmtc1566-lg-100-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-nuvo-bezel-lgmtc1566-lg-100-ov?new_url=nuvo-bezel-engagement-rings-lgmtc1566-lg-100-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-LUMI-HIDDEN/lumi-hidden-engagement-rings-lgmtc2201-lg-100-rd/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-lumi-hidden-lgmtc2200-lg-100-ov?new_url=lumi-hidden-engagement-rings-lgmtc2201-lg-100-rd',
+          },
+          {
+            old: '/product-detail/ER-NUVO-BEZEL/nuvo-bezel-engagement-rings-lgmtc1566-lg-150-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-nuvo-bezel-lgmtc1566-lg-100-ov?new_url=nuvo-bezel-engagement-rings-lgmtc1566-lg-150-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-CLASSIC-BEZEL-SOL/white-gold-classic-bezel-solitaire-engagement-rings-lgmtc2256-lg-200-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-classic-bezel-sol-lgmtc2257-lg-100-em?new_url=white-gold-classic-bezel-solitaire-engagement-rings-lgmtc2256-lg-200-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-ADA-MODERN-HIDDEN/ada-modern-hidden-engagement-rings-lgmtc1865-lg-100-ecu/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-ada-modern-hidden-lgmtc1864-lg-100-ra?new_url=ada-modern-hidden-engagement-rings-lgmtc1865-lg-100-ecu',
+          },
+          {
+            old: '/product-detail/ER-MAYA-MILGRAIN-SOLITAIRE/maya-milgrain-solitaire-engagement-rings-lgmtc1520-lg-150-cu/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-maya-milgrain-solitaire-lgmtc1521-lg-100-ov?new_url=maya-milgrain-solitaire-engagement-rings-lgmtc1520-lg-150-cu',
+          },
+          {
+            old: '/product-detail/ER-TC-MACY-HIDDEN/macy-hidden-engagement-rings-lgmtc1489-lg-100-ra/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-macy-hidden-lgmtc1490-lg-100-ov?new_url=macy-hidden-engagement-rings-lgmtc1489-lg-100-ra',
+          },
+          {
+            old: '/product-detail/ER-ATLAS/mini-atlas-1-5ctw-engagement-rings-lgmtc1806-lg-200-ecu/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-atlas-lgmtc1806-lg-100-em?new_url=mini-atlas-1-5ctw-engagement-rings-lgmtc1806-lg-200-ecu',
+          },
+          {
+            old: '/product-detail/ER-TC-CLASSIC-BEZEL-SOL/yellow-gold-classic-bezel-solitaire-engagement-rings-lgmtc2257-lg-300-ra/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-classic-bezel-sol-lgmtc2257-lg-100-em?new_url=yellow-gold-classic-bezel-solitaire-engagement-rings-lgmtc2257-lg-300-ra',
+          },
+          {
+            old: '/product-detail/ER-TC-LUCERNE/lucerne-hidden-engagement-rings-lgmtc1498-lg-100-ra/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-lucerne-lgmtc1498-lg-100-rd?new_url=lucerne-hidden-engagement-rings-lgmtc1498-lg-100-ra',
+          },
+          {
+            old: '/product-detail/ER-DELPHINE/classic-delphine-engagement-rings-lgmtc1836-lg-250-ra/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-delphine-lgmtc1837-lg-100-rd?new_url=classic-delphine-engagement-rings-lgmtc1836-lg-250-ra',
+          },
+          {
+            old: '/product-detail/ER-HANNAH-HIDDEN-SOLITAIRE/hannah-hidden-solitaire-engagement-rings-lgmtc1406-lg-200-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-hannah-hidden-solitaire-lgmtc1405-lg-100-ov?new_url=hannah-hidden-solitaire-engagement-rings-lgmtc1406-lg-200-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-MODERN-EAST-WEST-SOL/yellow-gold-modern-east-west-solitaire-engagement-rings-lgmtc2253-lg-100-em/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-modern-east-west-sol-lgmtc2253-lg-100-ov?new_url=yellow-gold-modern-east-west-solitaire-engagement-rings-lgmtc2253-lg-100-em',
+          },
+          {
+            old: '/product-detail/ER-TC-ANALIA-PEAR-RD/white-gold-analia-pear-round-1-4ctw-engagement-rings-lgmtc1689-lg-175-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-analia-pear-rd-lgmtc1690-lg-100-rd?new_url=white-gold-analia-pear-round-1-4ctw-engagement-rings-lgmtc1689-lg-175-ov',
+          },
+          {
+            old: '/product-detail/ER-HARPER/petite-harper-engagement-rings-lgmtc2100-lg-300-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-harper-lgmtc2093-lg-100-rd?new_url=petite-harper-engagement-rings-lgmtc2100-lg-300-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-LACE/white-gold-luxury-lace-1-2ctw-engagement-rings-lgmtc1721-lg-100-ra/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-lace-lgmtc1721-lg-100-ov?new_url=white-gold-luxury-lace-1-2ctw-engagement-rings-lgmtc1721-lg-100-ra',
+          },
+          {
+            old: '/product-detail/ER-TC-LUMIERE/lumiere-hidden-halo-engagement-rings-lgmtc1609-lg-150-ecu/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-lumiere-lgmtc1610-lg-100-ov?new_url=lumiere-hidden-halo-engagement-rings-lgmtc1609-lg-150-ecu',
+          },
+          {
+            old: '/product-detail/ER-TC-3ST-PEAR-RD/white-gold-three-stone-pear-rounds-3-4ctw-engagement-rings-lgmtc2324-lg-300-pe/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-3st-pear-rd-lgmtc2325-lg-100-ov?new_url=white-gold-three-stone-pear-rounds-3-4ctw-engagement-rings-lgmtc2324-lg-300-pe',
+          },
+          {
+            old: '/product-detail/ER-TC-ESME-HIDDEN/esme-hidden-engagement-rings-lgmtc1477-lg-100-ra/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-esme-hidden-lgmtc1477-lg-100-rd?new_url=esme-hidden-engagement-rings-lgmtc1477-lg-100-ra',
+          },
+          {
+            old: '/product-detail/ER-TC-WHISPER/grand-whisper-hidden-halo-1-4ctw-engagement-rings-lgmtc1393-lg-100-cu/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-whisper-lgmtc1394-lg-100-rd?new_url=grand-whisper-hidden-halo-1-4ctw-engagement-rings-lgmtc1393-lg-100-cu',
+          },
+          {
+            old: '/product-detail/ER-TULIP-SOLITAIRE/tulip-solitaire-engagement-rings-lgmtc1514-lg-100-ov/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tulip-solitaire-lgmtc1514-lg-100-rd?new_url=tulip-solitaire-engagement-rings-lgmtc1514-lg-100-ov',
+          },
+          {
+            old: '/product-detail/ER-TWIST-THREE-STONE/twist-three-stone-1-3ctw-engagement-rings-lgmtc2361-lg-100-ecu/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-twist-three-stone-lgmtc2353-lg-100-ov?new_url=twist-three-stone-1-3ctw-engagement-rings-lgmtc2361-lg-100-ecu',
+          },
+          {
+            old: '/product-detail/ER-MODERN-DOMED-3.5mm/modern-domed-3-5mm-engagement-rings-lgmtc1558-lg-175-ecu/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-modern-domed-3-5mm-lgmtc1558-lg-100-rd?new_url=modern-domed-3-5mm-engagement-rings-lgmtc1558-lg-175-ecu',
+          },
+          {
+            old: '/product-detail/ER-TC-GRAND-AVALON/grand-avalon-engagement-rings-lgmtc2168-lg-200-as/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-grand-avalon-lgmtc2169-lg-100-pr?new_url=grand-avalon-engagement-rings-lgmtc2168-lg-200-as',
+          },
+          {
+            old: '/product-detail/ER-TC-GEMINI-RD-BG/white-gold-gemini-round-baguette-1-4ctw-engagement-rings-lgmtc1685-lg-100-ra/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-gemini-rd-bg-lgmtc1686-lg-100-em?new_url=white-gold-gemini-round-baguette-1-4ctw-engagement-rings-lgmtc1685-lg-100-ra',
+          },
+          {
+            old: '/product-detail/ER-AVA-EMERALD/ava-emerald-engagement-rings-lgmtc2080-lg-300-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-ava-emerald-lgmtc2080-lg-100-ov?new_url=ava-emerald-engagement-rings-lgmtc2080-lg-300-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-VALENTINA/grand-valentina-hidden-engagement-rings-lgmtc2128-lg-300-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-valentina-lgmtc1920-lg-100-rd?new_url=grand-valentina-hidden-engagement-rings-lgmtc2128-lg-300-mq',
+          },
+          {
+            old: '/product-detail/ER-TC-VALENTINA/grand-valentina-hidden-engagement-rings-lgmtc2128-lg-300-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-valentina-lgmtc1920-lg-100-rd?new_url=grand-valentina-hidden-engagement-rings-lgmtc2128-lg-300-mq',
+          },
+          {
+            old: '/product-detail/ER-TRES-OVAL-3-8/tres-oval-3-8ctw-engagement-rings-lgmtc2013-lg-100-pe/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tres-oval-3-8-lgmtc2013-lg-100-ov?new_url=tres-oval-3-8ctw-engagement-rings-lgmtc2013-lg-100-pe',
+          },
+          {
+            old: '/product-detail/ER-TC-ANALIA-PEAR-RD/yellow-gold-analia-pear-round-1-4ctw-engagement-rings-lgmtc1690-lg-175-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-analia-pear-rd-lgmtc1690-lg-100-rd?new_url=yellow-gold-analia-pear-round-1-4ctw-engagement-rings-lgmtc1690-lg-175-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-3ST-PEAR/yellow-gold-three-stone-pear-1-4ctw-engagement-rings-lgmtc2281-lg-150-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-3st-pear-lgmtc2277-lg-100-ov?new_url=yellow-gold-three-stone-pear-1-4ctw-engagement-rings-lgmtc2281-lg-150-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-LACE/yellow-gold-luxury-lace-1-2ctw-engagement-rings-lgmtc1722-lg-175-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-lace-lgmtc1721-lg-100-ov?new_url=yellow-gold-luxury-lace-1-2ctw-engagement-rings-lgmtc1722-lg-175-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-STELLA/yellow-gold-stella-1-4ctw-engagement-rings-lgmtc1618-lg-100-cu/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-stella-lgmtc1617-lg-100-rd?new_url=yellow-gold-stella-1-4ctw-engagement-rings-lgmtc1618-lg-100-cu',
+          },
+          {
+            old: '/product-detail/ER-SHARED/luxe-mini-shared-1-4ctw-engagement-rings-lgmtc1849-lg-150-pr/Classic%20-%20VS2+-F-G',
+            new: '/products/er-shared-lgmtc1844-lg-100-em?new_url=luxe-mini-shared-1-4ctw-engagement-rings-lgmtc1849-lg-150-pr',
+          },
+          {
+            old: '/product-detail/ER-NOVAH-HEAVY/yellow-gold-novah-heavy-hidden-solitaire-3ct-elongated-cushion-center-engagement-rings-mrdst0157-lg-300-ecu/Good%20-%20VS1+-G',
+            new: '/products/er-novah-heavy-mrdst0157-lg-100-ov?new_url=yellow-gold-novah-heavy-hidden-solitaire-3ct-elongated-cushion-center-engagement-rings-mrdst0157-lg-300-ecu',
+          },
+          {
+            old: '/product-detail/ER-TC-ELIANA-MQ/white-gold-eliana-marquise-1-3ctw-engagement-rings-lgmtc1781-lg-300-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-eliana-mq-lgmtc1778-lg-100-ov?new_url=white-gold-eliana-marquise-1-3ctw-engagement-rings-lgmtc1781-lg-300-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-ALINA/alina-5-8ctw-engagement-rings-lgmtc2133-lg-300-ov/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-alina-lgmtc2133-lg-100-rd?new_url=alina-5-8ctw-engagement-rings-lgmtc2133-lg-300-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-HAILEY-SOLITAIRE/yellow-gold-hailey-solitaire-1-3-4ct-elongated-cushion-center-engagement-rings-lgmtc2412-lg-175-ecu/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-hailey-solitaire-lgmtc2487-lg-100-ov?new_url=yellow-gold-hailey-solitaire-1-3-4ct-elongated-cushion-center-engagement-rings-lgmtc2412-lg-175-ecu',
+          },
+          {
+            old: '/product-detail/ER-TC-STELLA/white-gold-stella-1-4ctw-engagement-rings-lgmtc1617-lg-150-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-stella-lgmtc1617-lg-100-rd?new_url=white-gold-stella-1-4ctw-engagement-rings-lgmtc1617-lg-150-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-SUMMIT/summit-hidden-engagement-rings-lgmtc1494-lg-200-ov/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-summit-lgmtc1493-lg-100-ov?new_url=summit-hidden-engagement-rings-lgmtc1494-lg-200-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-TOI-ET-MOI/platinum-toi-et-moi-emerald-pear-2ctw-engagement-rings-lgtem4132',
+            new: '/products/er-tc-toi-et-moi-lgtem4134?new_url=platinum-toi-et-moi-emerald-pear-2ctw-engagement-rings-lgtem4132',
+          },
+          {
+            old: '/product-detail/ER-IMANI-PEAR-&-ROUND/imani-pear-and-round-engagement-rings-lgmtc1977-lg-200-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-imani-pear-&-round-lgmtc1977-lg-100-rd?new_url=imani-pear-and-round-engagement-rings-lgmtc1977-lg-200-ov',
+          },
+          {
+            old: '/product-detail/ER-ATLAS/atlas-5-8ctw-engagement-rings-lgmtc1817-lg-300-ra/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-atlas-lgmtc1806-lg-100-em?new_url=atlas-5-8ctw-engagement-rings-lgmtc1817-lg-300-ra',
+          },
+          {
+            old: '/product-detail/ER-KALI-EAST-WEST/kali-east-west-engagement-rings-lgmtc1877-lg-175-em/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-kali-east-west-lgmtc1876-lg-100-em?new_url=kali-east-west-engagement-rings-lgmtc1877-lg-175-em',
+          },
+          {
+            old: '/product-detail/ER-TC-OVAL-5STONE/white-gold-oval-five-stone-5-8ctw-engagement-rings-lgmtc1657-lg-125-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-oval-5stone-lgmtc1657-lg-100-ra?new_url=white-gold-oval-five-stone-5-8ctw-engagement-rings-lgmtc1657-lg-125-rd',
+          },
+          {
+            old: '/product-detail/ER-JULIETTA-HIDDEN/julietta-hidden-engagement-rings-lgmtc2045-lg-100-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-julietta-hidden-lgmtc2045-lg-100-mq?new_url=julietta-hidden-engagement-rings-lgmtc2045-lg-100-mq',
+          },
+          {
+            old: '/product-detail/ER-TC-YVONNE-HIDDEN/yvonne-hidden-engagement-rings-lgmtc2173-lg-100-mq/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-yvonne-hidden-lgmtc2172-lg-100-em?new_url=yvonne-hidden-engagement-rings-lgmtc2173-lg-100-mq',
+          },
+          {
+            old: '/product-detail/ER-TC-EVELYN/evelyn-engagement-rings-lgmtc2041-lg-225-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-evelyn-lgmtc2040-lg-100-rd?new_url=evelyn-engagement-rings-lgmtc2041-lg-225-mq',
+          },
+          {
+            old: '/product-detail/ER-TC-LUMI-HIDDEN/lumi-hidden-engagement-rings-lgmtc2201-lg-125-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-lumi-hidden-lgmtc2200-lg-100-ov?new_url=lumi-hidden-engagement-rings-lgmtc2201-lg-125-mq',
+          },
+          {
+            old: '/product-detail/ER-TC-GRAND-AVALON/grand-avalon-engagement-rings-lgmtc2167-lg-200-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-grand-avalon-lgmtc2169-lg-100-pr?new_url=grand-avalon-engagement-rings-lgmtc2167-lg-200-mq',
+          },
+          {
+            old: '/product-detail/ER-ZEPHYRA/zephyra-engagement-rings-lgmtc1956-lg-300-ra/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-zephyra-lgmtc1957-lg-100-ov?new_url=zephyra-engagement-rings-lgmtc1956-lg-300-ra',
+          },
+          {
+            old: '/product-detail/ER-TC-VALENTINA/valentina-1-2ctw-engagement-rings-lgmtc2137-lg-300-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-valentina-lgmtc1920-lg-100-rd?new_url=valentina-1-2ctw-engagement-rings-lgmtc2137-lg-300-mq',
+          },
+          {
+            old: '/product-detail/ER-DECO-BAGUETTE-THREE-STONE/deco-baguette-three-stone-engagement-rings-lgmtc2344-lg-100-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-deco-baguette-three-stone-lgmtc2345-lg-100-ra?new_url=deco-baguette-three-stone-engagement-rings-lgmtc2344-lg-100-ov',
+          },
+          {
+            old: '/product-detail/ER-HANNAH-HIDDEN/classic-hannah-hidden-engagement-rings-lgmtc1413-lg-225-em/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-hannah-hidden-lgmtc1410-lg-100-ov?new_url=classic-hannah-hidden-engagement-rings-lgmtc1413-lg-225-em',
+          },
+          {
+            old: '/product-detail/ER-NOVAH-HEAVY/yellow-gold-novah-heavy-hidden-solitaire-2-1-2ct-round-center-engagement-rings-mrdst0157-lg-250-rd/Good+-+VS1%2B%2FG',
+            new: '/products/er-novah-heavy-mrdst0157-lg-100-ov?new_url=yellow-gold-novah-heavy-hidden-solitaire-2-1-2ct-round-center-engagement-rings-mrdst0157-lg-250-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-YVETTE-HIDDEN/yvette-hidden-engagement-rings-lgmtc2213-lg-225-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-yvette-hidden-lgmtc2212-lg-100-rd?new_url=yvette-hidden-engagement-rings-lgmtc2213-lg-225-ov',
+          },
+          {
+            old: '/product-detail/ER-NOVAH-HEAVY/yellow-gold-novah-heavy-hidden-solitaire-3ct-emerald-center-engagement-rings-mrdst0157-lg-300-em/Good+-+VS1%2B%2FG',
+            new: '/products/er-novah-heavy-mrdst0157-lg-100-ov?new_url=yellow-gold-novah-heavy-hidden-solitaire-3ct-emerald-center-engagement-rings-mrdst0157-lg-300-em',
+          },
+          {
+            old: '/product-detail/ER-TC-GRACELYN-1-3CTW/gracelyn-1-3ctw-engagement-rings-lgmtc2209-lg-200-ov/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-gracelyn-1-3ctw-lgmtc2208-lg-100-ov?new_url=gracelyn-1-3ctw-engagement-rings-lgmtc2209-lg-200-ov',
+          },
+          {
+            old: '/product-detail/ER-NOVAH-HEAVY/yellow-gold-novah-heavy-solitaire-2-1-2ct-oval-center-engagement-rings-mrmt0238-lg-250-ov/Good+-+VS1%2B%2FG',
+            new: '/products/er-novah-heavy-mrdst0157-lg-100-ov?new_url=yellow-gold-novah-heavy-solitaire-2-1-2ct-oval-center-engagement-rings-mrmt0238-lg-250-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-EVELYN/evelyn-engagement-rings-lgmtc2040-lg-175-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-evelyn-lgmtc2040-lg-100-rd?new_url=evelyn-engagement-rings-lgmtc2040-lg-175-mq',
+          },
+          {
+            old: '/product-detail/ER-ATLAS/classic-atlas-3-8ctw-engagement-rings-lgmtc1813-lg-200-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-atlas-lgmtc1806-lg-100-em?new_url=classic-atlas-3-8ctw-engagement-rings-lgmtc1813-lg-200-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-LALILIQUE/lalilique-engagement-rings-lgmtc1953-lg-175-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-lalilique-lgmtc1952-lg-100-ov?new_url=lalilique-engagement-rings-lgmtc1953-lg-175-mq',
+          },
+          {
+            old: '/product-detail/ER-HANNAH-HIDDEN/classic-hannah-hidden-engagement-rings-lgmtc1413-lg-250-ra/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-hannah-hidden-lgmtc1410-lg-100-ov?new_url=classic-hannah-hidden-engagement-rings-lgmtc1413-lg-250-ra',
+          },
+          {
+            old: '/product-detail/ER-ALERIE-HIDDEN-HALO/alerie-hidden-halo-engagement-rings-lgmtc1458-lg-225-rd/Classic%20-%20VS2+-F-G',
+            new: '/products/er-alerie-hidden-halo-lgmtc1457-lg-100-rd?new_url=alerie-hidden-halo-engagement-rings-lgmtc1458-lg-225-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-LOTUS-THREE-STONE/white-gold-lotus-three-stone-2ct-round-center-engagement-rings-lgmtc2448-lg-200-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-lotus-three-stone-lgmtc2449-lg-100-rd?new_url=white-gold-lotus-three-stone-2ct-round-center-engagement-rings-lgmtc2448-lg-200-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-3ST-PEAR/yellow-gold-grand-pear-three-stone-1-2ctw-engagement-rings-lgmtc2285-lg-300-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-3st-pear-lgmtc2277-lg-100-ov?new_url=yellow-gold-grand-pear-three-stone-1-2ctw-engagement-rings-lgmtc2285-lg-300-ov',
+          },
+          {
+            old: '/product-detail/ER-IMANI-PEAR-&-ROUND/imani-pear-and-round-engagement-rings-lgmtc1976-lg-100-rd/Classic%20-%20VS2+-F-G',
+            new: '/products/er-imani-pear-&-round-lgmtc1977-lg-100-rd?new_url=imani-pear-and-round-engagement-rings-lgmtc1976-lg-100-rd',
+          },
+          {
+            old: '/product-detail/ER-CYPRESS-HALO/cypress-halo-engagement-rings-lgmtc1441-lg-100-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-cypress-halo-lgmtc1442-lg-100-pe?new_url=cypress-halo-engagement-rings-lgmtc1441-lg-100-rd',
+          },
+          {
+            old: '/product-detail/ER-CELTIC/celtic-solitaire-engagement-rings-lgmtc1518-lg-200-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-celtic-lgmtc1426-lg-100-ov?new_url=celtic-solitaire-engagement-rings-lgmtc1518-lg-200-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-LALILIQUE/lalilique-engagement-rings-lgmtc1951-lg-275-ov/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-lalilique-lgmtc1952-lg-100-ov?new_url=lalilique-engagement-rings-lgmtc1951-lg-275-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-ANTONELLA-PEAR-MQ/yellow-gold-antonella-pear-marquise-3-8ctw-engagement-rings-lgmtc1682-lg-100-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-antonella-pear-mq-lgmtc1682-lg-100-rd?new_url=yellow-gold-antonella-pear-marquise-3-8ctw-engagement-rings-lgmtc1682-lg-100-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-7STONE/yellow-gold-mini-seven-stone-1-5ctw-engagement-rings-lgmtc1650-lg-150-ecu/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-7stone-lgmtc1650-lg-100-rd?new_url=yellow-gold-mini-seven-stone-1-5ctw-engagement-rings-lgmtc1650-lg-150-ecu',
+          },
+          {
+            old: '/product-detail/ER-TWIST-THREE-STONE/luxe-twist-three-stone-engagement-rings-lgmtc2353-lg-300-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-twist-three-stone-lgmtc2353-lg-100-ov?new_url=luxe-twist-three-stone-engagement-rings-lgmtc2353-lg-300-rd',
+          },
+          {
+            old: '/product-detail/ER-ALERIE-HIDDEN-HALO/alerie-hidden-halo-engagement-rings-lgmtc1458-lg-100-pe/Classic%20-%20VS2+-F-G',
+            new: '/products/er-alerie-hidden-halo-lgmtc1457-lg-100-rd?new_url=alerie-hidden-halo-engagement-rings-lgmtc1458-lg-100-pe',
+          },
+          {
+            old: '/product-detail/ER-MODERN-DOMED-3.5mm/modern-domed-3-5mm-engagement-rings-lgmtc1557-lg-225-rd/Classic%20-%20VS2+-F-G',
+            new: '/products/er-modern-domed-3-5mm-lgmtc1558-lg-100-rd?new_url=modern-domed-3-5mm-engagement-rings-lgmtc1557-lg-225-rd',
+          },
+          {
+            old: '/product-detail/ER-CELTIC/queen-celtic-1-5ctw-engagement-rings-lgmtc1916-lg-175-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-celtic-lgmtc1426-lg-100-ov?new_url=queen-celtic-1-5ctw-engagement-rings-lgmtc1916-lg-175-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-ANALIA-PEAR-RD/yellow-gold-analia-pear-round-1-4ctw-engagement-rings-lgmtc1690-lg-100-em/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-analia-pear-rd-lgmtc1690-lg-100-rd?new_url=yellow-gold-analia-pear-round-1-4ctw-engagement-rings-lgmtc1690-lg-100-em',
+          },
+          {
+            old: '/product-detail/ER-MAEVE/maeve-engagement-rings-lgmtc2029-lg-500-em/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-maeve-lgmtc2028-lg-100-em?new_url=maeve-engagement-rings-lgmtc2029-lg-500-em',
+          },
+          {
+            old: '/product-detail/ER-TC-SIENNA/white-gold-mini-sienna-1-5ctw-engagement-rings-lgmtc1753-lg-100-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-sienna-lgmtc1753-lg-100-rd?new_url=white-gold-mini-sienna-1-5ctw-engagement-rings-lgmtc1753-lg-100-rd',
+          },
+          {
+            old: '/product-detail/ER-JULIETTA-HIDDEN/julietta-hidden-engagement-rings-lgmtc2045-lg-100-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-julietta-hidden-lgmtc2045-lg-100-mq?new_url=julietta-hidden-engagement-rings-lgmtc2045-lg-100-mq',
+          },
+          {
+            old: '/product-detail/ER-LAINEY/lainey-hidden-solitaire-engagement-rings-lgmtc1869-lg-100-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-lainey-lgmtc1868-lg-100-ov?new_url=lainey-hidden-solitaire-engagement-rings-lgmtc1869-lg-100-mq',
+          },
+          {
+            old: '/product-detail/ER-TC-TOI-ET-MOI/yellow-gold-toi-et-moi-round-pear-2ctw-engagement-rings-lgtpe3903',
+            new: '/products/er-tc-toi-et-moi-lgtem4134?new_url=yellow-gold-toi-et-moi-round-pear-2ctw-engagement-rings-lgtpe3903',
+          },
+          {
+            old: '/product-detail/ER-FELICITY-PEAR-&-RNDS/felicity-pear-and-rounds-engagement-rings-lgmtc1985-lg-100-cu/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-felicity-pear-&-rnds-lgmtc1985-lg-100-ov?new_url=felicity-pear-and-rounds-engagement-rings-lgmtc1985-lg-100-cu',
+          },
+          {
+            old: '/product-detail/ER-JANAE/janae-engagement-rings-lgmtc1993-lg-100-pe/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-janae-lgmtc1993-lg-100-rd?new_url=janae-engagement-rings-lgmtc1993-lg-100-pe',
+          },
+          {
+            old: '/product-detail/ER-TC-SIENNA/white-gold-mini-sienna-1-5ctw-engagement-rings-lgmtc1753-lg-100-em/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-sienna-lgmtc1753-lg-100-rd?new_url=white-gold-mini-sienna-1-5ctw-engagement-rings-lgmtc1753-lg-100-em',
+          },
+          {
+            old: '/product-detail/ER-TC-SIENNA/white-gold-mini-sienna-1-5ctw-engagement-rings-lgmtc1753-lg-100-em/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-sienna-lgmtc1753-lg-100-rd?new_url=white-gold-mini-sienna-1-5ctw-engagement-rings-lgmtc1753-lg-100-em',
+          },
+          {
+            old: '/product-detail/ER-GRAND-ELIZABETH/grand-elizabeth-engagement-rings-lgmtc2008-lg-200-as/Classic%20-%20VS2+-F-G',
+            new: '/products/er-grand-elizabeth-lgmtc2008-lg-100-ov?new_url=grand-elizabeth-engagement-rings-lgmtc2008-lg-200-as',
+          },
+          {
+            old: '/product-detail/ER-ALLURE-BEZEL-SOL/allure-bezel-solitaire-engagement-rings-lgmtc1578-lg-400-em/Classic%20-%20VS2+-F-G',
+            new: '/products/er-allure-bezel-sol-lgmtc1461-lg-100-ov?new_url=allure-bezel-solitaire-engagement-rings-lgmtc1578-lg-400-em',
+          },
+          {
+            old: '/product-detail/ER-GRAND-TRINITY/grand-trinity-2-3ctw-engagement-rings-lgmtc2372-lg-500-mq/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-grand-trinity-lgmtc2364-lg-100-rd?new_url=grand-trinity-2-3ctw-engagement-rings-lgmtc2372-lg-500-mq',
+          },
+          {
+            old: '/product-detail/ER-ATLAS/grand-atlas-9-10ctw-engagement-rings-lgmtc1821-lg-100-ov/Classic%20-%20VS2+-F-G',
+            new: '/products/er-atlas-lgmtc1806-lg-100-em?new_url=grand-atlas-9-10ctw-engagement-rings-lgmtc1821-lg-100-ov',
+          },
+          {
+            old: '/product-detail/ER-LUXE-MABEL/luxe-mabel-engagement-rings-lgmtc2116-lg-300-ecu/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-luxe-mabel-lgmtc2116-lg-100-ov?new_url=luxe-mabel-engagement-rings-lgmtc2116-lg-300-ecu',
+          },
+          {
+            old: '/product-detail/ER-TC-WHISPER/white-gold-whisper-hidden-halo-solitaire-engagement-rings-lgmtc1505-lg-200-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-whisper-lgmtc1394-lg-100-rd?new_url=white-gold-whisper-hidden-halo-solitaire-engagement-rings-lgmtc1505-lg-200-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-3ST-PEAR/white-gold-three-stone-pear-1-4ctw-engagement-rings-lgmtc2280-lg-100-em/Classic%20-%20VS2%2B%2FF-G',
+            new: '/products/er-tc-3st-pear-lgmtc2277-lg-100-ov?new_url=white-gold-three-stone-pear-1-4ctw-engagement-rings-lgmtc2280-lg-100-em',
+          },
+          {
+            old: '/product-detail/ER-LAINEY/lainey-hidden-solitaire-engagement-rings-lgmtc1869-lg-100-mq/Classic%20-%20VS2+-F-G',
+            new: '/products/er-lainey-lgmtc1868-lg-100-ov?new_url=lainey-hidden-solitaire-engagement-rings-lgmtc1869-lg-100-mq',
+          },
+          {
+            old: '/product-detail/ER-LAINEY/lainey-hidden-solitaire-engagement-rings-lgmtc1869-lg-100-pe/Classic%20-%20VS2+-F-G',
+            new: '/products/er-lainey-lgmtc1868-lg-100-ov?new_url=lainey-hidden-solitaire-engagement-rings-lgmtc1869-lg-100-pe',
+          },
+          {
+            old: '/product-detail/ER-LAINEY/lainey-hidden-solitaire-engagement-rings-lgmtc1868-lg-100-ov/Classic%20-%20VS2+-F-G',
+            new: '/products/er-lainey-lgmtc1868-lg-100-ov?new_url=lainey-hidden-solitaire-engagement-rings-lgmtc1868-lg-100-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-LUXE-TWIST-FLORA/luxe-twist-flora-engagement-rings-lgmtc2149-lg-100-mq/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-luxe-twist-flora-lgmtc2148-lg-100-rd?new_url=luxe-twist-flora-engagement-rings-lgmtc2149-lg-100-mq',
+          },
+          {
+            old: '/product-detail/ER-TC-MODERN-EAST-WEST-SOL/yellow-gold-modern-east-west-solitaire-engagement-rings-lgmtc2253-lg-150-em/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-modern-east-west-sol-lgmtc2253-lg-100-ov?new_url=yellow-gold-modern-east-west-solitaire-engagement-rings-lgmtc2253-lg-150-em',
+          },
+          {
+            old: '/product-detail/ER-TC-ESME-HIDDEN/esme-hidden-engagement-rings-lgmtc1477-lg-100-as/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-esme-hidden-lgmtc1477-lg-100-rd?new_url=esme-hidden-engagement-rings-lgmtc1477-lg-100-as',
+          },
+          {
+            old: '/product-detail/ER-TC-ANTONELLA-PEAR-MQ/white-gold-antonella-pear-marquise-3-8ctw-engagement-rings-lgmtc1681-lg-100-pe/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-antonella-pear-mq-lgmtc1682-lg-100-rd?new_url=white-gold-antonella-pear-marquise-3-8ctw-engagement-rings-lgmtc1681-lg-100-pe',
+          },
+          {
+            old: '/product-detail/ER-TC-TWIST-HIDDEN-HALO/white-gold-twist-hidden-halo-2ct-radiant-center-engagement-rings-lgmtc2456-lg-200-ra/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-twist-hidden-halo-lgmtc2457-lg-100-ov?new_url=white-gold-twist-hidden-halo-2ct-radiant-center-engagement-rings-lgmtc2456-lg-200-ra',
+          },
+          {
+            old: '/product-detail/ER-TC-MAGNOLIA-VINE/rose-gold-magnolia-vine-1ct-round-center-engagement-rings-lgmtc2427-lg-100-rd/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-magnolia-vine-lgmtc2429-lg-100-ecu?new_url=rose-gold-magnolia-vine-1ct-round-center-engagement-rings-lgmtc2427-lg-100-rd',
+          },
+          {
+            old: '/product-detail/ER-IMANI-PEAR-&-ROUND/imani-pear-and-round-engagement-rings-lgmtc1976-lg-100-rd/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-imani-pear-&-round-lgmtc1977-lg-100-rd?new_url=imani-pear-and-round-engagement-rings-lgmtc1976-lg-100-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-IRIS/white-gold-iris-hidden-1ct-cushion-center-engagement-rings-lgmtc2424-lg-100-cu/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-iris-lgmtc2425-lg-100-em?new_url=white-gold-iris-hidden-1ct-cushion-center-engagement-rings-lgmtc2424-lg-100-cu',
+          },
+          {
+            old: '/product-detail/ER-LAYLA-5-8/layla-5-8ctw-engagement-rings-lgmtc2121-lg-100-ecu/Classic%20-%20VS2+-F-G',
+            new: '/products/er-layla-5-8-lgmtc2121-lg-100-rd?new_url=layla-5-8ctw-engagement-rings-lgmtc2121-lg-100-ecu',
+          },
+          {
+            old: '/product-detail/ER-MODERN-DOMED-2.5mm/modern-domed-2-5mm-engagement-rings-lgmtc1553-lg-100-ra/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-modern-domed-2-5mm-lgmtc1554-lg-100-rd?new_url=modern-domed-2-5mm-engagement-rings-lgmtc1553-lg-100-ra',
+          },
+          {
+            old: '/product-detail/ER-TC-CLASSIC-BEZEL-SOL/yellow-gold-classic-bezel-solitaire-engagement-rings-lgmtc2257-lg-100-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-classic-bezel-sol-lgmtc2257-lg-100-em?new_url=yellow-gold-classic-bezel-solitaire-engagement-rings-lgmtc2257-lg-100-ov',
+          },
+          {
+            old: '/product-detail/ER-NUVO-BEZEL/nuvo-bezel-engagement-rings-lgmtc1565-lg-300-as/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-nuvo-bezel-lgmtc1566-lg-100-ov?new_url=nuvo-bezel-engagement-rings-lgmtc1565-lg-300-as',
+          },
+          {
+            old: '/product-detail/ER-TC-ELIANA-PEAR/white-gold-mini-eliana-pear-1-3ctw-engagement-rings-lgmtc1789-lg-100-rd/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-eliana-pear-lgmtc1790-lg-100-rd?new_url=white-gold-mini-eliana-pear-1-3ctw-engagement-rings-lgmtc1789-lg-100-rd',
+          },
+          {
+            old: '/product-detail/ER-TC-3ST-BG/yellow-gold-three-stone-tapered-baguette-1-3ctw-engagement-rings-lgmtc2305-lg-100-ov/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-3st-bg-lgmtc2301-lg-100-ov?new_url=yellow-gold-three-stone-tapered-baguette-1-3ctw-engagement-rings-lgmtc2305-lg-100-ov',
+          },
+          {
+            old: '/product-detail/ER-LUCIELLE-PEAR-3-8/lucielle-pear-3-8ctw-engagement-rings-lgmtc2033-lg-100-ov/Classic%20-%20VS2+-F-G',
+            new: '/products/er-lucielle-pear-3-8-lgmtc2033-lg-100-ov?new_url=lucielle-pear-3-8ctw-engagement-rings-lgmtc2033-lg-100-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-VALENTINA/grand-valentina-hidden-engagement-rings-lgmtc2128-lg-100-ecu/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-tc-valentina-lgmtc1920-lg-100-rd?new_url=grand-valentina-hidden-engagement-rings-lgmtc2128-lg-100-ecu',
+          },
+          {
+            old: '/product-detail/ER-TC-LEORA-MQ-RD/white-gold-leora-marquise-round-3-8ctw-engagement-rings-lgmtc1693-lg-100-rd/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-leora-mq-rd-lgmtc1693-lg-100-ov?new_url=white-gold-leora-marquise-round-3-8ctw-engagement-rings-lgmtc1693-lg-100-rd',
+          },
+          {
+            old: '/product-detail/ER-ANGELICA-PEAR-&-ROUND/angelica-pear-and-round-engagement-rings-lgmtc1997-lg-225-ov/Classic+-+VS2%2B%2FF-G',
+            new: '/products/er-angelica-pear-&-round-lgmtc1997-lg-100-ov?new_url=angelica-pear-and-round-engagement-rings-lgmtc1997-lg-225-ov',
+          },
+          {
+            old: '/product-detail/ER-TC-LOTUS-THREE-STONE/yellow-gold-lotus-three-stone-1ct-elongated-cushion-center-engagement-rings-lgmtc2449-lg-100-ecu/Classic%20-%20VS2+-F-G',
+            new: '/products/er-tc-lotus-three-stone-lgmtc2449-lg-100-rd?new_url=yellow-gold-lotus-three-stone-1ct-elongated-cushion-center-engagement-rings-lgmtc2449-lg-100-ecu',
+          },
+          {
+            old: '/product-detail/ER-AVA-EMERALD/ava-emerald-engagement-rings-lgmtc2081-lg-100-pr/Classic%20-%20VS2+-F-G',
+            new: '/products/er-ava-emerald-lgmtc2080-lg-100-ov?new_url=ava-emerald-engagement-rings-lgmtc2081-lg-100-pr',
+          },
+          {
+            old: '/product-detail/ER-DUO-ESTELLA-5-8/duo-estella-5-8ctw-engagement-rings-lgmtc2056-lg-100-rd/Classic%20-%20VS2+-F-G',
+            new: '/products/er-duo-estella-5-8-lgmtc2057-lg-100-ov?new_url=duo-estella-5-8ctw-engagement-rings-lgmtc2056-lg-100-rd',
+          },
+        ];
+
+        function normalizePath(p) {
+          // trailing slash hata do aur lowercase kar do taki match reliably ho
+          return decodeURIComponent(p || '')
+            .replace(/\/+$/, '')
+            .toLowerCase();
+        }
+
+        var currentPath = normalizePath(window.location.pathname);
+
+        for (var i = 0; i < REDIRECT_MAP.length; i++) {
+          var oldPath = normalizePath(REDIRECT_MAP[i].old);
+          if (currentPath === oldPath) {
+            window.location.replace(REDIRECT_MAP[i].new);
+            break;
+          }
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+
+    {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
+    <link
+      rel="expect"
+      href="#MainContent"
+      blocking="render"
+      id="view-transition-render-blocker"
+    >
+
+    {%- render 'meta-tags' -%}
+    {%- render 'stylesheets' -%}
+    {%- render 'fonts' -%}
+    {%- render 'scripts' -%}
+    {%- render 'theme-styles-variables' -%}
+    {%- render 'color-schemes' -%}
+
+    {% if request.design_mode %}
+      {%- render 'theme-editor' -%}
+    {% endif %}
+
+    {{ content_for_header }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    >
+    <script>
+      _affirm_config = {
+        public_api_key: 'C43KC6BBHCNCVPUM',
+        script: 'https://cdn1.affirm.com/js/v2/affirm.js',
+      };
+      (function (l, g, m, e, a, f, b) {
+        var d,
+          c = l[m] || {},
+          h = document.createElement(f),
+          n = document.getElementsByTagName(f)[0];
+        h.async = 1;
+        h.src = e;
+        n.parentNode.insertBefore(h, n);
+        for (d in a) c[d] = a[d];
+        l[m] = c;
+      })(window, document, 'affirm', 'https://cdn1.affirm.com/js/v2/affirm.js', _affirm_config, 'script');
+    </script>
+    <script>
+      if (window.location.pathname === '/collections/all') {
+        window.location.replace('/');
+      }
+      if (window.location.pathname === '/collections') {
+        window.location.replace('/');
+      }
+    </script>
+    <style>
+      @font-face {
+        font-family: 'Avenir-heavy';
+        src: url('https://cdn.shopify.com/s/files/1/0788/6631/7533/files/Avenir_Heavy.ttf?v=1773121271');
+      }
+
+      @font-face {
+        font-family: 'Avenir-black';
+        src: url('https://cdn.shopify.com/s/files/1/0788/6631/7533/files/Avenir_Black.ttf?v=1773121271');
+      }
+
+      @font-face {
+        font-family: 'Avenir-oblique';
+        src: url('https://cdn.shopify.com/s/files/1/0788/6631/7533/files/Avenir-MediumOblique.ttf?v=1773121271');
+      }
+
+      @font-face {
+        font-family: 'Avenir-med';
+        src: url('https://cdn.shopify.com/s/files/1/0788/6631/7533/files/AvenirLTStd-Book.otf?v=1773121271');
+      }
+
+      @font-face {
+        font-family: 'AvenirLTStd';
+        src: url('https://cdn.shopify.com/s/files/1/0788/6631/7533/files/AvenirLTStd-Book.otf?v=1773121271');
+        font-display: swap;
+      }
+      .fontAvenir p{
+          font-family: 'Avenir-med';
+      }
+    </style>
+    <link rel="preconnect" href="https://dsgoag4jfdtur.cloudfront.net" crossorigin>
+    <script>
+      window.__CUSTOMER_ID__ = {% if customer %}{{ customer.id | json }}{% else %}null{% endif %};
+    </script>
+    <script>
+      window.WDD_PLP_MANIFEST_URL = "{{ 'engagement-rings-plp-index-manifest.json' | asset_url }}";
+    </script>
+    <script src="{{ 'wishlist-count.js' | asset_url }}" defer></script>
+    <script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=X5zDFP"></script>
+  </head>
+  
+  <style>
+    /* ✅ Booting: cards visible रहें, बस content hide हो */
+    html.wdd-plp-booting product-card .card-gallery img,
+    html.wdd-plp-booting product-card .js-card-price,
+    html.wdd-plp-booting product-card .price,
+    html.wdd-plp-booting product-card [data-card-title],
+    html.wdd-plp-booting product-card .card_productTitle,
+    html.wdd-plp-booting product-card .product-card__title {
+      opacity: 0 !important;
+    }
+
+    /* optional: shimmer feel */
+    html.wdd-plp-booting product-card .card-gallery {
+      position: relative;
+    }
+    html.wdd-plp-booting product-card .card-gallery::after{
+      content:"";
+      position:absolute; inset:0;
+      background: rgba(240,240,240,.85);
+      border-radius: 12px;
+    }
+  </style>
+
+  <script>
+    // ✅ boot ON instantly
+    document.documentElement.classList.add('wdd-plp-booting');
+
+    // ✅ FAILSAFE: kisi bhi haal me 1500ms baad boot OFF (white screen kabhi nahi hoga)
+    setTimeout(function () {
+      document.documentElement.classList.remove('wdd-plp-booting');
+    }, 1500);
+  </script>
+  {% if collection.handle == 'engagement-rings' %}
+    <script>
+      window.location.replace('/apps/engagement-rings');
+    </script>
+  {% endif %}
+  {% if request.page_type == 'product' %}
+    <style>
+      #pdp-init-loader {
+        position: fixed;
+        inset: 0;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999999;
+        transition: opacity .3s ease;
+      }
+
+      #pdp-init-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .pdp-spinner {
+        width: 38px;
+        height: 38px;
+        border: 3px solid #e5e5e5;
+        border-top: 3px solid #000;
+        border-radius: 50%;
+        animation: pdpSpin 0.8s linear infinite;
+      }
+
+      @keyframes pdpSpin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+
+    <div id="pdp-init-loader">
+      <div class="pdp-spinner"></div>
+    </div>
+
+    {% comment %}
+      <style>
+        #pdp-init-loader{
+          position:fixed;
+          inset:0;
+          background:#fff;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          z-index:999999;
+          transition:opacity .35s ease;
+        }
+        #pdp-init-loader.hidden{
+          opacity:0;
+          pointer-events:none;
+        }
+
+        /* diamond icon size */
+        .pdp-diamond{
+          width:90px;   /* width bada */
+          height:55px;  /* height kam */
+          display:block;
+        }
+
+        /* outline draw animation */
+        .pdp-diamond .outline{
+          fill:none;
+          stroke:#000;
+          stroke-width:3;
+          stroke-linejoin:round;
+          stroke-linecap:round;
+          stroke-dasharray:260;
+          stroke-dashoffset:260;
+          animation: diamondDraw 1.3s ease-in-out infinite;
+        }
+
+        /* inner cuts subtle pulse */
+        .pdp-diamond .cut{
+          fill:none;
+          stroke:#000;
+          stroke-width:2;
+          stroke-linejoin:round;
+          stroke-linecap:round;
+          opacity:.35;
+          animation: cutPulse 1.3s ease-in-out infinite;
+        }
+
+        @keyframes diamondDraw{
+          0%   { stroke-dashoffset:260; opacity:.35; }
+          55%  { stroke-dashoffset:0;   opacity:1; }
+          100% { stroke-dashoffset:-260; opacity:.35; }
+        }
+
+        @keyframes cutPulse{
+          0%   { opacity:.15; }
+          55%  { opacity:.55; }
+          100% { opacity:.15; }
+        }
+      </style>
+
+      <div id="pdp-init-loader">
+        <!-- Emoji-style diamond outline -->
+        <svg class="pdp-diamond" viewBox="0 0 100 100" aria-hidden="true">
+          <!-- OUTLINE (emoji jaisa) -->
+          <path class="outline" d="M10 35 L30 12 H90 L110 35 L60 70 Z"/>
+
+          <path class="cut" d="M30 12 L60 35 L90 12"/>
+          <path class="cut" d="M10 35 H110"/>
+          <path class="cut" d="M10 35 L60 70"/>
+          <path class="cut" d="M110 35 L60 70"/>
+          <path class="cut" d="M60 35 L60 70"/>
+        </svg>
+      </div>
+    {% endcomment %}
+  {% endif %}
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  {% assign collection_cur_tag = false %}
+  {% assign contents = collection.metafields.custom.tag_base_content.value %}
+  {% if contents != blank and current_tags != blank %}
+    {% for item in contents %}
+      {% assign meta_tag = item.tag | handleize %}
+      {% for tag in current_tags %}
+        {% assign current = tag | handleize %}
+        {% if current == meta_tag %}
+          {% assign collection_cur_tag = true %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+  <body class="{%  if template contains 'search' %}filter_tab_wdd {% endif %} page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }} {% if collection_cur_tag == true %} collection_current_tag_active{% endif %} {% if page %} temp--{{ page.handle }} {% else %}temp--{{ template.suffix}}{% endif %}  page_temp--{{ template.name }} Title--{{ page_title }}">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PMMF8ZP"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
+    <div id="header-group">
+      {% sections 'header-group' %}
+    </div>
+    <script
+      src="{{ 'critical.js' | asset_url }}"
+      type="module"
+      async
+      blocking="render"
+    ></script>
+
+    <main
+      id="MainContent"
+      class="content-for-layout"
+      role="main"
+      data-page-transition-enabled="false"
+      data-product-transition="false"
+      data-template="{{ template }}"
+    >
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {% render 'search-modal' %}
+
+    {% if settings.quick_add or settings.mobile_quick_add %}
+      {% render 'quick-add-modal' %}
+    {% endif %}
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 512 512"
+      height="1em"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+      class="scroll-to-top-btn"
+      style="display: inline;"
+    >
+      <path d="M256 217.9L383 345c9.4 9.4 24.6 9.4 33.9 0 9.4-9.4 9.3-24.6 0-34L273 167c-9.1-9.1-23.7-9.3-33.1-.7L95 310.9c-4.7 4.7-7 10.9-7 17s2.3 12.3 7 17c9.4 9.4 24.6 9.4 33.9 0l127.1-127z"></path>
+    </svg>
+    <script>
+      const interval = setInterval(() => {
+        const badge = document.querySelectorAll('.jdgm-verified-badge-header');
+
+        if (badge.length) {
+          clearInterval(interval);
+
+          badge[0].insertAdjacentHTML(
+            'afterbegin',
+            `<img src="https://cdn.shopify.com/s/files/1/0788/6631/7533/files/google_review.jpg?v=1782378465" class="google-review-logo" alt="Google Reviews">`
+          );
+        }
+      }, 500);
+
+      (function () {
+        const scrollBtn = document.querySelector('.scroll-to-top-btn');
+        if (!scrollBtn) return;
+
+        function isPageScrollable() {
+          return document.documentElement.scrollHeight > window.innerHeight + 10;
+        }
+
+        function toggleButton() {
+          if (!isPageScrollable()) {
+            scrollBtn.style.display = 'none';
+            return;
+          }
+
+          if (window.scrollY > 200) {
+            scrollBtn.style.display = 'inline';
+          } else {
+            scrollBtn.style.display = 'none';
+          }
+        }
+
+        // Scroll to top on click
+        scrollBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          });
+        });
+
+        // On scroll
+        window.addEventListener('scroll', toggleButton);
+
+        // On resize (in case content changes)
+        window.addEventListener('resize', toggleButton);
+
+        // Initial check
+        toggleButton();
+      })();
+    </script>
+
+    <script
+      src="{{ 'custom.js' | asset_url }}"
+      defer="defer"
+    ></script>
+    <script>
+      window.addEventListener('load', function () {
+        window._klOnsite = window._klOnsite || [];
+        window._klOnsite.push(['openForm', 'AbCdEf']);
+      });
+    </script>
+    <script>
+      (function () {
+        if (location.pathname.indexOf('/collections/engagement-rings') > -1) return;
+        if (sessionStorage.getItem('wdd_engagement_http_warmed_v1')) return;
+
+        var COLLECTION_HANDLE = 'engagement-rings';
+        var SKU_VIEW = 'wdd-sku-en-json';
+
+        function getHandles(page) {
+          return fetch('/collections/' + COLLECTION_HANDLE + '/products.json?limit=250&page=' + page, {
+            credentials: 'same-origin',
+            cache: 'force-cache',
+          })
+            .then(function (r) {
+              return r.ok ? r.json() : { products: [] };
+            })
+            .then(function (d) {
+              return (d.products || []).map(function (p) {
+                return p.handle;
+              });
+            })
+            .catch(function () {
+              return [];
+            });
+        }
+
+        function warmSku(handles) {
+          var queue = handles.filter(Boolean);
+
+          function batch() {
+            var items = queue.splice(0, 80);
+
+            items.forEach(function (handle) {
+              fetch('/products/' + handle + '?view=' + encodeURIComponent(SKU_VIEW), {
+                credentials: 'same-origin',
+                cache: 'force-cache',
+              }).catch(function () {});
+            });
+
+            if (queue.length) {
+              setTimeout(batch, 50);
+            } else {
+              sessionStorage.setItem('wdd_engagement_http_warmed_v1', '1');
+            }
+          }
+
+          batch();
+        }
+
+        setTimeout(function () {
+          Promise.all([getHandles(1), getHandles(2)]).then(function (pages) {
+            warmSku([].concat.apply([], pages));
+          });
+        }, 50);
+      })();
+    </script>
+    <script src="{{ 'wdd-custom-search.js' | asset_url }}" defer></script>
+  </body>
+</html>

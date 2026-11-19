@@ -1,0 +1,836 @@
+{%- doc -%}
+  Renders the cart summary totals.
+
+  @param {string} [accelerated_checkout_buttons_layout] - { 'vertical' } Forced layout of the additional checkout buttons, instead of relying on platform's layout.
+{%- enddoc -%}
+
+{%- liquid
+  assign engraving_total_raw = 0
+  assign subtotal_without_engraving_raw = 0
+  assign grand_total_raw = 0
+  assign has_pending_variant = false
+
+  for item in cart.items
+    assign item_display_price = item.properties._display_price | default: ''
+    assign item_display_price_number = item_display_price | remove: '$' | remove: ',' | strip | plus: 0
+    assign item_display_line_raw = item_display_price_number | times: item.quantity
+    assign item_display_line_cents = item_display_line_raw | times: 100 | round
+
+    if item.product.handle == 'engraving'
+      assign engraving_total_raw = engraving_total_raw | plus: item.final_line_price
+      assign grand_total_raw = grand_total_raw | plus: item.final_line_price
+    else
+      if item_display_price != blank and item_display_price_number > 0
+        assign subtotal_without_engraving_raw = subtotal_without_engraving_raw | plus: item_display_line_cents
+        assign grand_total_raw = grand_total_raw | plus: item_display_line_cents
+      else
+        assign subtotal_without_engraving_raw = subtotal_without_engraving_raw | plus: item.final_line_price
+        assign grand_total_raw = grand_total_raw | plus: item.final_line_price
+      endif
+    endif
+
+    if item.properties._pending_variant == 'true'
+      assign has_pending_variant = true
+    endif
+  endfor
+
+  if settings.currency_code_enabled_cart_total
+    assign total_price = grand_total_raw | money_with_currency
+    assign engraving_total = engraving_total_raw | money_with_currency
+    assign subtotal_without_engraving = subtotal_without_engraving_raw | money_with_currency
+  else
+    assign total_price = grand_total_raw | money
+    assign engraving_total = engraving_total_raw | money
+    assign subtotal_without_engraving = subtotal_without_engraving_raw | money
+  endif
+-%}
+
+<div class="cart__summary-totals {% unless template == 'cart' %} hidden {% endunless %}">
+  {% # We need to keep this node in place to allow morphing to work properly # %}
+  <div class="cart__original-total-container cart-primary-typography">
+    {%- if cart.cart_level_discount_applications.size > 0 -%}
+      <span class="cart__summary-item cart__original-total">
+        <span class="cart__original-total-label">{{ 'content.cart_subtotal' | t }}</span>
+        <span class="cart__original-total-value cart-secondary-typography">
+          {{- cart.original_total_price | money -}}
+        </span>
+      </span>
+      <div class="cart__summary-discounts">
+        <ul
+          class="discounts list-unstyled"
+          role="list"
+          aria-label="{{ 'content.discounts' | t }}"
+        >
+          {%- for discount in cart.cart_level_discount_applications -%}
+            <li class="cart__summary-item cart__discount">
+              <span class="cart__discount-label">
+                {{- 'icon-discount.svg' | inline_asset_content -}}
+                {{ discount.title | escape }}
+              </span>
+              <span class="cart__discount-value cart-secondary-typography">
+                -{{ discount.total_allocated_amount | money -}}
+              </span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {% if settings.show_cart_note or settings.show_add_discount_code %}
+    <div class="cart-actions">
+      {% if settings.show_cart_note %}
+        {% render 'cart-note' %}
+      {% endif %}
+      {% if settings.show_cart_note and settings.show_add_discount_code %}
+        <div class="cart-actions__divider"></div>
+      {% endif %}
+      {% if settings.show_add_discount_code %}
+        {% render 'cart-discount', section_id: section.id %}
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if template == 'cart' %}
+    <div class="cart__total-container">
+      <span
+        class="cart__summary-item cart__total"
+        role="status"
+      >
+        <span class="cart__total-label cart-primary-typography"> Subtotal </span>
+        <text-component
+          ref="cartTotal"
+          value="{{ subtotal_without_engraving | strip_html }}"
+          class="cart__total-value cart-secondary-typography"
+          data-cart-subtotal
+        >
+          {{ subtotal_without_engraving | remove: 'USD' }}
+        </text-component>
+      </span>
+
+      {% if engraving_total_raw > 0 %}
+        <span
+          class="cart__summary-item cart__total"
+          role="status"
+        >
+          <span class="cart__total-label cart-primary-typography"> Engraving Charges </span>
+          <text-component
+            class="cart__total-value cart-secondary-typography"
+          >
+            {{ engraving_total }}
+          </text-component>
+        </span>
+      {% endif %}
+
+      <span
+        class="cart__summary-item cart__total"
+        role="status"
+      >
+        <span class="cart__total-label cart-primary-typography"> Shipping </span>
+        <text-component
+          ref="cartTotal"
+          value="0.00"
+          class="cart__total-value cart-secondary-typography"
+          data-cart-subtotal
+        >
+          0.00
+        </text-component>
+      </span>
+
+      {% if settings.show_installments %}
+        <span class="cart__summary-item cart__installments">
+          {% form 'cart', cart %}
+            {{ form | payment_terms }}
+          {% endform %}
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+<div class="cart__summary-totals">
+  <div class="cart__total-container">
+    <span
+      class="cart__summary-item cart__total"
+      role="status"
+    >
+      <span class="cart__total-label cart-primary-typography"> TOTAL </span>
+      <text-component
+        ref="cartTotal"
+        value="{{ total_price | strip_html }}"
+        class="cart__total-value cart-secondary-typography"
+        data-cart-subtotal
+      >
+        {{ total_price | remove: 'USD' }}
+      </text-component>
+    </span>
+
+    <div class="cart__summary-item tax-note cart-primary-typography">
+      {% render 'tax-info', has_discounts_enabled: settings.show_add_discount_code %}
+    </div>
+  </div>
+</div>
+
+<div class="cart__ctas">
+  {% if customer == null %}
+    <a
+      href="{{ routes.account_login_url }}"
+      class="button button--secondary cart__login-button"
+    >
+      Login
+    </a>
+
+    <button
+      type="button"
+      id="checkout"
+      class="cart__checkout-button button"
+      data-checkout-trigger="guest"
+      {% if cart == empty %}
+        disabled
+      {% endif %}
+    >
+      Guest Checkout
+    </button>
+  {% else %}
+    <button
+      type="button"
+      id="checkout"
+      class="cart__checkout-button button"
+      name="checkout"
+      {% if cart == empty %}
+        disabled
+      {% endif %}
+      form="cart-form"
+    >
+      {{ 'content.checkout' | t }}
+    </button>
+  {% endif %}
+
+  {% if additional_checkout_buttons and settings.show_accelerated_checkout_buttons %}
+    <div
+      class="
+        additional-checkout-buttons
+        {% if accelerated_checkout_buttons_layout == 'vertical' %}additional-checkout-buttons--vertical{% endif %}
+      "
+    >
+      {{ content_for_additional_checkout_buttons }}
+    </div>
+  {% endif %}
+</div>
+
+{% if template == 'cart' %}
+  <div class="cart_shipping_details">
+    <h2 class="title">Shipping</h2>
+
+    <p class="shipping-date">
+      Estimated shipping date if ordered by today:
+      <strong>
+        {% assign date_shipping = 'now' | date: '%s' | plus: 432000 | date: '%b %d, %Y' %}
+        {%- for property in cart.items[0].properties -%}
+          {%- if property.first == 'shipping time' -%}
+            {% assign date_shipping = property.last %}
+          {%- endif -%}
+        {%- endfor -%}
+        {{ date_shipping }}
+      </strong>
+    </p>
+
+    <p style="margin-top: 40px">Need to take another look?</p>
+
+    <a
+      class="button cart-items__empty-button"
+      href="{{ settings.empty_cart_button_link | default: routes.all_products_collection_url }}"
+    >
+      {{ 'actions.continue_shopping' | t }}
+    </a>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .cart-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    border-block: 1px solid #ddd;
+    padding: 5px 0;
+    margin-block-start: var(--margin-3xs);
+  }
+
+  .cart-actions__divider {
+    border-block-start: 1px solid #e8e8e8;
+  }
+
+  .cart__summary-totals:not(:has(.cart-actions)) {
+    margin-block-start: var(--margin-3xs);
+    border-block-start: 1px solid #e8e8e8;
+    padding-block-start: var(--margin-xl);
+  }
+
+  .cart__installments {
+    color: var(--color-foreground);
+  }
+{% endstylesheet %}
+
+<script>
+      (function () {
+        {% comment %} let __CART_SYNC_PROMISE__ = null;
+        let __CHECKOUT_PROMISE__ = null;
+        let __CART_SYNC_DONE__ = false; {% endcomment %}
+
+        {% comment %} sas custom {% endcomment %}
+          let __CART_SYNC_PROMISE__ = null;
+          let __CHECKOUT_PROMISE__ = null;
+          let __CART_SYNC_DONE__ = false;
+          let __CHECKOUT_NAVIGATING__ = false;
+          let __SAS_BEGIN_CHECKOUT_SENT__ = false;
+          let __CHECKOUT_ANALYTICS_CART__ = {{ cart | json }};
+         {% comment %} sas custom {% endcomment %}
+
+        // per bundle processed lock (persists until refresh)
+        const __PROCESSED_BUNDLES__ = new Set();
+        // per variant inflight add lock
+        const __VARIANT_ADD_LOCKS__ = new Map();
+
+        function isPendingItem(item) {
+          return !!(
+            item &&
+            item.properties &&
+            String(item.properties._pending_variant || '').toLowerCase() === 'true' &&
+            item.properties._target_variant_id &&
+            String(item.properties._is_engraving_addon || '').toLowerCase() !== 'true'
+          );
+        }
+
+        function getBundleId(item) {
+          return String(item?.properties?._bundle_id || '').trim();
+        }
+
+        function setButtonWaitState(btn, isWaiting) {
+          if (!(btn instanceof HTMLElement)) return;
+
+          if (!btn.dataset.defaultLabel) {
+            btn.dataset.defaultLabel = btn.textContent.trim();
+          }
+
+          btn.textContent = isWaiting ? 'Please wait...' : btn.dataset.defaultLabel;
+        }
+
+        function resetAllCheckoutButtons() {
+          document.querySelectorAll('.cart__checkout-button').forEach((btn) => {
+            if (btn.dataset.defaultLabel) {
+              btn.textContent = btn.dataset.defaultLabel;
+            }
+          });
+        }
+
+        async function getCart() {
+          const res = await fetch('/cart.js', { credentials: 'same-origin' });
+          if (!res.ok) throw new Error('Unable to load cart');
+          return res.json();
+        }
+
+        function cleanProperties(props) {
+          const out = {};
+          Object.entries(props || {}).forEach(([k, v]) => {
+            if (v == null) return;
+            const s = String(v).trim();
+            if (!s) return;
+            out[k] = s;
+          });
+          return out;
+        }
+
+        async function isVariantAlreadyInCartWithBundle(targetVariantId, bundleId) {
+          const cart = await getCart();
+
+          return cart.items.some((i) => {
+            const sameVariant = String(i.variant_id) === String(targetVariantId);
+            const sameBundle = String(i.properties?._bundle_id || '').trim() === String(bundleId || '').trim();
+            const isStillPending = String(i.properties?._pending_variant || '').toLowerCase() === 'true';
+
+            return sameVariant && sameBundle && !isStillPending;
+          });
+        }
+
+        async function addActualVariantOnce(item) {
+          const props = { ...(item.properties || {}) };
+          const targetVariantId = Number(props._target_variant_id || 0);
+          const bundleId = getBundleId(item);
+
+
+          if (!targetVariantId) {
+            throw new Error('Target variant missing');
+          }
+
+          // already processed in this page lifecycle
+          if (bundleId && __PROCESSED_BUNDLES__.has(bundleId)) {
+            return;
+          }
+
+          const lockKey = String(targetVariantId) + '::' + String(bundleId || '');
+
+          // same add already running
+          if (__VARIANT_ADD_LOCKS__.has(lockKey)) {
+            return __VARIANT_ADD_LOCKS__.get(lockKey);
+          }
+
+          const task = (async () => {
+            const alreadyExists = await isVariantAlreadyInCartWithBundle(targetVariantId, bundleId);
+            if (alreadyExists) {
+              if (bundleId) __PROCESSED_BUNDLES__.add(bundleId);
+              return;
+            }
+
+            delete props._pending_variant;
+
+            const maxAttempts = 4;
+            const delayMs = 700;
+            let lastErrorText = '';
+
+            for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+              const res = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify({
+                  items: [
+                    {
+                      id: targetVariantId,
+                      quantity: 1,
+                      properties: cleanProperties(props)
+                    }
+                  ]
+                })
+              });
+
+              if (res.ok) {
+                if (bundleId) __PROCESSED_BUNDLES__.add(bundleId);
+                return res.json();
+              }
+
+              lastErrorText = await res.text();
+
+              if (attempt < maxAttempts) {
+                await new Promise((r) => setTimeout(r, delayMs));
+              }
+            }
+
+            throw new Error('Failed to add finalized item: ' + lastErrorText);
+          })();
+
+          __VARIANT_ADD_LOCKS__.set(lockKey, task);
+
+          try {
+            return await task;
+          } finally {
+            __VARIANT_ADD_LOCKS__.delete(lockKey);
+          }
+        }
+
+        async function removeFallbackLine(itemKey) {
+          console.log('[WDD AUDIT] REMOVE FALLBACK', {
+        timestamp: new Date().toISOString(),
+        item_key: itemKey
+      });
+          const res = await fetch('/cart/change.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'same-origin',
+            body: JSON.stringify({
+              id: itemKey,
+              quantity: 0
+            })
+          });
+
+          if (!res.ok) {
+            const txt = await res.text();
+            throw new Error('Failed to remove fallback item: ' + txt);
+          }
+
+          return res.json();
+        }
+
+        async function rerenderCartPageSections() {
+          const res = await fetch(window.location.pathname, {
+            credentials: 'same-origin'
+          });
+          if (!res.ok) throw new Error('Unable to rerender cart sections');
+
+          const html = await res.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          const selectors = [
+            '.cart__summary-totals',
+            '.cart__ctas',
+            '.cart_shipping_details'
+          ];
+
+          selectors.forEach((selector) => {
+            const currentEls = document.querySelectorAll(selector);
+            const newEls = doc.querySelectorAll(selector);
+
+            if (!currentEls.length || !newEls.length) return;
+
+            currentEls.forEach((el, index) => {
+              if (newEls[index]) {
+                el.replaceWith(newEls[index].cloneNode(true));
+              }
+            });
+          });
+        }
+
+        {% comment %} sas custom {% endcomment %}
+        function pushRealProductAddedEvent(finalCart, pendingItem) {
+          const properties = pendingItem.properties || {};
+          const bundleId = getBundleId(pendingItem);
+          const targetVariantId = String(properties._target_variant_id || '');
+
+          if (!bundleId || !targetVariantId) return;
+
+          const finalItem = (finalCart.items || []).find((item) => {
+            const sameBundle =
+              String(item.properties?._bundle_id || '').trim() === bundleId;
+
+            const sameVariant =
+              String(item.variant_id) === targetVariantId;
+
+            const isStillPending =
+              String(item.properties?._pending_variant || '').toLowerCase() === 'true';
+
+            return sameBundle && sameVariant && !isStillPending;
+          });
+
+          if (!finalItem) {
+            console.warn('[WDD Analytics] Final item not found', {
+              bundleId,
+              targetVariantId
+            });
+            return;
+          }
+
+          const itemPrice = Number(finalItem.final_price || finalItem.price || 0) / 100;
+          const quantity = Number(finalItem.quantity || 1);
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'wdd_real_product_added',
+
+            bundle_id: bundleId,
+            fallback_variant_id: pendingItem.variant_id,
+            final_variant_id: finalItem.variant_id,
+
+            ecommerce: {
+              currency: finalCart.currency || 'USD',
+              value: itemPrice * quantity,
+              items: [
+                {
+                  item_id: String(finalItem.product_id || ''),
+                  item_name:
+                    finalItem.product_title ||
+                    finalItem.title ||
+                    finalItem.properties?._display_title ||
+                    '',
+                  item_variant: String(finalItem.variant_id || ''),
+                  item_sku: finalItem.sku || '',
+                  price: itemPrice,
+                  quantity: quantity
+                }
+              ]
+            }
+          });
+
+          console.log('[WDD Analytics] Real product added', {
+            bundleId,
+            productId: finalItem.product_id,
+            variantId: finalItem.variant_id
+          });
+        }
+
+  function pushSasBeginCheckoutEvent(checkoutType) {
+    if (__SAS_BEGIN_CHECKOUT_SENT__) return;
+
+    const cart = __CHECKOUT_ANALYTICS_CART__;
+
+    if (!cart || !Array.isArray(cart.items)) return;
+
+    const items = cart.items.map((item) => {
+      const price = Number(item.final_price || item.price || 0) / 100;
+
+      return {
+        item_id: String(item.product_id || item.variant_id || ''),
+        item_name: item.product_title || item.title || '',
+        item_variant: String(item.variant_id || ''),
+        item_sku: item.sku || '',
+        item_brand: item.vendor || '',
+        price: price,
+        quantity: Number(item.quantity || 1)
+      };
+    });
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ ecommerce: null });
+    window.dataLayer.push({
+      event: 'sas_begin_checkout',
+      checkout_type: checkoutType,
+      ecommerce: {
+        currency: cart.currency || 'USD',
+        value: Number(cart.total_price || 0) / 100,
+        items: items
+      }
+    });
+
+    __SAS_BEGIN_CHECKOUT_SENT__ = true;
+  }
+         {% comment %} sas custom {% endcomment %}
+
+        async function syncPendingCartItems() {
+          const cart = await getCart();
+          __CHECKOUT_ANALYTICS_CART__ = cart;
+          const pendingItems = (cart.items || []).filter(isPendingItem);
+
+          if (!pendingItems.length) {
+            __CART_SYNC_DONE__ = true;
+            return { changed: false, pendingCount: 0 };
+          }
+
+          // de-dupe pending items by bundle id first
+          const uniquePending = [];
+          const seenBundles = new Set();
+
+          pendingItems.forEach((item) => {
+            const bundleId = getBundleId(item);
+            const dedupeKey = bundleId || item.key;
+
+            if (!seenBundles.has(dedupeKey) && !__PROCESSED_BUNDLES__.has(bundleId)) {
+              seenBundles.add(dedupeKey);
+              uniquePending.push(item);
+            }
+          });
+
+          if (!uniquePending.length) {
+            __CART_SYNC_DONE__ = true;
+            return { changed: false, pendingCount: 0 };
+          }
+
+          // first add actual variants
+          await Promise.all(
+            uniquePending.map((item) => addActualVariantOnce(item))
+          );
+
+          // then remove fallback lines
+          await Promise.all(
+            uniquePending.map((item) => removeFallbackLine(item.key))
+          );
+
+          await rerenderCartPageSections();
+
+          // final settle check
+
+          {% comment %} sas custom {% endcomment %}
+          const finalCart = await getCart();
+          __CHECKOUT_ANALYTICS_CART__ = finalCart;
+          uniquePending.forEach((pendingItem) => {
+            pushRealProductAddedEvent(finalCart, pendingItem);
+          });
+
+          __CART_SYNC_DONE__ = true;
+           {% comment %} sas custom {% endcomment %}
+          {% comment %} await getCart();
+
+          __CART_SYNC_DONE__ = true; {% endcomment %}
+
+          return {
+            changed: true,
+            pendingCount: 0
+          };
+        }
+
+        function startCartSyncIfNeeded() {
+          if (__CART_SYNC_DONE__) {
+            return Promise.resolve({ changed: false, pendingCount: 0 });
+          }
+
+          if (__CART_SYNC_PROMISE__) {
+            return __CART_SYNC_PROMISE__;
+          }
+
+          __CART_SYNC_PROMISE__ = syncPendingCartItems()
+            .finally(() => {
+              __CART_SYNC_PROMISE__ = null;
+            });
+
+          return __CART_SYNC_PROMISE__;
+        }
+
+        {% comment %} async function handleNormalCheckoutClick(btn) {
+          if (__CHECKOUT_PROMISE__) {
+            setButtonWaitState(btn, true);
+            try {
+              await __CHECKOUT_PROMISE__;
+            } finally {
+              setButtonWaitState(btn, false);
+            }
+            return;
+          }
+
+          __CHECKOUT_PROMISE__ = (async () => {
+            try {
+              await startCartSyncIfNeeded();
+              window.location.assign('/checkout?skip_shop_pay=true&auto_redirect=false');
+            } finally {
+              __CHECKOUT_PROMISE__ = null;
+            }
+          })();
+
+          setButtonWaitState(btn, true);
+
+          try {
+            await __CHECKOUT_PROMISE__;
+          } catch (err) {
+            console.error('[Checkout flow]', err);
+            alert(err.message || 'Unable to prepare checkout');
+          } finally {
+            setButtonWaitState(btn, false);
+          }
+        } {% endcomment %}
+
+        {% comment %} sas custom {% endcomment %}
+
+      async function handleNormalCheckoutClick(btn) {
+        if (__CHECKOUT_NAVIGATING__) return;
+
+        if (__CHECKOUT_PROMISE__) {
+          setButtonWaitState(btn, true);
+          try {
+            await __CHECKOUT_PROMISE__;
+          } finally {
+            setButtonWaitState(btn, false);
+          }
+          return;
+        }
+
+        __CHECKOUT_PROMISE__ = (async () => {
+          try {
+            await startCartSyncIfNeeded();
+            pushSasBeginCheckoutEvent('standard');
+            __CHECKOUT_NAVIGATING__ = true;
+            window.location.assign('/checkout?skip_shop_pay=true&auto_redirect=false');
+          } finally {
+            __CHECKOUT_PROMISE__ = null;
+          }
+        })();
+
+        setButtonWaitState(btn, true);
+
+        try {
+          await __CHECKOUT_PROMISE__;
+        } catch (err) {
+          __CHECKOUT_NAVIGATING__ = false;
+          console.error('[Checkout flow]', err);
+          alert(err.message || 'Unable to prepare checkout');
+        } finally {
+          setButtonWaitState(btn, false);
+        }
+      }
+         {% comment %} sas custom {% endcomment %}
+
+        {% comment %} async function handleAcceleratedCheckoutClick(acceleratedBtn) {
+          // while sync is running, do not send another request; just wait
+          if (__CART_SYNC_PROMISE__) {
+            await __CART_SYNC_PROMISE__;
+          } else if (!__CART_SYNC_DONE__) {
+            await startCartSyncIfNeeded();
+          }
+
+          // after sync complete, allow original accelerated button click once
+          setTimeout(() => {
+            acceleratedBtn.click();
+          }, 50);
+        } {% endcomment %}
+
+        {% comment %} sas custom {% endcomment %}
+        function findAcceleratedCheckoutButton(event) {
+          const path =
+            typeof event.composedPath === 'function'
+              ? event.composedPath()
+              : [event.target];
+
+          const checkoutHostIndex = path.findIndex((node) => {
+            return (
+              node instanceof Element &&
+              node.matches('shopify-accelerated-checkout-cart')
+            );
+          });
+
+      if (checkoutHostIndex !== -1) {
+        const button = path
+          .slice(0, checkoutHostIndex)
+          .find((node) => node instanceof HTMLButtonElement);
+
+        return button || path[checkoutHostIndex];
+      }
+
+      const target = event.target instanceof Element ? event.target : null;
+
+      return target
+        ? target.closest(
+            '.shopify-payment-button__button, [data-shopify="payment-button"], shopify-accelerated-checkout-cart button'
+          )
+        : null;
+    }
+         {% comment %} sas custom {% endcomment %}
+
+      async function handleCheckoutIntent(e) {
+        const target = e.target instanceof Element ? e.target : null;
+
+        const normalBtn = target
+          ? target.closest('.cart__checkout-button')
+          : null;
+
+        const acceleratedCheckoutClick =
+          typeof e.composedPath === 'function' &&
+          e.composedPath().some((node) => {
+            return (
+              node instanceof Element &&
+              node.matches('shopify-accelerated-checkout-cart')
+            );
+          });
+
+        if (!normalBtn && !acceleratedCheckoutClick) return;
+
+        if (acceleratedCheckoutClick) {
+          pushSasBeginCheckoutEvent('accelerated');
+          return;
+        }
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (e.stopImmediatePropagation) {
+          e.stopImmediatePropagation();
+        }
+
+        if (__CHECKOUT_NAVIGATING__) return;
+
+        try {
+          await handleNormalCheckoutClick(normalBtn);
+        } catch (err) {
+          console.error('[Checkout intent]', err);
+          resetAllCheckoutButtons();
+        }
+      }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          // silent background sync
+          setTimeout(() => {
+            startCartSyncIfNeeded().catch((err) => {
+              console.error('[Cart sync]', err);
+              resetAllCheckoutButtons();
+            });
+          }, 0);
+        });
+
+        document.addEventListener('click', handleCheckoutIntent, true);
+      })();
+</script>
